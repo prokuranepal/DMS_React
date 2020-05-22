@@ -14,7 +14,7 @@ class App extends Component {
             <Switch>
               <Route path="/auth" component={Auth} />
               <Route path="/dashboard" component={Dashboard} />
-              <Route path="/reset" component={Reset} />
+              {/* <Route path="/reset" component={Reset} /> */}
               <Route path="/"  component={Startup} />
             </Switch>
       </Aux>
