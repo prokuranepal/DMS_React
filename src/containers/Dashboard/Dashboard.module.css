@@ -13,3 +13,7 @@
     flex:1;
     height: 92vh;;
 }
+
+.Cards{
+    display: flex;
+}
