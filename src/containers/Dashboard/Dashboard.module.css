@@ -1,0 +1,15 @@
+.Dashboard{
+    height: 100vh;
+    
+}
+
+.Content{
+    display: flex;
+}
+
+
+.View{
+    background-color: #E7E7E7 ;
+    flex:1;
+    height: 92vh;;
+}
