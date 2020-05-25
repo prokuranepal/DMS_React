@@ -5,3 +5,5 @@ export const AUTH_LOGOUT = 'AUTH_LOGOUT';
 export const SET_AUTH_REDIRECT_PATH = 'SET_AUTH_REDIRECT_PATH';
 export const AUTHENTICATE = 'AUTHENTICATE';
 export const RESET_PASSWORD = 'RESET_PASSWORD';
+export const GET_CARDS = 'GET_CARDS';
+export const CARD_ERROR = 'CARD_ERROR';
