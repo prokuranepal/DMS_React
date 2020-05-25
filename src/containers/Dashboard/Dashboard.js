@@ -1,9 +1,14 @@
-import React, {Component} from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-class Dashboard extends Component {
-    render() {
-        return <div>Hello</div>
-    }
+const Dashboard = props => {
+    return (
+        <div><p>Dashboard</p></div>
+    )
 }
 
-export default Dashboard;
+Dashboard.propTypes = {
+
+}
+
+export default Dashboard
