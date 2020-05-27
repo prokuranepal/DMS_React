@@ -29,10 +29,13 @@ const Startup = props => {
         tryLogin();
     }, [dispatch]);
 
-    if (redirectTo) return <Redirect to={redirectTo} />
-    return <div>
-        <Spinner />
-    </div>
+    if (redirectTo) return <Redirect to = { redirectTo }
+    />
+    return <div >
+        <
+        Spinner / >
+        <
+        /div>
 };
 
 

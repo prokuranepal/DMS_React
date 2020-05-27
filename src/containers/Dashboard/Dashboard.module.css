@@ -1,0 +1,35 @@
+.Dashboard{
+    height: 100vh;
+    
+}
+
+.Content{
+    display: flex;
+}
+
+
+.View{
+    background-color: #E7E7E7 ;
+    flex:1;
+    height: 92vh;;
+}
+
+.Cards{
+    display: flex;
+}
+
+.Charts{
+    display:flex;
+    margin: 2rem;
+    margin-right:5rem;
+    justify-content: space-between;
+
+}
+
+.MainChart{
+    width: 66%;
+}
+
+.SubChart{
+   width: 30%; 
+}
