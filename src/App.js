@@ -9,6 +9,7 @@ import Reset from './containers/Auth/Reset/ResetPassword';
 import PrivateRoute from './containers/routing/PrivateRoute';
 import SimpleAlert from './components/UI/Alert/Alert';
 import Users from './containers/Users/Users';
+import CreateUser from './components/CreateUser/CreateUser';
 
 
 class App extends Component {
@@ -19,6 +20,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/auth" component={Auth} />
               <Route exact path="/dashboard" component={Dashboard} />
+              <Route exact path="/create-user" component={CreateUser} />
               <PrivateRoute exact path="/users" component={Users} />
               {/* <Route path="/reset" component={Reset} /> */}
               <Route exact path="/"  component={Startup} />
