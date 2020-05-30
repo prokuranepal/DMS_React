@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Alert from '@material-ui/lab/Alert';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     root: {
       width: '100%',
       
@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SimpleAlert = ({ alerts }) => {
     const classes = useStyles();
+    console.log('weweweewwe')
 
     return (
         alerts !== null &&
@@ -26,7 +27,7 @@ const SimpleAlert = ({ alerts }) => {
 }
   
 
-Alert.propTypes = {
+SimpleAlert.propTypes = {
   alerts: PropTypes.array.isRequired
 };
 
