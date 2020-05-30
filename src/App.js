@@ -18,10 +18,10 @@ class App extends Component {
             <SimpleAlert />
             <Switch>
               <Route exact path="/auth" component={Auth} />
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              <Route exact path="/dashboard" component={Dashboard} />
               <PrivateRoute exact path="/users" component={Users} />
               {/* <Route path="/reset" component={Reset} /> */}
-              <Route path="/"  component={Startup} />
+              <Route exact path="/"  component={Startup} />
             </Switch>
       </Aux>
     )

@@ -76,7 +76,7 @@ class Auth extends Component {
 
         return (
             <div className={classes.Auth}>
-                <Users />
+                
                 {authRedirect}
                 {errorMessage}
                 <form onSubmit={this.submitHandler}>

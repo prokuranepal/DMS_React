@@ -23,7 +23,7 @@ const Dashboard = ({getCurrentCards, auth, dashboard: {cards, loading, graphs: {
  
     return (
         <div className= {classes.Dashboard}>
-            <Users/>
+            
             <Navbar/>
             <div className={classes.Content}>
                 <Sidebar />
