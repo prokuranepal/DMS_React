@@ -40,11 +40,11 @@ const Users = ({setAlert}) => {
                  {/* Main Users Component */}
                  <Grid container className = {classes.users}>
                      <Grid item xs = {12}>
-                        <User title='Level 2 Users' />
+                        <User title='Level 1' />
                      </Grid>
 
                      <Grid item xs = {12}>
-                        <User title='Level 1 Users' />
+                        <User title='Level 2' />
                      </Grid>
                  </Grid>
                  

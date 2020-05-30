@@ -2,13 +2,14 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import AddIcon from '@material-ui/icons/Add';
 import Paper from '@material-ui/core/Paper'
+import Button from '@material-ui/core/Button';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -16,17 +17,29 @@ const useStyles = makeStyles((theme) => ({
       flexGrow: 1,
       maxWidth: 752,
     },
-    demo: {
-      backgroundColor: theme.palette.background.paper,
-    },
+
     layout: {
         height: '350px', 
         overflowY: 'scroll', 
-        position: 'relative'
+        position: 'relative',
+        paddingTop: '15px',
+ 
     },
     list: {
         color: '#0091D5',
         cursor: 'pointer'
+    },
+    edit: {
+        color: '#ffaa1d'
+    },
+    header: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        padding: ' 0 10px  0  17px'
+    },
+    button: {
+        backgroundColor: '#1C4E80',
+        color: 'white'
     }
 
   }));
@@ -44,11 +57,23 @@ const User = ({title}) => {
 
     return (
         <Paper className = {classes.layout} >
-            <strong></strong>
-            <Typography variant="h6"> &nbsp;&nbsp;&nbsp;
-                 {title}
-          </Typography>
-          <div className={classes.demo}>
+           <div className={classes.header}>
+                <Typography variant="h5"> 
+                        <strong>{title}</strong>
+                </Typography>
+
+                <Button
+                    variant="contained"
+                    color="primary"
+                    className={classes.button}
+                    endIcon={<AddIcon/>}
+                >
+                     ADD USER
+                </Button>
+      
+           </div>
+            
+          <div>
             <List >
               {generate(
                 <ListItem divider = {true} autoFocus = {true}>
@@ -57,10 +82,10 @@ const User = ({title}) => {
                   />
                 
                   <IconButton edge="end" aria-label="delete">
-                      <EditIcon />
+                      <EditIcon className = {classes.edit}  />
                     </IconButton>
                     <IconButton edge="end" aria-label="delete">
-                      <DeleteIcon />
+                      <DeleteIcon color = 'secondary' />
                     </IconButton>
                     
         
