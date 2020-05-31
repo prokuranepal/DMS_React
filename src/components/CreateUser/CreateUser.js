@@ -39,13 +39,13 @@ const CreateUser = props => {
 
     const { username, fullname, institution, level, image} = formData;
 
-    // const onChange = e =>
-    // setFormData({ ...formData, [e.target.name]: e.target.value });
+    const onChange = e =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
-    // const onSubmit = e => {
-    //     e.preventDefault();
-    //     createProfile(formData, history, profile ? true : false);
-    // };
+    const onSubmit = e => {
+        e.preventDefault();
+        // createProfile(formData, history, profile ? true : false);
+    };
 
 
 
@@ -56,34 +56,39 @@ const CreateUser = props => {
             <div className = {classes.root}>
                  <SideBar />
 
+
+
                  {/* Main Create User Component */}
         
-                <form className={classes.users}>
+                <form className={classes.users} onSubmit = {onSubmit}>
                 <h1>Add User</h1>
 
-                     <TextField id="standard-basic" label="User Name" />
-                     <TextField id="standard-basic" label="Full Name" />
-                     <TextField id="standard-basic" label="Institution" />
+                     <TextField onChange={onChange} name='username' value={username} id="standard-basic" label="User Name" />
+                     <TextField onChange={onChange} name='fullname' value={fullname} id="standard-basic" label="Full Name" />
+                     <TextField onChange={onChange} name='institution' value={institution} id="standard-basic" label="Institution" />
                     
                      <FormControl className={classes.formControl}>
-                        <InputLabel id="demo-simple-select-label">Level</InputLabel>
+                        <InputLabel id="demo-simple-select-label"  >Level</InputLabel>
                         <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
+                        onChange={onChange} name= 'level' value = {level || ''}
                         >
                             <MenuItem value='Level 1'>Level 1</MenuItem>
-                            <MenuItem value='Level P2'>Level 2</MenuItem>
+                            <MenuItem value='Level 2'>Level 2</MenuItem>
                         </Select>
                      </FormControl>
                 
-                     <TextField id="standard-basic" label="Image" />
+                     <TextField onChange={onChange} name= 'image' value= {image} id="standard-basic" label="Image" />
 
                      <Button variant="contained" color="primary">
                         SUBMIT
                     </Button>
+                    {username} {level}
                 </form>
                  
             </div>
+           
            
 
         </div>
