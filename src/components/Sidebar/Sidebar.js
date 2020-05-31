@@ -2,6 +2,7 @@ import React from 'react';
 
 import classes from './Sidebar.module.css';
 import SidebarItem from './SidebarItem/SidebarItem';
+import Userprofile from './Userprofile/Userprofile';
 
 const SideBar = () => {
   const SidebarLists = [
@@ -82,6 +83,8 @@ const SideBar = () => {
 
   return (
     <div className={classes.Sidebar}>
+      <Userprofile />
+      <hr />
       {menu}
     </div>
   );
