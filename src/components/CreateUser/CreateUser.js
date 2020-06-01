@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {withRouter} from 'react-router'
+import  { createUser1, createUser2 } from '../../store/actions/users'
 import { connect } from 'react-redux';
 import { setAlert } from '../../store/actions/alert';
 import PropTypes from 'prop-types'
@@ -13,7 +14,7 @@ import Button from '@material-ui/core/Button';
 import Topbar from '../../components/Navbar/Navbar';
 import SideBar from '../../components/Sidebar/Sidebar';
 
-const CreateUser = ({history}) => {
+const CreateUser = ({history, createUser1, createUser2}) => {
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -45,13 +46,15 @@ const CreateUser = ({history}) => {
 
     const onSubmit = e => {
         e.preventDefault();
-        // createProfile(formData, history, false);
+
+        formData.level==='Level 1'? createUser1(formData, history, false) : createUser2(formData, history, false);
+        
     };
 
     const classes = useStyles();
     return (
         <div>
-            <Topbar />
+            <Topbar /> 
             <div className = {classes.root}>
                  <SideBar />
 
@@ -59,7 +62,7 @@ const CreateUser = ({history}) => {
 
                  {/* Main Create User Component */}
         
-                <form className={classes.users} onSubmit = {onSubmit}>
+                <form className={classes.users} onSubmit={onSubmit}>
                 <h1>Add User</h1>
 
                      <TextField onChange={onChange} name='username' value={username} id="standard-basic" label="User Name" />
@@ -71,7 +74,7 @@ const CreateUser = ({history}) => {
                         <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        onChange={onChange} name= 'level' value = {level || ''}
+                        onChange={onChange} name= 'level' value = {level}
                         >
                             <MenuItem value='Level 1'>Level 1</MenuItem>
                             <MenuItem value='Level 2'>Level 2</MenuItem>
@@ -80,10 +83,10 @@ const CreateUser = ({history}) => {
                 
                      <TextField onChange={onChange} name= 'image' value= {image} id="standard-basic" label="Image" />
 
-                     <Button variant="contained" color="primary">
+                     <Button type='submit' variant="contained" color="primary">
                         SUBMIT
                     </Button>
-                    {username} {level}
+                    
                 </form>
                  
             </div>
@@ -98,4 +101,4 @@ CreateUser.propTypes = {
 
 }
 
-export default withRouter(CreateUser)
+export default connect(null, {createUser1, createUser2})(withRouter(CreateUser))

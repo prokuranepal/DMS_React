@@ -1,7 +1,8 @@
 import {setAlert} from './alert';
 import axios from 'axios';
 import {
-    GET_USER,
+    GET_USER1,
+    GET_USER2,
     GET_USERS,
     USER_ERROR
 } from './actionTypes'
@@ -12,10 +13,8 @@ export const getUsers = () => async dispatch => {
     //    const res = await axios.get('/user')
     const res = {
         data: {
-            users: {
                 users1: ['User 1', 'User 2', 'User 3'],
                 users2: ['User 1', 'User 2', 'User 3']
-            }
         }
         
     }
@@ -32,43 +31,21 @@ export const getUsers = () => async dispatch => {
 }
 
 //Create or update user
-export const createUser = (formData, history, edit=false) => async dispatch => {
+export const createUser1 = (formData, history, edit=false) => async dispatch => {
     try {
         // const config = {
         //     headers: {
         //         'Content-Type': 'application/json'
         //     }
         // }
-       
-        const res = {}
-        
-        if(formData.level === 'Level 1'){
-
-                res = {
+         const  res = {
                 data: {
-                    users: {
-                        users1: ['User 1', 'User 2', 'User 3', formData],
-                        users2: ['User 1', 'User 2', 'User 3']
-                    }
-                  
+                        users1: formData.username
                 }
             }
-
-        }else{
-
-             res = {
-                data: {
-                    users: {
-                        users1: ['User 1', 'User 2', 'User 3'],
-                        users2: ['User 1', 'User 2', 'User 3', formData]
-                    }
-                   
-                }
-            }
-        }
-
+    
         dispatch({
-            type: GET_USER,
+            type: GET_USER1,
             payload: res.data
         })
 
@@ -77,15 +54,54 @@ export const createUser = (formData, history, edit=false) => async dispatch => {
         }
 
     } catch(err){
-        const errors = err.response.err;
-        if(errors) {
-            errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
-        }
+        // const errors = err.response.err;
+        // if(errors) {
+        //     errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
+        // }
+
+        // dispatch({
+        //     type: USER_ERROR,
+        //     payload: { msg: err.response.statusText, status: err.response.status } 
+        //   });
+    }
+
+  
+}
+
+//Create or update user
+export const createUser2 = (formData, history, edit=false) => async dispatch => {
+    try {
+        // const config = {
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
+        // }
+         const  res = {
+                data: {
+                    users2:formData.username
+                }
+            }
+    
 
         dispatch({
-            type: USER_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
-          });
+            type: GET_USER2,
+            payload: res.data
+        })
+
+        if(!edit) {
+            history.push('/users')
+        }
+
+    } catch(err){
+        // const errors = err.response.err;
+        // if(errors) {
+        //     errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
+        // }
+
+        // dispatch({
+        //     type: USER_ERROR,
+        //     payload: { msg: err.response.statusText, status: err.response.status } 
+        //   });
     }
 
   

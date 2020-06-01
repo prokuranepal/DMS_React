@@ -9,8 +9,10 @@ export const GET_CARDS = 'GET_CARDS';
 export const CARD_ERROR = 'CARD_ERROR';
 export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
-export const GET_USER = 'GET_USER';
+export const GET_USER1= 'GET_USER1';
+export const GET_USER2 = 'GET_USE2';
 export const GET_USERS= 'GET_USERS';
 export const USER_ERROR= 'USER_ERROR';
+
 
 

@@ -19,9 +19,9 @@ class App extends Component {
             <SimpleAlert />
             <Switch>
               <Route exact path="/auth" component={Auth} />
-              <Route exact path="/dashboard" component={Dashboard} />
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <Route exact path="/create-user" component={CreateUser} />
-              <PrivateRoute exact path="/users" component={Users} />
+              <Route exact path="/users" component={Users} />
               {/* <Route path="/reset" component={Reset} /> */}
               <Route exact path="/"  component={Startup} />
             </Switch>

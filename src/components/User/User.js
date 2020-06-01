@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -62,11 +63,14 @@ const User = ({title, users}) => {
                     className={classes.button}
                     endIcon={<AddIcon/>}
                 >
-                     ADD USER
+                  <Link to="/create-user">ADD USER</Link>
+
+                     
                 </Button>
-      
+        {console.log(users)}
            </div>
            {
+             
              users.map((user, index) => (
               <ListItem divider = {true} autoFocus = {true} key ={index}>
                 <ListItemText 

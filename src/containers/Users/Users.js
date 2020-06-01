@@ -28,25 +28,14 @@ const useStyles = makeStyles((theme) => ({
   
   }));
 
-const Users = ({getUsers, users: {users}}) => {
+const Users = ({getUsers,  users: {users1, users2}}) => {
 
     useEffect( () => {
-        getUsers();
+         getUsers();
         
-    }, [getUsers])
+    }, [])
 
     const classes = useStyles();
-
-    const usersMap =  Object.keys(users).map((user, index) => (
-        
-                <Grid item xs = {12}>
-                    <User key={index} title='Level 1' users= {users[user]}/>
-                    {console.log('user', index ,users[user])}
-                </Grid>
-
-         )
-        )
-    
 
     return (
         <div>
@@ -54,14 +43,23 @@ const Users = ({getUsers, users: {users}}) => {
             <div className = {classes.root}>
                  <SideBar />
 
+                {console.log('users1', users1)}
+                {/* {Object.keys(users).map(user => user)
+                } */}
                  {/* Main Users Component */}
                  <Grid container className = {classes.users}>  
-                         {usersMap}
+                        <Grid item xs = {12}>
+                            <User title='Level 1' users= {users1}/>
+                            {console.log('user', users1)}
+                        </Grid>
+
+                        <Grid item xs = {12}>
+                            <User title='Level 2' users= {users2}/>
+                            {console.log('user', users2)}
+                        </Grid>
                  </Grid>
                  
             </div>
-           
-
         </div>
     )
 }
