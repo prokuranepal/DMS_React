@@ -10,11 +10,13 @@ import thunk from 'redux-thunk'
 import authReducer from './store/reducers/auth';
 import dashboard from './store/reducers/dashboard';
 import alert from './store/reducers/alert';
+import users from './store/reducers/users';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootReducer = combineReducers({
   auth: authReducer,
   dashboard:dashboard,
-  alert:alert
+  alert:alert,
+  users: users
 })
 
 const store = createStore(rootReducer, composeEnhancers(

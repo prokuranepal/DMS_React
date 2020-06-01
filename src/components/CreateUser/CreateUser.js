@@ -1,4 +1,5 @@
-import React, {useState, Fragment} from 'react'
+import React, {useState} from 'react'
+import {withRouter} from 'react-router'
 import { connect } from 'react-redux';
 import { setAlert } from '../../store/actions/alert';
 import PropTypes from 'prop-types'
@@ -12,7 +13,7 @@ import Button from '@material-ui/core/Button';
 import Topbar from '../../components/Navbar/Navbar';
 import SideBar from '../../components/Sidebar/Sidebar';
 
-const CreateUser = props => {
+const CreateUser = ({history}) => {
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -44,10 +45,8 @@ const CreateUser = props => {
 
     const onSubmit = e => {
         e.preventDefault();
-        // createProfile(formData, history, profile ? true : false);
+        // createProfile(formData, history, false);
     };
-
-
 
     const classes = useStyles();
     return (
@@ -99,4 +98,4 @@ CreateUser.propTypes = {
 
 }
 
-export default CreateUser
+export default withRouter(CreateUser)

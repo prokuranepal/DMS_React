@@ -1,12 +1,11 @@
-import React, {useState} from 'react'
+import React, {useState, Fragment, useEffect} from 'react'
 import { connect } from 'react-redux';
 import { setAlert } from '../../store/actions/alert';
 import PropTypes from 'prop-types'
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+import { getUsers } from '../../store/actions/users'
 
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import Topbar from '../../components/Navbar/Navbar';
 import SideBar from '../../components/Sidebar/Sidebar';
 import User from '../../components/User/User';
@@ -29,8 +28,26 @@ const useStyles = makeStyles((theme) => ({
   
   }));
 
-const Users = ({setAlert}) => {
+const Users = ({getUsers, users: {users}}) => {
+
+    useEffect( () => {
+        getUsers();
+        
+    }, [getUsers])
+
     const classes = useStyles();
+
+    const usersMap =  Object.keys(users).map((user, index) => (
+        
+                <Grid item xs = {12}>
+                    <User key={index} title='Level 1' users= {users[user]}/>
+                    {console.log('user', index ,users[user])}
+                </Grid>
+
+         )
+        )
+    
+
     return (
         <div>
             <Topbar />
@@ -38,14 +55,8 @@ const Users = ({setAlert}) => {
                  <SideBar />
 
                  {/* Main Users Component */}
-                 <Grid container className = {classes.users}>
-                     <Grid item xs = {12}>
-                        <User title='Level 1' />
-                     </Grid>
-
-                     <Grid item xs = {12}>
-                        <User title='Level 2' />
-                     </Grid>
+                 <Grid container className = {classes.users}>  
+                         {usersMap}
                  </Grid>
                  
             </div>
@@ -56,7 +67,11 @@ const Users = ({setAlert}) => {
 }
 
 Users.propTypes = {
-    setAlert: PropTypes.func.isRequired,
+    getUsers: PropTypes.func.isRequired,
 }
 
-export default connect(null, {setAlert})(Users)
+const mapStateToProps = state => ({
+    users: state.users
+})
+
+export default connect(mapStateToProps, { getUsers })(Users)

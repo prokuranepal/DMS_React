@@ -44,15 +44,9 @@ const useStyles = makeStyles((theme) => ({
 
   }));
 
-  function generate(element) {
-    return [0, 1, 2, 3, 4, 5 , 6, 7,8,9,2,3,4,5,6].map((value) =>
-      React.cloneElement(element, {
-        key: value,
-      }),
-    );
-  }
 
-const User = ({title}) => {
+
+const User = ({title, users}) => {
     const classes = useStyles();
 
     return (
@@ -72,27 +66,33 @@ const User = ({title}) => {
                 </Button>
       
            </div>
+           {
+             users.map((user, index) => (
+              <ListItem divider = {true} autoFocus = {true} key ={index}>
+                <ListItemText 
+                  primary={user} className = {classes.list}
+                />
+              
+                <IconButton edge="end" aria-label="delete">
+                    <EditIcon className = {classes.edit}  />
+                  </IconButton>
+                  <IconButton edge="end" aria-label="delete">
+                    <DeleteIcon color = 'secondary' />
+                  </IconButton>
+
+            </ListItem>
+             ))
+
+           }
+
             
-          <div>
+          {/* <div>
             <List >
               {generate(
-                <ListItem divider = {true} autoFocus = {true}>
-                  <ListItemText
-                    primary="Single-line item" className = {classes.list}
-                  />
-                
-                  <IconButton edge="end" aria-label="delete">
-                      <EditIcon className = {classes.edit}  />
-                    </IconButton>
-                    <IconButton edge="end" aria-label="delete">
-                      <DeleteIcon color = 'secondary' />
-                    </IconButton>
-                    
-        
-                </ListItem>,
+               ,
               )}
             </List>
-          </div>
+          </div> */}
             
         </Paper>
     )
