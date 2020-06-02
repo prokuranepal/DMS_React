@@ -4,6 +4,7 @@ import { setAlert } from '../../store/actions/alert';
 import PropTypes from 'prop-types'
 import { getUsers } from '../../store/actions/users'
 
+
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Topbar from '../../components/Navbar/Navbar';
@@ -49,12 +50,12 @@ const Users = ({getUsers,  users: {users1, users2}}) => {
                  {/* Main Users Component */}
                  <Grid container className = {classes.users}>  
                         <Grid item xs = {12}>
-                            <User title='Level 1' users= {users1}/>
+                            <User title='Level 1' users= {users1} />
                             {console.log('user', users1)}
                         </Grid>
 
                         <Grid item xs = {12}>
-                            <User title='Level 2' users= {users2}/>
+                            <User title='Level 2' users= {users2} />
                             {console.log('user', users2)}
                         </Grid>
                  </Grid>

@@ -11,6 +11,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import AddIcon from '@material-ui/icons/Add';
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button';
+import Modal from '../UI/Modal/Modal';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -24,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
         overflowY: 'scroll', 
         position: 'relative',
         paddingTop: '15px',
+        marginBottom: '30px'
  
     },
     list: {
@@ -47,8 +49,20 @@ const useStyles = makeStyles((theme) => ({
 
 
 
+
 const User = ({title, users}) => {
     const classes = useStyles();
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+
+    const handleClose = () => {
+      setOpen(false);
+    };
+
 
     return (
         <Paper className = {classes.layout} >
@@ -57,32 +71,48 @@ const User = ({title, users}) => {
                         <strong>{title}</strong>
                 </Typography>
 
-                <Button
-                    variant="contained"
-                    color="primary"
-                    className={classes.button}
-                    endIcon={<AddIcon/>}
-                >
-                  <Link to="/create-user">ADD USER</Link>
-
-                     
-                </Button>
+                <Link to = "/create-user">
+                  <Button
+                      variant="contained"
+                      color="primary"
+                      className={classes.button}
+                      endIcon={<AddIcon/>}
+                  >
+                    ADD USER
+        
+                  </Button>
+                </Link>
+                
         {console.log(users)}
            </div>
            {
              
              users.map((user, index) => (
+               
               <ListItem divider = {true} autoFocus = {true} key ={index}>
+
                 <ListItemText 
-                  primary={user} className = {classes.list}
+                  primary={user.username} className = {classes.list}
                 />
               
-                <IconButton edge="end" aria-label="delete">
+              <Link to= {{
+                pathname: 'edit-user',
+                state: {
+                  user: user
+                }
+              }}>
+                  <IconButton edge="end" aria-label="edit">
                     <EditIcon className = {classes.edit}  />
                   </IconButton>
-                  <IconButton edge="end" aria-label="delete">
+              </Link>
+
+              
+                <IconButton edge="end" aria-label="delete" onClick={handleClickOpen}>
                     <DeleteIcon color = 'secondary' />
+                    
                   </IconButton>
+
+                  <Modal open={open} onClose={handleClose} />
 
             </ListItem>
              ))

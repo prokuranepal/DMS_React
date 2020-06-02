@@ -11,10 +11,10 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
-import Topbar from '../../components/Navbar/Navbar';
-import SideBar from '../../components/Sidebar/Sidebar';
+import Topbar from '../Navbar/Navbar';
+import SideBar from '../Sidebar/Sidebar';
 
-const CreateUser = ({history, createUser1, createUser2}) => {
+const EditUser = ({history, createUser1, createUser2, location}) => {
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -39,13 +39,19 @@ const CreateUser = ({history, createUser1, createUser2}) => {
         image: ''
     })
 
-    const { username, fullname, institution, level, image} = formData;
+   
 
     useEffect(() => {
+            setFormData({
+                username: location.state.user.username,
+                fullname: location.state.user.fullname,
+                institution: location.state.user.institution,
+                level: location.state.user.level,
+                image: location.state.user.image
+            }) 
 
-         getUsers();  
 
-    }, [])
+    }, [getUsers])
 
     const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -54,9 +60,13 @@ const CreateUser = ({history, createUser1, createUser2}) => {
         e.preventDefault();
 
 
-        formData.level==='Level 1'? createUser1(formData, history, false) : createUser2(formData, history, false);
+        formData.level==='Level 1'
+        ? createUser1(formData, history, true) 
+        : createUser2(formData, history, true);
         
     };
+
+    const { username, fullname, institution, level, image} = formData;
 
     const classes = useStyles();
     return (
@@ -68,7 +78,7 @@ const CreateUser = ({history, createUser1, createUser2}) => {
                 {/* Main Create User Component */}
         
                 <form className={classes.users} onSubmit={onSubmit}>
-                <h1>Add User</h1>
+                <h1>Edit User</h1>
 
                      <TextField onChange={onChange} name='username' value={username} id="standard-basic" label="User Name" />
                      <TextField onChange={onChange} name='fullname' value={fullname} id="standard-basic" label="Full Name" />
@@ -102,15 +112,11 @@ const CreateUser = ({history, createUser1, createUser2}) => {
     )
 }
 
-CreateUser.propTypes = {
+EditUser.propTypes = {
 
 }
 
-const mapStateToProps = state => ({
-    state: state.users  
-}
-)
     
 
 
-export default connect(mapStateToProps, {createUser1, createUser2})(withRouter(CreateUser))
+export default connect(null, {createUser1, createUser2})(withRouter(EditUser))

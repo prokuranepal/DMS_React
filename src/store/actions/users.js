@@ -4,6 +4,8 @@ import {
     GET_USER1,
     GET_USER2,
     GET_USERS,
+    CLEAR_USER1,
+    CLEAR_USER2,
     USER_ERROR
 } from './actionTypes'
 
@@ -40,7 +42,7 @@ export const createUser1 = (formData, history, edit=false) => async dispatch => 
         // }
          const  res = {
                 data: {
-                        users1: formData.username
+                        users1: formData
                 }
             }
     
@@ -49,9 +51,18 @@ export const createUser1 = (formData, history, edit=false) => async dispatch => 
             payload: res.data
         })
 
-        if(!edit) {
-            history.push('/users')
+        if(edit){
+            console.log('Hello')
+            dispatch({
+                type: CLEAR_USER2,
+                payload: res.data
+            })
         }
+           
+        history.push('/users')
+
+        dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
+     
 
     } catch(err){
         // const errors = err.response.err;
@@ -78,7 +89,7 @@ export const createUser2 = (formData, history, edit=false) => async dispatch => 
         // }
          const  res = {
                 data: {
-                    users2:formData.username
+                    users2:formData
                 }
             }
     
@@ -88,9 +99,17 @@ export const createUser2 = (formData, history, edit=false) => async dispatch => 
             payload: res.data
         })
 
-        if(!edit) {
-            history.push('/users')
+        if(edit){
+            dispatch({
+                type: CLEAR_USER1,
+                payload: res.data
+            })
         }
+
+            history.push('/users')
+
+            dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
+        
 
     } catch(err){
         // const errors = err.response.err;
