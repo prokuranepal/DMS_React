@@ -9,6 +9,7 @@ import classes from './Auth.module.css';
 import * as actions from '../../store/actions/index';
 import * as functions from '../../Functions/functions';
 import * as authControls from '../../JSONFiles/auth';
+import Users from '../Users/Users';
 class Auth extends Component {
     state = {
         controls: authControls.default
@@ -70,11 +71,12 @@ class Auth extends Component {
 
         let authRedirect = null;
         if (this.props.isAuthenticated) {
-            authRedirect = <Redirect to='/dashboard' />
+            authRedirect = <Redirect to='/users' />
         }
 
         return (
             <div className={classes.Auth}>
+                
                 {authRedirect}
                 {errorMessage}
                 <form onSubmit={this.submitHandler}>

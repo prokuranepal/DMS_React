@@ -8,6 +8,7 @@ import {getCurrentCards} from '../../store/actions/dashboard'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import Card from '../../components/Card/Card'
 import Chart from '../../components/Chart/Chart'
+import Users from '../Users/Users'
 
 const Dashboard = ({getCurrentCards, auth, dashboard: {cards, loading, graphs: {cdc, rhps}}}) => {
 
@@ -22,6 +23,7 @@ const Dashboard = ({getCurrentCards, auth, dashboard: {cards, loading, graphs: {
  
     return (
         <div className= {classes.Dashboard}>
+            
             <Navbar/>
             <div className={classes.Content}>
                 <Sidebar />
