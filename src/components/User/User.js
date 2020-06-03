@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {Link} from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
@@ -11,6 +11,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button';
 import Modal from '../UI/Modal/Modal';
+import { v4 as uuidv4 } from 'uuid';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -85,12 +86,14 @@ const User = ({title, users}) => {
            </div>
            {
              
-             users.map((user, index) => (
-               
-                <ListItem divider = {true} autoFocus = {true} key ={index}>
+             users.map((user) => (
+               <Fragment>
+
+              
+                <ListItem divider = {true} autoFocus = {true} key ={uuidv4()}>
 
                   <ListItemText 
-                    primary={user.username} className = {classes.list}
+                    primary={user.username} className = {classes.list} key ={uuidv4()}
                   />
                 
                 <Link to= {{
@@ -99,20 +102,20 @@ const User = ({title, users}) => {
                     user: user
                   }
                 }}>
-                    <IconButton edge="end" aria-label="edit">
+                    <IconButton edge="end" aria-label="edit" >
                       <EditIcon className = {classes.edit}  />
                     </IconButton>
                 </Link>
 
                 
-                  <IconButton edge="end" aria-label="delete" onClick={handleClickOpen}>
-                      <DeleteIcon color = 'secondary' />
+                  <IconButton edge="end" aria-label="delete" onClick={handleClickOpen} key ={uuidv4()}>
+                      <DeleteIcon color = 'secondary'  />
                       
                     </IconButton>
+                </ListItem>
+                    <Modal open={open} onClose={handleClose} user= {user} key={uuidv4()} />
 
-                    <Modal open={open} onClose={handleClose} user= {user} />
-
-              </ListItem>
+                    </Fragment>
              ))
 
            }
