@@ -18,7 +18,7 @@ class App extends Component {
   render() {
     return (
       <Aux>
-            <SimpleAlert />
+            
             <Switch>
               <Route exact path="/auth" component={Auth} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />

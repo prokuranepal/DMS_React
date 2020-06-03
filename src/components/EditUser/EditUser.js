@@ -80,12 +80,12 @@ const EditUser = ({history, createUser1, createUser2, location}) => {
                 <form className={classes.users} onSubmit={onSubmit}>
                 <h1>Edit User</h1>
 
-                     <TextField onChange={onChange} name='username' value={username} id="standard-basic" label="User Name" />
-                     <TextField onChange={onChange} name='fullname' value={fullname} id="standard-basic" label="Full Name" />
-                     <TextField onChange={onChange} name='institution' value={institution} id="standard-basic" label="Institution" />
+                     <TextField onChange={onChange} name='username' value={username} id="standard-basic" label="User Name" required />
+                     <TextField onChange={onChange} name='fullname' value={fullname} id="standard-basic" label="Full Name" required/>
+                     <TextField onChange={onChange} name='institution' value={institution} id="standard-basic" label="Institution"  required/>
                     
-                     <FormControl className={classes.formControl}>
-                        <InputLabel id="demo-simple-select-label"  >Level</InputLabel>
+                     <FormControl className={classes.formControl} required>
+                        <InputLabel id="demo-simple-select-label" required >Level</InputLabel>
                         <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"

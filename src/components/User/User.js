@@ -1,7 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
@@ -25,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
         overflowY: 'scroll', 
         position: 'relative',
         paddingTop: '15px',
-        marginBottom: '30px'
+        marginTop: '30px'
  
     },
     list: {
@@ -83,50 +82,40 @@ const User = ({title, users}) => {
                   </Button>
                 </Link>
                 
-        {console.log(users)}
            </div>
            {
              
              users.map((user, index) => (
                
-              <ListItem divider = {true} autoFocus = {true} key ={index}>
+                <ListItem divider = {true} autoFocus = {true} key ={index}>
 
-                <ListItemText 
-                  primary={user.username} className = {classes.list}
-                />
-              
-              <Link to= {{
-                pathname: 'edit-user',
-                state: {
-                  user: user
-                }
-              }}>
-                  <IconButton edge="end" aria-label="edit">
-                    <EditIcon className = {classes.edit}  />
-                  </IconButton>
-              </Link>
+                  <ListItemText 
+                    primary={user.username} className = {classes.list}
+                  />
+                
+                <Link to= {{
+                  pathname: 'edit-user',
+                  state: {
+                    user: user
+                  }
+                }}>
+                    <IconButton edge="end" aria-label="edit">
+                      <EditIcon className = {classes.edit}  />
+                    </IconButton>
+                </Link>
 
-              
-                <IconButton edge="end" aria-label="delete" onClick={handleClickOpen}>
-                    <DeleteIcon color = 'secondary' />
-                    
-                  </IconButton>
+                
+                  <IconButton edge="end" aria-label="delete" onClick={handleClickOpen}>
+                      <DeleteIcon color = 'secondary' />
+                      
+                    </IconButton>
 
-                  <Modal open={open} onClose={handleClose} />
+                    <Modal open={open} onClose={handleClose} user= {user} />
 
-            </ListItem>
+              </ListItem>
              ))
 
            }
-
-            
-          {/* <div>
-            <List >
-              {generate(
-               ,
-              )}
-            </List>
-          </div> */}
             
         </Paper>
     )

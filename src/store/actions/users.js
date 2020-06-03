@@ -6,6 +6,7 @@ import {
     GET_USERS,
     CLEAR_USER1,
     CLEAR_USER2,
+    DELETE_USER,
     USER_ERROR
 } from './actionTypes'
 
@@ -52,7 +53,6 @@ export const createUser1 = (formData, history, edit=false) => async dispatch => 
         })
 
         if(edit){
-            console.log('Hello')
             dispatch({
                 type: CLEAR_USER2,
                 payload: res.data
@@ -122,6 +122,14 @@ export const createUser2 = (formData, history, edit=false) => async dispatch => 
         //     payload: { msg: err.response.statusText, status: err.response.status } 
         //   });
     }
+}
 
-  
+export const deleteUser = (user) => dispatch => {
+        dispatch({
+            type: DELETE_USER,
+            payload: user
+        })
+
+         dispatch(setAlert('Profile Deleted', 'error'));
+        
 }

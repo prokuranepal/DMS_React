@@ -1,6 +1,6 @@
 import React, {useState, Fragment, useEffect} from 'react'
 import { connect } from 'react-redux';
-import { setAlert } from '../../store/actions/alert';
+import SimpleAlert from '../../components/UI/Alert/Alert';
 import PropTypes from 'prop-types'
 import { getUsers } from '../../store/actions/users'
 
@@ -39,24 +39,20 @@ const Users = ({getUsers,  users: {users1, users2}}) => {
     const classes = useStyles();
 
     return (
-        <div>
+        <div>   
             <Topbar />
             <div className = {classes.root}>
                  <SideBar />
 
-                {console.log('users1', users1)}
-                {/* {Object.keys(users).map(user => user)
-                } */}
-                 {/* Main Users Component */}
+               
                  <Grid container className = {classes.users}>  
+                 <SimpleAlert />
                         <Grid item xs = {12}>
                             <User title='Level 1' users= {users1} />
-                            {console.log('user', users1)}
                         </Grid>
 
                         <Grid item xs = {12}>
                             <User title='Level 2' users= {users2} />
-                            {console.log('user', users2)}
                         </Grid>
                  </Grid>
                  

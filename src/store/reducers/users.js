@@ -1,4 +1,10 @@
-import {GET_USERS, GET_USER1, GET_USER2, USER_ERROR, CLEAR_USER1, CLEAR_USER2} from '../actions/actionTypes'
+import {GET_USERS,
+        GET_USER1, 
+        GET_USER2, 
+        USER_ERROR, 
+        CLEAR_USER1, 
+        CLEAR_USER2, 
+        DELETE_USER} from '../actions/actionTypes'
 
 const initialState = {
     
@@ -41,6 +47,12 @@ export default function (state = initialState, action){
                 users2: state.users2.filter(user => user.username !== payload.users1.username),
                 loading:false
             }        
+         case DELETE_USER:
+             return {
+                 ...state,
+                 users1: state.users1.filter(user => user.username !== payload.username),
+                 users2: state.users2.filter(user => user.username !== payload.username),
+             }
         default:
             return state;
     }

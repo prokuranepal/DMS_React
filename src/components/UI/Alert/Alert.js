@@ -13,7 +13,6 @@ const useStyles = makeStyles(() => ({
 
 const SimpleAlert = ({ alerts }) => {
     const classes = useStyles();
-    console.log('weweweewwe')
 
     return (
         alerts !== null &&

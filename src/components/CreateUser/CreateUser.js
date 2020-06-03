@@ -2,8 +2,6 @@ import React, {useState, useEffect} from 'react'
 import {withRouter} from 'react-router'
 import  { createUser1, createUser2, getUsers } from '../../store/actions/users'
 import { connect } from 'react-redux';
-import { setAlert } from '../../store/actions/alert';
-import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
@@ -70,16 +68,16 @@ const CreateUser = ({history, createUser1, createUser2}) => {
                 <form className={classes.users} onSubmit={onSubmit}>
                 <h1>Add User</h1>
 
-                     <TextField onChange={onChange} name='username' value={username} id="standard-basic" label="User Name" />
-                     <TextField onChange={onChange} name='fullname' value={fullname} id="standard-basic" label="Full Name" />
-                     <TextField onChange={onChange} name='institution' value={institution} id="standard-basic" label="Institution" />
+                     <TextField onChange={onChange} name='username' value={username} id="standard-basic" label="User Name" required/>
+                     <TextField onChange={onChange} name='fullname' value={fullname} id="standard-basic" label="Full Name" required/>
+                     <TextField onChange={onChange} name='institution' value={institution} id="standard-basic" label="Institution" required />
                     
-                     <FormControl className={classes.formControl}>
+                     <FormControl className={classes.formControl} required >
                         <InputLabel id="demo-simple-select-label"  >Level</InputLabel>
                         <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        onChange={onChange} name= 'level' value = {level}
+                        onChange={onChange} name= 'level' value = {level} 
                         >
                             <MenuItem value='Level 1'>Level 1</MenuItem>
                             <MenuItem value='Level 2'>Level 2</MenuItem>
