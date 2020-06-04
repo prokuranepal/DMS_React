@@ -16,9 +16,10 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     fontSize: '24px',
     width: '100%',
-    backgroundColor: '#B2DBDF',
+    backgroundColor: '#1C4E80',
     justifyContent: 'center',
     alignItems: 'center',
+    color:'white'
   },
 
 }));

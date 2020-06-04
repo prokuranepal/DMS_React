@@ -70,19 +70,20 @@ const SideBar = () => {
   ]
 
   const menu =
-    SidebarLists.map(SidebarLists => {
+    SidebarLists.map((SidebarLists, index) => {
       return (
         <SidebarItem 
           iconName={SidebarLists.iconName} 
           name={SidebarLists.name} 
           route={SidebarLists.route} 
           subType={SidebarLists.subType}
+          key = {index}
         />
       );
     })
 
   return (
-    <div className={classes.Sidebar}>
+    <div style={{flex:1}}>
       <Userprofile />
       <hr />
       {menu}

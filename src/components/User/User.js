@@ -21,11 +21,10 @@ const useStyles = makeStyles((theme) => ({
     },
 
     layout: {
-        height: '350px', 
-        overflowY: 'scroll', 
+        height: '360px', 
+        overflowY: 'auto', 
         position: 'relative',
-        paddingTop: '15px',
-        marginTop: '30px'
+        marginTop: '25px'
  
     },
     list: {
@@ -38,12 +37,20 @@ const useStyles = makeStyles((theme) => ({
     header: {
         display: 'flex',
         justifyContent: 'space-between',
-        padding: ' 0 10px  0  17px'
+        padding: ' 0.6rem  4rem',
+        background: '#4597D6',
+        color:'white'
     },
     button: {
-        backgroundColor: '#1C4E80',
-        color: 'white'
+        backgroundColor: '#EA6A47',
+        textDecoration: 'none',
+        color: 'white',
+        padding: '0.5rem 1.6rem'
+    },
+    table: {
+        padding: '0.3rem 4rem'
     }
+    
 
   }));
 
@@ -54,24 +61,28 @@ const User = ({title, users}) => {
     const classes = useStyles();
 
     const [open, setOpen] = React.useState(false);
+    const [userData, setUserData] = React.useState({})
 
-    const handleClickOpen = () => {
+
+    const handleClickOpen = (user) => {
       setOpen(true);
+      setUserData(user);
     };
 
     const handleClose = () => {
       setOpen(false);
     };
+    
 
 
     return (
         <Paper className = {classes.layout} >
            <div className={classes.header}>
-                <Typography variant="h5"> 
-                        <strong>{title}</strong>
+                <Typography variant="h4"> 
+                        {title}
                 </Typography>
 
-                <Link to = "/create-user">
+                <Link to = "/create-user" style={{textDecoration: 'none'}}>
                   <Button
                       variant="contained"
                       color="primary"
@@ -87,10 +98,8 @@ const User = ({title, users}) => {
            {
              
              users.map((user) => (
-               <Fragment>
-
-              
-                <ListItem divider = {true} autoFocus = {true} key ={uuidv4()}>
+        
+                <ListItem className= {classes.table} divider = {true} autoFocus = {true} key ={uuidv4()}>
 
                   <ListItemText 
                     primary={user.username} className = {classes.list} key ={uuidv4()}
@@ -102,23 +111,23 @@ const User = ({title, users}) => {
                     user: user
                   }
                 }}>
-                    <IconButton edge="end" aria-label="edit" >
-                      <EditIcon className = {classes.edit}  />
+                    <IconButton edge="end" aria-label="edit" key={uuidv4()} >
+                      <EditIcon  />
                     </IconButton>
                 </Link>
 
                 
-                  <IconButton edge="end" aria-label="delete" onClick={handleClickOpen} key ={uuidv4()}>
+                  <IconButton edge="end" aria-label="delete" onClick={() => handleClickOpen(user)} key ={uuidv4()}>
                       <DeleteIcon color = 'secondary'  />
                       
-                    </IconButton>
-                </ListItem>
-                    <Modal open={open} onClose={handleClose} user= {user} key={uuidv4()} />
-
-                    </Fragment>
+                  </IconButton> 
+                </ListItem> 
+                  
              ))
-
+            
            }
+
+          <Modal open={open} onClose={handleClose} user= {userData} key={uuidv4()} />
             
         </Paper>
     )

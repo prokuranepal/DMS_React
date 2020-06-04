@@ -7,7 +7,7 @@ import Auth from './containers/Auth/Auth';
 import Startup from './containers/Startup';
 import Reset from './containers/Auth/Reset/ResetPassword';
 import PrivateRoute from './containers/routing/PrivateRoute';
-import SimpleAlert from './components/UI/Alert/Alert';
+
 import Users from './containers/Users/Users';
 import CreateUser from './components/CreateUser/CreateUser';
 import EditUser from './components/EditUser/EditUser';
