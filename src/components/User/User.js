@@ -21,11 +21,10 @@ const useStyles = makeStyles((theme) => ({
     },
 
     layout: {
-        height: '350px', 
-        overflowY: 'scroll', 
+        height: '360px', 
+        overflowY: 'auto', 
         position: 'relative',
-        paddingTop: '15px',
-        marginTop: '30px'
+        marginTop: '25px'
  
     },
     list: {
@@ -38,12 +37,20 @@ const useStyles = makeStyles((theme) => ({
     header: {
         display: 'flex',
         justifyContent: 'space-between',
-        padding: ' 0 10px  0  17px'
+        padding: ' 0.8rem  4rem',
+        background: '#4597D6',
+        color:'white'
     },
     button: {
-        backgroundColor: '#1C4E80',
-        color: 'white'
+        backgroundColor: '#EA6A47',
+        textDecoration: 'none',
+        color: 'white',
+        padding: '0.5rem 1.6rem'
+    },
+    table: {
+        padding: '0.3rem 4rem'
     }
+    
 
   }));
 
@@ -67,11 +74,11 @@ const User = ({title, users}) => {
     return (
         <Paper className = {classes.layout} >
            <div className={classes.header}>
-                <Typography variant="h5"> 
-                        <strong>{title}</strong>
+                <Typography variant="h4"> 
+                        {title}
                 </Typography>
 
-                <Link to = "/create-user">
+                <Link to = "/create-user" style={{textDecoration: 'none'}}>
                   <Button
                       variant="contained"
                       color="primary"
@@ -90,7 +97,7 @@ const User = ({title, users}) => {
                <Fragment>
 
               
-                <ListItem divider = {true} autoFocus = {true} key ={uuidv4()}>
+                <ListItem className= {classes.table} divider = {true} autoFocus = {true} key ={uuidv4()}>
 
                   <ListItemText 
                     primary={user.username} className = {classes.list} key ={uuidv4()}
@@ -103,7 +110,7 @@ const User = ({title, users}) => {
                   }
                 }}>
                     <IconButton edge="end" aria-label="edit" >
-                      <EditIcon className = {classes.edit}  />
+                      <EditIcon  />
                     </IconButton>
                 </Link>
 

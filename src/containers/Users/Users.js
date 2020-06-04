@@ -14,17 +14,30 @@ import User from '../../components/User/User';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      display: 'flex',
+      display: 'flex'
      
     
     },
     users: {
         backgroundColor: '#E7E7E7',
         minHeight: '93.5vh',
-        padding: '3rem',
+        padding: '1rem 6rem',
+        width: '84%',
      
     },
    
+    '@global': {
+        '*::-webkit-scrollbar': {
+          width: '0.6em'
+        },
+        '*::-webkit-scrollbar-track': {
+          '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)'
+        },
+        '*::-webkit-scrollbar-thumb': {
+          backgroundColor: 'rgba(0,0,0,.1)',
+          outline: '1px solid slategrey'
+        }
+      }
   
   
   }));
@@ -48,11 +61,11 @@ const Users = ({getUsers,  users: {users1, users2}}) => {
                  <Grid container className = {classes.users}>  
                  <SimpleAlert />
                         <Grid item xs = {12}>
-                            <User title='Level 1' users= {users1} />
+                            <User title='LEVEL 1' users= {users1} />
                         </Grid>
 
                         <Grid item xs = {12}>
-                            <User title='Level 2' users= {users2} />
+                            <User title='LEVEL 2' users= {users2} />
                         </Grid>
                  </Grid>
                  

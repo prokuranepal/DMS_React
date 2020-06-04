@@ -18,7 +18,7 @@ const SimpleAlert = ({ alerts }) => {
         alerts !== null &&
         alerts.length > 0 &&
         alerts.map(alert => (
-            <Alert severity={alert.alertType} key={alert.id} className={classes.root}>
+            <Alert severity={alert.alertType} key={alert.id} className={classes.root} variant = 'filled'>
             {alert.msg}
              </Alert>
         ))

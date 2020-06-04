@@ -82,7 +82,7 @@ const SideBar = () => {
     })
 
   return (
-    <div className={classes.Sidebar}>
+    <div style={{flex:1}}>
       <Userprofile />
       <hr />
       {menu}
