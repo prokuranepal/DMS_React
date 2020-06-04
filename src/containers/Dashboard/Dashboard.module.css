@@ -10,8 +10,9 @@
 
 .View{
     background-color: #E7E7E7 ;
-    flex:1;
-    height: 92vh;;
+    
+    height: 92vh;
+    width:84%
 }
 
 .Cards{
