@@ -70,13 +70,14 @@ const SideBar = () => {
   ]
 
   const menu =
-    SidebarLists.map(SidebarLists => {
+    SidebarLists.map((SidebarLists, index) => {
       return (
         <SidebarItem 
           iconName={SidebarLists.iconName} 
           name={SidebarLists.name} 
           route={SidebarLists.route} 
           subType={SidebarLists.subType}
+          key = {index}
         />
       );
     })

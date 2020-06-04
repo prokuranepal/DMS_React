@@ -19,8 +19,7 @@ const Modal = ({open, onClose, user, deleteUser}) => {
     
     const onSubmit = e => {
         e.preventDefault();
-        
-       
+      
         if(user.username === username){
             deleteUser(user);
             onClose()

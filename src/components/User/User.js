@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     header: {
         display: 'flex',
         justifyContent: 'space-between',
-        padding: ' 0.8rem  4rem',
+        padding: ' 0.6rem  4rem',
         background: '#4597D6',
         color:'white'
     },
@@ -61,14 +61,18 @@ const User = ({title, users}) => {
     const classes = useStyles();
 
     const [open, setOpen] = React.useState(false);
+    const [userData, setUserData] = React.useState({})
 
-    const handleClickOpen = () => {
+
+    const handleClickOpen = (user) => {
       setOpen(true);
+      setUserData(user);
     };
 
     const handleClose = () => {
       setOpen(false);
     };
+    
 
 
     return (
@@ -94,9 +98,7 @@ const User = ({title, users}) => {
            {
              
              users.map((user) => (
-               <Fragment>
-
-              
+        
                 <ListItem className= {classes.table} divider = {true} autoFocus = {true} key ={uuidv4()}>
 
                   <ListItemText 
@@ -109,23 +111,23 @@ const User = ({title, users}) => {
                     user: user
                   }
                 }}>
-                    <IconButton edge="end" aria-label="edit" >
+                    <IconButton edge="end" aria-label="edit" key={uuidv4()} >
                       <EditIcon  />
                     </IconButton>
                 </Link>
 
                 
-                  <IconButton edge="end" aria-label="delete" onClick={handleClickOpen} key ={uuidv4()}>
+                  <IconButton edge="end" aria-label="delete" onClick={() => handleClickOpen(user)} key ={uuidv4()}>
                       <DeleteIcon color = 'secondary'  />
                       
-                    </IconButton>
-                </ListItem>
-                    <Modal open={open} onClose={handleClose} user= {user} key={uuidv4()} />
-
-                    </Fragment>
+                  </IconButton> 
+                </ListItem> 
+                  
              ))
-
+            
            }
+
+          <Modal open={open} onClose={handleClose} user= {userData} key={uuidv4()} />
             
         </Paper>
     )
