@@ -6,12 +6,6 @@ import { withStyles } from "@material-ui/core/styles";
 import Paper from '@material-ui/core/Paper';
 import MainRoute from './MainRoute';
 
-import { Route, Switch } from 'react-router-dom'
-import Aux from '../../hoc/Auxiliary/Auxiliary';
-import Users from '../Users/Users';
-import IMS from '../Ims/Ims';
-import Dashboard from '../Dashboard/Dashboard';
-
 const styles = theme => ({
     root: {
         height: '100vh',
@@ -58,12 +52,6 @@ class Main extends Component {
                     </Grid>
                     <Grid className={classes.section} item xs={9} sm={9} md={9} lg={10}>
                         <MainRoute />
-                        {/* <Switch>
-                            <Route path="/admin/users" component={Users} />
-                            <Route path="/admin/ims" component={IMS} />
-                            <Route path="/admin/dashboard" component={Dashboard} />
-
-                        </Switch> */}
                     </Grid>
 
                 </Grid>

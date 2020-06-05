@@ -16,7 +16,7 @@ const SidebarItem = (props) => {
       <ListItemIcon>
         <Icon>{props.iconName}</Icon>
       </ListItemIcon>
-      <NavLink to={'/admin/'+ name} style={{ textDecoration: 'none' }}>
+      <NavLink to={'/admin/'+ name} style={{ textDecoration: 'none', color: 'black' }}>
         <ListItemText primary={props.name} />
         </NavLink>
     </ListItem>

@@ -33,11 +33,11 @@ const Dashboard = ({getCurrentCards, auth, dashboard: {cards, loading, graphs: {
                         <div className = {classes.Charts}>
                             
                             <div className={classes.MainChart}>
-                                 <Chart chartData ={cdc} height={600} />
+                                 <Chart chartData ={cdc} height={400} />
                             </div>
                             <div className={classes.SubChart}>
-                                <Chart chartData ={cdc} height={300} />
-                                <Chart chartData ={cdc} height={300} />
+                                <Chart chartData ={cdc} height={200} />
+                                <Chart chartData ={cdc} height={200} />
                             </div>
                         </div>
                     </Fragment>}
