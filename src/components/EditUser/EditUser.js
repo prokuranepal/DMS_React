@@ -3,6 +3,9 @@ import {Link} from 'react-router-dom'
 import {withRouter} from 'react-router'
 import  { createUser1, createUser2, getUsers } from '../../store/actions/users'
 import { connect } from 'react-redux';
+import  isEqual  from 'lodash/isEqual';
+import SimpleAlert from '../../components/UI/Alert/Alert';
+import _ from 'lodash';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
@@ -15,8 +18,9 @@ import SideBar from '../Sidebar/Sidebar';
 import Grid from '@material-ui/core/Grid';
 import { Paper, Typography } from '@material-ui/core';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import { setAlert } from '../../store/actions/alert';
 
-const EditUser = ({history, createUser1, createUser2, location}) => {
+const EditUser = ({history, createUser1, createUser2, location, setAlert}) => {
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -27,7 +31,9 @@ const EditUser = ({history, createUser1, createUser2, location}) => {
               backgroundColor: '#E7E7E7',
               minHeight: '93.5vh',
               padding: '4rem 6rem',
-              width: '84%'
+              width: '84%',
+              display: 'flex',
+              justifyContent: 'space-between'
           },
           form: {
               display:'flex',
@@ -94,10 +100,15 @@ const EditUser = ({history, createUser1, createUser2, location}) => {
     const onSubmit = e => {
         e.preventDefault();
 
-
+        if(_.isEqual(formData, location.state.user)){
+            setAlert('There is no change to update', 'warning')
+        }else{
+            
         formData.level==='Level 1'
         ? createUser1(formData, history, true) 
         : createUser2(formData, history, true);
+        }
+
         
     };
 
@@ -111,11 +122,15 @@ const EditUser = ({history, createUser1, createUser2, location}) => {
                  <SideBar />
 
                 {/* Main Create User Component */}
+               
                 <Grid container className = {classes.users}>
+                <SimpleAlert />
+
                     <Paper className = {classes.layout}>
                         <Grid item xs={12}>
 
-                            <Typography variant='h4' className={classes.header}>ADD USER</Typography>
+                        
+                            <Typography variant='h4' className={classes.header}>EDIT USER</Typography>
                            
                             	 <form className={classes.form} onSubmit={onSubmit}>
                           
@@ -171,4 +186,4 @@ EditUser.propTypes = {
     
 
 
-export default connect(null, {createUser1, createUser2})(withRouter(EditUser))
+export default connect(null, {createUser1, createUser2, setAlert})(withRouter(EditUser))

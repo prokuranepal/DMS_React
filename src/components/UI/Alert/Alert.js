@@ -7,6 +7,7 @@ import Alert from '@material-ui/lab/Alert';
 const useStyles = makeStyles(() => ({
     root: {
       width: '100%',
+      margin: '15px'
       
     }
   }));
@@ -18,7 +19,7 @@ const SimpleAlert = ({ alerts }) => {
         alerts !== null &&
         alerts.length > 0 &&
         alerts.map(alert => (
-            <Alert severity={alert.alertType} key={alert.id} className={classes.root} variant = 'filled'>
+            <Alert margin='normal' severity={alert.alertType} key={alert.id} className={classes.root} variant = 'filled'>
             {alert.msg}
              </Alert>
         ))
