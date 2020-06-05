@@ -13,8 +13,8 @@ const useStyles = makeStyles({
     display: 'inline-block',
     height: '130px',
     position: 'relative',
-    width: '200px',
     boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
+    textAlign: 'center',
   },
   title: {
     fontSize: 18,
