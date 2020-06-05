@@ -8,11 +8,8 @@ import { NavLink } from 'react-router-dom';
 import Icon from '@material-ui/core/Icon';
 
 const SidebarItem = (props) => {
-  let name = props.name;
-  name = name ? name.toLowerCase() : null;
-
   return (
-    <NavLink to={'/admin/' + name} style={{ textDecoration: 'none', color: 'black' }}>
+    <NavLink to={'/admin' + props.route} style={{ textDecoration: 'none', color: 'black' }}>
       <ListItem button>
 
         <ListItemIcon>

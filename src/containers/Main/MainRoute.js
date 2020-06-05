@@ -18,11 +18,11 @@ const MainRoute = props => {
                 <Route  path="/admin/users" component={Users} />
                 <Route  path="/admin/ims" component={IMS} />
                 <Route path="/admin/dms" component={DMS} />
-                <Route path="/admin/event log" component={EventLogs} />
+                <Route path="/admin/eventlog" component={EventLogs} />
                 <Route path="/admin/weather" component={Weather} />
                 <Route path="/admin/issue" component={Issue} />
-                <Route path="/admin/mission planner" component={MissionPlanner} />
-                <Route path="/admin/drone control" component={DroneControl} />
+                <Route path="/admin/missionplanner" component={MissionPlanner} />
+                <Route path="/admin/dronecontrol" component={DroneControl} />
                 <Route  path="/admin/dashboard" component={Dashboard} />
                 <Redirect from="/admin" to="/admin/dashboard" />
               </Switch>

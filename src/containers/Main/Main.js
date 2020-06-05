@@ -4,7 +4,7 @@ import NavBar from '../../components/Navbar/Navbar';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from "@material-ui/core/styles";
 import Paper from '@material-ui/core/Paper';
-import MainRoute from './MainRoute';
+import MainRouter from './MainRoute';
 
 const styles = theme => ({
     root: {
@@ -51,7 +51,7 @@ class Main extends Component {
                         <SideBar />
                     </Grid>
                     <Grid className={classes.section} item xs={9} sm={9} md={9} lg={10}>
-                        <MainRoute />
+                        <MainRouter />
                     </Grid>
 
                 </Grid>
