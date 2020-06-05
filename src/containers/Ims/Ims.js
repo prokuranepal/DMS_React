@@ -6,6 +6,7 @@ import ImsCard from '../../components/imsCard/ImsCard';
 
 const useStyles = makeStyles({
     root: {
+        flex: 1
     }
   });
 
@@ -15,7 +16,7 @@ const Ims = () => {
         <div className={classes.root}>
             <Grid
                 container
-                spacing={4}
+                spacing={0}
             >
                 <Grid
                 item
