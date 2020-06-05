@@ -1,7 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import Navbar from '../../components/Navbar/Navbar'
-import Sidebar from '../../components/Sidebar/Sidebar'
 import classes from './Dashboard.module.css'
 import { connect } from 'react-redux'
 import {getCurrentCards} from '../../store/actions/dashboard'
@@ -23,10 +21,7 @@ const Dashboard = ({getCurrentCards, auth, dashboard: {cards, loading, graphs: {
  
     return (
         <div className= {classes.Dashboard}>
-            
-            <Navbar/>
             <div className={classes.Content}>
-                <Sidebar />
                 <div className={classes.View}>
                     {(loading && cards ===null)
                     ? <Spinner />
