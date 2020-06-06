@@ -6,13 +6,13 @@ import MissionList from './MissionList/MissionList';
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
-        backgroundColor:'#E7E7E7',
+        backgroundColor:'#A5D8DD',
         // height: '93vh'
     },
     subRoot: {
         width: '80%',
         margin: '20px auto',
-        backgroundColor: 'white',
+        backgroundColor: '#A5D8DD',
         // minHeight: '50vh'
     },
     header: {

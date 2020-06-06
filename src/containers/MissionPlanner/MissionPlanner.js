@@ -7,11 +7,13 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import MissionLists from '../../components/MissionPlanner/MissionLists';
+import MissionView from '../../components/MissionPlanner/MissionView/MissionView';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     width: '100%',
-    backgroundColor: '#E7E7E7'
+    backgroundColor: '#A5D8DD'
   }
 }));
 
@@ -25,8 +27,9 @@ const MissionPlanner = () => {
         <Switch>
           {/* <Route path="/admin/mission planner/list-users" render={(props) => <ListUsers {...props} users1={users1} users2={users2}/>}/> */}
           {/* <Route exact path="/admin/missionplanner/create-user" component={CreateUser} /> */}
-          <Route exact path="/admin/missionplanner/missionLists" component={MissionLists} />
-          <Redirect from="/admin/missionplanner" to="/admin/missionplanner/missionLists" />
+          <Route exact path="/admin/missionplanner/missionview" component={MissionView} />
+          <Route exact path="/admin/missionplanner/missionlists" component={MissionLists} />
+          <Redirect from="/admin/missionplanner" to="/admin/missionplanner/missionlists" />
         </Switch>
       </Grid>
 
