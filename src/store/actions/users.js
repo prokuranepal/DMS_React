@@ -57,6 +57,8 @@ export const createUser1 = (formData, history, edit=false) => async dispatch => 
                 type: CLEAR_USER2,
                 payload: res.data
             })
+
+        
         }
            
         history.push('/users')
