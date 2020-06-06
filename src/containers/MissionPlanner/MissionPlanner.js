@@ -13,7 +13,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     width: '100%',
-    backgroundColor: '#A5D8DD'
+    backgroundColor: '#E7E7E7',
+    
   }
 }));
 
