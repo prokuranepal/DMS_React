@@ -61,7 +61,7 @@ export const createUser1 = (formData, history, edit=false) => async dispatch => 
         
         }
            
-        history.push('/users')
+        history.push('/admin/users/list-users')
 
         dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
      
@@ -108,7 +108,7 @@ export const createUser2 = (formData, history, edit=false) => async dispatch => 
             })
         }
 
-            history.push('/users')
+            history.push('/admin/users/list-users')
 
             dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
         
