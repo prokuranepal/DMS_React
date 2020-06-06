@@ -21,13 +21,14 @@ const CreateUser = ({history, createUser1, createUser2}) => {
     const useStyles = makeStyles((theme) => ({
         root: {
           display: 'flex',
-
+          width: '100%'
         },
         users: {
             backgroundColor: '#E7E7E7',
             minHeight: '93.5vh',
-            padding: '4rem 6rem',
-            width: '84%'
+            padding: '2rem 0rem',
+            margin: 'auto',
+            width: '80%'
         },
         form: {
             display:'flex',
@@ -57,13 +58,15 @@ const CreateUser = ({history, createUser1, createUser2}) => {
             marginRight: '20px'
         },
         back: {
+            // margin: theme.spacing(1),
             marginTop:'3rem',
+            
             textDecoration: 'none',
             padding: '0.8rem 0',
             fontSize: '1rem',
-            width: '13%',
+            width: '20%',
             backgroundColor: '#7E909A'
-        }
+        },
     
       }));
 
@@ -98,12 +101,7 @@ const CreateUser = ({history, createUser1, createUser2}) => {
 
     const classes = useStyles();
     return (
-        <div>
-            <Topbar /> 
             <div className = {classes.root}>
-                 <SideBar />
-
-                {/* Main Create User Component */}
                 <Grid container className = {classes.users}>
                     <Paper className={classes.layout}>
                     
@@ -134,7 +132,7 @@ const CreateUser = ({history, createUser1, createUser2}) => {
                                 <Button className={classes.submit}  type='submit' variant="contained" color='primary'>
                                     SUBMIT
                                 </Button>
-                                <Link to='/users' style={{textDecoration:'none', color: 'white'}}>
+                                <Link to='/admin/users/list-users' style={{textDecoration:'none', color: 'white'}}>
                                     <Button className={classes.back} variant="contained" color='secondary' startIcon={<KeyboardBackspaceIcon/>} >
                                     Go Back
                                     </Button>
@@ -150,9 +148,6 @@ const CreateUser = ({history, createUser1, createUser2}) => {
                  
             </div>
            
-           
-
-        </div>
     )
 }
 

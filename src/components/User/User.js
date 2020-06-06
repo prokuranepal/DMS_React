@@ -83,7 +83,7 @@ const User = ({title, users}) => {
                         {title}
                 </Typography>
 
-                <Link to = "/create-user" style={{textDecoration: 'none'}}>
+                <Link to = "/admin/users/create-user" style={{textDecoration: 'none'}}>
                   <Button
                       variant="contained"
                       color="primary"

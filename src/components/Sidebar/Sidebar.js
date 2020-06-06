@@ -54,6 +54,10 @@ const SideBar = () => {
       "route": "/missionplanner"
     },
     {
+      "name": "Users",
+      "iconName": "users",
+      "subType": [],
+      "route": "/users"
       // "name": "Inventory Management System",
       // "subType": [
       //     {
