@@ -6,7 +6,6 @@ import MissionList from './MissionList/MissionList';
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
-<<<<<<< HEAD
         backgroundColor:'#A5D8DD',
         // height: '93vh'
     },
@@ -14,28 +13,6 @@ const useStyles = makeStyles((theme) => ({
         width: '80%',
         margin: '20px auto',
         backgroundColor: '#A5D8DD',
-=======
-        backgroundColor:'#E7E7E7',
-        borderLeft: '2px solid #E7E7E7',
-        height: '93vh',
-        overflowY:'scroll',
-        '@global': {
-            
-            '*::-webkit-scrollbar-track': {
-              ' -webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.3)',
-              backgroundColor: 'black'
-            }
-            
-          }
-        
-       
-        // height: '93vh'
-    },
-    subRoot: {
-        width: '100%',
-        margin: '0px auto',
-        backgroundColor: 'white',
->>>>>>> upstream/development
         // minHeight: '50vh'
     },
     header: {

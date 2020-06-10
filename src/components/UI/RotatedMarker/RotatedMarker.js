@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 // import { Marker } from 'react-leaflet';
-import Marker from 'leaflet-rotatedmarker';
+import * as Marker from 'leaflet-rotatedmarker';
 
-export default class RotatedMarker extends Marker {
+export default class RotatedMarker {
   static propTypes = {
     rotationAngle: PropTypes.number.isRequired,
     rotationOrigin: PropTypes.string,
