@@ -1,13 +1,12 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import Navbar from '../../components/Navbar/Navbar'
-import Sidebar from '../../components/Sidebar/Sidebar'
 import classes from './Dashboard.module.css'
 import { connect } from 'react-redux'
 import {getCurrentCards} from '../../store/actions/dashboard'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import Card from '../../components/Card/Card'
 import Chart from '../../components/Chart/Chart'
+import Users from '../Users/Users'
 
 const Dashboard = ({getCurrentCards, auth, dashboard: {cards, loading, graphs: {cdc, rhps}}}) => {
 
@@ -22,9 +21,7 @@ const Dashboard = ({getCurrentCards, auth, dashboard: {cards, loading, graphs: {
  
     return (
         <div className= {classes.Dashboard}>
-            <Navbar/>
             <div className={classes.Content}>
-                <Sidebar />
                 <div className={classes.View}>
                     {(loading && cards ===null)
                     ? <Spinner />
@@ -36,11 +33,11 @@ const Dashboard = ({getCurrentCards, auth, dashboard: {cards, loading, graphs: {
                         <div className = {classes.Charts}>
                             
                             <div className={classes.MainChart}>
-                                 <Chart chartData ={cdc} height={600} />
+                                 <Chart chartData ={cdc} height={400} />
                             </div>
                             <div className={classes.SubChart}>
-                                <Chart chartData ={cdc} height={300} />
-                                <Chart chartData ={cdc} height={300} />
+                                <Chart chartData ={cdc} height={200} />
+                                <Chart chartData ={cdc} height={200} />
                             </div>
                         </div>
                     </Fragment>}

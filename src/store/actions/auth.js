@@ -1,5 +1,5 @@
-import axios from 'axios';
-
+// import axios from 'axios';
+import * as axios from '../../response/falseFetch';
 import * as actionTypes from './actionTypes';
 
 export const authStart = () => {
@@ -44,7 +44,7 @@ export const logout = () => {
 };
 
 export const checkAuthTimeout = (expirationTime, refreshToken) => {
-    console.log("CheckoutTime", expirationTime);
+    // console.log("CheckoutTime", expirationTime);
     return dispatch => {
         const refresh_token = refreshToken;
         setTimeout(() => {
@@ -57,66 +57,52 @@ export const checkAuthTimeout = (expirationTime, refreshToken) => {
 const sendRefreshToken = (refreshToken) => {
     return dispatch => {
         // let url = 'https://securetoken.googleapis.com/v1/token?key=AIzaSyDL3N1A50XmBEQGRPrAN2zCudp9mpIe28I';
-        // const data = {
-        //     grant_type: "refresh_token",
-        //     refresh_token: refreshToken
-        // }
-        // axios.post(url, data)
-        //     .then(response => {
-        const response = {
-            data: {
-                id_token: 'token',
-                expires_in: 3600,
-                user_id: 'userId',
-                refresh_token: 'refreshToken'
-            }
+        let url = './auth.js';
+        const data = {
+            grant_type: "refresh_token",
+            refresh_token: refreshToken
         }
-        console.log(response);
-        const expirationDate = new Date(new Date().getTime() + response.data.expires_in * 1000);
-        localStorage.setItem('token', response.data.id_token);
-        localStorage.setItem('expirationDate', expirationDate);
-        localStorage.setItem('userId', response.data.user_id);
-        localStorage.setItem('refreshToken', response.data.refresh_token);
-        dispatch(authSuccess(response.data.id_token, response.data.user_id));
-        dispatch(checkAuthTimeout(response.data.expires_in, response.data.refresh_token));
-        // });
+        axios.post(url, data)
+            .then(response => {
+                response = response.authResponse;
+                const expirationDate = new Date(new Date().getTime() + response.data.expires_in * 1000);
+                localStorage.setItem('token', response.data.id_token);
+                localStorage.setItem('expirationDate', expirationDate);
+                localStorage.setItem('userId', response.data.user_id);
+                localStorage.setItem('refreshToken', response.data.refresh_token);
+                dispatch(authSuccess(response.data.id_token, response.data.user_id));
+                dispatch(checkAuthTimeout(response.data.expires_in, response.data.refresh_token));
+            });
     }
 }
 
 export const auth = (email, password) => {
     return dispatch => {
         dispatch(authStart());
-        // const authData = {
-        //     email: email,
-        //     password: password,
-        //     returnSecureToken: true
-        // };
+        const authData = {
+            email: email,
+            password: password,
+            returnSecureToken: true
+        };
         // let url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyDL3N1A50XmBEQGRPrAN2zCudp9mpIe28I';
-        // axios.post(url, authData)
-        //     .then(response => {
-        const response = {
-            data: {
-                id_token: 'token',
-                expires_in: 3600,
-                user_id: 'userId',
-                refresh_token: 'refreshToken'
-            }
-        }
-        console.log(response);
-        const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
-        // console.log(new Date().getTime());
-        // console.log(response.data.expiresIn, expirationDate, expirationDate.getTime() - new Date().getTime());
-        localStorage.setItem('token', response.data.idToken);
-        localStorage.setItem('expirationDate', expirationDate);
-        localStorage.setItem('userId', response.data.localId);
-        localStorage.setItem('refreshToken', response.data.refreshToken);
-        dispatch(authSuccess(response.data.idToken, response.data.localId));
-        dispatch(checkAuthTimeout(response.data.expiresIn, response.data.refreshToken));
-        // })
-        // .catch(err => {
-        //     // console.log(err);
-        //     dispatch(authFail(err));
-        // });
+        const url = './auth.js';
+        axios.post(url, authData)
+            .then(response => {
+                response = response.authResponse;
+                const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+                // console.log(new Date().getTime());
+                // console.log(response.data.expiresIn, expirationDate, expirationDate.getTime() - new Date().getTime());
+                localStorage.setItem('token', response.data.idToken);
+                localStorage.setItem('expirationDate', expirationDate);
+                localStorage.setItem('userId', response.data.localId);
+                localStorage.setItem('refreshToken', response.data.refreshToken);
+                dispatch(authSuccess(response.data.idToken, response.data.localId));
+                dispatch(checkAuthTimeout(response.data.expiresIn, response.data.refreshToken));
+            })
+            .catch(err => {
+                // console.log(err);
+                dispatch(authFail(err));
+            });
     };
 };
 

@@ -1,5 +1,5 @@
 .Dashboard{
-    height: 100vh;
+    height: 100%;
     
 }
 
@@ -10,8 +10,7 @@
 
 .View{
     background-color: #E7E7E7 ;
-    flex:1;
-    height: 92vh;;
+    width:100%
 }
 
 .Cards{

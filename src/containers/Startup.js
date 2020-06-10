@@ -22,7 +22,7 @@ const Startup = props => {
                 } else {
                     const expiresIn = expirationDate.getTime() - new Date().getTime();
                     dispatch(authActions.authenticate(token, expiresIn / 1000));
-                    setRedirectTo('/dashboard');
+                    setRedirectTo('/admin');
                 }
             }
         };
@@ -34,8 +34,7 @@ const Startup = props => {
     return <div >
         <
         Spinner / >
-        <
-        /div>
+        </div>
 };
 
 
