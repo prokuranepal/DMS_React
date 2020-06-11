@@ -16,7 +16,8 @@ env:
       - COVERALLS_PARALLEL=true
 jobs:
     include:
-      - script: COVERALLS_FLAG_NAME=test-1 make test-coveralls-1
-      - script: COVERALLS_FLAG_NAME=test-2 make test-coveralls-2
+        - stage: Produce Coverage
+    node_js: node
+    script: jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
 notifications:
     webhooks: https://coveralls.io/webhook

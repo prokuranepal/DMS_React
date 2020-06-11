@@ -17,6 +17,7 @@ class App extends Component {
               
               <Route exact path="/"  component={Startup} />
             </Switch> */}
+            <div>Hello</div>
       </Aux>
     )
   }
