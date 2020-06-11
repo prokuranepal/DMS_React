@@ -1,4 +1,5 @@
-[![Coverage Status](https://coveralls.io/repos/github/Swainstha/DMS_React/badge.svg?branch=master)](https://coveralls.io/github/Swainstha/DMS_React?branch=master)
+[![Build Status](https://travis-ci.org/prokuranepal/DMS_React.svg?branch=master)](https://travis-ci.org/prokuranepal/DMS_React)
+[![Coverage Status](https://coveralls.io/repos/github/prokuranepal/DMS_React/badge.svg?branch=master)](https://coveralls.io/github/prokuranepal/DMS_React?branch=master)
 
 #### Drone Monitoring and Management System
 
