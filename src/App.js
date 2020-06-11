@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch} from 'react-router-dom'
 import './App.css';
 import Aux from './hoc/Auxiliary/Auxiliary';
 import Main from './containers/Main/Main';
@@ -11,13 +11,12 @@ class App extends Component {
   render() {
     return (
       <Aux>
-            <Switch>
+            {/* <Switch>
               <Route exact path="/auth" component={Auth} />
               <Route path="/admin" component={Main} />
               
-              {/* <Route path="/reset" component={Reset} /> */}
               <Route exact path="/"  component={Startup} />
-            </Switch>
+            </Switch> */}
       </Aux>
     )
   }
