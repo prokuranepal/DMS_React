@@ -3,7 +3,6 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import { Map, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
 import { Icon } from "leaflet";
-import { Typography } from '@material-ui/core';
 import Red from './red.png';
 // import RotatedMarker from 'react-leaflet-rotatedmarker';
 // import RotatedMarker from '../../UI/RotatedMarker/RotatedMarker';
