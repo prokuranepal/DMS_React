@@ -11,13 +11,13 @@ class App extends Component {
   render() {
     return (
       <Aux>
-            {/* <Switch>
+            <Switch>
               <Route exact path="/auth" component={Auth} />
               <Route path="/admin" component={Main} />
               
               <Route exact path="/"  component={Startup} />
-            </Switch> */}
-            <div>Hello</div>
+            </Switch>
+            {/* <div>Hello</div> */}
       </Aux>
     )
   }
