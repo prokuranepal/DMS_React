@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import {withRouter} from 'react-router'
 import  { createUser1, createUser2} from '../../store/actions/users'
 import { connect } from 'react-redux';
+import SimpleAlert from '../../components/UI/Alert/Alert';
 import _ from 'lodash';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
