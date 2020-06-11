@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types'
 import { getUsers } from '../../store/actions/users'
 import { Route, Switch, Redirect } from 'react-router-dom'
 

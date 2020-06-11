@@ -8,3 +8,5 @@ cache:
 script:
   - npm test
   - npm run build
+
+process.env.CI : true

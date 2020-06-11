@@ -10,8 +10,6 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
-import Topbar from '../../components/Navbar/Navbar';
-import SideBar from '../../components/Sidebar/Sidebar';
 import Grid from '@material-ui/core/Grid';
 import { Paper, Typography } from '@material-ui/core';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
@@ -43,7 +41,7 @@ const CreateUser = ({history, createUser1, createUser2}) => {
         header:{
             background:'red',
             padding: '1rem 6rem',
-            background: '#4597D6',
+            backgroundColor: '#4597D6',
             color:'white'
             
         },

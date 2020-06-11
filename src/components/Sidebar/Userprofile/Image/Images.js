@@ -10,7 +10,8 @@ const useStyles = makeStyles({
     },
   });
 
-export default Image = (props) => {
+const Images = (props) => {
     const classes = useStyles();
-    return <img className={classes.Image} src={props.src} alt="profile image" />
+    return <img className={classes.Image} src={props.src} alt="profile" />
 }
+ export default Images;

@@ -1,10 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {withRouter} from 'react-router'
-import  { createUser1, createUser2, getUsers } from '../../store/actions/users'
+import  { createUser1, createUser2} from '../../store/actions/users'
 import { connect } from 'react-redux';
-import  isEqual  from 'lodash/isEqual';
-import SimpleAlert from '../../components/UI/Alert/Alert';
 import _ from 'lodash';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
