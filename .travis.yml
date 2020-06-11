@@ -9,16 +9,5 @@ script:
   - npm test -- --coverage
   - CI=false npm run build
 
-  after_script: # Upload coverage reports 
+after_script: # Upload coverage reports 
   - COVERALLS_REPO_TOKEN=$coveralls_repo_token npm run coveralls
-
-env:
-    global:
-      - COVERALLS_PARALLEL=true
-jobs:
-    include:
-        - stage: Produce Coverage
-    node_js: node
-    script: jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
-notifications:
-    webhooks: https://coveralls.io/webhook
