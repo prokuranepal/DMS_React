@@ -9,7 +9,7 @@ script:
   - npm test
   - npm run build
 
-process.env.CI : true
+process.env.CI : false
 
 env:
     global:
