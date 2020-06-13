@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import classes from './Dashboard.module.css'
 import { connect } from 'react-redux'
@@ -6,7 +6,7 @@ import {getCurrentCards} from '../../store/actions/dashboard'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import Card from '../../components/Card/Card'
 import Chart from '../../components/Chart/Chart'
-import Users from '../Users/Users'
+
 
 const Dashboard = ({getCurrentCards, auth, dashboard: {cards, loading, graphs: {cdc, rhps}}}) => {
 
