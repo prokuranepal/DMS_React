@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: '20px'
     },
     paper: {
-        width: '100%',
+        width: '80%',
         backgroundColor: '#5C9BDA',
         color: 'white',
         margin: `${theme.spacing(0.2)}px auto`,
