@@ -8,6 +8,7 @@ import {getCurrentCards} from '../../store/actions/dashboard'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import Card from '../../components/Card/Card'
 import Chart from '../../components/Chart/Chart'
+import MedicineDetails from '../../components/MedicineDetails/MedicineDetails';
 
 const Dashboard = ({getCurrentCards, auth, dashboard: {cards, loading, graphs: {cdc, rhps}}}) => {
 
