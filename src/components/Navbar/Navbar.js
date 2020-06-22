@@ -1,25 +1,30 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    height: '60px',
+    height: '100%',
   },
   logoSection: {
-    width: '260px',
+    display: 'flex',
+    width: '100%',
     color: '#fff',
     textAlign: 'center',
-    backgroundColor: '#1C4E80'
+    backgroundColor: '#1C4E80',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   newsSection: {
     display: 'flex',
     fontSize: '24px',
     width: '100%',
-    backgroundColor: '#B2DBDF',
+    backgroundColor: '#1C4E80',
     justifyContent: 'center',
     alignItems: 'center',
-  },
+    color: 'white'
+  }
 
 }));
 
@@ -27,14 +32,14 @@ const Topbar = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-        <div className={classes.logoSection}>
-            <h3>Logo</h3>
-        </div>
-        <div className={classes.newsSection}>
-            <marquee>News</marquee>
-        </div>
-    </div>
+    <Grid container component="main" className={classes.root}>
+      <Grid item xs={2} className={classes.logoSection}>
+        <Typography>Logo</Typography>
+      </Grid>
+      <Grid item xs={10} className={classes.newsSection}>
+        <marquee>News</marquee>
+      </Grid>
+    </Grid>
   );
 }
 
