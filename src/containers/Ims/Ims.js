@@ -1,66 +1,46 @@
-import React from 'react';
-import { Grid } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import React from 'react'
+import { connect } from 'react-redux';
+import { getUsers } from '../../store/actions/users'
+import { Route, Switch, Redirect } from 'react-router-dom'
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import MedicineTypes from './MedicineTypes/MedicineTypes';
+import MedicineListContainer from './MedicineList/MedicineListContainer';
+import OrderLists from '../../components/OrderLists/OrderLists';
+import OrderDetails from './Orders/OrderDetails/OrderDetails';
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    width: '100%',
+    backgroundColor: 'white'
+  }
+}));
 
-import ImsCard from '../../components/imsCard/ImsCard';
-import Paper from '@material-ui/core/Paper';
+const MissionPlanner = () => {
 
-const useStyles = makeStyles({
-    root: {
-        flexGrow: 1,
-        width: '100%'
-    },
-    paper: {
-        height: 140,
-        width: 100,
-    }
-});
+  const classes = useStyles();
 
-const Ims = () => {
-    const classes = useStyles();
-    return (
-        <Grid container className={classes.root} spacing={2}>
-            <Grid item xs={12}>
-            <Grid
-                container
-                spacing={0}
-            >
-                <Grid
-                    item
-                    lg={3}
-                    sm={6}
-                >
-                    <Paper className={classes.paper} />
-                    {/* <ImsCard title='Medicine type' name='Medicine name' /> */}
-                </Grid>
-                <Grid
-                    item
-                    lg={3}
-                    sm={6}
-                >
-                    <Paper className={classes.paper} />
-                    {/* <ImsCard title='Medicine type' name='Medicine name' /> */}
-                </Grid>
-                <Grid
-                    item
-                    lg={3}
-                    sm={6}
-                >
-                     <Paper className={classes.paper} />
-                    {/* <ImsCard title='Medicine type' name='Medicine name' /> */}
-                </Grid>
-                <Grid
-                    item
-                    lg={3}
-                    sm={6}
-                >
-                     <Paper className={classes.paper} />
-                    {/* <ImsCard title='Medicine type' name='Medicine name' /> */}
-                </Grid>
-            </Grid>
-            </Grid>
-        </Grid>
-    );
-};
+  return (
+    <div>
+      <Grid container className={classes.root} >
+        <Switch>
+          <Route exact path="/admin/ims/medicinetypes" component={MedicineTypes} />
+          <Route exact path="/admin/ims/medicinelist" component={MedicineListContainer} />
+          {/* <Route exact path="/admin/ims/addmedicine" component={MedicineList} /> */}
+          <Route exact path="/admin/ims/orders/lists" component={OrderLists} />
+          <Route exact path="/admin/ims/orders/details" component={OrderDetails} />
+          <Redirect from="/admin/ims/orders" to="/admin/ims/orders/lists" />
+          <Redirect from="/admin/ims" to="/admin/ims/medicinetypes" />
+        </Switch>
+      </Grid>
 
-export default Ims;
+    </div>
+  )
+}
+
+
+const mapStateToProps = state => ({
+  users: state.users
+})
+
+export default connect(mapStateToProps, { getUsers })(MissionPlanner);

@@ -53,7 +53,7 @@ const SideBar = () => {
     },
     {
       "name": "Users",
-      "iconName": "users",
+      "iconName": "user",
       "subType": [],
       "route": "/users"
       // "name": "Inventory Management System",

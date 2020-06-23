@@ -28,34 +28,40 @@ const useStyles = makeStyles((theme) => ({
 
 const orders = [
     {
-        name: 'abc',
-        location: 'Dharan',
-        date: '11/06/2020'
+        id: 'abc',
+        from: 'Dharan',
+        status: 'processing',
+        date: '11/06/2020 10:40:30 AM'
     },
     {
-        name: 'abc',
-        location: 'Dharan',
-        date: '11/06/2020'
+        id: 'efg',
+        from: 'Dharan',
+        status: 'completed',
+        date: '11/06/2020 9:50:30 AM'
     },
     {
-        name: 'abc',
-        location: 'Dharan',
-        date: '11/06/2020'
+        id: 'klm',
+        from: 'Dharan',
+        status: 'processing',
+        date: '11/06/2020 9:40:30 AM'
     },
     {
-        name: 'abc',
-        location: 'Dharan',
-        date: '11/06/2020'
+        id: 'hij',
+        from: 'Dharan',
+        status: 'completed',
+        date: '11/06/2020 8:40:30 AM'
     },
     {
-        name: 'abc',
-        location: 'Dharan',
-        date: '11/06/2020'
+        id: 'nop',
+        from: 'Dharan',
+        status: 'completed',
+        date: '11/06/2020 8:40:30 AM'
     },
     {
-        name: 'abc',
-        location: 'Dharan',
-        date: '11/06/2020'
+        id: 'qrs',
+        from: 'Dharan',
+        status: 'completed',
+        date: '11/06/2020 7:40:30 AM'
     }
 ]
 const OrderLists = props => {
@@ -67,7 +73,7 @@ const OrderLists = props => {
             <Typography variant="h4" className={classes.text}>ORDER LISTS</Typography>
             </div>
                 {orders.map(order => {
-                    return <OrderList key={order.id} name={order.name} location={order.location} date={order.date}/>
+                    return <OrderList key={order.id} id={order.id} from={order.from} status={order.status} date={order.date}/>
                 })}
         </Grid>
     </Grid>)

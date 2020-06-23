@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import CardMedia from '@material-ui/core/CardMedia';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -34,10 +35,14 @@ const Topbar = () => {
   return (
     <Grid container component="main" className={classes.root}>
       <Grid item xs={2} className={classes.logoSection}>
-        <Typography>Logo</Typography>
+        <CardMedia component="img"
+          alt="Logo"
+          height="20"
+          image=""
+          title="Logo"/>
       </Grid>
       <Grid item xs={10} className={classes.newsSection}>
-        <marquee>News</marquee>
+        <marquee>Drone MX701 has reached Dharan at 9:46 pm</marquee>
       </Grid>
     </Grid>
   );
