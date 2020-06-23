@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Paper } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '90%',
@@ -39,7 +39,7 @@ const MissionList = props => {
                         <Typography>Destination: {props.destination}</Typography>
                     </Grid>
                     <Grid container item xs={0} sm={4} md={2}>
-                    <Link className={classes.button}to='/admin/missionplanner/missionview' style={{textDecoration:'none', color: 'white'}}>
+                    <Link className={classes.button} to='/admin/missionplanner/missionview' style={{textDecoration:'none', color: 'white'}}>
                         <Button variant="contained" color='secondary' >
                             View
                 </Button>

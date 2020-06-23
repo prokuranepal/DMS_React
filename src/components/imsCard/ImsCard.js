@@ -5,11 +5,12 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import Typography from '@material-ui/core/Typography';
-
+import {Link} from 'react-router-dom';
 const useStyles = makeStyles({
   root: {
     maxWidth: 200,
-    marginBottom: 30
+    marginBottom: 30,
+    margin: 'auto'
   },
 });
 
@@ -17,6 +18,7 @@ const ImsCard = props => {
   const classes = useStyles();
 
   return (
+    <Link to={{pathname: '/admin/ims/medicinelist', aboutProps: {name: props.name}}} style={{textDecoration:'none', color: 'white'}}>
     <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
@@ -33,6 +35,7 @@ const ImsCard = props => {
         </CardContent>
       </CardActionArea>
     </Card>
+    </Link>
   )}
 
 export default ImsCard;

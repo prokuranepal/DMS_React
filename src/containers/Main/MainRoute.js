@@ -11,7 +11,6 @@ import Weather from '../Weather/Weather';
 import Issue from '../Issue/Issue';
 import DroneControl from '../DroneControl/DroneControl';
 import MissionPlanner from '../MissionPlanner/MissionPlanner';
-import OrderLists from '../../components/OrderLists/OrderLists';
 const MainRoute = props => {
     return (
         <Aux>
@@ -23,7 +22,6 @@ const MainRoute = props => {
                 <Route path="/admin/weather" component={Weather} />
                 <Route path="/admin/issue" component={Issue} />
                 <Route path="/admin/missionplanner" component={MissionPlanner} />
-                <Route path="/admin/orders" component={OrderLists} />
                 <Route path="/admin/dronecontrol" component={DroneControl} />
                 <Route  path="/admin/dashboard" component={Dashboard} />
                 <Redirect from="/admin" to="/admin/dashboard" />
