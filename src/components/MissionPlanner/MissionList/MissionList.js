@@ -18,8 +18,10 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: '20px'
     },
     paper: {
-        width: '100%',
-        backgroundColor: '#E7E7E7',
+
+        width: '90%',
+        backgroundColor: '#5C9BDA',
+        color: 'white',
         margin: `${theme.spacing(0.2)}px auto`,
         padding: theme.spacing(2),
     },
