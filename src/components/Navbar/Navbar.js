@@ -42,7 +42,9 @@ const Topbar = () => {
           title="Logo"/>
       </Grid>
       <Grid item xs={10} className={classes.newsSection}>
-        <marquee>Drone MX701 has reached Dharan at 9:46 pm</marquee>
+
+        <marquee>Drone Max 720 has reached Dharan at 9:45 AM</marquee>
+
       </Grid>
     </Grid>
   );
