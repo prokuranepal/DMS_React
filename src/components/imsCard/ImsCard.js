@@ -1,44 +1,38 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
+import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
+import CardActionArea from '@material-ui/core/CardActionArea';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   root: {
-    background: '#fff',
-    borderRadius: '2px',
-    display: 'inline-block',
-    height: '130px',
-    position: 'relative',
-    boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
-    textAlign: 'center',
+    maxWidth: 200,
+    marginBottom: 30
   },
-  title: {
-    fontSize: 18,
-  }
 });
 
-const  ImsCard = (props) => {
+const ImsCard = props => {
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
-      <CardContent>
-        <Typography className={classes.title} color="textPrimary" gutterBottom>
-          {props.title}
-        </Typography>
-        <Typography variant="body2" component="p">
-          {props.name}
-        </Typography>
-      </CardContent>
-      <CardActions >
-        <Button size="small">Details</Button>
-      </CardActions>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          alt={props.name}
+          height="140"
+          image={props.image}
+          title={props.name}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h6" component="h4">
+            {props.name}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
     </Card>
-  );
-};
+  )}
 
 export default ImsCard;
