@@ -44,7 +44,7 @@ const OrderList = props => {
 
                     </Grid>
                     <Grid container item xs={0} sm={4} md={3} alignItems="center">
-                        <Link to="/admin/ims/orders/details">
+                        <Link to="/app/ims/orders/details">
                         <Button variant="contained" color='secondary' className={classes.button}>
                             Details
                     </Button>

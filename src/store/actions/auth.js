@@ -16,6 +16,13 @@ export const authSuccess = (token, userId) => {
     };
 };
 
+export const setInitURL = (url) => {
+    return {
+        type: actionTypes.SET_INIT_URL,
+        url: url
+    }
+}
+
 export const authFail = (error) => {
     return {
         type: actionTypes.AUTH_FAIL,
@@ -23,12 +30,13 @@ export const authFail = (error) => {
     };
 };
 
-export const authenticate = (token, expiryTime) => {
+export const authenticate = (token, userId, expiryTime) => {
     return dispatch => {
         // 
         dispatch({
             type: actionTypes.AUTHENTICATE,
-            token: token
+            token: token,
+            userId: userId
         });
         dispatch(checkAuthTimeout(expiryTime));
     }
@@ -76,7 +84,7 @@ const sendRefreshToken = (refreshToken) => {
     }
 }
 
-export const auth = (email, password) => {
+export const signIn = (email, password) => {
     return dispatch => {
         dispatch(authStart());
         const authData = {
@@ -91,7 +99,7 @@ export const auth = (email, password) => {
                 response = response.authResponse;
                 const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
                 // console.log(new Date().getTime());
-                // console.log(response.data.expiresIn, expirationDate, expirationDate.getTime() - new Date().getTime());
+                console.log(response.data.idToken,response.data.expiresIn, expirationDate, expirationDate.getTime() - new Date().getTime());
                 localStorage.setItem('token', response.data.idToken);
                 localStorage.setItem('expirationDate', expirationDate);
                 localStorage.setItem('userId', response.data.localId);
@@ -100,7 +108,7 @@ export const auth = (email, password) => {
                 dispatch(checkAuthTimeout(response.data.expiresIn, response.data.refreshToken));
             })
             .catch(err => {
-                // console.log(err);
+                console.log(err);
                 dispatch(authFail(err));
             });
     };

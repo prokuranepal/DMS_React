@@ -1,33 +1,48 @@
-import { GET_CARDS, CARD_ERROR } from "../actions/actionTypes";
+import * as actionTypes from '../actions/actionTypes';
+import { updateObject } from '../utility';
 
 
 const initialState = {
     cards: {},
     graphs: {},
     loading: true,
-    error: {}
+    error: {},
+    places: []
 }
 
-export default function(state = initialState, action) {
-    const { type, payload } = action;
+const cardError = (state, action) => {
+    return updateObject(state, {
+        error: action.error,
+        loading: false
+    })
+}
 
-    switch (type) {
-        case GET_CARDS:
-            return {
-                ...state,
-                cards: payload.cards,
-                graphs: payload.graphs,
-                loading: false
-            };
-        case CARD_ERROR:
-                return {
-                 ...state,
-                 error: payload,
-                 loading: false
-            };
+const getCards = (state, action) => {
+
+    return updateObject(state, {
+        cards: action.data.cards,
+        graphs: action.data.graphs,
+        loading: false
+    })
+}
+
+const setPlaces = (state, action) => {
+
+    return updateObject(state, {
+        places: action.places
+    })
+}
+
+
+
+const reducer = (state = initialState, action) => {
+    switch (action.type) {
+        case actionTypes.GET_CARDS: return getCards(state, action);
+        case actionTypes.CARD_ERROR: return cardError(state, action);
+        case actionTypes.SET_PLACES: return setPlaces(state, action);
         default:
             return state;
-
-
     }
-}
+};
+
+export default reducer;

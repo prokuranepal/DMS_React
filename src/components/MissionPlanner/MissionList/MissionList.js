@@ -39,7 +39,7 @@ const MissionList = props => {
                         <Typography>Destination: {props.destination}</Typography>
                     </Grid>
                     <Grid container item xs={0} sm={4} md={2}>
-                    <Link className={classes.button} to='/admin/missionplanner/missionview' style={{textDecoration:'none', color: 'white'}}>
+                    <Link className={classes.button} to='/app/missionplanner/missionview' style={{textDecoration:'none', color: 'white'}}>
                         <Button variant="contained" color='secondary' >
                             View
                 </Button>

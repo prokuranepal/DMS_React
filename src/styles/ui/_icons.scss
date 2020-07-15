@@ -1,0 +1,39 @@
+/*Icons Styles*/
+
+.icon {
+  display: inline-block;
+  @extend %size-30;
+  text-align: center;
+
+  &-btn .zmdi {
+    width: 18px;
+    height: 18px;
+    @include display-flex(inline-flex, row, nowrap);
+    @include align-items(center);
+    @include justify-content(center);
+
+    .quick-menu & {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &-btn-sm .zmdi {
+    width: 16px;
+    height: 16px;
+    @include display-flex(inline-flex, row, nowrap);
+    @include align-items(center);
+    @include justify-content(center);
+  }
+}
+
+.icons-wrapper {
+  display: inline-block;
+  & + .icons-wrapper {
+    margin-left: 25px;
+  }
+}
+
+.icon-addon {
+  @extend %icon-addon;
+}

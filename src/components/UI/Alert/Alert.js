@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import Alert from '@material-ui/lab/Alert';
+// import Alert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -15,14 +15,14 @@ const useStyles = makeStyles(() => ({
 const SimpleAlert = ({ alerts }) => {
     const classes = useStyles();
 
-    return (
-        alerts !== null &&
-        alerts.length > 0 &&
-        alerts.map(alert => (
-            <Alert margin='normal' severity={alert.alertType} key={alert.id} className={classes.root} variant = 'filled'>
-            {alert.msg}
-             </Alert>
-        ))
+    return ( null
+        // alerts !== null &&
+        // alerts.length > 0 &&
+        // alerts.map(alert => (
+        //     <Alert margin='normal' severity={alert.alertType} key={alert.id} className={classes.root} variant = 'filled'>
+        //     {alert.msg}
+        //      </Alert>
+        // ))
     )
 }
   
