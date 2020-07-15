@@ -1,0 +1,274 @@
+/*Sidebar Styles*/
+
+.side-nav {
+  width: $side-nav-width;
+  background-color: $sidebar-bg !important;
+  color: $sidebar-text-color !important;
+  border-right: 0 none !important;
+  z-index: 1250 !important;
+
+  & .user-profile {
+    background-color: $sidebar-bg-darken;
+    padding: 13px 20px;
+  }
+
+  & .user-avatar {
+    margin: 0 15px 0 0 !important;
+    height: 44px !important;
+    width: 44px !important;
+    line-height: 44px;
+  }
+
+  & .user-detail {
+    & .user-name {
+      color: $sidebar-hover-color;
+      cursor: pointer;
+      font-size: $font-size-base;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+  }
+}
+
+.user-detail {
+  & .user-name {
+    cursor: pointer;
+  }
+}
+
+.side-nav-menu {
+  font-size: $font-size-base;
+}
+
+.nav-section {
+  position: relative;
+
+  & .nav-header {
+    color: $sidebar-text-color;
+    padding-top: 40px;
+    padding-bottom: 10px;
+    font-size: 11px;
+    text-transform: uppercase;
+    margin-top: 30px;
+    margin-right: 20px;
+    margin-left: 20px;
+    border-top: solid $border-width lighten($sidebar-bg, 6%);
+  }
+
+  &:first-child {
+    & .nav-header {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 0 none;
+    }
+  }
+  
+  & .nav-menu-item {
+    padding: 0;
+  }
+  
+  & .nav-collapse,
+  & .nav-menu-item {
+    margin-bottom: 1px;
+  }
+}
+
+.nav-collapse {
+  position: relative;
+
+  & &-btn {
+    color: $sidebar-text-color;
+    font-size: 14px;
+    padding: 7px 30px 8px 20px;
+    letter-spacing: 0.02857em;
+    line-height: 1.75;
+
+    &:focus,
+    &:hover {
+      background-color: $sidebar-bg-darken;
+      color: $sidebar-hover-color;
+    }
+  }
+
+  &.open {
+    background-color: $sidebar-bg-darken;
+
+    & .nav-collapse-btn {
+      background-color: $sidebar-bg-darken;
+      color: $sidebar-hover-color;
+
+      &:focus,
+      &:hover {
+        background-color: $sidebar-bg-darken;
+        color: $sidebar-hover-color;
+      }
+    }
+  }
+
+  & i {
+    margin-right: 12px;
+    font-size: 15px;
+  }
+
+  & .nav-text {
+    flex: 1;
+  }
+
+  & .nav-arrow {
+    font-size: 16px;
+  }
+}
+
+.nav-collapse {
+  & .nav-menu-item .nav-menu-link {
+    color: $sidebar-text-color;
+    padding-left: 52px;
+    @include border-right-radius($border-radius-xxl);
+    margin-right: 20px;
+    position: relative;
+
+    &:focus,
+    &:hover,
+    &.active {
+      background-color: $sidebar-bg-darken;
+      color: $sidebar-hover-color;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      @include translateY(-50%);
+      display: none;
+      background-color: $white;
+      width: 6px;
+      height: 6px;
+      @include border-radius($border-radius-circle);
+    }
+
+    &.active:after {
+      display: inline-block;
+    }
+  }
+
+  &.open {
+    & .nav-menu-item .nav-menu-link.active {
+      background-color: $sidebar-bg-darken-highlight;
+      color: $sidebar-hover-color;
+    }
+  }
+
+  & .nav-collapse {
+    & .nav-collapse-btn {
+      padding-left: 52px;
+    }
+
+    & .nav-menu-item .nav-menu-link {
+      padding-left: 72px;
+    }
+
+    & .nav-collapse {
+      & .nav-menu-item .nav-menu-link {
+        padding-left: 92px;
+      }
+
+      & .nav-collapse-btn {
+        padding-left: 72px;
+      }
+    }
+  }
+}
+
+.nav-menu-item {
+  & .nav-menu-link {
+    color: $sidebar-text-color;
+    font-size: 14px;
+    padding: 7px 30px 8px 20px;
+    letter-spacing: 0.02857em;
+    line-height: 1.5;
+    display: block;
+    text-decoration: none;
+
+    &:focus,
+    &:hover,
+    &.active {
+      background-color: $sidebar-bg-darken;
+      color: $sidebar-hover-color;
+    }
+  }
+
+  & i {
+    margin-right: 12px;
+    font-size: 15px;
+  }
+}
+
+.app-container.mini-drawer {
+  & .side-nav {
+    @include transition($transition-base);
+    width: $mini-drawer-width;
+
+    &:not(:hover) {
+      & .nav-collapse .nav-collapse-btn,
+      & .nav-menu-item .nav-menu-link {
+        padding: 12px 10px;
+      }
+
+      & .nav-section {
+        & .nav-header {
+          margin-left: 10px;
+          margin-right: 10px;
+        }
+        
+        &:not(:first-child) .nav-header {
+          padding-top: 20px;
+          margin-top: 10px;
+        }
+      }
+
+      & .side-nav-menu .nav-text,
+      & .side-nav-menu .nav-arrow,
+      & .user-profile .user-detail,
+      & .side-nav-menu .nav-collapse.open > .nav-collapse-item {
+        display: none;
+      }
+
+      & .side-nav-menu .nav-section {
+        text-align: center;
+      }
+
+      & .side-nav-menu .nav-section .nav-collapse-btn {
+        text-align: center;
+        justify-content: center;
+      }
+
+      & .side-nav-menu .nav-section i,
+      & .side-nav-menu .nav-section .zmdi {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.app-container.mini-drawer {
+  & .side-nav:hover {
+    width: $side-nav-width;
+  }
+}
+
+.customizer {
+  padding: 20px 35px;
+  & img {
+    padding: 5px;
+    cursor: pointer;
+  }
+}
+
+.user-info {
+  & ul {
+    & li {
+      font-size: 15px;
+    }
+  }
+}

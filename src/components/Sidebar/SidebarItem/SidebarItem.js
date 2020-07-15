@@ -9,14 +9,15 @@ import Icon from '@material-ui/core/Icon';
 
 const SidebarItem = (props) => {
   return (
-    <NavLink to={'/admin' + props.route} style={{ textDecoration: 'none', color: 'black' }}>
+    <NavLink to={'/admin' + props.route} style={{ textDecoration: 'none', color: 'white' }}>
       <ListItem button>
 
-        <ListItemIcon>
-          <Icon>{props.iconName}</Icon>
-        </ListItemIcon>
-
-        <ListItemText primary={props.name} />
+        {/* <ListItemIcon> */}
+          <Icon color="inherit">{props.iconName}</Icon>
+          
+        {/* </ListItemIcon> */}
+        <ListItemText primary={props.name} style={{marginLeft:'10px'}}/>
+        
 
       </ListItem>
     </NavLink >

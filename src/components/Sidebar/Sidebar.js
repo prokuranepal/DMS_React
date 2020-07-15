@@ -52,6 +52,18 @@ const SideBar = () => {
       "route": "/missionplanner"
     },
     {
+      "name": "Mission planner",
+      "iconName": "event_note",
+      "subType": [],
+      "route": "/missionplanner"
+    },
+    {
+      "name": "Mission planner",
+      "iconName": "event_note",
+      "subType": [],
+      "route": "/missionplanner"
+    },
+    {
       "name": "Users",
       "iconName": "user",
       "subType": [],

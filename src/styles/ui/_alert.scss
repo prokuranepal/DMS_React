@@ -1,0 +1,57 @@
+/*Alert Styles*/
+.alert {
+  border: 0 none;
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.alert {
+  padding: 20px 24px;
+  @include border-radius($border-radius-sm);
+  position: relative;
+
+  @media screen and (max-width: 575px) {
+    padding: 16px;
+  }
+
+  & .close {
+    line-height: inherit;
+    font-weight: $font-weight-light;
+  }
+
+  & .alert-addon {
+    width: $size-60;
+    background-color: rgba($black, 0.2);
+    @include display-flex(flex, column, nowrap);
+    @include justify-content(center);
+    @include align-items(center);
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+
+  &-dismissible {
+    padding-right: $size-60;
+
+    @media screen and (max-width: 575px) {
+      padding-right: $size-40;
+
+      & .close {
+        padding-left: 10px;
+        padding-right: 15px;
+      }
+    }
+  }
+
+  &-addon-card {
+    padding-left: $size-80;
+
+    @media screen and (max-width: 575px) {
+      padding-left: $size-70;
+    }
+  }
+}

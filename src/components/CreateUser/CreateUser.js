@@ -130,7 +130,7 @@ const CreateUser = ({history, createUser1, createUser2}) => {
                                 <Button className={classes.submit}  type='submit' variant="contained" color='primary'>
                                     SUBMIT
                                 </Button>
-                                <Link to='/admin/users/list-users' style={{textDecoration:'none', color: 'white'}}>
+                                <Link to='/app/users/list-users' style={{textDecoration:'none', color: 'white'}}>
                                     <Button className={classes.back} variant="contained" color='secondary' startIcon={<KeyboardBackspaceIcon/>} >
                                     Go Back
                                     </Button>
