@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIcon from '@material-ui/icons/ArrowBackRounded';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Hidden from '@material-ui/core/Hidden';
 const useStyles = makeStyles({
     root: {
@@ -24,6 +24,10 @@ const useStyles = makeStyles({
 
 const MedicineListContainer = props => {
     const classes = useStyles();
+
+    const goToAddMedicine = () => {
+        return <Redirect to="/app/ims/addmedicine" />
+    }
     return (
         <div className="app-wrapper">
             <Grid container xs={12} >
@@ -44,7 +48,9 @@ const MedicineListContainer = props => {
                 </Grid>
                 <Grid item lg={2} md={3} sm={3} xs={5} justify="center" container>
                     {/* <Hidden xsDown> */}
-                        <Button variant="contained" color="primary">Add Item</Button>
+                    <Link to='/app/ims/addmedicine' style={{ textDecoration: 'none', color: 'white' }}>
+                        <Button onClick={goToAddMedicine} variant="contained" color="primary">Add Item</Button>
+                        </Link>
                     {/* </Hidden> */}
                 </Grid>
 

@@ -32,3 +32,6 @@ export const TOGGLE_COLLAPSED_NAV = 'TOGGLE_COLLAPSED_NAV';
 export const WINDOW_WIDTH = 'WINDOW_WIDTH';
 
 
+export const ADD_MEDICINE = "ADD_MEDICINE";
+
+

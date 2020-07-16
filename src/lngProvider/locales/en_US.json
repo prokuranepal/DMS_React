@@ -579,7 +579,8 @@
   "dashboard.traffic":"Traffic",
   "dashboard.browser":"Browser",
   "dashboard.application":"Application",
-  "dashboard.weekly":"Weekly"
+  "dashboard.weekly":"Weekly",
 
-
+  "appModule.medicine.name": "Medicine Name",
+  "appModule.addItem": "Add Item"
 }
