@@ -1,6 +1,6 @@
 export {
     authStart,
-    auth,
+    signIn,
     authSuccess,
     authFail,
     authCheckState,

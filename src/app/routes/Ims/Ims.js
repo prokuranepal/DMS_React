@@ -9,6 +9,8 @@ import MedicineListContainer from './MedicineList/MedicineListContainer';
 import OrderLists from '../../../components/OrderLists/OrderLists';
 import OrderDetails from './Orders/OrderDetails/OrderDetails';
 import AddMedicine from './AddMedicine/AddMedicine';
+// import OrderDetails from '../../../containers/OrderDetails/OrderDetails';
+// import OrderLists from '../../../containers/OrderList/Orders';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',

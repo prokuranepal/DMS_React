@@ -33,6 +33,8 @@ const Dashboard = ({getCurrentCards, auth, dashboard: {cards, loading, graphs: {
         )
     })
 
+    // console.log("Reducer",sidechartdata);
+    // console.log("Import", sideChartData);
     return (
         <div className= {classes.Dashboard}>
             <div className={classes.Content}>
