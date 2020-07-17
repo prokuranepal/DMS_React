@@ -1,66 +1,60 @@
-import React from 'react'
-import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Paper } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
-import {Link} from 'react-router-dom';
-const useStyles = makeStyles((theme) => ({
-    root: {
-        width: '90%',
+import React, {useState} from 'react';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
 
-        margin: '15px auto'
-    },
-    button: {
-        margin: 'auto',
-        backgroundColor: '#EA6A47',
-        // padding: '0.8rem 3.5rem'
-    },
-    data: {
-        margin: 'auto',
-        marginLeft: '20px'
-    },
-    paper: {
-        width: '80%',
-        backgroundColor: '#5C9BDA',
-        color: 'white',
-        margin: `${theme.spacing(0.2)}px auto`,
-        padding: theme.spacing(2),
-    },
-}));
+import CardMenu from '../../CardMenu/CardMenu'
 
-const OrderList = props => {
-    const classes = useStyles();
-    return (
+const OrderTableCell = (props) => {
 
-        <Grid container className={classes.root}>
+  const [anchorE1, setAnchorE1] = useState(undefined);
 
-            <Paper className={classes.paper} elevation={5} spacing={2}>
-                <Grid container wrap="nowrap">
-                    <Grid item xs={12} sm={8} md={9}>
-                        <Typography><Typography variant="h6" display="inline">   Order Id: </Typography> {props.name}</Typography>
-                        <Typography><Typography variant="h6" display="inline"> Order From:  </Typography>{props.from}</Typography>
-                        <Typography><Typography variant="h6" display="inline"> Order Status:  </Typography>{props.status}</Typography>
-                        <Typography> <Typography variant="h6" display="inline"> Order Date:  </Typography>{props.date}</Typography>
+  const [menuState, setMenuState] = useState(false);
 
-                    </Grid>
-                    <Grid container item xs={0} sm={4} md={3} alignItems="center">
-                        <Link to="/app/ims/orders/details">
-                        <Button variant="contained" color='secondary' className={classes.button}>
-                            Details
-                    </Button>
-                    </Link>
-                    </Grid>
-                </Grid>
-            </Paper>
-            {/* </Paper> */}
-        </Grid>
+  const onOptionMenuSelect = event => {
+    setAnchorE1(event.currentTarget);
+    setMenuState(true);
+  };
+  const handleRequestClose = (event) => {
+      console.log(event);
+    setMenuState(false);
+  };
 
-    )
-}
 
-OrderList.propTypes = {
+  const {id, orderId, name, image, orderDate, deliveryDate,from, status} = props.data;
+  const statusStyle = status.includes("Completed") ? "text-white bg-success" : status.includes("In Progress") ? "bg-amber" : status.includes("Delayed") ? "text-white bg-danger" : "text-white bg-grey";
+  return (
+      
+    <tr
+      tabIndex={-1}
+      key={id}
+    >
+      <td>{orderId}</td>
+      <td>
+        <div className="user-profile d-flex flex-row align-items-center">
+          <Avatar
+            alt={name}
+            src={image}
+            className="user-avatar"
+          />
+          <div className="user-detail">
+            <h5 className="user-name">{name} </h5>
+          </div>
+        </div>
+      </td>
+      <td>{orderDate}</td>
+      <td>{deliveryDate}</td>
+      <td>{from}</td>
+      <td className="status-cell text-right">
+        <div className={` badge text-uppercase ${statusStyle}`}>{status}</div>
+      </td>
+      <td className="text-right">
+        <IconButton onClick={onOptionMenuSelect}>
+          <i className="zmdi zmdi-more-vert"/></IconButton>
+        <CardMenu menuState={menuState} anchorEl={anchorE1}
+                  handleRequestClose={handleRequestClose}/>
+      </td>
+    </tr>
+  );
+};
 
-}
-
-export default OrderList
-
+export default OrderTableCell;
