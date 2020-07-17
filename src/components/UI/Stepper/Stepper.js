@@ -4,7 +4,7 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -55,9 +55,7 @@ export default function HorizontalLabelPositionBelowStepper() {
 
     return (
         <div className={classes.root}>
-            <Paper className={classes.paper}>
-            <Typography variant="h6">{getStepContent(activeStep)}</Typography>
-            </Paper>
+            
             <Paper className={classes.paper}>
             <Stepper activeStep={activeStep} alternativeLabel>
                 {steps.map((label) => (

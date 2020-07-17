@@ -95,14 +95,14 @@ const AddMedicine = props => {
         // <div >
         <div className="login-content mt-5">
             <Grid container>
-            <Grid item xs={2} justify="center" alignItems="flex-end" container>
+            <Grid item xs={2} justify="flex-start" alignItems="center" container>
                 <Link to='/app/ims/medicinelist' style={{ textDecoration: 'none', color: 'white' }}>
                     <IconButton type="submit" aria-label="search">
                         <ArrowBackIcon />
                     </IconButton>
                 </Link>
             </Grid>
-            <Grid item xs={6} justify="center" alignItems="center" container>
+            <Grid item xs={6} justify="flex-start" alignItems="center" container>
                 <Typography variant="h5">Add Medicine</Typography>
             </Grid>
             </Grid>
