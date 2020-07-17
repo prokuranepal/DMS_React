@@ -4,14 +4,20 @@ import classes from './Dashboard.module.css'
 import {useDispatch} from 'react-redux';
 import { connect } from 'react-redux'
 import {getCurrentCards} from '../../../store/actions/dashboard'
+import { ResponsiveContainer } from 'recharts'
 import Spinner from '../../../components/UI/Spinner/Spinner'
-import Chart from '../../../components/Chart/Chart'
 import * as actions from '../../../store/actions/dashboard'
 import IconWithTextCard from '../../../components/statusCard/IconWithTextCard'
 import Grid from '@material-ui/core/Grid';
+import LineChartMain from '../../../components/Chart/Charts/LineChartMain'
+import CardBox from '../../../components/CardBox/index';
+import Hidden from '@material-ui/core/Hidden';
+import CustomLineChart from '../../../components/CustomLineChart/index'
+import ChartCard from '../../../components/ChartCard/ChartCard'
+import {sideChartData} from '../../../components/ChartCard/data'
 
 
-const Dashboard = ({getCurrentCards, auth, dashboard: {cards, loading, graphs: {cdc, rhps}}}) => {
+const Dashboard = ({getCurrentCards, auth, dashboard: {cards, loading, graphs: {graphData, sidechartdata, cdc, rhps}}}) => {
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -41,15 +47,58 @@ const Dashboard = ({getCurrentCards, auth, dashboard: {cards, loading, graphs: {
                             </Grid>
                         </div>
 
-                        <div className = {classes.Charts}>
-                            
-                            <div className={classes.MainChart}>
-                                 <Chart chartData ={cdc} height={400} />
-                            </div>
-                            <div className={classes.SubChart}>
-                                <Chart chartData ={cdc} height={200} />
-                                <Chart chartData ={cdc} height={200} />
-                            </div>
+                        <div>
+                            <Grid container>
+                                <Grid item md={8} xs={12}>
+                                    <CardBox heading="Medicine delivery and Drone flight Graph" styleName="col-12">
+                                        <LineChartMain data={graphData} height={450} />
+                                    </CardBox>
+                                </Grid>
+                                <Hidden only="sm">
+                                    <Grid item md={4}>
+                                        <div className="col-12">
+                                            <ChartCard styleName="bg-gradient-primary text-white">
+                                                <div className="chart-title">
+                                                    <h2 className="mb-1">{sideChartData.name}</h2>
+                                                    <p>Deliveries</p>
+                                                </div>
+                                                <ResponsiveContainer width="100%" height={165}>
+                                                    <CustomLineChart
+                                                        chartData={sideChartData.chartData}
+                                                        labels={sideChartData.labels}
+                                                        borderColor="#FFF"
+                                                        pointBorderColor="#FFF"
+                                                        pointBackgroundColor="#FF9800"
+                                                        pointBorderWidth={2}
+                                                        pointRadius={4}
+                                                        lineTension={0}
+                                                    />
+                                                </ResponsiveContainer>
+                                            </ChartCard>
+                                        </div>
+                                        <div className=" col-12">
+                                            <ChartCard styleName="bg-gradient-primary text-white">
+                                                <div className="chart-title">
+                                                    <h2 className="mb-1">{sideChartData.name}</h2>
+                                                    <p>Deliveries</p>
+                                                </div>
+                                                <ResponsiveContainer width="100%" height={165}>
+                                                    <CustomLineChart
+                                                        chartData={sideChartData.chartData}
+                                                        labels={sideChartData.labels}
+                                                        borderColor="#FFF"
+                                                        pointBorderColor="#FFF"
+                                                        pointBackgroundColor="#FF9800"
+                                                        pointBorderWidth={2}
+                                                        pointRadius={4}
+                                                        lineTension={0}
+                                                    />
+                                                </ResponsiveContainer>
+                                            </ChartCard>
+                                        </div>
+                                    </Grid>
+                                </Hidden>
+                            </Grid>
                         </div>
                     </Fragment>}
                 </div>
