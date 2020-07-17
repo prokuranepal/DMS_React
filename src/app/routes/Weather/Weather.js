@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import WeatherItem from './WeatherItem';
@@ -17,7 +17,7 @@ const useStyles = makeStyles({
         marginTop: '20px'
     },
     progress: {
-        
+
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center'
@@ -27,13 +27,13 @@ const useStyles = makeStyles({
 const Weather = () => {
     const dispatch = useDispatch();
     const classes = useStyles();
-    
+
     const weather = useSelector(({ weather }) => weather.weatherData);
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [isRefreshing, setIsRefreshing] = useState(false);
     // console.log(types);
-    
+
     // const loadWeather = useCallback(async () => {
     //     setError(null);
     //     // setIsLoading(true);
@@ -58,8 +58,8 @@ const Weather = () => {
         // dispatch(authActions.authStart());
         // dispatch(authActions.setInitURL('/weather'));
         dispatch(actions.getWeather());
-        
-    },[dispatch]);
+
+    }, [dispatch]);
     if (error) {
         return <p>Error</p>
         // <View style={styles.centered}>
@@ -69,24 +69,30 @@ const Weather = () => {
     }
 
     if (isLoading) {
-        return  <div className={classes.progress}><LinearProgress /></div>
-    }
-
-    if ( weather.length === 0) {
         return <div className={classes.progress}><LinearProgress /></div>
     }
 
+    if (weather.length === 0) {
+        return <div className={classes.progress}><LinearProgress /></div>
+    }
+    const currentdate = new Date();
+    const time = currentdate.getHours() + ":"
+        + (currentdate.getMinutes() < 10?('0'+currentdate.getMinutes()):currentdate.getMinutes());
+    console.log(time);
+    const days = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'];
     return (
         <Grid container className={classes.root} spacing={2}>
             <Grid item xs={12} className={classes.type}>
                 <Grid container spacing={2}>
                     {weather.map(place => {
                         return <Grid key={place.place} item lg={4} md={4} sm={4} xs={6}>
-                            <WeatherItem place={place.place} temp={place.temp} min={place.temp_min} 
-                            max={place.temp_max} wind={place.wind_speed} humidity={place.humidity} 
-                            description={place.main} iconId={place.iconId}
-                            // date={place.date}
-                            />
+                            <div className="jr-card jr-weather-card">
+                                <WeatherItem place={place.place} temp={place.temp} min={place.temp_min}
+                                    max={place.temp_max} wind={place.wind_speed} humidity={place.humidity}
+                                    description={place.main} iconId={place.iconId} time={time} day={days[currentdate.getDay()]}
+                                // date={place.date}
+                                />
+                            </div>
                         </Grid>
                     })}
                 </Grid>
