@@ -16,11 +16,12 @@ before_script:
   - ./cc-test-reporter before-build
 
 script:
-  - npm test -- --coverage
+  - npm test -- --coverage --passWithNoTests
 #   - CI=false npm run build
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - COVERALLS_REPO_TOKEN=$coveralls_repo_token npm run coveralls
 
 
 # language: node_js
