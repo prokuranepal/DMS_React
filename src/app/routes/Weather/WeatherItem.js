@@ -13,17 +13,17 @@ const WeatherDetail = (props) => {
 
   // TODO: refactoring this code...
 
-  let bgColorClass = 'detail-weather-widget ';
+  let bgColorClass = '#ff4500';
   // Set the background colour based on the temperature
   if (props.temp >= 30) {
-    bgColorClass += 'very-warm';
-  } else if (props.temp.toFixed(1) > 20 && props.temp.toFixed(1) < 30) {
-    bgColorClass += 'warm';
-  } else if (props.temp.toFixed(1) > 10 && props.temp.toFixed(1) < 20) {
+    bgColorClass ='#ff4500';
+  } else if (props.temp > 20 && props.temp < 30) {
+    bgColorClass += 'FFA500';
+  } else if (props.temp > 10 && props.temp < 20) {
     bgColorClass += 'normal';
-  } else if (props.temp.toFixed(1) > 0 && props.temp.toFixed(1) < 10) {
+  } else if (props.temp > 0 && props.temp < 10) {
     bgColorClass += 'cold';
-  } else if (props.temp.toFixed(1) <= 0) {
+  } else if (props.temp <= 0) {
     bgColorClass += 'very-cold';
   }
   console.log(bgColorClass);
@@ -38,7 +38,8 @@ const WeatherDetail = (props) => {
   }
 
   return (
-    <div className={bgColorClass}>
+    <div className='detail-weather-widget' >
+      <div class={{backgroundColor: bgColorClass}}>
       <div className="jr-card-header text-white mt-0">
         <h2 className="card-heading">{props.place}</h2>
         <p className="sub-heading">{props.day + ", " + props.time + ", " + capitalize(props.description)}</p>
@@ -66,6 +67,7 @@ const WeatherDetail = (props) => {
 
         </div>
       </div> */}
+      </div>
     </div>
   )
 };
