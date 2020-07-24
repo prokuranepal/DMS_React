@@ -1,17 +1,37 @@
+
 sudo: true
+env:
+  global:
+    - CC_TEST_REPORTER_ID=19bd0503e6a203cc0df5e353251ded94a58b6a57d389666378b939cae2daa4b0
 language: node_js
 node_js:
   - "stable"
 cache:
   directories:
     - node_modules
+
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
 script:
-  - npm test -- --coverage
+  - npm test -- --coverage --passWithNoTests
 #   - CI=false npm run build
 
-after_script: # Upload coverage reports 
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
   - COVERALLS_REPO_TOKEN=$coveralls_repo_token npm run coveralls
 
-branches:
-  only:
-  - master
+
+# language: node_js
+# node_js:
+#   - "stable"
+# cache:
+#   directories:
+#     - ~/.npm
+# before_script:
+#   - npm install -g npm@latest
+# script:
+#   - npm ci
+#   - npx jest --ci
