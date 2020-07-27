@@ -2,7 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
-
+import DroneData from '../../../containers/DroneData/DroneData';
 const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
@@ -18,7 +18,9 @@ const useStyles = makeStyles((theme) => ({
 const Dms = props => {
     const classes = useStyles();
     return <Grid container className={classes.root} >
-        <Typography className={classes.text}>DMS</Typography>
+        <Grid item xs={3}>
+            <DroneData/>
+        </Grid>
     </Grid>
 }
 
