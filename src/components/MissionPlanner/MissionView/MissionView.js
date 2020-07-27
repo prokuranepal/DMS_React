@@ -60,7 +60,7 @@ const MissionView = props => {
             <Map
                 center={[state.lat, state.lng]}
                 zoom={state.zoom}
-                style={{ width: '100%', height: '93vh' }}
+                style={{ width: '100%',height: '500px' }}
             >
                 <TileLayer
                     attribution='&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

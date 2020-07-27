@@ -10,10 +10,7 @@ import Fade from '@material-ui/core/Fade';
 import MissionList from '../../components/MissionList/MissionList';
 import CheckList from '../../components/CheckList/CheckList';
 import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
+import MissionListItem from '../../components/MissionList/MissionListItem/MissionListItem';
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
@@ -69,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
     paper: {
         backgroundColor: '#343a40',
         borderRadius: '10px',
-        padding: theme.spacing(1, 2, 1,1),
+        padding: theme.spacing(1, 2, 1, 1),
         color: 'white',
         width: '320px'
     },
@@ -82,12 +79,38 @@ const useStyles = makeStyles((theme) => ({
     button: {
         alignSelf: 'flex-end',
         marginLeft: 'auto'
+    },
+    mission: {
+        
+        display: 'flex',
+        flexDirection: 'column',
+        flexWrap: 'nowrap'
+    },
+    header: {
+        fontSize: '15px',
+        marginBottom: '0px',
+    },
+    info: {
+        fontSize: '10px',
+        paddingRight: '20px'
     }
 }));
+
+function getModalStyle() {
+    const top = 40;
+    const left = 0;
+
+    return {
+        top: `${top}%`,
+        left: `${left}%`,
+        transform: `translate(${top}%, -${left}%)`,
+    };
+}
 const DroneData = props => {
     const classes = useStyles();
     const [openMissionList, setOpenMissionList] = React.useState(false);
     const [openCheckList, setOpenCheckList] = React.useState(false);
+    const [style, setStyle] = React.useState(getModalStyle);
     const handleOpenMission = () => {
         setOpenMissionList(true);
     };
@@ -107,42 +130,36 @@ const DroneData = props => {
         // <div className="app-wrapper">
         <Grid container className={classes.root}>
             <Grid item container className={classes.top}>
-                <Grid item xs={3} container justify="center">
+                <Grid item xs={4} container justify="center">
                     <Fab className="jr-fab-btn bg-white text-black jr-btn-fab-xs">
                         <i className="zmdi zmdi-search zmdi-hc-fw" />
                     </Fab>
                 </Grid>
-                <Grid item xs={3} container justify="center" onClick={handleOpenMission}>
+                <Grid item xs={4} container justify="center" onClick={handleOpenMission}>
                     <Fab className="jr-fab-btn bg-white text-black jr-btn-fab-xs">
                         <i className="zmdi zmdi-shopping-basket zmdi-hc-fw" />
                     </Fab>
                 </Grid>
-                <Grid item xs={3} container justify="center" onClick={handleOpenCheck}>
+                <Grid item xs={4} container justify="center" onClick={handleOpenCheck}>
                     <Fab className="jr-fab-btn bg-white text-dark-grey jr-btn-fab-xs">
                         <i className="zmdi zmdi-spinner zmdi-hc-fw" />
                     </Fab>
                 </Grid>
-                <Grid item xs={3} container justify="center">
-                    <Fab className="jr-fab-btn bg-white text-dark-grey jr-btn-fab-xs">
-                        <i className="zmdi zmdi-thumb-up zmdi-hc-fw" />
-                    </Fab>
-                </Grid>
+                
             </Grid>
 
             <Grid container className={classes.body}>
                 <Grid item container className={classes.text}>
-                    <Grid item xs={3} container justify="center">
+                    <Grid item xs={4} container justify="center">
                         <p>FLY</p>
                     </Grid>
-                    <Grid item xs={3} container justify="center">
+                    <Grid item xs={4} container justify="center">
                         <p>MISSION</p>
                     </Grid>
-                    <Grid item xs={3} container justify="center">
+                    <Grid item xs={4} container justify="center">
                         <p>CHECKLIST</p>
                     </Grid>
-                    <Grid item xs={3} container justify="center">
-                        <p>GEOFENCE</p>
-                    </Grid>
+                    
                 </Grid>
                 <Grid container xs={12} className={classes.textColor}>
 
@@ -152,37 +169,50 @@ const DroneData = props => {
                         <div className={classes.data}>
                             {/* <p>VTOL        60%</p> */}
                             <Grid container >
-                                <Grid  justify="flex-start" container className={classes.dataItem}>
+                                <Grid justify="flex-start" container className={classes.dataItem}>
                                     <Typography>VTOL</Typography>
 
                                 </Grid>
-                                <Grid xs={6} className={classes.dataItem}>
+                                <Grid sm={6} xs={12} className={classes.dataItem}>
                                     <span>Battery</span>
                                     <Typography>60%</Typography>
                                 </Grid>
-                                <Grid xs={6} className={classes.dataItem}>
+                                <Grid sm={6} xs={12} className={classes.dataItem}>
                                     <span>Altitude</span>
                                     <Typography>30m</Typography>
                                 </Grid>
-                                <Grid xs={6} className={classes.dataItem}>
+                                <Grid sm={6} xs={12} className={classes.dataItem}>
                                     <span>Speed</span>
                                     <Typography>10m/s</Typography>
                                 </Grid>
-                                <Grid xs={6} className={classes.dataItem}>
+                                <Grid sm={6} xs={12} className={classes.dataItem}>
                                     <span>Latitude</span>
                                     <Typography>27.1234</Typography>
                                 </Grid>
-                                <Grid xs={6} className={classes.dataItem}>
+                                <Grid sm={6} xs={12} className={classes.dataItem}>
                                     <span>Longitude</span>
                                     <Typography>85.1234</Typography>
                                 </Grid>
-                                <Grid xs={6} className={classes.dataItem}>
+                                <Grid sm={6} xs={12} className={classes.dataItem}>
                                     <span>GPS</span>
                                     <Typography>12</Typography>
                                 </Grid>
-                                <Grid xs={6} className={classes.dataItem}>
+                                <Grid sm={6} xs={12} className={classes.dataItem}>
                                     <span>Status</span>
                                     <Typography>Available</Typography>
+                                </Grid>
+                            </Grid>
+                        </div>
+                        <div className={classes.data}>
+                            {/* <p>VTOL        60%</p> */}
+                            <Grid container >
+                                <Grid justify="flex-start" container className={classes.dataItem}>
+                                    <div><Typography>Mission</Typography></div>
+                                    <div className={classes.mission}>
+                                        <div><p className={classes.header}>Dharan To Dhankuta</p></div>
+                                        <div><span className={classes.info}>Waypoints:15</span><span className={classes.info}>ETA:35mins</span></div>
+                                        <div><span className={classes.info}>Distance:600m</span></div>
+                                    </div>
                                 </Grid>
                             </Grid>
                         </div>
@@ -200,9 +230,9 @@ const DroneData = props => {
                 closeAfterTransition
             >
                 <Fade in={openMissionList}>
-                    <div className={classes.paper}>
-                        <MissionList abort={handleCloseMission}/>
-                        
+                    <div className={classes.paper} style={style}>
+                        <MissionList abort={handleCloseMission} />
+
                     </div>
                 </Fade>
             </Modal>
@@ -215,9 +245,9 @@ const DroneData = props => {
                 closeAfterTransition
             >
                 <Fade in={openCheckList}>
-                    <div className={classes.paper}>
-                        <CheckList abort={handleCloseCheck}/>
-                        
+                    <div className={classes.paper} style={style}>
+                        <CheckList abort={handleCloseCheck} />
+
                     </div>
                 </Fade>
             </Modal>
