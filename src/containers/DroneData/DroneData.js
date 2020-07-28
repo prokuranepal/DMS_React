@@ -77,14 +77,15 @@ const useStyles = makeStyles((theme) => ({
         padding: '0px 30px'
     },
     button: {
-        alignSelf: 'flex-end',
-        marginLeft: 'auto'
+        
+        marginTop: '10px'
     },
     mission: {
         
         display: 'flex',
         flexDirection: 'column',
-        flexWrap: 'nowrap'
+        flexWrap: 'nowrap',
+        margin: 'auto'
     },
     header: {
         fontSize: '15px',
@@ -93,6 +94,10 @@ const useStyles = makeStyles((theme) => ({
     info: {
         fontSize: '10px',
         paddingRight: '20px'
+    },
+    head: {
+        fontSize: '17px',
+        margin: '5px auto'
     }
 }));
 
@@ -164,8 +169,8 @@ const DroneData = props => {
                 <Grid container xs={12} className={classes.textColor}>
 
                     <div className={classes.drone}>
-                        <p>--------  Drone  -------</p>
-                        <Button size="small" variant="contained" color="primary">Add Drone</Button>
+                        {/* <p>--------  Drone  -------</p> */}
+                        <Button size="small" variant="contained" color="primary">Choose Drone</Button>
                         <div className={classes.data}>
                             {/* <p>VTOL        60%</p> */}
                             <Grid container >
@@ -205,16 +210,20 @@ const DroneData = props => {
                         </div>
                         <div className={classes.data}>
                             {/* <p>VTOL        60%</p> */}
-                            <Grid container >
-                                <Grid justify="flex-start" container className={classes.dataItem}>
-                                    <div><Typography>Mission</Typography></div>
+            
+                                <Grid  container className={classes.dataItem}>
+                                    <div className={classes.head}><span>Mission</span></div>
                                     <div className={classes.mission}>
                                         <div><p className={classes.header}>Dharan To Dhankuta</p></div>
+                                        <div style={{marginTop: '10px'}}>
                                         <div><span className={classes.info}>Waypoints:15</span><span className={classes.info}>ETA:35mins</span></div>
                                         <div><span className={classes.info}>Distance:600m</span></div>
+                                        </div>
+                                        <div className={classes.button}>
+                                            <Button variant="contained" size='small' color="primary">Start Mission</Button>
+                                            </div>
                                     </div>
                                 </Grid>
-                            </Grid>
                         </div>
                     </div>
 

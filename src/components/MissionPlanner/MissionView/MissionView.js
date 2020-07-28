@@ -1,9 +1,11 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import { Map, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
+import { Map, TileLayer, Popup, Polyline } from 'react-leaflet';
 import { Icon } from "leaflet";
 import Red from './red.png';
+// import Marker from 'react-leaflet-enhanced-marker';
+import RotatedMarker from '../../RotatedMarker/RotatedMarker';
 // import RotatedMarker from 'react-leaflet-rotatedmarker';
 // import RotatedMarker from '../../UI/RotatedMarker/RotatedMarker';
 const useStyles = makeStyles((theme) => ({
@@ -66,6 +68,7 @@ const MissionView = props => {
                     attribution='&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
+                <RotatedMarker icon={drone} position={[state.lat, state.lng]} rotationAngle={70} rotationOrigin={'center'}/>
                 {/* <RotatedMarker icon={drone} position={[state.lat, state.lng]} rotationAngle={180} rotationOrigin={'center'}/> */}
                 {/* <Marker
                     icon={drone}
@@ -73,25 +76,25 @@ const MissionView = props => {
 
                 /> */}
                 {
-                    mission.map((point, i, array) => {
+                    // mission.map((point, i, array) => {
 
-                        return <span key={i}><Marker
-                            color="red"
-                            position={[point.lat, point.lng]}
+                    //     return <span key={i}><Marker
+                    //         color="red"
+                    //         position={[point.lat, point.lng]}
 
-                        >
-                            <Popup>
-                                <span>{point.cmd} </span>
-                                <br />
-                                <span>Alt: {point.alt}m</span><br />
-                            </Popup>
-                        </Marker>
-                            {array[i - 1] ? <Polyline weight={1} positions={[
-                                [array[i - 1].lat, array[i - 1].lng], [array[i].lat, array[i].lng],
-                            ]} color={'red'} /> : null
-                            }
-                        </span>
-                    })
+                    //     >
+                    //         <Popup>
+                    //             <span>{point.cmd} </span>
+                    //             <br />
+                    //             <span>Alt: {point.alt}m</span><br />
+                    //         </Popup>
+                    //     </Marker>
+                    //         {array[i - 1] ? <Polyline weight={1} positions={[
+                    //             [array[i - 1].lat, array[i - 1].lng], [array[i].lat, array[i].lng],
+                    //         ]} color={'red'} /> : null
+                    //         }
+                    //     </span>
+                    // })
                 }
 
 
