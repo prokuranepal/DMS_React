@@ -3,14 +3,13 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
 import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import MissionList from '../../components/MissionList/MissionList';
 import CheckList from '../../components/CheckList/CheckList';
-import Radio from '@material-ui/core/Radio';
-import MissionListItem from '../../components/MissionList/MissionListItem/MissionListItem';
+import MissionInfo from './MissionInfo/MissionInfo';
+import DroneInfo from './DroneInfo/DroneInfo';
+
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
@@ -20,13 +19,13 @@ const useStyles = makeStyles((theme) => ({
     body: {
         backgroundColor: '#495057',
         // minHeight: '50vh',
-        zIndex: 1,
+        zIndex: 40,
         borderRadius: 10,
         marginTop: '-10px',
 
     },
     top: {
-        zIndex: 10
+        zIndex: 50
     },
     text: {
         color: 'white',
@@ -80,25 +79,8 @@ const useStyles = makeStyles((theme) => ({
         
         marginTop: '10px'
     },
-    mission: {
-        
-        display: 'flex',
-        flexDirection: 'column',
-        flexWrap: 'nowrap',
-        margin: 'auto'
-    },
-    header: {
-        fontSize: '15px',
-        marginBottom: '0px',
-    },
-    info: {
-        fontSize: '10px',
-        paddingRight: '20px'
-    },
-    head: {
-        fontSize: '17px',
-        margin: '5px auto'
-    }
+    
+    
 }));
 
 function getModalStyle() {
@@ -171,60 +153,9 @@ const DroneData = props => {
                     <div className={classes.drone}>
                         {/* <p>--------  Drone  -------</p> */}
                         <Button size="small" variant="contained" color="primary">Choose Drone</Button>
-                        <div className={classes.data}>
-                            {/* <p>VTOL        60%</p> */}
-                            <Grid container >
-                                <Grid justify="flex-start" container className={classes.dataItem}>
-                                    <Typography>VTOL</Typography>
-
-                                </Grid>
-                                <Grid sm={6} xs={12} className={classes.dataItem}>
-                                    <span>Battery</span>
-                                    <Typography>60%</Typography>
-                                </Grid>
-                                <Grid sm={6} xs={12} className={classes.dataItem}>
-                                    <span>Altitude</span>
-                                    <Typography>30m</Typography>
-                                </Grid>
-                                <Grid sm={6} xs={12} className={classes.dataItem}>
-                                    <span>Speed</span>
-                                    <Typography>10m/s</Typography>
-                                </Grid>
-                                <Grid sm={6} xs={12} className={classes.dataItem}>
-                                    <span>Latitude</span>
-                                    <Typography>27.1234</Typography>
-                                </Grid>
-                                <Grid sm={6} xs={12} className={classes.dataItem}>
-                                    <span>Longitude</span>
-                                    <Typography>85.1234</Typography>
-                                </Grid>
-                                <Grid sm={6} xs={12} className={classes.dataItem}>
-                                    <span>GPS</span>
-                                    <Typography>12</Typography>
-                                </Grid>
-                                <Grid sm={6} xs={12} className={classes.dataItem}>
-                                    <span>Status</span>
-                                    <Typography>Available</Typography>
-                                </Grid>
-                            </Grid>
-                        </div>
-                        <div className={classes.data}>
-                            {/* <p>VTOL        60%</p> */}
-            
-                                <Grid  container className={classes.dataItem}>
-                                    <div className={classes.head}><span>Mission</span></div>
-                                    <div className={classes.mission}>
-                                        <div><p className={classes.header}>Dharan To Dhankuta</p></div>
-                                        <div style={{marginTop: '10px'}}>
-                                        <div><span className={classes.info}>Waypoints:15</span><span className={classes.info}>ETA:35mins</span></div>
-                                        <div><span className={classes.info}>Distance:600m</span></div>
-                                        </div>
-                                        <div className={classes.button}>
-                                            <Button variant="contained" size='small' color="primary">Start Mission</Button>
-                                            </div>
-                                    </div>
-                                </Grid>
-                        </div>
+                        <DroneInfo/>
+                        <MissionInfo/>
+                        
                     </div>
 
                 </Grid>
