@@ -63,7 +63,7 @@ const Index =(props)=> {
           </IconButton>
 
           <Link to='/app' className="app-logo mr-2 d-none d-sm-block" >
-            <img src={require("../../../../assets/images/logo.jpg")} alt="Jambo" title="Jambo"/>
+            <img src={require("../../../../assets/images/logo.jpg")} alt="DMS" title="DMS"/>
           </Link>
           {/* <div style={{minWidth: '100px', maxWidth: '80%'}}>
             <marquee>Drone MX710 is flying from Dharan to Biratnagar, Drone MX710 is flying from Dharan to Biratnagar</marquee>
