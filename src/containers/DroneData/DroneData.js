@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
@@ -7,9 +8,11 @@ import Modal from '@material-ui/core/Modal';
 import Fade from '@material-ui/core/Fade';
 import MissionList from '../../components/MissionList/MissionList';
 import CheckList from '../../components/CheckList/CheckList';
+import DroneList from '../../components/DroneList/DroneList';
 import MissionInfo from './MissionInfo/MissionInfo';
 import DroneInfo from './DroneInfo/DroneInfo';
-
+import {socket} from '../../socket';
+import * as actions from '../../store/actions/droneControl';
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
@@ -42,7 +45,8 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         flexWrap: 'nowrap',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginBottom: '10px'
     },
     data: {
         borderStyle: 'solid',
@@ -77,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         
-        marginTop: '10px'
+        marginTop: '10px',
     },
     
     
@@ -97,8 +101,28 @@ const DroneData = props => {
     const classes = useStyles();
     const [openMissionList, setOpenMissionList] = React.useState(false);
     const [openCheckList, setOpenCheckList] = React.useState(false);
+    const [openDroneList, setOpenDroneList] = React.useState(false);
+    const [drone, setDrone] = React.useState(null);
+    const [mission, setMission] = React.useState(null);
+    const [droneInfo, setDroneInfo] = React.useState(null);
     const [style, setStyle] = React.useState(getModalStyle);
+    const activeDrones = useSelector(({ droneControl }) => droneControl.activeDrones);
+    const missions = useSelector(({ droneControl }) => droneControl.missions);
+    const dispatch = useDispatch();
+    const setData = (data) => {
+        console.log(data);
+        setDroneInfo(data);
+    }
+    useEffect(() => {
+        socket.emit(drone);
+        socket.on("data",setData);
+        return function cleanup() {      
+            socket.off("data");
+        };
+    },[drone]);
+
     const handleOpenMission = () => {
+        dispatch(actions.fetchMissionList());
         setOpenMissionList(true);
     };
 
@@ -113,6 +137,25 @@ const DroneData = props => {
     const handleCloseCheck = () => {
         setOpenCheckList(false);
     };
+
+    const handleOpenDrone = () => {
+        dispatch(actions.fetchActiveDrones());
+        setOpenDroneList(true);
+    };
+
+    const handleCloseDrone = () => {
+        setOpenDroneList(false);
+    };
+
+    const selectDrone = (drone) => {
+        setDrone(drone);
+        setOpenDroneList(false);
+    }
+
+    const selectMission = (mission) => {
+        setMission(mission);
+        setOpenMissionList(false);
+    }
     return (
         // <div className="app-wrapper">
         <Grid container className={classes.root}>
@@ -151,10 +194,9 @@ const DroneData = props => {
                 <Grid container xs={12} className={classes.textColor}>
 
                     <div className={classes.drone}>
-                        {/* <p>--------  Drone  -------</p> */}
-                        <Button size="small" variant="contained" color="primary">Choose Drone</Button>
-                        <DroneInfo/>
-                        <MissionInfo/>
+                        <Button  size="small" variant="contained" color="primary" onClick={handleOpenDrone}>Choose Drone</Button>
+                        {drone !== null?<DroneInfo data={droneInfo}/>: null}
+                        {mission !== null?<MissionInfo/>:null}
                         
                     </div>
 
@@ -171,7 +213,7 @@ const DroneData = props => {
             >
                 <Fade in={openMissionList}>
                     <div className={classes.paper} style={style}>
-                        <MissionList abort={handleCloseMission} />
+                        <MissionList abort={handleCloseMission}  select={selectMission} missions={missions}/>
 
                     </div>
                 </Fade>
@@ -187,6 +229,21 @@ const DroneData = props => {
                 <Fade in={openCheckList}>
                     <div className={classes.paper} style={style}>
                         <CheckList abort={handleCloseCheck} />
+
+                    </div>
+                </Fade>
+            </Modal>
+            <Modal
+                aria-labelledby="transition-modal-title"
+                aria-describedby="transition-modal-description"
+                className={classes.modal}
+                open={openDroneList}
+                onClose={handleCloseDrone}
+                closeAfterTransition
+            >
+                <Fade in={openDroneList}>
+                    <div className={classes.paper} style={style}>
+                        <DroneList abort={handleCloseDrone} select={selectDrone} drones={activeDrones}/>
 
                     </div>
                 </Fade>

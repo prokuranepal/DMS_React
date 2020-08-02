@@ -8,7 +8,7 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-
+import Spinner from '../UI/Spinner/Spinner';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -32,42 +32,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 const MissionList = (props) => {
     const classes = useStyles();
-    const missions = [{
-        value: '1', title: 'Biratnagar to Dharan',
-        waypoints: 6,
-        ETA: 20,
-        dist: 500
-    },
-    {
-        value: '2', title: 'Dharan to Dhankuta', waypoints: 6,
-        ETA: 20,
-        dist: 500
-    },
-    {
-        value: '3', title: 'Dhankuta to Tehrathum', waypoints: 6,
-        ETA: 20,
-        dist: 500
-    },
-    {
-        value: '4', title: 'Dhankuta to Tehrathum', waypoints: 6,
-        ETA: 20,
-        dist: 500
-    },
-    {
-        value: '5', title: 'Dhankuta to Tehrathum', waypoints: 6,
-        ETA: 20,
-        dist: 500
-    },
-    {
-        value: '6', title: 'Dhankuta to Tehrathum', waypoints: 6,
-        ETA: 20,
-        dist: 500
-    },
-    {
-        value: '7', title: 'Dhankuta to Tehrathum', waypoints: 6,
-        ETA: 20,
-        dist: 500
-    }];
     const [value, setValue] = React.useState('1');
     
     const handleChange = (event) => {
@@ -75,13 +39,14 @@ const MissionList = (props) => {
     };
     return (
         // <div className="module-list mail-list">
-       
+       <div>
+           {props.missions !== null?
         <FormControl component="fieldset">
             <p className={classes.header}>Select Mission</p>
         <CustomScrollbars className="module-list-scroll scrollbar"
             style={{ height: 200 >= 800 ? 'calc(100vh - 600px)' : 'calc(100vh - 400px)', minWidth: '300px' }}>
             <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
-                {missions.map((mission, index) =>
+                {props.missions.map((mission, index) =>
                     // <FormControlLabel control={}>
                     <MissionListItem key={index} mission={mission} />
                 )}
@@ -89,9 +54,10 @@ const MissionList = (props) => {
         </CustomScrollbars>
         <div className={classes.buttonLayout}>
                         <Button variant="outlined" color='white' onClick={props.abort}>Abort</Button>
-                        <Button variant="outlined" color="white" className={classes.button}>Select</Button>
+                        <Button variant="outlined" color="white" className={classes.button} onClick={() => props.select(value)}>Select</Button>
                         </div>
-        </FormControl>
+        </FormControl>:<Spinner/>}
+        </div>
         
     )
 };

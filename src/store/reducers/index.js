@@ -8,7 +8,7 @@ import dashboard from './dashboard';
 import alert from './alert';
 import users from './users';
 import weather from './weather';
-
+import droneControl from './droneControl';
 
 export default (history) => combineReducers({
   router: connectRouter(history),
@@ -18,5 +18,6 @@ export default (history) => combineReducers({
   dashboard: dashboard,
   alert: alert,
   users: users,
-  weather: weather
+  weather: weather,
+  droneControl: droneControl
 });

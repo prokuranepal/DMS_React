@@ -1,7 +1,4 @@
 import React from 'react';
-// import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
-// import labels from 'app/routes/mail/data/labels';
 import { makeStyles } from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
 
@@ -36,10 +33,10 @@ const DroneListItem = (props) => {
     return (
         <div className={classes.root}>
 
-            <Radio size='small' color='white' value={props.mission.value} />
+            <Radio size='small' color='white' value={props.drone.value} />
             <div className={classes.body}>
-                <p className={classes.header}>{props.mission.title}</p>
-                <div><span className={classes.info}>Waypoints:{props.mission.waypoints}</span><span className={classes.info}>ETA:{props.mission.ETA}mins</span><span className={classes.info}>Distance:{props.mission.dist}m</span></div>
+                <p className={classes.header}>{props.drone.name}</p>
+                <div><span className={classes.info}>Code:{props.drone.code}</span><span className={classes.info}>Type:{props.drone.type}</span></div>
             </div>
 
         </div>
