@@ -9,8 +9,8 @@ const LineChartWithXAxisPading = (data) => (
       <CartesianGrid strokeDasharray="3 3"/>
       <Tooltip/>
       <Legend/>
-      <Line type="monotone" dataKey="Medicine" stroke="#3367d6" activeDot={{r: 8}}/>
-      <Line type="monotone" dataKey="Drone" stroke="#ffc658"/>
+      <Line type="monotone" dataKey="deliveries" stroke="#3367d6" activeDot={{r: 8}}/>
+      {/* <Line type="monotone" dataKey="Drone" stroke="#ffc658"/> */}
     </LineChart>
   </ResponsiveContainer>
 )

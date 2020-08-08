@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Card, CardTitle} from "reactstrap";
 
-const Widget = ({children, styleName, title}) => {
-
+const Widget = ({children, styleName, title, style}) => {
+  console.log(style);
   return (
-    <Card className={`jr-card jr-card-widget ${styleName}`}>
+    <Card style={style} className={`jr-card jr-card-widget ${styleName}`}>
       {title ? <CardTitle>{title}</CardTitle> : null}
       {children}
     </Card>

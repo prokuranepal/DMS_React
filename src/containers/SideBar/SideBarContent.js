@@ -16,9 +16,22 @@ const SideBarContent = () => {
         },
         {
           name: 'sidebar.dronemanage',
-          type: 'item',
           icon: 'view-dashboard',
-          link: '/app/drone'
+          type: 'collapse',
+          children: [
+            {
+              name: 'drone',
+              icon: 'view-dashboard',
+              type: 'item',
+              link: '/app/dms/drone'
+            },
+            {
+              name: 'drone report',
+              icon: 'view-dashboard',
+              type: 'item',
+              link: '/app/dms/dronereport'
+            }
+          ]
         },
         {
           name: 'sidebar.dronecontrol',

@@ -1,27 +1,16 @@
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
-import DroneData from '../../../containers/DroneData/DroneData';
-const useStyles = makeStyles((theme) => ({
-    root: {
-      display: 'flex',
-      width: '100%',
-      backgroundColor: '#E7E7E7'
-    },
-    text: {
-        fontSize: 20,
-        margin: 'auto'
-    }
-}));
+import React from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
+import asyncComponent from "../../../util/asyncComponent";
 
-const Dms = props => {
-    const classes = useStyles();
-    return <Grid container className={classes.root} >
-        <Grid item xs={3}>
-            <DroneData/>
-        </Grid>
-    </Grid>
-}
 
-export default Dms;
+const Table = ({ match }) => (
+  <div className="app-wrapper">
+    <Switch>
+      <Route path={`${match.url}/drone`} component={asyncComponent(() => import("./routes/drone/Drone"))}/>
+      {/* <Route path={`${match.url}/dronereport`} component={asyncComponent(() => import("./routes/dronereport"))}/> */}
+      <Redirect exact from={`${match.url}/`} to={`${match.url}/Drone`}/>
+    </Switch>
+  </div>
+);
+
+export default Table;
