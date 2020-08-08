@@ -56,7 +56,7 @@ const MissionView = props => {
 
     const toggleDraggable = () => {
         setDraggable(!draggable);
-        console.log(draggable, 'clicked');
+        // console.log(draggable, 'clicked');
     }
 
     const updatePosition = (event, index) => {
@@ -127,30 +127,6 @@ const MissionView = props => {
                 }
 
                 <ZoomControl position="topright" />
-                {/* <RotatedMarker icon={drone} position={[state.lat, state.lng]} rotationAngle={70} rotationOrigin={'center'}/> */}
-                {/* {
-                    mission.map((point, i, array) => {
-
-                        return <span key={i}><Marker
-                            color="red"
-                            position={[point.lat, point.lng]}
-
-                        >
-                            <Popup>
-                                <span>{point.cmd} </span>
-                                <br />
-                                <span>Alt: {point.alt}m</span><br />
-                            </Popup>
-                        </Marker>
-                            {array[i - 1] ? <Polyline weight={1} positions={[
-                                [array[i - 1].lat, array[i - 1].lng], [array[i].lat, array[i].lng],
-                            ]} color={'red'} /> : null
-                            }
-                        </span>
-                    })
-                } */}
-
-
             </Map>
         </Grid>)
 }
