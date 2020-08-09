@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import InputBase from '@material-ui/core/InputBase';
+import CustomScrollbars from '../../../../util/CustomScrollbars';
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
@@ -33,8 +34,18 @@ const useStyles = makeStyles((theme) => ({
         border: 'solid 2px #686F76',
         borderRadius: '5px',
         margin: '10px auto',
-        width: '90%'
+        width: '90%',
+        padding: '10px 0'
     },
+    inputLatLng: {
+
+        color: 'white',
+        width: '80%',
+        margin: '10px auto'
+    },
+    noWaypoint: {
+        padding: '40px'
+    }
 
 
 }));
@@ -87,63 +98,137 @@ const BootstrapInput = withStyles((theme) => ({
 
 const MissionData = props => {
     const classes = useStyles();
+    // console.log(props.waypoint);
     return (
         <div className={classes.root}>
-            <div className={classes.buttons}>
-                <div><Button onClick={props.openMission} size="small" variant="contained" color="primary">Open Mission</Button></div>
-                <div> {props.create ? <Button onClick={props.onFinishMission} size="small" variant="contained" color="primary">Finish Mission</Button>
-                    : <Button onClick={props.onCreateMission} size="small" variant="contained" color="primary">Create Mission</Button>}</div>
-            </div>
-            <div className={classes.form}>
-                <div className={classes.inputContainer}><p>Edit Mission</p></div>
-                <form noValidate autoComplete="off">
-                    <div className={classes.inputContainer}>
-                        <CssTextField
-                            style={{ width: '100%' }}
-                            size="small"
-                            defaultValue=""
-                            variant="outlined"
-                            label="Mission Name"
-                        />
+            <CustomScrollbars className=" scrollbar">
+                <div className={classes.buttons}>
+                    <div><Button onClick={props.openMission} size="small" variant="contained" color="primary">Open</Button></div>
+                    <div> {props.create ? <Button onClick={props.onFinishMission} size="small" variant="contained" color="primary">Finish</Button>
+                        : <Button onClick={props.onCreateMission} size="small" variant="contained" color="primary">Create</Button>}</div>
+                </div>
+                {props.create ? <div><div className={classes.form}>
+                    <div className={classes.inputContainer}><p>Edit Mission</p></div>
+                    <form noValidate autoComplete="off">
+                        <div className={classes.inputContainer}>
+                            <CssTextField
+                                style={{ width: '100%' }}
+                                size="small"
+                                defaultValue=""
+                                variant="outlined"
+                                label="Mission Name"
+                                value={props.mission.name}
+                                onChange={(event) => props.onChangeMission(event,'name')}
+                            />
+                        </div>
+                        <div className={classes.inputContainer}>
+                            <span>Mission Speed (m/s)</span>
+                            <CssTextField
+                                style={{ width: '30%' }}
+                                size="small"
+                                value={props.mission.speed}
+                                variant="outlined"
+                                onChange={(event) => props.onChangeMission(event,'speed')}
+                            />
+                        </div>
+                        <div className={classes.inputContainer}>
+                            <span>Mission Radius (m)</span>
+                            <CssTextField
+                                style={{ width: '30%' }}
+                                size="small"
+                                value={props.mission.radius}
+                                variant="outlined"
+                                onChange={(event) => props.onChangeMission(event,'radius')}
+                            />
+                        </div>
+                        <div className={classes.inputContainer}>
+                            <Select
+                                native
+                                variant="outlined"
+                                input={<BootstrapInput />}
+                                style={{ width: '100%' }}
+                                value={props.mission.lastAction}
+                                onChange={(event) => props.onChangeMission(event,'lastAction')}
+                            >
+                                <option value={'land'}>Land</option>
+                                <option value={'hover'}>Hover</option>
+                                <option value={'rth'}>Return to Home</option>
+                            </Select>
+                        </div>
+                    </form>
+                </div>
+                    <div className={classes.buttons}>
+                        <div><Button onClick={props.openMission} size="small" variant="contained" color="primary">Cancel</Button></div>
+                        <div><Button onClick={props.createMission} size="small" variant="contained" color="primary" disabled={props.mission.waypoints.length === 0}>Create</Button></div>
                     </div>
-                    <div className={classes.inputContainer}>
-                        <span>Mission Speed (m/s)</span>
-                        <CssTextField
-                            style={{ width: '30%' }}
-                            size="small"
-                            defaultValue=""
-                            variant="outlined"
-                        />
-                    </div>
-                    <div className={classes.inputContainer}>
-                        <span>Mission Radius (m)</span>
-                        <CssTextField
-                            style={{ width: '30%' }}
-                            size="small"
-                            defaultValue=""
-                            variant="outlined"
-                        />
-                    </div>
-                    <div className={classes.inputContainer}>
-                        <Select
-                            native
-                            variant="outlined"
-                            input={<BootstrapInput />}
-                            style={{ width: '100%' }}
-                        >
-                            <option value={10}>Land</option>
-                            <option value={20}>Hover</option>
-                            <option value={30}>Return to Home</option>
-                        </Select>
-                    </div>
-                </form>
-            </div>
-            <div className={classes.buttons}>
-                <div><Button onClick={props.openMission} size="small" variant="contained" color="primary">Cancel</Button></div>
-                <div><Button onClick={props.openMission} size="small" variant="contained" color="primary">Update</Button></div>
-            </div>
+                    <div className={classes.form}>
+                        {props.mission.waypoints.length !== 0 ?
+                            <div><div className={classes.inputContainer}><p>Waypoint</p></div>
+                                <form noValidate autoComplete="off">
 
-        </div>
+
+                                    <div className={classes.inputContainer}>
+                                        <span>Waypoint Altitude (m)</span>
+                                        <CssTextField
+                                            style={{ width: '30%' }}
+                                            size="small"
+                                            value={props.waypoint.altitude}
+                                            variant="outlined"
+                                            onChange={(event) => props.onChange(event, 'altitude')}
+                                        />
+                                    </div>
+                                    <div className={classes.inputContainer}>
+                                        <span>Waypoint Radius (m)</span>
+                                        <CssTextField
+                                            style={{ width: '30%' }}
+                                            size="small"
+                                            variant="outlined"
+                                            value={props.waypoint.radius}
+                                            onChange={(event) => props.onChange(event, 'radius')}
+                                        />
+                                    </div>
+                                    <div className={classes.inputContainer}>
+                                        <span>Actions</span>
+                                        <Select
+                                            native
+                                            variant="outlined"
+                                            input={<BootstrapInput />}
+                                            style={{ width: '60%' }}
+                                            value={props.waypoint.action}
+                                            onChange={(event) => props.onChange(event, 'action')}
+                                        >
+                                            <option value={''}></option>
+                                            <option value={'waypoint'}>Waypoint</option>
+                                            <option value={'hover'}>Hover</option>
+                                            <option value={'payload'}>Payload Drop</option>
+                                            <option value={'land'}>Land</option>
+                                            <option value={'rth'}>Return to Home</option>
+                                        </Select>
+                                    </div>
+                                    <div className={classes.inputLatLng}>
+                                        <p>Latitude</p>
+                                        <CssTextField
+                                            style={{ width: '100%' }}
+                                            size="small"
+                                            value={props.waypoint.lat}
+                                            variant="outlined"
+                                        />
+                                    </div>
+                                    <div className={classes.inputLatLng}>
+                                        <p>Longitude</p>
+                                        <CssTextField
+                                            style={{ width: '100%' }}
+                                            size="small"
+                                            value={props.waypoint.lng}
+                                            variant="outlined"
+
+                                        />
+                                    </div>
+                                </form></div>:
+                        <div className={classes.noWaypoint}><h3>No Waypoints</h3></div>}
+                </div></div> : null}
+            </CustomScrollbars>
+                </div>
     )
 }
 
