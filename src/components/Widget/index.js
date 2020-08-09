@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {Card, CardTitle} from "reactstrap";
 
 const Widget = ({children, styleName, title, style}) => {
-  console.log(style);
+  // console.log(style);
   return (
     <Card style={style} className={`jr-card jr-card-widget ${styleName}`}>
       {title ? <CardTitle>{title}</CardTitle> : null}

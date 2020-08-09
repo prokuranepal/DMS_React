@@ -2,28 +2,26 @@ export const dashboardData = {
     cardData: { drones: 10, activeDrones: 2, deliveries: 300, subHealthPosts: 10 },
     graphs: {
         hospital: [
-            { name: 'Jan', deliveries: 400 },
-            { name: 'Feb', deliveries: 300 },
-            { name: 'Mar', deliveries: 200 },
-            { name: 'Api', deliveries: 278 },
-            { name: 'May', deliveries: 189 },
-            { name: 'Jun', deliveries: 239 },
-            { name: 'Jul', deliveries: 349 },
-            { name: 'Aug', deliveries: 239 },
-            { name: 'Sep', deliveries: 349 },
-            { name: 'Oct', deliveries: 239 },
-            { name: 'Nov', deliveries: 349 },
-            { name: 'Dec', deliveries: 349 },
+            { month: 'Jan', deliveries: 400 },
+            { month: 'Feb', deliveries: 300 },
+            { month: 'Mar', deliveries: 200 },
+            { month: 'Api', deliveries: 278 },
+            { month: 'May', deliveries: 189 },
+            { month: 'Jun', deliveries: 239 },
+            { month: 'Jul', deliveries: 349 },
+            { month: 'Aug', deliveries: 239 },
+            { month: 'Sep', deliveries: 349 },
+            { month: 'Oct', deliveries: 239 },
+            { month: 'Nov', deliveries: 349 },
+            { month: 'Dec', deliveries: 349 },
         ],
         healthPosts: [{
             name: "Takiya Sub Health Post",
-            chartData: [10, 200, 75, 300, 100, 200, 70],
-            labels: ['9', '10', '11', '12', '13', '14', '15'],
+            data: {Jan: 9, Feb:10, Mar: 11, Apr: 12, May: 13, Jul: 16, Aug: 18, Sep: 24, Oct: 10, Nov: 2, Dec: 23}
         },
         {
             name: "Thalaha Sub Health Post",
-            chartData: [10, 200, 75, 300, 100, 200, 70],
-            labels: ['9', '10', '11', '12', '13', '14', '15'],
+            data: {Jan: 19, Feb:10, Mar: 1, Apr: 19, May: 17, Jul: 16, Aug: 12, Sep: 14, Oct: 20, Nov: 21, Dec: 13}
         }]
     }
 }

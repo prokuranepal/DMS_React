@@ -62,12 +62,12 @@ const Dashboard = (props) => {
                                                         <ChartCard styleName="bg-gradient-primary text-white">
                                                             <div className="chart-title">
                                                                 <h2 className="mb-1">{healthPost.name}</h2>
-                                                                <p>Deliveries</p>
+                                                                <p>Number of Deliveries</p>
                                                             </div>
                                                             <ResponsiveContainer width="100%" height={90}>
                                                                 <CustomLineChart
-                                                                    chartData={healthPost.chartData}
-                                                                    labels={healthPost.labels}
+                                                                    chartData={Object.values(healthPost.data)}
+                                                                    labels={Object.keys(healthPost.data)}
                                                                     borderColor="#FFF"
                                                                     pointBorderColor="#FFF"
                                                                     pointBackgroundColor="#FF9800"
