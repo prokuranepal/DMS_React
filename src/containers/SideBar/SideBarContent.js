@@ -16,18 +16,18 @@ const SideBarContent = () => {
         },
         {
           name: 'sidebar.dronemanage',
-          icon: 'view-dashboard',
+          icon: 'flight-takeoff',
           type: 'collapse',
           children: [
             {
               name: 'drone',
-              icon: 'view-dashboard',
+              icon: 'airplane',
               type: 'item',
               link: '/app/dms/drone'
             },
             {
               name: 'drone report',
-              icon: 'view-dashboard',
+              icon: 'receipt',
               type: 'item',
               link: '/app/dms/dronereport'
             }
@@ -36,23 +36,23 @@ const SideBarContent = () => {
         {
           name: 'sidebar.dronecontrol',
           type: 'item',
-          icon: 'view-dashboard',
+          icon: 'arrows',
           link: '/app/dronecontrol'
         },
         {
           name: 'sidebar.mission',
-          icon: 'view-dashboard',
+          icon: 'dot-circle',
           type: 'collapse',
           children: [
             {
               name: 'sidebar.missionlist',
-              icon: 'view-dashboard',
+              icon: 'assignment',
               type: 'item',
               link: '/app/missionplanner/missionlist'
             },
             {
               name: 'sidebar.missionplanner',
-              icon: 'view-dashboard',
+              icon: 'plus-square',
               type: 'item',
               link: '/app/missionplanner/missionview'
             }
@@ -60,18 +60,18 @@ const SideBarContent = () => {
         },
         {
           name: 'sidebar.inventory',
-          icon: 'view-dashboard',
+          icon: 'folder',
           type: 'collapse',
           children: [
             {
               name: 'sidebar.categories',
-              icon: 'view-dashboard',
+              icon: 'apps',
               type: 'item',
               link: '/app/ims/categories'
             },
             {
               name: 'sidebar.orders',
-              icon: 'view-dashboard',
+              icon: 'assignment-check',
               type: 'item',
               link: '/app/ims/orders'
             }
@@ -80,25 +80,25 @@ const SideBarContent = () => {
         {
           name: 'sidebar.weather',
           type: 'item',
-          icon: 'view-dashboard',
+          icon: 'cloud',
           link: '/app/weather'
         },
         {
           name: 'sidebar.events',
           type: 'item',
-          icon: 'view-dashboard',
+          icon: 'format-list-bulleted',
           link: '/app/events'
         },
         {
           name: 'sidebar.issues',
           type: 'item',
-          icon: 'store',
+          icon: 'alert-circle',
           link: '/app/issues'
         },
         {
           name: 'sidebar.users',
           type: 'item',
-          icon: 'view-store',
+          icon: 'account-circle',
           link: '/app/users'
         }
 
