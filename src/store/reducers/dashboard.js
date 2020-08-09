@@ -3,8 +3,8 @@ import { updateObject } from '../utility';
 
 
 const initialState = {
-    cards: {},
-    graphs: {},
+    cardData: null,
+    graphs: null,
     loading: true,
     error: {},
     places: []
@@ -20,7 +20,7 @@ const cardError = (state, action) => {
 const getCards = (state, action) => {
 
     return updateObject(state, {
-        cards: action.data.cards,
+        cardData: action.data.cardData,
         graphs: action.data.graphs,
         loading: false
     })

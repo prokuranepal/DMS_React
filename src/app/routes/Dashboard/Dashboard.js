@@ -1,9 +1,6 @@
-import React, { Fragment, useEffect} from 'react'
-import PropTypes from 'prop-types'
+import React, { Fragment, useEffect } from 'react'
 import classes from './Dashboard.module.css'
-import {useDispatch} from 'react-redux';
-import { connect } from 'react-redux'
-import {getCurrentCards} from '../../../store/actions/dashboard'
+import { useDispatch, useSelector } from 'react-redux';
 import { ResponsiveContainer } from 'recharts'
 import Spinner from '../../../components/UI/Spinner/Spinner'
 import * as actions from '../../../store/actions/dashboard'
@@ -14,111 +11,85 @@ import CardBox from '../../../components/CardBox/index';
 import Hidden from '@material-ui/core/Hidden';
 import CustomLineChart from '../../../components/CustomLineChart/index'
 import ChartCard from '../../../components/ChartCard/ChartCard'
-import {sideChartData} from '../../../components/ChartCard/data'
+import * as cards from '../../../JSONFiles/dashboardCards';
 
-
-const Dashboard = ({getCurrentCards, auth, dashboard: {cards, loading, graphs: {graphData, sidechartdata, cdc, rhps}}}) => {
+const Dashboard = (props) => {
 
     const dispatch = useDispatch();
     useEffect(() => {
-        getCurrentCards();
+        dispatch(actions.getCurrentCards());
         dispatch(actions.getPlaces());
     }, [])
 
-    const card = Object.keys(cards).map((data, index) => {
+    const { cardData, loading, graphs } = useSelector(({ dashboard }) => dashboard);
+    const card = cardData !== null ? cards.data.map((data, index) => {
         return (
             <Grid item lg={3} md={3} xs={6} key={index}>
-                <IconWithTextCard data={cards[data]} />
+                <IconWithTextCard data={data} value={cardData[data.title]} style={{marginBottom: 0}}/>
             </Grid>
         )
-    })
+    }) : null;
 
     // console.log("Reducer",sidechartdata);
     // console.log("Import", sideChartData);
     return (
-        <div className= {classes.Dashboard}>
+        <div className={classes.Dashboard}>
             <div className={classes.Content}>
                 <div className={classes.View}>
-                    {(loading && cards ===null)
-                    ? <Spinner />
+                    {(loading || cardData === null)
+                        ? <Spinner />
 
-                    : <Fragment>
-                        <div className="m-5">
-                            <Grid container spacing={5} justify="center">
-                                {card}
-                            </Grid>
-                        </div>
-
-                        <div>
-                            <Grid container>
-                                <Grid item md={8} xs={12}>
-                                    <CardBox heading="Medicine delivery and Drone flight Graph" styleName="col-12">
-                                        <LineChartMain data={graphData} height={450} />
-                                    </CardBox>
+                        : <Fragment>
+                            <div style={{padding: '20px'}}>
+                                <Grid container spacing={5} justify="center">
+                                    {card}
                                 </Grid>
-                                <Hidden only="sm">
-                                    <Grid item md={4}>
-                                        <div className="col-12">
-                                            <ChartCard styleName="bg-gradient-primary text-white">
-                                                <div className="chart-title">
-                                                    <h2 className="mb-1">{sideChartData.name}</h2>
-                                                    <p>Deliveries</p>
-                                                </div>
-                                                <ResponsiveContainer width="100%" height={165}>
-                                                    <CustomLineChart
-                                                        chartData={sideChartData.chartData}
-                                                        labels={sideChartData.labels}
-                                                        borderColor="#FFF"
-                                                        pointBorderColor="#FFF"
-                                                        pointBackgroundColor="#FF9800"
-                                                        pointBorderWidth={2}
-                                                        pointRadius={4}
-                                                        lineTension={0}
-                                                    />
-                                                </ResponsiveContainer>
-                                            </ChartCard>
-                                        </div>
-                                        <div className=" col-12">
-                                            <ChartCard styleName="bg-gradient-primary text-white">
-                                                <div className="chart-title">
-                                                    <h2 className="mb-1">{sideChartData.name}</h2>
-                                                    <p>Deliveries</p>
-                                                </div>
-                                                <ResponsiveContainer width="100%" height={165}>
-                                                    <CustomLineChart
-                                                        chartData={sideChartData.chartData}
-                                                        labels={sideChartData.labels}
-                                                        borderColor="#FFF"
-                                                        pointBorderColor="#FFF"
-                                                        pointBackgroundColor="#FF9800"
-                                                        pointBorderWidth={2}
-                                                        pointRadius={4}
-                                                        lineTension={0}
-                                                    />
-                                                </ResponsiveContainer>
-                                            </ChartCard>
-                                        </div>
+                            </div>
+
+                            <div>
+                                <Grid container>
+                                    <Grid item md={8} xs={12}>
+                                        <CardBox heading="Sunsari District Hospital" styleName="col-12">
+                                            {(loading || graphs === null || graphs.hospital === null)
+                                                ? <Spinner /> : <LineChartMain data={graphs.hospital} height={300} />}
+                                        </CardBox>
                                     </Grid>
-                                </Hidden>
-                            </Grid>
-                        </div>
-                    </Fragment>}
+                                    <Hidden only="sm">
+                                        {(loading || graphs === null || graphs.healthPosts === null)
+                                            ? <Spinner /> : <Grid item md={4}>
+                                                {graphs.healthPosts.map((healthPost, index) => {
+                                                    return <div className="col-12" key={index}>
+                                                        <ChartCard styleName="bg-gradient-primary text-white">
+                                                            <div className="chart-title">
+                                                                <h2 className="mb-1">{healthPost.name}</h2>
+                                                                <p>Number of Deliveries</p>
+                                                            </div>
+                                                            <ResponsiveContainer width="100%" height={90}>
+                                                                <CustomLineChart
+                                                                    chartData={Object.values(healthPost.data)}
+                                                                    labels={Object.keys(healthPost.data)}
+                                                                    borderColor="#FFF"
+                                                                    pointBorderColor="#FFF"
+                                                                    pointBackgroundColor="#FF9800"
+                                                                    pointBorderWidth={2}
+                                                                    pointRadius={4}
+                                                                    lineTension={0}
+                                                                />
+                                                            </ResponsiveContainer>
+                                                        </ChartCard>
+                                                    </div>
+                                                })}
+
+                                            </Grid>}
+                                    </Hidden>
+                                </Grid>
+                            </div>
+                        </Fragment>}
                 </div>
             </div>
-            
+
         </div>
     )
 }
 
-Dashboard.propTypes = {
-    getCurrentCards: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired,
-    dashboard: PropTypes.object.isRequired,
-}
-
-const mapStateToProps = state => ({
-    auth: state.auth,
-    dashboard: state.dashboard
-})
-
-export default connect(mapStateToProps, { getCurrentCards })(Dashboard)
+export default (Dashboard)

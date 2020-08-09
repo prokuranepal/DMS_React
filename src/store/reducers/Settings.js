@@ -4,6 +4,7 @@ import {
     DARK_THEME,
     DRAWER_TYPE,
     FIXED_DRAWER,
+    COLLAPSED_DRAWER,
     HORIZONTAL_MENU_POSITION,
     INSIDE_THE_HEADER,
     SWITCH_LANGUAGE,
@@ -17,7 +18,7 @@ import {
   const rltLocale = ['ar'];
   const initialSettings = {
     navCollapsed: false,
-    drawerType: FIXED_DRAWER,
+    drawerType: TOGGLE_COLLAPSED_NAV,
     themeColor: DARK_INDIGO,
     darkTheme: false,
     width: window.innerWidth,

@@ -1,5 +1,5 @@
 import React from 'react';
-import MissionListItem from './MissionListItem/MissionListItem';
+import DroneListItem from './DroneListItem/DroneListItem';
 import CustomScrollbars from '../../util/CustomScrollbars';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -8,7 +8,8 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-
+import { useSelector } from 'react-redux';
+import Spinner from '../UI/Spinner/Spinner';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -32,42 +33,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 const DroneList = (props) => {
     const classes = useStyles();
-    const missions = [{
-        value: '1', title: 'Biratnagar to Dharan',
-        waypoints: 6,
-        ETA: 20,
-        dist: 500
-    },
-    {
-        value: '2', title: 'Dharan to Dhankuta', waypoints: 6,
-        ETA: 20,
-        dist: 500
-    },
-    {
-        value: '3', title: 'Dhankuta to Tehrathum', waypoints: 6,
-        ETA: 20,
-        dist: 500
-    },
-    {
-        value: '4', title: 'Dhankuta to Tehrathum', waypoints: 6,
-        ETA: 20,
-        dist: 500
-    },
-    {
-        value: '5', title: 'Dhankuta to Tehrathum', waypoints: 6,
-        ETA: 20,
-        dist: 500
-    },
-    {
-        value: '6', title: 'Dhankuta to Tehrathum', waypoints: 6,
-        ETA: 20,
-        dist: 500
-    },
-    {
-        value: '7', title: 'Dhankuta to Tehrathum', waypoints: 6,
-        ETA: 20,
-        dist: 500
-    }];
     const [value, setValue] = React.useState('1');
     
     const handleChange = (event) => {
@@ -75,24 +40,26 @@ const DroneList = (props) => {
     };
     return (
         // <div className="module-list mail-list">
-       
-        <FormControl component="fieldset">
-            <p className={classes.header}>Select Mission</p>
-        <CustomScrollbars className="module-list-scroll scrollbar"
-            style={{ height: 200 >= 800 ? 'calc(100vh - 600px)' : 'calc(100vh - 400px)', minWidth: '300px' }}>
-            <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
-                {missions.map((mission, index) =>
-                    // <FormControlLabel control={}>
-                    <MissionListItem key={index} mission={mission} />
-                )}
-            </RadioGroup>
-        </CustomScrollbars>
-        <div className={classes.buttonLayout}>
-                        <Button variant="outlined" color='white' onClick={props.abort}>Abort</Button>
-                        <Button variant="outlined" color="white" className={classes.button}>Select</Button>
-                        </div>
-        </FormControl>
-        
+        <div>
+            {props.drones !== null ?
+            <FormControl component="fieldset">
+                <p className={classes.header}>Select Mission</p>
+                <CustomScrollbars className="module-list-scroll scrollbar"
+                    style={{ height: 200 >= 800 ? 'calc(100vh - 600px)' : 'calc(100vh - 400px)', minWidth: '300px' }}>
+                    <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
+                        {props.drones.map((drone, index) =>
+                            // <FormControlLabel control={}>
+                            <DroneListItem key={index} drone={drone} />
+                        )}
+                    </RadioGroup>
+                </CustomScrollbars>
+                <div className={classes.buttonLayout}>
+                    <Button variant="outlined" color='white' onClick={props.abort}>Abort</Button>
+                    <Button variant="outlined" color="white" className={classes.button} onClick={() => props.select(value)}>Select</Button>
+                </div>
+            </FormControl>: <div>Spinner</div>}
+        </div>
+
     )
 };
 
