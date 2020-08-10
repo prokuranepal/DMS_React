@@ -2,7 +2,7 @@ import React, { forwardRef } from "react";
 
 import IntlMessages from "../../../../../util/IntlMessages";
 import MaterialTable from 'material-table';
-import Spinner from '../../../../../components/UI/Spinner/Spinner'
+import Spinner from '../../../../../homeComponents/UI/Spinner/Spinner'
 
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';

@@ -26,8 +26,8 @@ const MissionPlanner = ({match}) => {
         <Switch>
           {/* <Route path="/admin/mission planner/list-users" render={(props) => <ListUsers {...props} users1={users1} users2={users2}/>}/> */}
           {/* <Route exact path="/admin/missionplanner/create-user" component={CreateUser} /> */}
-          <Route exact path={`${match.url}/missionview`} component={asyncComponent(() => import('../../../components/MissionPlanner/MissionView/MissionView'))} />
-          <Route exact path={`${match.url}/missionlist`} component={asyncComponent(() => import('../../../components/MissionPlanner/MissionLists'))} />
+          <Route exact path={`${match.url}/missionview`} component={asyncComponent(() => import('../../../homeComponents/MissionPlanner/MissionView/MissionView'))} />
+          <Route exact path={`${match.url}/missionlist`} component={asyncComponent(() => import('../../../homeComponents/MissionPlanner/MissionLists'))} />
           <Redirect from={`${match.url}`} to={`${match.url}/missionlist`} />
         </Switch>
       </Grid>

@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from 'react'
 import classes from './Dashboard.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { ResponsiveContainer } from 'recharts'
-import Spinner from '../../../components/UI/Spinner/Spinner'
+import Spinner from '../../../homeComponents/UI/Spinner/Spinner'
 import * as actions from '../../../store/actions/dashboard'
 import IconWithTextCard from '../../../components/statusCard/IconWithTextCard'
 import Grid from '@material-ui/core/Grid';

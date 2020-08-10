@@ -49,7 +49,7 @@ function getModalStyle() {
 const MissionView = props => {
     const dispatch = useDispatch();
     const classes = useStyles();
-    const [modalStyle, setModalStyle] = React.useState(getModalStyle);
+    const modalStyle = getModalStyle();
     const [openMissionList, setOpenMissionList] = React.useState(false);
     const [draggable, setDraggable] = React.useState(false);
     const [create, setCreate] = React.useState(false);
@@ -62,9 +62,9 @@ const MissionView = props => {
         lng: 87.281345,
         zoom: 17,
     }
-    const [initialMissionDetail, setInitialMissionDetail] = React.useState({ name: '', radius: null, speed: null, lastAction: 'rth', waypoints: [] });
-    const [missionDetail, setMissionDetail] = React.useState({ name: '', radius: null, speed: null, lastAction: 'rth', waypoints: [] });
-    const [currentWaypoint, setCurrentWaypoint] = React.useState({ altitude: null, radius: null, action: '', lat: null, lng: null })
+    const initialMissionDetail = { name: '', radius: null, speed: null, home: '', destination: '', waypoints: [] };
+    const [missionDetail, setMissionDetail] = React.useState({ name: '', radius: null, speed: null, home: '', destination: '', waypoints: [] });
+    
 
     //to update the localstate by the missionDetails sourced from server
     useEffect(() => {
@@ -89,7 +89,6 @@ const MissionView = props => {
             m.waypoints[index].lat = event.target.getLatLng().lat;
             m.waypoints[index].lng = event.target.getLatLng().lng;
             setMissionDetail(m);
-            setCurrentWaypoint(m.waypoints[index]);
         }
     }
 
@@ -109,7 +108,6 @@ const MissionView = props => {
                 });
                 // console.log(mission, m);
                 setCurrWaypointIndex(m.waypoints.length - 1);
-                setCurrentWaypoint({ altitude: null, radius: null, action: 'waypoint', lat: event.latlng.lat, lng: event.latlng.lng });
                 setMissionDetail(m);
 
             }

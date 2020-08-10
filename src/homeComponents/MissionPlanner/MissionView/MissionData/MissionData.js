@@ -141,18 +141,24 @@ const MissionData = props => {
                             />
                         </div>
                         <div className={classes.inputContainer}>
-                            <Select
-                                native
+                        <span>Home</span>
+                            <CssTextField
+                                style={{ width: '50%' }}
+                                size="small"
+                                value={props.mission.home}
                                 variant="outlined"
-                                input={<BootstrapInput />}
-                                style={{ width: '100%' }}
-                                value={props.mission.lastAction}
-                                onChange={(event) => props.onChangeMission(event,'lastAction')}
-                            >
-                                <option value={'land'}>Land</option>
-                                <option value={'hover'}>Hover</option>
-                                <option value={'rth'}>Return to Home</option>
-                            </Select>
+                                onChange={(event) => props.onChangeMission(event,'home')}
+                            />
+                        </div>
+                        <div className={classes.inputContainer}>
+                        <span>Destination</span>
+                            <CssTextField
+                                style={{ width: '50%' }}
+                                size="small"
+                                value={props.mission.destination}
+                                variant="outlined"
+                                onChange={(event) => props.onChangeMission(event,'destination')}
+                            />
                         </div>
                     </form>
                 </div>

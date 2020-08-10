@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import SimpleAlert from '../../components/UI/Alert/Alert';
+import SimpleAlert from '../UI/Alert/Alert';
 import User from './User';
 
 const useStyles = makeStyles((theme) => ({

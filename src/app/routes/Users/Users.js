@@ -6,9 +6,9 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import CreateUser from '../../../components/CreateUser/CreateUser';
-import EditUser from '../../../components/EditUser/EditUser';
-import ListUsers from '../../../components/User/ListUsers';
+import CreateUser from '../../../homeComponents/CreateUser/CreateUser';
+import EditUser from '../../../homeComponents/EditUser/EditUser';
+import ListUsers from '../../../homeComponents/User/ListUsers';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',

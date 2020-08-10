@@ -15,7 +15,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from "@material-ui/core/styles";
 import Drone from '../../assets/quad.jpg';
-import Copyright from '../../components/UI/Copyright/Copyright';
+import Copyright from '../../homeComponents/UI/Copyright/Copyright';
 import IntlMessages from '../../util/IntlMessages';
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from "@material-ui/core/CircularProgress";

@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import OrderInfo from './OrderInfo';
 import Grid from '@material-ui/core/Grid';
-import Stepper from '../../../../../components/UI/Stepper/Stepper';
+import Stepper from '../../../../../homeComponents/UI/Stepper/Stepper';
 import OrderItems from './OrderItems';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';

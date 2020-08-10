@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 
-import CardMenu from '../../CardMenu/CardMenu'
+import CardMenu from '../../../components/CardMenu/CardMenu'
 import { Redirect } from 'react-router';
 
 const OrderTableCell = (props) => {

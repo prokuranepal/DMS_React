@@ -3,7 +3,7 @@ export const missionDetail = {
     name: "asasas",
     radius: "344",
     speed: "12",
-    source: 'Dharan',
+    home: 'Dharan',
     destination: 'Biratnagar',
     distance: 1234,
     eta: 3600,
