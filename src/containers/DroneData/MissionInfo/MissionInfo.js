@@ -66,7 +66,7 @@ const MissionInfo = props => {
                     <div><Button onClick={props.uploadMission} size="small" variant="contained" color="primary">Upload</Button></div>
                     <div>
                         <Button onClick={props.onStartMission} size="small" variant="contained" color="primary">Start</Button></div>
-                </div>}
+                </div>
             </div>
         </Grid>
     </div>
