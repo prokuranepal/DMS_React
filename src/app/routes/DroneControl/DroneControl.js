@@ -2,7 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import DroneData from '../../../containers/DroneData/DroneData';
-import RotatedMarker from '../../../components/RotatedMarker/RotatedMarker';
+import RotatedMarker from '../../../homeComponents/RotatedMarker/RotatedMarker';
 import { Map, TileLayer, Marker} from 'react-leaflet';
 import { Icon } from "leaflet";
 import Green from '../../../assets/green.png';

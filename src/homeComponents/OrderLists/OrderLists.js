@@ -3,7 +3,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 // import {Typography } from '@material-ui/core';  
 import OrderList from './OrderList/OrderList';
-import Search from '../../components/UI/Search/Search';
+import Search from '../UI/Search/Search';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';

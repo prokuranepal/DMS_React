@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import MedicineTypes from './MedicineTypes/MedicineTypes';
 import MedicineListContainer from './MedicineList/MedicineListContainer';
-import OrderLists from '../../../components/OrderLists/OrderLists';
+import OrderLists from '../../../homeComponents/OrderLists/OrderLists';
 import OrderDetails from './Orders/OrderDetails/OrderDetails';
 import AddMedicine from './AddMedicine/AddMedicine';
 // import OrderDetails from '../../../containers/OrderDetails/OrderDetails';

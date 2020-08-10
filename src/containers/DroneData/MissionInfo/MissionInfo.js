@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
         margin: '5px auto'
     },
     mission: {
-        
+
         display: 'flex',
         flexDirection: 'column',
         flexWrap: 'nowrap',
@@ -37,28 +37,39 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: '0px',
     },
     button: {
-        
+
         marginTop: '10px'
+    },
+    buttons: {
+        display: 'flex',
+        flex: '0 0',
+        margin: '10px auto',
+        justifyContent: 'space-evenly',
+        color: 'white',
+        alignItems: 'center',
     }
 }));
 const MissionInfo = props => {
     const classes = useStyles();
-    return(<div className={classes.data}>
+    return (<div className={classes.data}>
         {/* <p>VTOL        60%</p> */}
 
-            <Grid  container className={classes.dataItem}>
-                <div className={classes.head}><span>Mission</span></div>
-                <div className={classes.mission}>
-                    <div><p className={classes.header}>Dharan To Dhankuta</p></div>
-                    <div style={{marginTop: '10px'}}>
+        <Grid container className={classes.dataItem}>
+            <div className={classes.head}><span>Mission</span></div>
+            <div className={classes.mission}>
+                <div><p className={classes.header}>Dharan To Dhankuta</p></div>
+                <div style={{ marginTop: '10px' }}>
                     <div><span className={classes.info}>Waypoints:15</span><span className={classes.info}>ETA:35mins</span></div>
                     <div><span className={classes.info}>Distance:600m</span></div>
-                    </div>
-                    <div className={classes.button}>
-                        <Button variant="contained" size='small' color="primary">Start Mission</Button>
-                        </div>
                 </div>
-            </Grid>
+                <div className={classes.buttons}>
+                    <div><Button onClick={props.uploadMission} size="small" variant="contained" color="primary">Upload</Button></div>
+                    <div>
+                        <Button onClick={props.onStartMission} size="small" variant="contained" color="primary">Start</Button></div>
+                </div>
+            </div>
+        </Grid>
     </div>
-    )}
-    export default MissionInfo;
+    )
+}
+export default MissionInfo;

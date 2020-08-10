@@ -6,9 +6,9 @@ import Fab from '@material-ui/core/Fab';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Fade from '@material-ui/core/Fade';
-import MissionList from '../../components/MissionList/MissionList';
-import CheckList from '../../components/CheckList/CheckList';
-import DroneList from '../../components/DroneList/DroneList';
+import MissionList from '../../homeComponents/MissionList/MissionList';
+import CheckList from '../../homeComponents/CheckList/CheckList';
+import DroneList from '../../homeComponents/DroneList/DroneList';
 import MissionInfo from './MissionInfo/MissionInfo';
 import DroneInfo from './DroneInfo/DroneInfo';
 import {socket} from '../../socket';
@@ -107,7 +107,7 @@ const DroneData = props => {
     const [droneInfo, setDroneInfo] = React.useState(null);
     const [style, setStyle] = React.useState(getModalStyle);
     const activeDrones = useSelector(({ droneControl }) => droneControl.activeDrones);
-    const missions = useSelector(({ droneControl }) => droneControl.missions);
+    
     const dispatch = useDispatch();
     const setData = (data) => {
         console.log(data);
@@ -122,7 +122,7 @@ const DroneData = props => {
     },[drone]);
 
     const handleOpenMission = () => {
-        dispatch(actions.fetchMissionList());
+        
         setOpenMissionList(true);
     };
 
@@ -213,7 +213,7 @@ const DroneData = props => {
             >
                 <Fade in={openMissionList}>
                     <div className={classes.paper} style={style}>
-                        <MissionList abort={handleCloseMission}  select={selectMission} missions={missions}/>
+                        <MissionList abort={handleCloseMission}  select={selectMission}/>
 
                     </div>
                 </Fade>

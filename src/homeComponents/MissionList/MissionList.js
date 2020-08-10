@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
 import MissionListItem from './MissionListItem/MissionListItem';
 import CustomScrollbars from '../../util/CustomScrollbars';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -9,7 +10,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Spinner from '../UI/Spinner/Spinner';
-
+import * as actions from '../../store/actions/droneControl';
 
 const useStyles = makeStyles((theme) => ({
     header: {
@@ -32,21 +33,27 @@ const useStyles = makeStyles((theme) => ({
 }));
 const MissionList = (props) => {
     const classes = useStyles();
+    const dispatch = useDispatch();
     const [value, setValue] = React.useState('1');
     
     const handleChange = (event) => {
         setValue(event.target.value);
     };
+    const missions = useSelector(({ droneControl }) => droneControl.missions);
+
+    useEffect(() => {
+        dispatch(actions.fetchMissionList());
+    },[]);
     return (
         // <div className="module-list mail-list">
        <div>
-           {props.missions !== null?
+           {missions !== null?
         <FormControl component="fieldset">
             <p className={classes.header}>Select Mission</p>
         <CustomScrollbars className="module-list-scroll scrollbar"
             style={{ height: 200 >= 800 ? 'calc(100vh - 600px)' : 'calc(100vh - 400px)', minWidth: '300px' }}>
             <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
-                {props.missions.map((mission, index) =>
+                {missions.map((mission, index) =>
                     // <FormControlLabel control={}>
                     <MissionListItem key={index} mission={mission} />
                 )}
