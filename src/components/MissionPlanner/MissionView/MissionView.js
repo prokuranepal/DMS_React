@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
+import Modal from '@material-ui/core/Modal';
+import Fade from '@material-ui/core/Fade';
 import { makeStyles } from '@material-ui/core/styles';
 import { Map, TileLayer, Marker, Popup, Polyline, ZoomControl } from 'react-leaflet';
 import MissionData from './MissionData/MissionData';
+import MissionList from '../../MissionList/MissionList';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../../store/actions/mission';
 
@@ -17,30 +20,53 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
         height: '100%'
     },
+    paper: {
+        backgroundColor: '#343a40',
+        borderRadius: '10px',
+        padding: theme.spacing(1, 2, 1, 1),
+        color: 'white',
+        width: '320px'
+    },
+    modal: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 
 }));
 
-const missions = [
-];
+function getModalStyle() {
+    const top = 40;
+    const left = 0;
 
+    return {
+        top: `${top}%`,
+        left: `${left}%`,
+        transform: `translate(${top}%, -${left}%)`,
+    };
+}
 
 const MissionView = props => {
     const dispatch = useDispatch();
     const classes = useStyles();
+    const [modalStyle, setModalStyle] = React.useState(getModalStyle);
+    const [openMissionList, setOpenMissionList] = React.useState(false);
     const [draggable, setDraggable] = React.useState(false);
-    const [mission, setMission] = React.useState(missions);
     const [create, setCreate] = React.useState(false);
     const [currWaypointIndex, setCurrWaypointIndex] = React.useState(0);
+    const [action, setAction] = React.useState("create");
+    
     const openMissionDetail = useSelector(({ mission }) => mission.missionDetail);
     const state = {
         lat: 26.818123,
         lng: 87.281345,
         zoom: 17,
     }
-
+    const [initialMissionDetail, setInitialMissionDetail] = React.useState({ name: '', radius: null, speed: null, lastAction: 'rth', waypoints: [] });
     const [missionDetail, setMissionDetail] = React.useState({ name: '', radius: null, speed: null, lastAction: 'rth', waypoints: [] });
     const [currentWaypoint, setCurrentWaypoint] = React.useState({ altitude: null, radius: null, action: '', lat: null, lng: null })
 
+    //to update the localstate by the missionDetails sourced from server
     useEffect(() => {
         if (openMissionDetail !== null) {
             setMissionDetail(openMissionDetail);
@@ -48,11 +74,13 @@ const MissionView = props => {
         }
     }, [openMissionDetail]);
 
-    const toggleDraggable = () => {
-        setDraggable(!draggable);
-        // console.log(draggable, 'clicked');
-    }
+    //close the modal after choosing the mission
+    const handleCloseMission = () => {
+        setAction('create');
+        setOpenMissionList(false);
+    };
 
+    //callback function to update position after the marker is dragged
     const updatePosition = (event, index) => {
 
         if (event.target !== undefined && event.target !== null) {
@@ -65,6 +93,7 @@ const MissionView = props => {
         }
     }
 
+    //callback function for placing markers on the map and update the latitude and longitude of the waypoint
     const handleClick = (event) => {
 
         if (create) {
@@ -87,21 +116,25 @@ const MissionView = props => {
         }
     }
 
+    //on create mission
     const startMissionCreation = () => {
         setDraggable(true);
         setCreate(true);
+        setAction('create');
     }
 
-    const finishMission = () => {
-        setDraggable(false);
-        setCreate(false);
-    }
 
-    const createMission = () => {
+    //callback function for click on confirm button
+    const createUpdateMission = () => {
         console.log("Create Mission");
-        dispatch(actions.createMission(missionDetail));
+        setCreate(false);
+        setDraggable(false);
+        setMissionDetail(initialMissionDetail);
+        dispatch(actions.createUpdateMission(missionDetail,action));
+        setAction('create');
     }
 
+    //callback function for change in parameter of a particular waypoint provided by index
     const onChange = (event, key) => {
         console.log(event.target.value, key);
         console.log(currWaypointIndex);
@@ -117,6 +150,7 @@ const MissionView = props => {
 
     }
 
+    //callback function for updating the change in details other than waypoints
     const onChangeMission = (event, key) => {
         const m = {
             ...missionDetail,
@@ -126,18 +160,35 @@ const MissionView = props => {
 
     }
 
+    //callback function for click on a marker
     const onClick = (index) => {
         console.log("Marker Clicked", index);
         setCurrWaypointIndex(index);
     }
 
+    //open mission list in a modal
     const openMission = () => {
-        dispatch(actions.getMission());
+        setOpenMissionList(true);
+    }
+
+    //set the mission details and waypoints to intial value of empty
+    const onCancel = () => {
+        setAction('create');
+        setCreate(false);
+        setDraggable(false);
+        setMissionDetail(initialMissionDetail);
+    }
+
+    const selectMission = (missionId) => {
+        setAction('edit');
+        console.log(missionId);
+        dispatch(actions.getMission(missionId));
+        setOpenMissionList(false);
     }
     return (
         <Grid container className={classes.root}>
             <Grid item xs={3}>
-                <MissionData onChangeMission={onChangeMission} onChange={onChange} createMission={createMission} mission={missionDetail} waypoint={missionDetail.waypoints[currWaypointIndex]} onFinishMission={finishMission} onCreateMission={startMissionCreation} openMission={openMission} create={create} />
+                <MissionData action={action} onCancel={onCancel} onChangeMission={onChangeMission} onChange={onChange} createUpdateMission={createUpdateMission} mission={missionDetail} waypoint={missionDetail.waypoints[currWaypointIndex]} onCreateMission={startMissionCreation} openMission={openMission} create={create} />
             </Grid>
             <Grid item xs={9}>
                 <Map
@@ -155,7 +206,7 @@ const MissionView = props => {
                     {missionDetail !== null && missionDetail !== undefined ?
                         missionDetail.waypoints.map((miss, i, array) => {
                             // console.log(miss);
-                            return (<span key={i} onClick={toggleDraggable}><Marker
+                            return (<span key={i}><Marker
                                 draggable={draggable}
                                 onDragend={(event) => updatePosition(event, i)}
                                 position={[miss.lat, miss.lng]}
@@ -168,6 +219,7 @@ const MissionView = props => {
                                     </span>
                                 </Popup>
                             </Marker>
+                                {/* for lines between markers */}
                                 {array[i - 1] ? <Polyline weight={1} positions={[
                                     [array[i - 1].lat, array[i - 1].lng], [array[i].lat, array[i].lng],
                                 ]} color={'red'} /> : null}
@@ -181,6 +233,21 @@ const MissionView = props => {
                     <ZoomControl position="topright" />
                 </Map>
             </Grid>
+            <Modal
+                aria-labelledby="transition-modal-title"
+                aria-describedby="transition-modal-description"
+                className={classes.modal}
+                open={openMissionList}
+                onClose={handleCloseMission}
+                closeAfterTransition
+            >
+                <Fade in={openMissionList}>
+                    <div className={classes.paper} style={modalStyle}>
+                        <MissionList abort={handleCloseMission}  select={selectMission} />
+
+                    </div>
+                </Fade>
+            </Modal>
         </Grid>)
 }
 

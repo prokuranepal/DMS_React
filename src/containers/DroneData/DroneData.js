@@ -107,7 +107,7 @@ const DroneData = props => {
     const [droneInfo, setDroneInfo] = React.useState(null);
     const [style, setStyle] = React.useState(getModalStyle);
     const activeDrones = useSelector(({ droneControl }) => droneControl.activeDrones);
-    const missions = useSelector(({ droneControl }) => droneControl.missions);
+    
     const dispatch = useDispatch();
     const setData = (data) => {
         console.log(data);
@@ -122,7 +122,7 @@ const DroneData = props => {
     },[drone]);
 
     const handleOpenMission = () => {
-        dispatch(actions.fetchMissionList());
+        
         setOpenMissionList(true);
     };
 
@@ -213,7 +213,7 @@ const DroneData = props => {
             >
                 <Fade in={openMissionList}>
                     <div className={classes.paper} style={style}>
-                        <MissionList abort={handleCloseMission}  select={selectMission} missions={missions}/>
+                        <MissionList abort={handleCloseMission}  select={selectMission}/>
 
                     </div>
                 </Fade>

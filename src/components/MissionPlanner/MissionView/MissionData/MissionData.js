@@ -46,8 +46,6 @@ const useStyles = makeStyles((theme) => ({
     noWaypoint: {
         padding: '40px'
     }
-
-
 }));
 
 const CssTextField = withStyles({
@@ -102,11 +100,12 @@ const MissionData = props => {
     return (
         <div className={classes.root}>
             <CustomScrollbars className=" scrollbar">
+            {props.create ?null:
                 <div className={classes.buttons}>
                     <div><Button onClick={props.openMission} size="small" variant="contained" color="primary">Open</Button></div>
-                    <div> {props.create ? <Button onClick={props.onFinishMission} size="small" variant="contained" color="primary">Finish</Button>
-                        : <Button onClick={props.onCreateMission} size="small" variant="contained" color="primary">Create</Button>}</div>
-                </div>
+                    <div> 
+                        <Button onClick={props.onCreateMission} size="small" variant="contained" color="primary">Create</Button></div>
+                </div>}
                 {props.create ? <div><div className={classes.form}>
                     <div className={classes.inputContainer}><p>Edit Mission</p></div>
                     <form noValidate autoComplete="off">
@@ -158,8 +157,9 @@ const MissionData = props => {
                     </form>
                 </div>
                     <div className={classes.buttons}>
-                        <div><Button onClick={props.openMission} size="small" variant="contained" color="primary">Cancel</Button></div>
-                        <div><Button onClick={props.createMission} size="small" variant="contained" color="primary" disabled={props.mission.waypoints.length === 0}>Create</Button></div>
+                        <div><Button onClick={props.onCancel} size="small" variant="contained" color="primary">Cancel</Button></div>
+                        <div>{props.action === 'create'?<Button onClick={props.createUpdateMission} size="small" variant="contained" color="primary" disabled={props.mission.waypoints.length === 0}>Confirm</Button>:
+                            <Button onClick={props.createUpdateMission} size="small" variant="contained" color="primary" disabled={props.mission.waypoints.length === 0}>Update</Button>}</div>
                     </div>
                     <div className={classes.form}>
                         {props.mission.waypoints.length !== 0 ?
