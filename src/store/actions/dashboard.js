@@ -1,39 +1,56 @@
 // import axios from 'axios';
 
 import { GET_CARDS, CARD_ERROR } from './actionTypes';
+import * as axios1 from '../../response/falseFetch';
+import axios from '../../axios-orders';
+import * as actionTypes from './actionTypes';
+
+export const getToken = () => {
+    let token = localStorage.getItem("token");
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token
+    };
+    return headers;
+  };
 
 export const getCurrentCards = () => async dispatch => {
     try {
         // const res = await axios.get('api/dashboard');
-        const res = {
-            data: {
-                cards: {
-                    totalDrones: 4,
-                    flyingDrones: 3,
-                    totalDeliveries: 5,
-                    totalHealthPosts: 10,
-                    newRequest: 5
-                },
-                graphs: {
-                    cdc: [{ x: 10, y: 20 }, { x: 15, y: 10 }, { x: 20, y: 15 }],
-                    rhps: [
-                        [{ x: 10, y: 20 }, { x: 15, y: 10 }, { x: 20, y: 15 }],
-                        [{ x: 10, y: 20 }, { x: 15, y: 10 }, { x: 20, y: 15 }],
-                        [{ x: 10, y: 20 }, { x: 15, y: 10 }, { x: 20, y: 15 }]
-                    ]
-                }
-
-            }
-        }
-        dispatch({
-            type: GET_CARDS,
-            payload: res.data
+        // const url = './dashboardCardData';
+        const url = '/dashboard';
+        console.log(getToken());
+        axios.get(url,{headers: getToken()}).then(response => {
+            console.log(response);
+            dispatch({
+                type: GET_CARDS,
+                data: response.data
+            })
         })
+        
 
     } catch (error) {
         dispatch({
             type: CARD_ERROR,
-            payload: { msg: error.response.statusText, status: error.response.status }
+            // error: error.response.statusText, 
+            // status: error.response.status 
+            error: "data not found"
         })
+    }
+}
+
+export const getPlaces = () => {
+    return dispatch => {
+        const url = './places.js';
+        axios1.get(url).then(response => {
+            dispatch(setPlaces(response.placesResponse));
+        })
+    }
+}
+
+export const setPlaces = (places) => {
+    return {
+        type: actionTypes.SET_PLACES,
+        places: places
     }
 }
