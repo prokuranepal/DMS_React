@@ -20,8 +20,11 @@ const Dashboard = (props) => {
         dispatch(actions.getCurrentCards());
         dispatch(actions.getPlaces());
     }, [])
-
+    const date = new Date();
+    const year = date.getFullYear();
+    console.log(year);
     const { cardData, loading, graphs } = useSelector(({ dashboard }) => dashboard);
+
     const card = cardData !== null ? cards.data.map((data, index) => {
         return (
             <Grid item lg={3} md={3} xs={6} key={index}>
@@ -29,7 +32,7 @@ const Dashboard = (props) => {
             </Grid>
         )
     }) : null;
-
+    // console.log(graphs);
     // console.log("Reducer",sidechartdata);
     // console.log("Import", sideChartData);
     return (
@@ -50,15 +53,18 @@ const Dashboard = (props) => {
                                 <Grid container>
                                     <Grid item md={8} xs={12}>
                                         <CardBox heading="Sunsari District Hospital" styleName="col-12">
-                                            {(loading || graphs === null || graphs.hospital === null)
-                                                ? <Spinner /> : <LineChartMain data={graphs.hospital} height={300} />}
+                                            {(loading || graphs === null || graphs.hospital === undefined || graphs.healthPosts === undefined)
+                                                ? <Spinner /> : <LineChartMain data={graphs.hospital[year]} height={300} />}
                                         </CardBox>
                                     </Grid>
                                     <Hidden only="sm">
+                                       
                                         {(loading || graphs === null || graphs.healthPosts === null)
                                             ? <Spinner /> : <Grid item md={4}>
+                    
                                                 {graphs.healthPosts.map((healthPost, index) => {
                                                     return <div className="col-12" key={index}>
+                                                        {/* { console.log(Object.values(healthPost.data[year]))} */}
                                                         <ChartCard styleName="bg-gradient-primary text-white">
                                                             <div className="chart-title">
                                                                 <h2 className="mb-1">{healthPost.name}</h2>
@@ -66,8 +72,8 @@ const Dashboard = (props) => {
                                                             </div>
                                                             <ResponsiveContainer width="100%" height={90}>
                                                                 <CustomLineChart
-                                                                    chartData={Object.values(healthPost.data)}
-                                                                    labels={Object.keys(healthPost.data)}
+                                                                    chartData={Object.values(healthPost.data[year])}
+                                                                    labels={Object.keys(healthPost.data[year])}
                                                                     borderColor="#FFF"
                                                                     pointBorderColor="#FFF"
                                                                     pointBackgroundColor="#FF9800"

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { signIn, resetPassword } from '../../store/actions/auth';
+import { signIn, resetPassword, signUp } from '../../store/actions/auth';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -54,8 +54,9 @@ const SignIn = (props) => {
         },
     }));
 
-    const [email, setEmail] = useState('demo@example.com');
-    const [password, setPassword] = useState('demo#123');
+    const [isSignIn, setIsSignIn] = useState(true);
+    const [email, setEmail] = useState('9840016544');
+    const [password, setPassword] = useState('sushil');
     const dispatch = useDispatch();
     const token = useSelector(({ auth }) => auth.token);
     const errorMessage = useSelector(({ auth }) => auth.error);
@@ -67,6 +68,14 @@ const SignIn = (props) => {
         }
     }, [token]);
 
+
+    const signInUp = () => {
+        if(isSignIn) {
+            dispatch(signIn(email, password));
+        } else {
+            dispatch(signUp(email, password));
+        }
+    }
     return (
         <Grid container component="main" className={classes.root}>
             <CssBaseline />
@@ -115,7 +124,7 @@ const SignIn = (props) => {
                         <Button
                             onClick={(event) => {
                                 event.preventDefault();
-                                dispatch(signIn({ email, password }))
+                                signInUp();
                             }}
                             type="submit"
                             fullWidth
@@ -124,6 +133,19 @@ const SignIn = (props) => {
                             className={classes.submit}
                         >
                             Sign In
+                            </Button>
+                            <Button
+                            onClick={(event) => {
+                                event.preventDefault();
+                                
+                            }}
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                        >
+                            Switch to Sign Up
                             </Button>
                         <Grid container>
                             <Grid item xs>

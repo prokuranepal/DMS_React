@@ -1,17 +1,30 @@
 // import axios from 'axios';
 
 import { GET_CARDS, CARD_ERROR } from './actionTypes';
-import * as axios from '../../response/falseFetch';
+import * as axios1 from '../../response/falseFetch';
+import axios from '../../axios-orders';
 import * as actionTypes from './actionTypes';
+
+export const getToken = () => {
+    let token = localStorage.getItem("token");
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token
+    };
+    return headers;
+  };
+
 export const getCurrentCards = () => async dispatch => {
     try {
         // const res = await axios.get('api/dashboard');
-        const url = './dashboardCardData';
-        axios.get(url).then(response => {
-            // console.log(response);
+        // const url = './dashboardCardData';
+        const url = '/dashboard';
+        console.log(getToken());
+        axios.get(url,{headers: getToken()}).then(response => {
+            console.log(response);
             dispatch({
                 type: GET_CARDS,
-                data: response.dashboardData
+                data: response.data
             })
         })
         
@@ -29,7 +42,7 @@ export const getCurrentCards = () => async dispatch => {
 export const getPlaces = () => {
     return dispatch => {
         const url = './places.js';
-        axios.get(url).then(response => {
+        axios1.get(url).then(response => {
             dispatch(setPlaces(response.placesResponse));
         })
     }
