@@ -3,19 +3,19 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import IntlMessages from '../../util/IntlMessages';
 
+export const options = [
+  // <IntlMessages id="popup.updateData"/>,
+  // <IntlMessages id="popup.detailedLog"/>,
+  // <IntlMessages id="popup.statistics"/>,
+  // <IntlMessages id="popup.clearData"/>
+  "Update Data",
+  "Detailed Log"
+];
 const CardMenu = (props) => {
 
-  const options = [
-    // <IntlMessages id="popup.updateData"/>,
-    // <IntlMessages id="popup.detailedLog"/>,
-    // <IntlMessages id="popup.statistics"/>,
-    // <IntlMessages id="popup.clearData"/>
-    "Update Data",
-    "Detailed Log"
-  ];
   const {menuState, anchorEl, handleRequestClose} = props;
   return (
-    <Menu id="long-menu"
+    <Menu id="long-menu" data-test="Menu-component"
           anchorEl={anchorEl}
           open={menuState}
           onClose={handleRequestClose}
@@ -28,7 +28,7 @@ const CardMenu = (props) => {
             },
           }}>
       {options.map(option =>
-        <MenuItem key={option} onClick={() => handleRequestClose(option)}>
+        <MenuItem key={option} data-tests={option} onClick={() => handleRequestClose(option)} data-test="MenuItem-component">
           {option}
         </MenuItem>,
       )}

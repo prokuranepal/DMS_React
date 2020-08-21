@@ -1,7 +1,7 @@
 import React from 'react';
 import PostBoxes from "./PostBoxes";
 import {post} from "./data";
-import CardLayout from "components/CardLayout";
+import CardLayout from "../../CardLayout";
 
 const ListCard = () => {
   return (
