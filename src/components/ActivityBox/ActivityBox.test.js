@@ -21,14 +21,14 @@ configure({
 */
 
 const setup = (props = {}, state = null) => {
-    return shallow( < ActivityBox /
+    return shallow( < ActivityBox {...props}  /
         >
     )
 }
 
-test_function(["ActivityBox", 0], ["renders correctly", "renders the length of component"], [ < ActivityBox / > , < div / > ])
+ {/* test_function(["ActivityBox", 0], ["renders correctly", "renders the length of component"], [ < ActivityBox visit={3} newVisit={1}/ > , < div / > ]) */}
 it("number of div children", () => {
     let wrapper = setup();
     const children = wrapper.find('div')
-    expect(children).toHaveLength(10);
+    expect(children).toHaveLength(1);
 })
