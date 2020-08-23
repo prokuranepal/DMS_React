@@ -95,7 +95,7 @@ const CustomLineChart = (props) => {
   };
 
   return (
-    <Line data={data} options={options} height={height}/>
+    <Line data={data} options={options} height={height} data-test="line-component"/>
   );
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import ChatUserList from './index';
+import ContactCard from './index';
 import {
     configure,
     mount,
@@ -31,7 +31,7 @@ const dummy_data=[{
   }]
 
 const setup = (props = {}) => {
-    return mount( < ChatUserList {...props}  />
+    return mount( < ContactCard {...props}  />
     )
 }
 
@@ -40,21 +40,21 @@ const findByTestAttr=(wrapper, val)=>{
 }
 
 
-it("ChatUserList",()=>{
-    const wrapper= setup({chatUsers:dummy_data, selectedSectionId:2, onSelectUser:function_click});
+it("ContactCard",()=>{
+    const wrapper= setup({chatUsers:dummy_data, onSelectUser:function_click});
     expect(wrapper).toMatchSnapshot();
 })
 {/* it("Custom Scrollable render", () => {
         let wrapper = setup(dummy_data);
         // expect(wrapper).toMatchSnapshot();
 }) */}
-it("Props and clicks for each component of ChatUserList", () => {
+it("Props and clicks for each component of ContactCard", () => {
     let arr= [];
 
     Object.keys(dummy_data).forEach(function(key) {
         arr.push(dummy_data[key].id);
     })
-    let props={chatUsers:dummy_data, selectedSectionId:2, onSelectUser:function_click};
+    let props={chatUsers:dummy_data, onSelectUser:function_click};
     const wrapper= setup(props);
 
     expect(wrapper.props()).toEqual(props)
@@ -64,7 +64,7 @@ it("Props and clicks for each component of ChatUserList", () => {
         expect(userCell).toHaveLength(1)
         const userCellMounted = findByTestAttr(wrapper, `usercell-componentmounted${component}`);
 
-        expect(userCell.props()).toEqual({chat: current_data[0], selectedSectionId:props.selectedSectionId, onSelectUser:props.onSelectUser,"data-test": `usercell-component${component}`})
+        expect(userCell.props()).toEqual({chat: current_data[0], selectedSectionId:props.selectedSectionId, onSelectUser:props.onSelectUser,"data-test": `usercell-component${component}`, "identifier":component})
         userCellMounted.simulate('click')
          wrapper.update();
         expect(function_click).toHaveBeenCalledTimes(index+1)
