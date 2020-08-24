@@ -7,7 +7,7 @@ const UserList = ({users}) => {
     <div className="pt-2">
       {users.map((user, index) => {
         return (
-          <UserCell key={user.id + index} user={user}/>
+          <UserCell key={user.id + index} user={user} data-test="user-component"/>
         );
       })}
     </div>

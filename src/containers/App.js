@@ -42,14 +42,12 @@ const App = (props) => {
 
   useEffect(() => {
     window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
-    console.log(location.pathname);
     // if (initURL === '') {
     //   dispatch(authActions.setInitURL(props.history.location.pathname));
     // }
 
     const tryLogin = async () => {
   
-      console.log("Start up screen", token);
       if (token === undefined || token === null || token === "undefined") {
         dispatch(authActions.setInitURL('/signin'));
         // return (<Redirect to={'/signin'} />)
@@ -84,7 +82,6 @@ const App = (props) => {
     }
   }
   const currentAppLocale = AppLocale[locale.locale];
-  console.log("in indexf file", match.url)
   return (
     <ThemeProvider theme={applyTheme}>
       <MuiPickersUtilsProvider utils={MomentUtils}>

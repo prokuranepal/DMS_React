@@ -11,12 +11,12 @@ const ProjectsCell = ({data}) => {
       key={'projects-' + id}>
 
       <td className="max-width-100">
-        <p className="text-truncate mb-0">{name}</p>
+        <p className="text-truncate mb-0" data-test="name-component">{name}</p>
       </td>
 
-      <td className="text-nowrap">{date}</td>
+      <td className="text-nowrap" data-test="date-component">{date}</td>
       <td>
-        <Badge className="d-block" color={color}>{status}</Badge>
+        <Badge className="d-block" color={color} data-test="badge-component">{status}</Badge>
       </td>
       <td className="text-right">
         <IconButton className="icon-btn text-light p-1"><i className="zmdi zmdi-more-vert text-grey"/></IconButton>

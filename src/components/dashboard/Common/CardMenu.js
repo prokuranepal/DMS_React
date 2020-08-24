@@ -3,14 +3,15 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import IntlMessages from '../../../util/IntlMessages';
 
+export const options = [
+  <IntlMessages id="popup.updateData"/>,
+  <IntlMessages id="popup.detailedLog"/>,
+  <IntlMessages id="popup.statistics"/>,
+  <IntlMessages id="popup.clearData"/>
+];
 const CardMenu = (props) => {
 
-  const options = [
-    <IntlMessages id="popup.updateData"/>,
-    <IntlMessages id="popup.detailedLog"/>,
-    <IntlMessages id="popup.statistics"/>,
-    <IntlMessages id="popup.clearData"/>
-  ];
+
   const {menuState, anchorEl, handleRequestClose} = props;
   return (
     <Menu id="long-menu"
@@ -24,9 +25,9 @@ const CardMenu = (props) => {
               paddingTop: 0,
               paddingBottom: 0
             },
-          }}>
-      {options.map(option =>
-        <MenuItem key={option} onClick={handleRequestClose}>
+          }} data-test="container-component">
+      {options.map((option,index) =>
+        <MenuItem key={option} onClick={handleRequestClose} data-test={`menu-component${index}`}>
           {option}
         </MenuItem>,
       )}

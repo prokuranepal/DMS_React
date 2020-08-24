@@ -9,7 +9,6 @@ import EnzymeAdapter from 'enzyme-adapter-react-16';
 configure({
     adapter: new EnzymeAdapter
 })
-const function_click=jest.fn()
 
 const setup = (props = {}) => {
     return shallow( < ChartCard
