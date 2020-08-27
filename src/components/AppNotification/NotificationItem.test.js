@@ -5,7 +5,6 @@ import {
     shallow
 } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
-import {notifications} from './data'
 // JestHook.mock('expo-font');
 configure({
     adapter: new EnzymeAdapter
@@ -27,9 +26,7 @@ const dummy_data={
   }
 
 const setup = (props = {}) => {
-    return shallow( < NotificationItem {...props}  /
-        >
-    )
+    return shallow( < NotificationItem {...props}  />)
 }
 
 const findByTestAttr=(wrapper, val)=>{
