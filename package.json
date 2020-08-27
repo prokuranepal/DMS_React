@@ -2,6 +2,9 @@
   "name": "dms_frontend",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "10.15.3"
+  },
   "dependencies": {
     "@amcharts/amcharts4": "^4.7.18",
     "@amcharts/amcharts4-geodata": "^4.1.9",
@@ -97,7 +100,8 @@
     "slick-carousel": "^1.8.1",
     "socket.io-client": "^2.3.0",
     "typeface-roboto": "^0.0.75",
-    "url-search-params": "^1.1.0"
+    "url-search-params": "^1.1.0",
+    "uuid": "^8.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
