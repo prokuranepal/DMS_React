@@ -21,7 +21,7 @@ script:
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-  - COVERALLS_REPO_TOKEN=$coveralls_repo_token npm run coveralls
+  # - COVERALLS_REPO_TOKEN=$coveralls_repo_token npm run coveralls
 
 
 # language: node_js
