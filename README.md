@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/prokuranepal/DMS_React.svg?branch=master)](https://travis-ci.org/prokuranepal/DMS_React)
-[![Coverage Status](https://coveralls.io/repos/github/prokuranepal/DMS_React/badge.svg?branch=master)](https://coveralls.io/github/prokuranepal/DMS_React?branch=master)
+<a href="https://codeclimate.com/github/prokuranepal/DMS_React/maintainability"><img src="https://api.codeclimate.com/v1/badges/553878ae61bbf54daed8/maintainability" /></a>
+<a href="https://codeclimate.com/github/prokuranepal/DMS_React/test_coverage"><img src="https://api.codeclimate.com/v1/badges/553878ae61bbf54daed8/test_coverage" /></a>
 
 #### Drone Monitoring and Management System
 
