@@ -10,12 +10,12 @@ import { IntlProvider } from "react-intl";
 import "../assets/vendors/style";
 import indigoTheme from "./themes/indigoTheme";
 import AppLocale from "../lngProvider";
-import SignIn from "./SignIn";
-import SignUp from "./SignUp";
+// import SignIn from "./SignIn";
+// import SignUp from "./SignUp";
 // import { setInitUrl } from "../store/actions/Auth";
 import { setDarkTheme, setThemeColor } from "../store/actions/Setting";
 import AppLayout from "./AppLayout";
-// import SignIn from './Auth/Auth';
+import SignIn from './Auth/Auth';
 import * as authActions from '../store/actions/auth';
 
 const RestrictedRoute = ({ component: Component, token, ...rest }) =>
