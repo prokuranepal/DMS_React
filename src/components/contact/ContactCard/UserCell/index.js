@@ -1,10 +1,10 @@
 import React from 'react';
 
-const UserCell = ({chat, onSelectUser}) => {
+const UserCell = ({identifier,chat, onSelectUser}) => {
   return (
     <div className="row " onClick={() => {
-      onSelectUser(chat);
-    }}>
+      onSelectUser(chat); 
+    }} data-test={`usercell-componentmounted${identifier}`}>
 
       <div className="col-auto ">
         <img src={chat.thumb} className="rounded-circle size-40" alt={chat.name}/>

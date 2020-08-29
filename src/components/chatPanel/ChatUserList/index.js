@@ -5,7 +5,7 @@ const ChatUserList = ({chatUsers, selectedSectionId, onSelectUser}) => {
   return (
     <div className="chat-user">
       {chatUsers.map((chat, index) =>
-        <UserCell key={index} chat={chat} selectedSectionId={selectedSectionId} onSelectUser={onSelectUser}/>
+        <UserCell key={index} chat={chat} selectedSectionId={selectedSectionId} onSelectUser={onSelectUser} data-test={`usercell-component${index}`}/>
       )}
     </div>
   )

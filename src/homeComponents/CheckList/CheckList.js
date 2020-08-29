@@ -28,22 +28,24 @@ const useStyles = makeStyles((theme) => ({
     }
 
 }));
-const CheckList = (props) => {
+
+export const checks1 = [{
+    name: 'Permission',
+    value: false
+},
+{
+    name: 'RTH',
+    value: false
+},{
+    name: 'Calibration',
+    value: false
+},{
+    name: 'Battery Level',
+    value: false
+}];
+ const CheckList = (props) => {
     const classes = useStyles();
-    const checks1 = [{
-        name: 'Permission',
-        value: false
-    },
-    {
-        name: 'RTH',
-        value: false
-    },{
-        name: 'Calibration',
-        value: false
-    },{
-        name: 'Battery Level',
-        value: false
-    }];
+   
     const [checks, setChecks] = React.useState(checks1);
 
     const handleOnChange = (event, index) => {
@@ -56,18 +58,18 @@ const CheckList = (props) => {
     };
     return (
         // <div className="module-list mail-list">
-        <FormControl component="fieldset">
+        <FormControl component="fieldset" data-test="container-component">
             <p className={classes.header}>CheckList</p>
         <CustomScrollbars className="module-list-scroll scrollbar"
             style={{ height: 200 >= 800 ? 'calc(100vh - 800px)' : 'calc(100vh - 450px)', minWidth: '300px' }}>
                 {checks.map((check, index) =>
                     // <FormControlLabel control={}>
-                    <CheckListItem key={index}name={check.name} checked={check.value} onChange={(event) => handleOnChange(event, index)}/>
-                )}
+                    <CheckListItem key={index} name={check.name} checked={check.value} onChange={(event) => handleOnChange(event, index)} data-test={`checklist-component${index}`}/>
+                )} 
            
         </CustomScrollbars>
         <div className={classes.buttonLayout}>
-                        <Button variant="outlined" onClick={props.abort}>Abort</Button>
+                        <Button variant="outlined" onClick={props.abort } data-test="abort-component">Abort</Button>
                         <Button variant="outlined" className={classes.button}>Execute</Button>
                         </div>
         </FormControl>

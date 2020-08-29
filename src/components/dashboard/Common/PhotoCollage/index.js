@@ -12,10 +12,10 @@ const PhotoCollage = () => {
 
       <ul className="list-inline thumbnail-list">
         {gallery.map((image, index) => (
-          <li key={index} className="thumbnail-item">
+          <li key={index} className="thumbnail-item" data-test="container-component">
             <div className="grid-thumb-equal">
               <span className="grid-thumb-cover jr-link">
-                <img alt={image.title} src={image.img}/>
+                <img alt={image.title} src={image.img} data-test={`image-component${index}`}/>
               </span>
             </div>
           </li>

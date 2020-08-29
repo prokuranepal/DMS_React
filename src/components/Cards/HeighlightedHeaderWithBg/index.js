@@ -1,5 +1,5 @@
 import React from 'react';
-import CardLayout from "components/CardLayout";
+import CardLayout from "../../CardLayout";
 
 
 const HeighlightedHeaderWithBgCard = () => {

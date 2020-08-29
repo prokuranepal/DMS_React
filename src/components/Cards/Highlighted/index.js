@@ -1,5 +1,5 @@
 import React from 'react';
-import CardLayout from 'components/CardLayout';
+import CardLayout from '../../CardLayout';
 
 const HighlightedHeader = () => {
   return (
@@ -18,6 +18,6 @@ const HighlightedHeader = () => {
       </div>
     </CardLayout>
   );
-};
+}
 
 export default HighlightedHeader;

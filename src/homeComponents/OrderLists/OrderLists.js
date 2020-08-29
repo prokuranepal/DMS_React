@@ -19,12 +19,12 @@ const useStyles = makeStyles((theme) => ({
 
 let counter = 0;
 
-function createData(orderId, name, image, orderDate, deliveryDate,from, status) {
+export function createData(orderId, name, image, orderDate, deliveryDate,from, status) {
     counter += 1;
     return { id: counter, orderId, name, image, orderDate, deliveryDate, from, status };
 }
 
-const data = [
+export const data = [
     createData('23545', 'Sardu Health Post', "https://via.placeholder.com/150x150", '25 Oct, 19:00', '', 'Chare Vanjyang', 'In Progress'),
     createData('23653', 'Koshi Health Post', "https://via.placeholder.com/150x150", '28 Oct, 19:00', '28 Oct, 19:50','Tapu', 'Completed'),
     createData('24567', 'Panmara Health Post', "https://via.placeholder.com/150x150", '5 Nov, 19:00', '5 Nov, 19:50', 'Panmara','Completed'),
@@ -63,7 +63,7 @@ const OrderTable = () => {
                             {data.map(data => {
                                 return (
                                     
-                                    <OrderList key={data.id} data={data} />
+                                    <OrderList key={data.id} data={data} data-test="orderlist-component"/>
                                     
                                 );
                             })}

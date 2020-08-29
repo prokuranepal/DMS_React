@@ -10,6 +10,7 @@ const UserCell = ({user}) => {
         alt={title}
         src={image}
         className="user-avatar-lg"
+        data-test="avatar-component"
       />
       <div className="user-detail">
         <span className="jr-fs-11 text-light text-uppercase">{title}</span>

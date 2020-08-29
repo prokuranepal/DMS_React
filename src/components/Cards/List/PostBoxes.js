@@ -11,7 +11,7 @@ const PostBox = ({post}) => {
       <div className="post-content ">
         <h4 className="title"><a className="jr-link">{title}</a></h4>
         <small className="text-muted">{date}</small>
-        <p className="text-truncate">{description}</p>
+        <p className="text-truncate" data-test="p-component">{description}</p>
       </div>
     </li>
 

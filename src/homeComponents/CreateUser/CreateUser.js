@@ -99,7 +99,7 @@ const CreateUser = ({history, createUser1, createUser2}) => {
 
     const classes = useStyles();
     return (
-            <div className = {classes.root}>
+            <div className = {classes.root} data-test="container-component">
                 <Grid container className = {classes.users}>
                     <Paper className={classes.layout}>
                     

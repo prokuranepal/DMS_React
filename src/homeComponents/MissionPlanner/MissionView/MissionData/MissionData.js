@@ -101,12 +101,12 @@ const MissionData = props => {
         <div className={classes.root}>
             <CustomScrollbars className=" scrollbar">
             {props.create ?null:
-                <div className={classes.buttons}>
-                    <div><Button onClick={props.openMission} size="small" variant="contained" color="primary">Open</Button></div>
+                <div className={classes.buttons} data-test="create-components">
+                    <div><Button onClick={props.openMission} size="small" variant="contained" color="primary" data-test="open-mission-button">Open</Button></div>
                     <div> 
-                        <Button onClick={props.onCreateMission} size="small" variant="contained" color="primary">Create</Button></div>
+                        <Button onClick={props.onCreateMission} size="small" variant="contained" color="primary" data-test="create-mission-button">Create</Button></div>
                 </div>}
-                {props.create ? <div><div className={classes.form}>
+                {props.create ? <div data-test="created-components"><div className={classes.form}>
                     <div className={classes.inputContainer}><p>Edit Mission</p></div>
                     <form noValidate autoComplete="off">
                         <div className={classes.inputContainer}>
@@ -118,6 +118,7 @@ const MissionData = props => {
                                 label="Mission Name"
                                 value={props.mission.name}
                                 onChange={(event) => props.onChangeMission(event,'name')}
+                                data-test="mission-name"
                             />
                         </div>
                         <div className={classes.inputContainer}>
@@ -128,6 +129,8 @@ const MissionData = props => {
                                 value={props.mission.speed}
                                 variant="outlined"
                                 onChange={(event) => props.onChangeMission(event,'speed')}
+                                data-test="mission-speed"
+
                             />
                         </div>
                         <div className={classes.inputContainer}>
@@ -138,6 +141,7 @@ const MissionData = props => {
                                 value={props.mission.radius}
                                 variant="outlined"
                                 onChange={(event) => props.onChangeMission(event,'radius')}
+                                data-test="mission-radius"
                             />
                         </div>
                         <div className={classes.inputContainer}>
@@ -148,6 +152,7 @@ const MissionData = props => {
                                 value={props.mission.home}
                                 variant="outlined"
                                 onChange={(event) => props.onChangeMission(event,'home')}
+                                data-test="mission-home"
                             />
                         </div>
                         <div className={classes.inputContainer}>
@@ -158,18 +163,19 @@ const MissionData = props => {
                                 value={props.mission.destination}
                                 variant="outlined"
                                 onChange={(event) => props.onChangeMission(event,'destination')}
+                                data-test="mission-destination"
                             />
                         </div>
                     </form>
                 </div>
                     <div className={classes.buttons}>
-                        <div><Button onClick={props.onCancel} size="small" variant="contained" color="primary">Cancel</Button></div>
-                        <div>{props.action === 'create'?<Button onClick={props.createUpdateMission} size="small" variant="contained" color="primary" disabled={props.mission.waypoints.length === 0}>Confirm</Button>:
-                            <Button onClick={props.createUpdateMission} size="small" variant="contained" color="primary" disabled={props.mission.waypoints.length === 0}>Update</Button>}</div>
+                        <div><Button onClick={props.onCancel} size="small" variant="contained" color="primary" data-test="cancel-button">Cancel</Button></div>
+                        <div>{props.action === 'create'?<Button onClick={props.createUpdateMission} data-test="create-confirm-button" size="small" variant="contained" color="primary" disabled={props.mission.waypoints.length === 0}>Confirm</Button>:
+                            <Button onClick={props.createUpdateMission} data-test="create-update-button"size="small" variant="contained" color="primary" disabled={props.mission.waypoints.length === 0}>Update</Button>}</div>
                     </div>
                     <div className={classes.form}>
                         {props.mission.waypoints.length !== 0 ?
-                            <div><div className={classes.inputContainer}><p>Waypoint</p></div>
+                            <div data-test="mission-waypoints-components"><div className={classes.inputContainer}><p>Waypoint</p></div>
                                 <form noValidate autoComplete="off">
 
 
@@ -181,6 +187,7 @@ const MissionData = props => {
                                             value={props.waypoint.altitude}
                                             variant="outlined"
                                             onChange={(event) => props.onChange(event, 'altitude')}
+                                            data-test="waypoint-altitude"
                                         />
                                     </div>
                                     <div className={classes.inputContainer}>
@@ -191,6 +198,7 @@ const MissionData = props => {
                                             variant="outlined"
                                             value={props.waypoint.radius}
                                             onChange={(event) => props.onChange(event, 'radius')}
+                                            data-test="waypoint-radius"
                                         />
                                     </div>
                                     <div className={classes.inputContainer}>
@@ -202,6 +210,7 @@ const MissionData = props => {
                                             style={{ width: '60%' }}
                                             value={props.waypoint.action}
                                             onChange={(event) => props.onChange(event, 'action')}
+                                            data-test="waypoint-action"
                                         >
                                             <option value={''}></option>
                                             <option value={'waypoint'}>Waypoint</option>
@@ -218,6 +227,7 @@ const MissionData = props => {
                                             size="small"
                                             value={props.waypoint.lat}
                                             variant="outlined"
+                                            data-test="waypoint-lat"
                                         />
                                     </div>
                                     <div className={classes.inputLatLng}>
@@ -227,11 +237,12 @@ const MissionData = props => {
                                             size="small"
                                             value={props.waypoint.lng}
                                             variant="outlined"
+                                            data-test="waypoint-lng"
 
                                         />
                                     </div>
                                 </form></div>:
-                        <div className={classes.noWaypoint}><h3>No Waypoints</h3></div>}
+                        <div className={classes.noWaypoint} data-test="no-waypoints-components"><h3>No Waypoints</h3></div>}
                 </div></div> : null}
             </CustomScrollbars>
                 </div>

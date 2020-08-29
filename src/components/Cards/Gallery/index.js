@@ -2,7 +2,7 @@ import React from 'react';
 import gallery from "./galleryData";
 
 
-const GalleryCard = () => {
+const GalleryCard1 = () => {
   return (
     <div className="jambo-card" style={{width: 400}}>
       <div className="card-primary-title">
@@ -23,4 +23,4 @@ const GalleryCard = () => {
   );
 }
 
-export default GalleryCard;
+export default GalleryCard1;
