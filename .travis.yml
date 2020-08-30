@@ -5,7 +5,7 @@ env:
     - CC_TEST_REPORTER_ID=19bd0503e6a203cc0df5e353251ded94a58b6a57d389666378b939cae2daa4b0
 language: node_js
 node_js:
-  - "10.16.0"
+  - "stable"
 cache:
   directories:
     - node_modules
