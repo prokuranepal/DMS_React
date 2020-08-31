@@ -5,7 +5,7 @@ import Avatar from '@material-ui/core/Avatar';
 const RecentActivities = ({recentData}) => {
   const {image, title, description, date, color} = recentData;
   return (
-    <div className="media social-list-line">
+    <div className="media social-list-line" data-test="activity-component" >
       <Avatar className={`${color} z-index-20 size-40 align-item-self mr-3`}>
         <i className={`zmdi zmdi-${image} text-white`}/>
       </Avatar>

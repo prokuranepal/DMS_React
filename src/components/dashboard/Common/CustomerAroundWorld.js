@@ -1,6 +1,7 @@
 import React from 'react';
 import {Area, AreaChart, ResponsiveContainer} from 'recharts';
-import {chartData, countryList1, countryList2} from "../../../app/routes/dashboard/routes/data";
+// import {chartData, countryList1, countryList2} from "../../../app/routes/dashboard/routes/data"; //no such file available so changed
+import {chartData, countryList1, countryList2} from "./country_routes";
 import CountryListItem from "./CountryListItem";
 
 const CustomerAroundWorld = () => {
@@ -21,17 +22,17 @@ const CustomerAroundWorld = () => {
         <div className="col-lg-8 col-12">
           <div className="row">
             <div className="col-sm-6 col-12">
-              {countryList1.map((country, index) => <CountryListItem key={index} country={country}/>)}
+              {countryList1.map((country, index) => <CountryListItem key={index} country={country} data-test={`countrylist-comp`} />)}
             </div>
             <div className="col-sm-6 col-12 mb-5 mb-md-1">
-              {countryList2.map((country, index) => <CountryListItem key={index} country={country}/>)}
+              {countryList2.map((country, index) => <CountryListItem key={index} country={country}data-test={`countrylist-comp`}  />)}
             </div>
           </div>
         </div>
 
         <div className="col-lg-4 col-12">
           <ResponsiveContainer width="100%" height={150}>
-            <AreaChart data={chartData}>
+            <AreaChart data={chartData} data-test="chart-component">
               <Area type="monotone" dataKey="pv" stroke="rgba(255,255,255,0.5)"
                     fillOpacity={.8}
                     fill="#3367d6"/>

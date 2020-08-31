@@ -14,6 +14,7 @@ const UserDetailCell = ({data}) => {
             alt={name}
             src={image}
             className="user-avatar mr-2"
+            data-test="avatar-component"
           />
           <div className="user-detail">
             <h5 className="user-name text-capitalize">{name}</h5>

@@ -8,7 +8,7 @@ const MarketingTable = ({data}) => {
         <tbody>
         {data.map(data => {
           return (
-            <MarketingTableCell key={data.id} data={data}/>
+            <MarketingTableCell key={data.id} data={data} data-test="marketing-component"/>
           );
         })}
         </tbody>
