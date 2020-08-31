@@ -32,6 +32,14 @@ const RestrictedRoute = ({ component: Component, token, ...rest }) =>
         />}
   />;
 
+  /**
+ * Landing page on the screen
+ * Depending upon authentication directs to login screen or dashboard
+ *
+ * @param {Default} props - Receives navigation/router params.
+ * @returns {Dashboard/Login} - It routes to login or dashboard depending upon authentication
+ */
+
 const App = (props) => {
   const dispatch = useDispatch();
   const [redirectTo, setRedirectTo] = useState();
