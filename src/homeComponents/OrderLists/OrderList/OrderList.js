@@ -47,7 +47,7 @@ const OrderTableCell = (props) => {
         {/* <div className="user-profile d-flex flex-row align-items-center">
           
           <div className="user-detail">
-            <h5 className="user-name">{name} </h5>
+            <h5 className="user-name" data-test="username-component">{name}</h5>
           </div>
         </div> */}
       </td>
@@ -56,12 +56,12 @@ const OrderTableCell = (props) => {
       <td>{deliveryDate}</td>
       
       <td className="status-cell text-right">
-        <div className={` badge text-uppercase ${statusStyle}`}>{status}</div>
+        <div className={` badge text-uppercase ${statusStyle}` } data-test= "status-component">{status}</div>
       </td>
       <td className="text-right">
-        <IconButton onClick={onOptionMenuSelect}>
+        <IconButton onClick={onOptionMenuSelect} data-test= "iconbutton-component">
           <i className="zmdi zmdi-more-vert" /></IconButton>
-        <CardMenu menuState={menuState} anchorEl={anchorE1}
+        <CardMenu menuState={menuState} anchorEl={anchorE1} data-test= "cardmenu-component"
           handleRequestClose={(event) => handleRequestClose(event, orderId)} />
       </td>
     </tr>

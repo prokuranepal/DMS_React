@@ -193,7 +193,7 @@ const MissionData = props => {
                     </div>
                     <div className={classes.form}>
                         {props.mission.waypoints.length !== 0 ?
-                            <div><div className={classes.inputContainer}><p>Waypoint</p></div>
+                            <div data-test="mission-waypoints-components"><div className={classes.inputContainer}><p>Waypoint</p></div>
                                 <form noValidate autoComplete="off">
 
 
@@ -205,6 +205,7 @@ const MissionData = props => {
                                             value={props.waypoint.altitude}
                                             variant="outlined"
                                             onChange={(event) => props.onChange(event, 'altitude')}
+                                            data-test="waypoint-altitude"
                                         />
                                     </div>
                                     <div className={classes.inputContainer}>
@@ -215,6 +216,7 @@ const MissionData = props => {
                                             variant="outlined"
                                             value={props.waypoint.radius}
                                             onChange={(event) => props.onChange(event, 'radius')}
+                                            data-test="waypoint-radius"
                                         />
                                     </div>
                                     <div className={classes.inputContainer}>
@@ -226,6 +228,7 @@ const MissionData = props => {
                                             style={{ width: '60%' }}
                                             value={props.waypoint.action}
                                             onChange={(event) => props.onChange(event, 'action')}
+                                            data-test="waypoint-action"
                                         >
                                             <option value={''}></option>
                                             <option value={'takeoff'}>Take Off</option>
@@ -243,6 +246,7 @@ const MissionData = props => {
                                             size="small"
                                             value={props.waypoint.lat}
                                             variant="outlined"
+                                            data-test="waypoint-lat"
                                         />
                                     </div>
                                     <div className={classes.inputLatLng}>
@@ -252,6 +256,7 @@ const MissionData = props => {
                                             size="small"
                                             value={props.waypoint.lng}
                                             variant="outlined"
+                                            data-test="waypoint-lng"
 
                                         />
                                     </div>

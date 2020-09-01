@@ -75,7 +75,7 @@ const OrderTable = () => {
                             {data.map(data => {
                                 return (
                                     
-                                    <OrderList key={data.id} data={data} />
+                                    <OrderList key={data.id} data={data} data-test="orderlist-component"/>
                                     
                                 );
                             })}

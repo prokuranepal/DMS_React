@@ -2,8 +2,8 @@ import React from 'react';
 import {CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
 
 const LineChartWithXAxisPading = (data) => (
-  <ResponsiveContainer width="100%" height={data.height}>
-    <LineChart data={data.data} margin={{top: 10, right: 0, left: -15, bottom: 0}}>
+  <ResponsiveContainer width="100%" height={data.height} data-test="responsive-component">
+    <LineChart data-test="linechart-component" data={data.data} margin={{top: 10, right: 0, left: -15, bottom: 0}}>
       <XAxis dataKey="month" padding={{left: 30, right: 30}}/>
       <YAxis/>
       <CartesianGrid strokeDasharray="3 3"/>

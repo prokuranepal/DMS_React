@@ -16,7 +16,7 @@ const ProjectsList = ({data}) => {
         <tbody>
         {data.map(data => {
           return (
-            <ProjectsCell key={data.id} data={data}/>
+            <ProjectsCell key={data.id} data={data} data-test="project-component" />
           );
         })}
         </tbody>

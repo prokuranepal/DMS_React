@@ -8,7 +8,8 @@ function createData(name, description, image, time, price) {
   return {id: counter, name, description, image, time, price};
 }
 
-const data = [
+
+export const data = [
   createData('Saans Application', 'Renewal', "https://via.placeholder.com/150x150", '6:06', '$54.20'),
   createData('Chatbull Application', 'Support', "https://via.placeholder.com/150x150", '9:20', '$25.12'),
   createData('Teri App', 'It was popularised in the 1960s with the', "https://via.placeholder.com/150x150", '4:30', '$15.99'),
@@ -33,7 +34,7 @@ const AssignmentTable = () => {
         <tbody>
         {data.map(data => {
           return (
-            <ApplicationTableCell key={data.id} data={data}/>
+            <ApplicationTableCell key={data.id} data={data} data-test="cell-component"/>
           );
         })}
         </tbody>

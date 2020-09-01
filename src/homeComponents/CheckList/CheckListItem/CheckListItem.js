@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 const CheckListItem = (props) => {
     const classes = useStyles();
     return (
-        <div className={classes.root}>
+        <div className={classes.root} data-test="container-component">
 
 
             <div className={classes.body}>
@@ -39,6 +39,7 @@ const CheckListItem = (props) => {
                 color="default"
                 inputProps={{ 'aria-label': 'checkbox with default color' }}
                 onChange={props.onChange}
+                data-test="checkbox-component"
             />
         </div>
     )

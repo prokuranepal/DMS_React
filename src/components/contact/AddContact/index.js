@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import IntlMessages from 'util/IntlMessages';
+import IntlMessages from '../../../util/IntlMessages';
 
 class AddContact extends React.Component {
   constructor(props) {
@@ -29,15 +29,20 @@ class AddContact extends React.Component {
     const {id, name, email, phone, designation, selected, starred, frequently} = this.state;
     let {thumb} = this.state;
     if (!thumb) {
-      thumb = "https://via.placeholder.com/225x225";
+      thumb = "https://via.placeholder.com/225x225"; //1
     }
     return (
-      <Modal className="modal-box" toggle={onContactClose} isOpen={open}>
+      <Modal className="modal-box" toggle={onContactClose} isOpen={open} data-test="container-component"> {//2
+      }
         <ModalHeader className="modal-box-header bg-primary text-white">
-          {contact.name === '' ? <IntlMessages id="contact.addContact"/> :
-            <IntlMessages id="contact.saveContact"/>}
+          {contact.name === '' ? <IntlMessages id="contact.addContact" data-test="intlAdd-component"/> : 
+            <IntlMessages id="contact.saveContact" data-test="intlSave-component"/>} {//3}
+    }
           <IconButton className="text-white"
-                      onClick={onContactClose}>
+                      onClick={onContactClose}
+                      data-test="iconbutton-component"
+                      > {//4
+                      }
             <CloseIcon/>
           </IconButton>
         </ModalHeader>
@@ -45,7 +50,8 @@ class AddContact extends React.Component {
         <div className="modal-box-content">
           <div className="row no-gutters">
             <div className="col-lg-3 text-center text-lg-right order-lg-2">
-              <img className="ml-lg-3 mb-4 mb-lg-0 avatar size-120" src={thumb} alt={thumb}/>
+              <img className="ml-lg-3 mb-4 mb-lg-0 avatar size-120" src={thumb} alt={thumb}/> {//5
+              }
             </div>
 
             <div className="col-lg-9 d-flex flex-column order-lg-1">
@@ -55,20 +61,27 @@ class AddContact extends React.Component {
                 label={<IntlMessages id="appModule.name"/>}
                 onChange={(event) => this.setState({name: event.target.value})}
                 defaultValue={name}
-                margin="none"/>
+                margin="none"
+                data-test="textfield1-component"/>{//6
+  }
               <TextField
                 id="required"
                 label={<IntlMessages id="appModule.email"/>}
                 onChange={(event) => this.setState({email: event.target.value})}
                 value={email}
-                margin="normal"/>
+                data-test="textfield2-component"
+                margin="normal"/>{//7
+  }}
               <TextField
                 id="required"
                 label={<IntlMessages id="appModule.phone"/>}
                 onChange={(event) => this.setState({phone: event.target.value})}
                 value={phone}
+                data-test="textfield3-component"
                 margin="normal"
               />
+              {//8
+              }
               <TextField
                 id="required"
                 label={<IntlMessages id="appModule.designation"/>}
@@ -76,13 +89,20 @@ class AddContact extends React.Component {
                 value={designation}
                 multiline
                 rowsMax="4"
+                data-test="textfield4-component"
                 margin="normal"/>
+                {//9
+                }
             </div>
           </div>
         </div>
 
         <div className="modal-box-footer d-flex flex-row">
-          <Button disabled={name === ''} variant="contained" color="primary" onClick={() => {
+          <Button disabled={name === ''} 
+                  data-test="button-component"
+                  variant="contained" 
+                  color="primary" 
+                  onClick={() => {
             onContactClose();
             onSaveContact(
               {
@@ -104,7 +124,8 @@ class AddContact extends React.Component {
               'phone': '',
               'designation': '',
             })
-
+ {//10
+}
           }}><IntlMessages id="contact.saveContact"/></Button>
         </div>
       </Modal>

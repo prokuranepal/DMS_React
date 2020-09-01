@@ -32,6 +32,14 @@ const RestrictedRoute = ({ component: Component, token, ...rest }) =>
         />}
   />;
 
+  /**
+ * Landing page on the screen
+ * Depending upon authentication directs to login screen or dashboard
+ *
+ * @param {Default} props - Receives navigation/router params.
+ * @returns {Dashboard/Login} - It routes to login or dashboard depending upon authentication
+ */
+
 const App = (props) => {
   const dispatch = useDispatch();
   const [redirectTo, setRedirectTo] = useState();
@@ -42,14 +50,12 @@ const App = (props) => {
 
   useEffect(() => {
     window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
-    console.log(location.pathname);
     // if (initURL === '') {
     //   dispatch(authActions.setInitURL(props.history.location.pathname));
     // }
 
     const tryLogin = async () => {
   
-      console.log("Start up screen", token);
       if (token === undefined || token === null || token === "undefined") {
         dispatch(authActions.setInitURL('/signin'));
         // return (<Redirect to={'/signin'} />)
@@ -84,7 +90,6 @@ const App = (props) => {
     }
   }
   const currentAppLocale = AppLocale[locale.locale];
-  console.log("in indexf file", match.url)
   return (
     <ThemeProvider theme={applyTheme}>
       <MuiPickersUtilsProvider utils={MomentUtils}>

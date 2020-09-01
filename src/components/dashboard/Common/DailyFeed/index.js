@@ -7,7 +7,7 @@ const DailyFeed = ({data}) => {
     <div className="daily-feed-body">
       {data.map((data, index) => {
         return (
-          <FeedCell key={index} feed={data}/>
+          <FeedCell key={index} feed={data} data-test="feedcell-component"/>
         );
       })}
     </div>
