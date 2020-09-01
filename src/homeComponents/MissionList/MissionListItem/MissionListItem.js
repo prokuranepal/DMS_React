@@ -36,10 +36,10 @@ const MissionListItem = (props) => {
     return (
         <div className={classes.root}>
 
-            <Radio size='small' color='white' value={props.mission.value} />
+            <Radio size='small' color='white' value={props.mission._id} />
             <div className={classes.body}>
-                <p className={classes.header}>{props.mission.title}</p>
-                <div><span className={classes.info}>Waypoints:{props.mission.waypoints}</span><span className={classes.info}>ETA:{props.mission.ETA}mins</span><span className={classes.info}>Distance:{props.mission.dist}m</span></div>
+                <p className={classes.header}>{props.mission.name}</p>
+                <div><span className={classes.info}>Waypoints:{props.mission.wp}</span><span className={classes.info}>ETA:{props.mission.estimated_time}mins</span><span className={classes.info}>Distance:{props.mission.distance}m</span></div>
             </div>
 
         </div>

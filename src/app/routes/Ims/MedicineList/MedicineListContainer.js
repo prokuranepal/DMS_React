@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import MedicineList from './MedicineList';
 import Search from '../../../../homeComponents/UI/Search/Search';
 import Button from '@material-ui/core/Button';
@@ -9,6 +9,8 @@ import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIcon from '@material-ui/icons/ArrowBackRounded';
 import { Link, Redirect } from 'react-router-dom';
 import Hidden from '@material-ui/core/Hidden';
+import { useDispatch, useSelector } from 'react-redux';
+import * as actions from '../../../../store/actions/imsMedicine';
 const useStyles = makeStyles({
     root: {
         flexGrow: 1,
@@ -24,10 +26,20 @@ const useStyles = makeStyles({
 
 const MedicineListContainer = props => {
     const classes = useStyles();
-
+    const dispatch = useDispatch()
     const goToAddMedicine = () => {
         return <Redirect to="/app/ims/addmedicine" />
     }
+
+    const { medicineList } = useSelector(({ ims }) => ims);
+    console.log(props)
+    useEffect(() => {
+        if (props.location.aboutProps !== undefined) {
+            dispatch(actions.getMedicines(props.location.aboutProps.type))
+        } else {
+            dispatch(actions.getMedicines('liquid'))
+        }
+    }, [dispatch])
     return (
         <div className="app-wrapper">
             <Grid container xs={12} >
@@ -50,12 +62,12 @@ const MedicineListContainer = props => {
                     {/* <Hidden xsDown> */}
                     <Link to='/app/ims/addmedicine' style={{ textDecoration: 'none', color: 'white' }}>
                         <Button onClick={goToAddMedicine} variant="contained" color="primary">Add Item</Button>
-                        </Link>
+                    </Link>
                     {/* </Hidden> */}
                 </Grid>
 
             </Grid>
-            <MedicineList />
+            <MedicineList list={medicineList} />
         </div>
 
     );

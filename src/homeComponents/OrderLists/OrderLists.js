@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 // import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 // import {Typography } from '@material-ui/core';  
@@ -7,6 +7,8 @@ import Search from '../UI/Search/Search';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
+import {useDispatch, useSelector} from 'react-redux';
+import * as actions from '../../store/actions/imsOrder'
 // import OrderTableCell from './OrderTableCell';
 const useStyles = makeStyles((theme) => ({
     header: {
@@ -19,20 +21,30 @@ const useStyles = makeStyles((theme) => ({
 
 let counter = 0;
 
-function createData(orderId, name, image, orderDate, deliveryDate,from, status) {
+function createData(orderId, name, location, orderDate, deliveryDate, status) {
     counter += 1;
-    return { id: counter, orderId, name, image, orderDate, deliveryDate, from, status };
+    return { id: counter, orderId, name, location, orderDate, deliveryDate, status };
 }
 
-const data = [
-    createData('23545', 'Sardu Health Post', "https://via.placeholder.com/150x150", '25 Oct, 19:00', '', 'Chare Vanjyang', 'In Progress'),
-    createData('23653', 'Koshi Health Post', "https://via.placeholder.com/150x150", '28 Oct, 19:00', '28 Oct, 19:50','Tapu', 'Completed'),
-    createData('24567', 'Panmara Health Post', "https://via.placeholder.com/150x150", '5 Nov, 19:00', '5 Nov, 19:50', 'Panmara','Completed'),
-    createData('25745', 'Seuti Health Post', "https://via.placeholder.com/150x150", '23 Nov, 19:00', '','Bisnupaduka', 'Cancelled'),
-];
+// const data = [
+//     createData('23545', 'Sardu Health Post','25 Oct, 19:00', '', 'Chare Vanjyang', 'In Progress'),
+//     createData('23653', 'Koshi Health Post','28 Oct, 19:00', '28 Oct, 19:50','Tapu', 'Completed'),
+//     createData('24567', 'Panmara Health Post', '5 Nov, 19:00', '5 Nov, 19:50', 'Panmara','Completed'),
+//     createData('25745', 'Seuti Health Post','23 Nov, 19:00', '','Bisnupaduka', 'Cancelled'),
+// ];
 
 const OrderTable = () => {
     const classes = useStyles();
+    const dispatch = useDispatch();
+
+    const {orderList} = useSelector(({ imsOrder }) => imsOrder);
+    console.log(orderList);
+    const data = orderList.map(order => {
+        return createData(order._id, order.origin.name, order.origin.location, order.orderDate, order.deliveryDate, order.status)
+    })
+    useEffect(() => {
+        dispatch(actions.getOrders())
+    },[dispatch])
     return (
         <div className="app-wrapper">
             <Grid container className={classes.header}>
@@ -52,9 +64,9 @@ const OrderTable = () => {
                             <tr>
                                 <th>OrderId</th>
                                 <th>Customer</th>
+                                <th>Location</th>
                                 <th>Order Date</th>
                                 <th>Delivery Date</th>
-                                <th>From</th>
                                 <th className="status-cell text-right">Status</th>
                                 <th />
                             </tr>

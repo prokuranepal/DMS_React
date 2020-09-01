@@ -15,7 +15,7 @@ import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
-
+import { Link, Redirect } from 'react-router-dom';
 const StyledTableCell = withStyles((theme: Theme) =>
   createStyles({
     head: {
@@ -105,9 +105,9 @@ TablePaginationActions.propTypes = {
 
 let counter = 0;
 
-function createData(name, dosage, type, quantity, expiryDate) {
+function createData(medicineId, name, dosage, type, quantity, expiryDate, company, suppliers) {
   counter += 1;
-  return { id: counter, name, dosage, type, quantity, expiryDate };
+  return { id: counter,medicineId, name, dosage, type, quantity, expiryDate, company, suppliers };
 }
 
 const useStyles2 = makeStyles({
@@ -117,24 +117,29 @@ const useStyles2 = makeStyles({
   },
 });
 
-const rows = [
-  createData("Paracetamol", 200, "Tablet", 50, "2020-06-30"),
-  createData("Paracetamol", 200, "Tablet", 50, "2020-06-30"),
-  createData("Paracetamol", 200, "Tablet", 50, "2020-06-30"),
-  createData("Paracetamol", 200, "Tablet", 50, "2020-06-30"),
-  createData("Paracetamol", 200, "Tablet", 50, "2020-06-30"),
-  createData("Paracetamol", 200, "Tablet", 50, "2020-06-30"),
-  createData("Paracetamol", 200, "Tablet", 50, "2020-06-30"),
-  createData("Paracetamol", 200, "Tablet", 50, "2020-06-30"),
-  createData("Paracetamol", 200, "Tablet", 50, "2020-06-30"),
-  createData("Paracetamol", 200, "Tablet", 50, "2020-06-30"),
-];
+
+// const rows = [
+//   createData("Paracetamol", 200, "Tablet", 50, "2020-06-30"),
+//   createData("Paracetamol", 200, "Tablet", 50, "2020-06-30"),
+//   createData("Paracetamol", 200, "Tablet", 50, "2020-06-30"),
+//   createData("Paracetamol", 200, "Tablet", 50, "2020-06-30"),
+//   createData("Paracetamol", 200, "Tablet", 50, "2020-06-30"),
+//   createData("Paracetamol", 200, "Tablet", 50, "2020-06-30"),
+//   createData("Paracetamol", 200, "Tablet", 50, "2020-06-30"),
+//   createData("Paracetamol", 200, "Tablet", 50, "2020-06-30"),
+//   createData("Paracetamol", 200, "Tablet", 50, "2020-06-30"),
+//   createData("Paracetamol", 200, "Tablet", 50, "2020-06-30"),
+// ];
 const MedicineList = (props) => {
 
   const classes = useStyles2();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [link, setLink] = React.useState(null);
 
+  const rows = props.list.map(item => {
+    return createData(item._id, item.name, item.dosage, item.type, item.quantity, item.exp_date, item.company, item.suppliers)
+  });
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   const handleChangePage = (event, newPage) => {
@@ -146,8 +151,20 @@ const MedicineList = (props) => {
     setPage(0);
   };
 
+  const onItemClick = (medicine) => {
+    console.log("On Item Click", medicine);
+    setLink(<Redirect to={{
+      pathname: "/app/ims/updatemedicine",
+      state: { medicine: medicine }
+    }} />);
+    // console.log(props.history);
+    // props.history.push('/updateMedicine')
+  }
+
+  console.log(props.list);
   return (
     <TableContainer component={Paper}>
+      {link}
       <Table className={classes.table} aria-label="custom pagination table">
         <TableHead>
           <TableRow>
@@ -165,18 +182,18 @@ const MedicineList = (props) => {
             : rows
           ).map((row) => (
 
-            <StyledTableRow key={row.id}>
-
-              <StyledTableCell component="th" scope="row">{row.id}</StyledTableCell>
-              <StyledTableCell align="right">
-                {row.name}
-              </StyledTableCell>
-              <StyledTableCell align="right">{row.dosage}</StyledTableCell>
-              <StyledTableCell align="right">{row.type}</StyledTableCell>
-              <StyledTableCell align="right">{row.quantity}</StyledTableCell>
-              <StyledTableCell align="right">{row.expiryDate}</StyledTableCell>
+            <StyledTableRow key={row.id} onClick={() => onItemClick(row)}>
+              {/* <Link to={{ pathname: '/app/ims/updateMedicine', aboutProps: { medicine: row } }} style={{ textDecoration: 'none', color: 'white' }}> */}
+                <StyledTableCell component="th" scope="row">{row.id}</StyledTableCell>
+                <StyledTableCell align="right">
+                  {row.name}
+                </StyledTableCell>
+                <StyledTableCell align="right">{row.dosage}</StyledTableCell>
+                <StyledTableCell align="right">{row.type}</StyledTableCell>
+                <StyledTableCell align="right">{row.quantity}</StyledTableCell>
+                <StyledTableCell align="right">{row.expiryDate}</StyledTableCell>
+              {/* </Link> */}
             </StyledTableRow>
-
           ))}
 
           {emptyRows > 0 && (
@@ -205,7 +222,7 @@ const MedicineList = (props) => {
         </TableFooter>
       </Table>
     </TableContainer>
-    
+
   );
 };
 export default (MedicineList);

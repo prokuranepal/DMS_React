@@ -19,7 +19,8 @@ const Dashboard = (props) => {
     useEffect(() => {
         dispatch(actions.getCurrentCards());
         dispatch(actions.getPlaces());
-    }, [])
+        dispatch(actions.getHealthposts())
+    }, [dispatch])
     const date = new Date();
     const year = date.getFullYear();
     console.log(year);

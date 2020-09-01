@@ -10,6 +10,8 @@ import users from './users';
 import weather from './weather';
 import droneControl from './droneControl';
 import mission from './mission';
+import ims from './imsMedicine'
+import imsOrder from './imsOrder'
 
 export default (history) => combineReducers({
   router: connectRouter(history),
@@ -21,5 +23,7 @@ export default (history) => combineReducers({
   users: users,
   weather: weather,
   droneControl: droneControl,
-  mission: mission
+  mission: mission,
+  ims:ims,
+  imsOrder: imsOrder
 });

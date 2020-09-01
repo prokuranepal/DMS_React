@@ -1,10 +1,12 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import ImsCard from '../../../../homeComponents/imsCard/ImsCard';
 import types from '../../../../JSONFiles/medicineTypes';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+
+
 // import ProductGridItem from 'components/eCommerce/ProductGridItem'
 
 const useStyles = makeStyles({
@@ -20,6 +22,10 @@ const useStyles = makeStyles({
 });
 
 const Ims = () => {
+
+   
+    
+    
     const classes = useStyles();
     // console.log(types);
     return (

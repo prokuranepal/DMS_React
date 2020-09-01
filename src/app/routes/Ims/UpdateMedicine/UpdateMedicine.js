@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { DatePicker } from '@material-ui/pickers';
 import Select from '@material-ui/core/Select';
@@ -48,26 +48,40 @@ const useStyles = makeStyles((theme: Theme) =>
         },
     }));
 
-const AddMedicine = props => {
+const UpdateMedicine = props => {
 
-
-    const [title, setTitle] = useState('Paracetamol');
+    const [medicineId, setMedicineId] = useState(0)
+    const [name, setName] = useState('');
     const [type, setType] = useState('');
-    const [quantity, setQuanity] = useState(10);
+    const [quantity, setQuanity] = useState(0);
     const [exp_date, setDate] = useState(null);
-    const [company, setCompany] = useState('Birat Pharmaceuticals');
-    const [dosage, setdosage] = useState('100mg');
+    const [company, setCompany] = useState('');
+    const [dosage, setDosage] = useState('');
     const [loading, setLoading] = useState(false);
-    const [suppliers, setSuppliers] = useState('123');
+    const [suppliers, setSuppliers] = useState('');
     const [success, setSuccess] = useState(false);
     const dispatch = useDispatch();
+    // console.log(props)
 
+    useEffect(() => {
+        if(props.location.state !== undefined) {
+            const medicine = props.location.state.medicine;
+            setMedicineId(medicine.medicineId)
+            setName(medicine.name);
+            setType(medicine.type);
+            setQuanity(medicine.quantity);
+            setDate(medicine.exp_date);
+            setCompany(medicine.company);
+            setDosage(medicine.dosage);
+            setSuppliers(medicine.suppliers);
+        }
+    },[])
     const classes = useStyles();
     const handleChange = key => event => {
         // console.log(key, event);
         switch (key) {
-            case 'title':
-                setTitle(event.target.value);
+            case 'name':
+                setName(event.target.value);
                 break;
             case 'type':
                 setType(event.target.value);
@@ -85,16 +99,16 @@ const AddMedicine = props => {
                 setSuppliers(event.target.value);
                 break;
             case 'dosage':
-                setdosage(event.target.value);
+                setDosage(event.target.value);
                 break;
             default:
                 return;
         }
     };
 
-    const addMedicine = async () => {
+    const updateMedicine = async () => {
         setLoading(true);
-        dispatch(actions.addMedicine({ title, type, quantity, exp_date, dosage, company, suppliers }))
+        dispatch(actions.updateMedicine({ name, type, quantity, exp_date, dosage, company, suppliers }, medicineId ))
         setLoading(false);
         props.history.push('/app/ims/medicinelist');
     }
@@ -114,8 +128,8 @@ const AddMedicine = props => {
                         </IconButton>
                     </Link>
                 </Grid>
-                <Grid item xs={6} justify="flex-start" alignItems="center" container>
-                    <Typography variant="h5">Add Medicine</Typography>
+                <Grid item xs={10} justify="flex-start" alignItems="center" container>
+                    <Typography variant="h5">Update Medicine</Typography>
                 </Grid>
             </Grid>
 
@@ -128,7 +142,7 @@ const AddMedicine = props => {
                                 <TextField
                                     id="name"
                                     label={<IntlMessages id="ims.medicine.name" />}
-                                    value={title}
+                                    value={name}
                                     onChange={handleChange('title')}
                                     margin="normal"
                                     fullWidth
@@ -202,8 +216,8 @@ const AddMedicine = props => {
                                     className="mt-1"
                                 />
                                 <div className={classes.wrapper}>
-                                    <Button onClick={addMedicine} disabled={loading} color="primary" variant="contained" className={buttonClassname}>
-                                        <IntlMessages id="ims.medicine.addItem" />
+                                    <Button onClick={updateMedicine} disabled={loading} color="primary" variant="contained" className={buttonClassname}>
+                                        <IntlMessages id="ims.medicine.updateItem" />
                                         {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
                                     </Button>
                                 </div>
@@ -219,4 +233,4 @@ const AddMedicine = props => {
     )
 }
 
-export default AddMedicine;
+export default UpdateMedicine;

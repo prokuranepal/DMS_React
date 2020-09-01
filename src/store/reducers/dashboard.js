@@ -7,7 +7,8 @@ const initialState = {
     graphs: null,
     loading: true,
     error: {},
-    places: []
+    places: [],
+    healthposts: []
 }
 
 const cardError = (state, action) => {
@@ -33,6 +34,14 @@ const setPlaces = (state, action) => {
     })
 }
 
+const setHealthposts = (state, action) => {
+
+    return updateObject(state, {
+        healthposts: action.healthposts
+    })
+}
+
+
 
 
 const reducer = (state = initialState, action) => {
@@ -40,6 +49,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.GET_CARDS: return getCards(state, action);
         case actionTypes.CARD_ERROR: return cardError(state, action);
         case actionTypes.SET_PLACES: return setPlaces(state, action);
+        case actionTypes.GET_HEALTHPOSTS: return setHealthposts(state, action);
         default:
             return state;
     }
