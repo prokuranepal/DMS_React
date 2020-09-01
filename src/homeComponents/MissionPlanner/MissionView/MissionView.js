@@ -57,6 +57,7 @@ const MissionView = props => {
     const [action, setAction] = React.useState("create");
     
     const openMissionDetail = useSelector(({ mission }) => mission.missionDetail);
+    
     const state = {
         lat: 26.818123,
         lng: 87.281345,
@@ -72,6 +73,7 @@ const MissionView = props => {
             setMissionDetail(openMissionDetail);
             setCreate(true);
         }
+        
     }, [openMissionDetail]);
 
     //close the modal after choosing the mission
@@ -136,6 +138,7 @@ const MissionView = props => {
     const onChange = (event, key) => {
         console.log(event.target.value, key);
         console.log(currWaypointIndex);
+        
         const m = {
             ...missionDetail,
         };

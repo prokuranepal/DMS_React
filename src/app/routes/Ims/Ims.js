@@ -9,6 +9,7 @@ import MedicineListContainer from './MedicineList/MedicineListContainer';
 import OrderLists from '../../../homeComponents/OrderLists/OrderLists';
 import OrderDetails from './Orders/OrderDetails/OrderDetails';
 import AddMedicine from './AddMedicine/AddMedicine';
+import UpdateMedicine from './UpdateMedicine/UpdateMedicine';
 // import OrderDetails from '../../../containers/OrderDetails/OrderDetails';
 // import OrderLists from '../../../containers/OrderList/Orders';
 const useStyles = makeStyles((theme) => ({
@@ -30,6 +31,7 @@ const MissionPlanner = ({match}) => {
           <Route exact path={`${match.url}/categories`} component={MedicineTypes} />
           <Route exact path={`${match.url}/medicinelist`} component={MedicineListContainer} />
           <Route exact path={`${match.url}/addmedicine`} component={AddMedicine} />
+          <Route exact path={`${match.url}/updatemedicine`} render={(props) => <UpdateMedicine {...props}/>} />
           <Route exact path={`${match.url}/orders/lists`} component={OrderLists} />
           <Route exact path={`${match.url}/orders/details`} component={OrderDetails} />
           <Redirect from={`${match.url}/orders`} to="/app/ims/orders/lists" />

@@ -1,8 +1,8 @@
 export const authResponse = {
     data: {
-        idToken: 'token',
+        token: 'token',
         expiresIn: 3600,
-        localId: 'userId',
+        userId: 'userId',
         refreshToken: 'refreshToken'
     }
 }

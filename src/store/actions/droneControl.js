@@ -32,33 +32,3 @@ export const fetchActiveDronesFail = () => {
     }
 }
 
-export const fetchMissionList = () => {
-    return dispatch => {
-        axios.get('./missionList.js').then(res => {
-            dispatch(fetchMissionListSuccess());
-            dispatch(fetchMissionListUpdate(res.missions));
-        }).catch(err => {
-            dispatch(fetchMissionListFail());
-        });
-    }
-}
-
-
-export const fetchMissionListSuccess = () => {
-    return {
-        type: actionTypes.FETCH_MISSION_LIST_SUCCESS
-    }
-}
-
-export const fetchMissionListUpdate = (missions) => {
-    return {
-        type: actionTypes.FETCH_MISSION_LIST_UPDATE,
-        missions: missions
-    }
-}
-
-export const fetchMissionListFail = () => {
-    return {
-        type: actionTypes.FETCH_MISSION_LIST_FAIL
-    }
-}

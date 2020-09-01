@@ -1,30 +1,24 @@
 // import axios from 'axios';
 
-import { GET_CARDS, CARD_ERROR } from './actionTypes';
-import * as axios1 from '../../response/falseFetch';
+import { GET_CARDS, CARD_ERROR, GET_HEALTHPOSTS } from './actionTypes';
+// import * as axios from '../../response/falseFetch';
 import axios from '../../axios-orders';
 import * as actionTypes from './actionTypes';
 
-export const getToken = () => {
-    let token = localStorage.getItem("token");
-    const headers = {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + token
-    };
-    return headers;
-  };
+import * as func from './common';
 
 export const getCurrentCards = () => async dispatch => {
     try {
         // const res = await axios.get('api/dashboard');
         // const url = './dashboardCardData';
         const url = '/dashboard';
-        console.log(getToken());
-        axios.get(url,{headers: getToken()}).then(response => {
+        console.log(func.getToken());
+        axios.get(url,{headers: func.getToken()}).then(response => {
             console.log(response);
             dispatch({
                 type: GET_CARDS,
-                data: response.data
+                data: response.data,
+                // data: response.dashboardData
             })
         })
         
@@ -41,9 +35,10 @@ export const getCurrentCards = () => async dispatch => {
 
 export const getPlaces = () => {
     return dispatch => {
-        const url = './places.js';
-        axios1.get(url).then(response => {
-            dispatch(setPlaces(response.placesResponse));
+        const url = '/places';
+        axios.get(url,{headers: func.getToken()}).then(response => {
+            // dispatch(setPlaces(response.data));
+            console.log(response)
         })
     }
 }
@@ -52,5 +47,23 @@ export const setPlaces = (places) => {
     return {
         type: actionTypes.SET_PLACES,
         places: places
+    }
+}
+
+export const getHealthposts = () => {
+    return dispatch => {
+        const url = '/healthpost';
+        axios.get(url,{headers: func.getToken()})
+        .then(res => {
+            console.log(res.data)
+            dispatch(getHealthpostsSuccess(res.data))
+        })
+    }
+}
+
+export const getHealthpostsSuccess = (healthposts) => {
+    return {
+        type: GET_HEALTHPOSTS,
+        healthposts: healthposts
     }
 }

@@ -581,6 +581,10 @@
   "dashboard.application":"Application",
   "dashboard.weekly":"Weekly",
 
-  "appModule.medicine.name": "Medicine Name",
-  "appModule.addItem": "Add Item"
+  "ims.medicine.name": "Medicine Name",
+  "ims.medicine.addItem": "Add Item",
+  "ims.medicine.dosage": "Dosage",
+  "ims.medicine.suppliers": "Supplier ID",
+  "ims.medicine.company": "Company Name",
+  "ims.medicine.updateItem": "Update Item"
 }

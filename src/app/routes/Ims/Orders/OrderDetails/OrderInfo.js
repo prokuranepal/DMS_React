@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 const OrderInfo = props => {
     const classes = useStyles();
+    const origin = props.origin?props.origin: {name: null, address: null}
     return (
         <div className={classes.root}>
             <Typography variant="h6">&nbsp;&nbsp;Order Info</Typography>
@@ -26,24 +27,25 @@ const OrderInfo = props => {
                 <Grid container>
                     <Grid className={classes.text} container row xs={12}>
                         <Grid item xs={6}>
-                            <Typography variant="subtitle2">Health Post ID</Typography>
-                            <Typography>123456</Typography>
+                            <Typography variant="subtitle2">Health Post Name</Typography>
+                            <Typography>{origin.name}</Typography>
+
                         </Grid>
                         <Grid item xs={6}>
                             <Typography variant="subtitle2">Address</Typography>
-                            <Typography>Nangi, Myagdi</Typography>
+                            <Typography>{origin.location}</Typography>
                         </Grid>
                     </Grid>
-                    <Grid className={classes.text}  container item row xs={12}>
+                    {/* <Grid className={classes.text} container item row xs={12}>
                         <Grid item xs={6}>
-                            <Typography variant="subtitle2">Health Post Name</Typography>
-                            <Typography>Nangi Swasthya Chauki</Typography>
+                            <Typography variant="subtitle2">Health Post ID</Typography>
+                            <Typography>123456</Typography>
                         </Grid>
                         <Grid item xs={6}>
                             <Typography variant="subtitle2">PO#</Typography>
                             <Typography>12234455</Typography>
                         </Grid>
-                    </Grid>
+                    </Grid> */}
                 </Grid>
             </Paper>
         </div>
