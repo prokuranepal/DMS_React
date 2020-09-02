@@ -28,15 +28,34 @@ const useStyles = makeStyles((theme) => ({
         paddingRight: '20px'
     }
 }));
+
+function getDroneText(id) {
+    switch (id) {
+        case 0:
+            return "Quadcopter";
+        case 1:
+            return "Hexacopter";
+        case 2:
+            return "Octocopter";
+        case 3:
+            return "Fixed Wing";
+        case 4:
+            return "Quadplane VTOL";
+        case 5:
+            return "Tilt-Rotor VTOL";
+        default:
+            return "None"
+    }
+}
 const DroneListItem = (props) => {
     const classes = useStyles();
     return (
         <div className={classes.root} data-test="container-component">
 
-            <Radio size='small' color='white' value={props.drone.value} data-test="innerradio-component" />
+            <Radio size='small' color='white' value={props.drone._id} data-test="innerradio-component" />
             <div className={classes.body}>
                 <p className={classes.header} data-test="dronename-component">{props.drone.name}</p>
-                <div><span className={classes.info} data-test="dronecode-component">Code:{props.drone.code}</span><span className={classes.info} data-test="dronetype-component">Type:{props.drone.type}</span></div>
+                <div><span className={classes.info} data-test="dronecode-component">Code: {props.drone.droneId}</span><span className={classes.info} data-test="dronetype-component">Type: {getDroneText(props.drone.type)}</span></div>
             </div>
 
         </div>
