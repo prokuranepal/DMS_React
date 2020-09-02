@@ -92,24 +92,41 @@ const sendRefreshToken = (refreshToken) => {
     }
 }
 
-export const signUp = (email, password) => {
+export const signUp = (data) => {
     return dispatch => {
         const url = '/users/signup';
-        const authData = {
-            email: email,
-            password: password,
-            returnSecureToken: true
-        };
-        axios.post(url, authData)
+        // const authData = {
+        //     fullName: fullName,
+        //     email: email,
+        //     password: password,
+        //     returnSecureToken: true
+        // };
+        // console.log(data);
+        axios.post(url, data,{
+            headers: headers
+          })
             .then(response => {
-                dispatch(signUpSuccess());
+                console.log(response.data.success);
+                dispatch(signUpSuccess(response.data.status));
+            })
+            .catch(err => {
+                console.log(err.response.data.err.message)
+                dispatch(signUpFail(err.response.data.err.message));
             });
     }
 }
 
-export const signUpSuccess = () => {
+export const signUpSuccess = (message) => {
     return {
-        type: actionTypes.SIGNUP_SUCCESS
+        type: actionTypes.SIGNUP_SUCCESS,
+        message: message
+    }
+}
+
+export const signUpFail = (message) => {
+    return {
+        type: actionTypes.SIGNUP_FAIL,
+        message: message
     }
 }
 

@@ -107,19 +107,19 @@ const DroneData = props => {
     const [droneInfo, setDroneInfo] = React.useState(null);
     const [style, setStyle] = React.useState(getModalStyle);
     const activeDrones = useSelector(({ droneControl }) => droneControl.activeDrones);
-    
+    // console.log(activeDrones);
     const dispatch = useDispatch();
     const setData = (data) => {
-        console.log(data);
+        // console.log(data);
         setDroneInfo(data);
     }
-    useEffect(() => {
-        socket.emit(drone);
-        socket.on("data",setData);
-        return function cleanup() {      
-            socket.off("data");
-        };
-    },[drone]);
+    // useEffect(() => {
+    //     socket.emit(drone);
+    //     socket.on("data",setData);
+    //     return function cleanup() {      
+    //         socket.off("data");
+    //     };
+    // },[drone]);
 
     const handleOpenMission = () => {
         

@@ -6,7 +6,7 @@ export const SET_AUTH_REDIRECT_PATH = 'SET_AUTH_REDIRECT_PATH';
 export const AUTHENTICATE = 'AUTHENTICATE';
 export const RESET_PASSWORD = 'RESET_PASSWORD';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
-
+export const SIGNUP_FAIL = 'SIGNUP_FAIL';
 
 export const GET_CARDS = 'GET_CARDS';
 export const CARD_ERROR = 'CARD_ERROR';
@@ -59,5 +59,9 @@ export const GET_ORDER_DETAILS = 'GET_ORDER_DETAILS';
 export const UPDATE_ORDER = 'UPDATE_ORDER';
 
 export const GET_HEALTHPOSTS = 'GET_HEALTHPOSTS';
+
+export const GET_DRONES = 'GET_DRONES'
+export const ADD_DRONE = 'ADD_DRONE'
+export const UPDATE_DRONE = 'UPDATE_DRONE'
 
 

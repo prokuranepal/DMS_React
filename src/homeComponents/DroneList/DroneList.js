@@ -33,11 +33,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 const DroneList = (props) => {
     const classes = useStyles();
-    const [value, setValue] = React.useState('1');
+    const [value, setValue] = React.useState(null);
     
     const handleChange = (event) => {
         setValue(event.target.value);
     };
+    // console.log(props.drones)
     return (
         // <div className="module-list mail-list">
         <div data-test="container-component">

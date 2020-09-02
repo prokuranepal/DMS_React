@@ -51,14 +51,14 @@ const useStyles = makeStyles((theme: Theme) =>
 const AddMedicine = props => {
 
 
-    const [title, setTitle] = useState('Paracetamol');
+    const [name, setName] = useState('Paracetamol');
     const [type, setType] = useState('');
     const [quantity, setQuanity] = useState(10);
     const [exp_date, setDate] = useState(null);
     const [company, setCompany] = useState('Birat Pharmaceuticals');
     const [dosage, setdosage] = useState('100mg');
     const [loading, setLoading] = useState(false);
-    const [suppliers, setSuppliers] = useState('123');
+    const [suppliers, setSuppliers] = useState('');
     const [success, setSuccess] = useState(false);
     const dispatch = useDispatch();
 
@@ -66,8 +66,8 @@ const AddMedicine = props => {
     const handleChange = key => event => {
         // console.log(key, event);
         switch (key) {
-            case 'title':
-                setTitle(event.target.value);
+            case 'name':
+                setName(event.target.value);
                 break;
             case 'type':
                 setType(event.target.value);
@@ -94,7 +94,7 @@ const AddMedicine = props => {
 
     const addMedicine = async () => {
         setLoading(true);
-        dispatch(actions.addMedicine({ title, type, quantity, exp_date, dosage, company, suppliers }))
+        dispatch(actions.addMedicine({ name, type, quantity, exp_date, dosage, company}))
         setLoading(false);
         props.history.push('/app/ims/medicinelist');
     }
@@ -128,8 +128,8 @@ const AddMedicine = props => {
                                 <TextField
                                     id="name"
                                     label={<IntlMessages id="ims.medicine.name" />}
-                                    value={title}
-                                    onChange={handleChange('title')}
+                                    value={name}
+                                    onChange={handleChange('name')}
                                     margin="normal"
                                     fullWidth
                                     className="mt-1"
