@@ -18,8 +18,10 @@ export const getUsers = () =>  dispatch => {
            type: GET_USERS,
            users: res.data
        })
-
    })
+   .catch(err => {
+    console.log(err)
+})
 }
 
 export const addUser = (data) =>  dispatch => {
@@ -31,7 +33,9 @@ export const addUser = (data) =>  dispatch => {
             type: ADD_USER,
             users: res.data
         })
- 
+    })
+    .catch(err => {
+        console.log(err)
     })
  }
 
@@ -45,17 +49,24 @@ export const addUser = (data) =>  dispatch => {
             type: UPDATE_USER,
             users: res.data
         })
- 
+    })
+    .catch(err => {
+        console.log(err)
     })
  }
 
 
-export const deleteUser = (user) => dispatch => {
+export const deleteUser = (id) => dispatch => {
+
+    const url = `/users/${id}`;
+    axios.delete(url,{headers: func.getToken()})
+    .then(res => {
         dispatch({
             type: DELETE_USER,
-            payload: user
         })
-
-         dispatch(setAlert('Profile Deleted', 'error'));
+    })
+    .catch(err => {
+        console.log(err)
+    })
         
 }

@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import MaterialTable from 'material-table';
 import TableIcons from '../../homeComponents/TableIcons/TableIcons';
-
+import * as actions from '../../store/actions/imsMedicine';
+import {useDispatch} from 'react-redux';
 const Medicine = (props) => {
     const [state, setState] = React.useState({
         columns: [
@@ -23,6 +24,7 @@ const Medicine = (props) => {
         ],
     });
     const [selectedRow, setSelectedRow] = React.useState(null);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         setState(prevState => { return { ...prevState, data: props.list } })
@@ -54,7 +56,7 @@ const Medicine = (props) => {
                                 setTimeout(() => {
                                     resolve();
                                     console.log(newData);
-                                    //   dispatch(actions.addDrone(newData))
+                                      dispatch(actions.addMedicine(newData))
                                     setState((prevState) => {
                                         const data = [...prevState.data];
                                         data.push(newData);
@@ -68,7 +70,7 @@ const Medicine = (props) => {
                                     resolve();
                                     if (oldData) {
                                         console.log(newData);
-                                        // dispatch(actions.updateDrone(newData, newData._id))
+                                        dispatch(actions.updateMedicine(newData, newData._id))
                                         setState((prevState) => {
                                             const data = [...prevState.data];
                                             data[data.indexOf(oldData)] = newData;
@@ -84,6 +86,7 @@ const Medicine = (props) => {
                                     setState((prevState) => {
                                         const data = [...prevState.data];
                                         data.splice(data.indexOf(oldData), 1);
+                                        dispatch(actions.deleteMedicine(oldData._id))
                                         return { ...prevState, data };
                                     });
                                 }, 600);

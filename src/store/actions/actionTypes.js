@@ -52,6 +52,7 @@ export const SET_MISSION = 'SET_MISSION';
 export const GET_MEDICINES = 'GET_MEDICINES';
 export const ADD_MEDICINE = 'ADD_MEDICINE';
 export const UPDATE_MEDICINE = 'UPDATE_MEDICINE';
+export const DELETE_MEDICINE = 'DELETE_MEDICINE';
 
 export const GET_ORDERS = 'GET_ORDERS';
 export const GET_ORDER_DETAILS = 'GET_ORDER_DETAILS';

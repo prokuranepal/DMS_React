@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import OrderInfo from './OrderInfo';
 import Grid from '@material-ui/core/Grid';
@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIcon from '@material-ui/icons/ArrowBackRounded';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import {useSelector} from 'react-redux'
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -31,11 +31,19 @@ const OrderDetails = props => {
     const items = orderDetails?orderDetails.orderItem:[];
     const origin = orderDetails?orderDetails.origin:null;
     const lifecycle = orderDetails?orderDetails.orderLifeCycle:"Order Placed";
-    console.log(orderDetails)
+    console.log(orderDetails);
+    const [redirect, setRedirect] = React.useState(null);
+
+    useEffect(() => {
+        if(props.location.state === undefined) {
+            setRedirect(<Redirect to='/app/ims/orders/list' />)
+        }
+    },[])
+    
     return (
         <div className={classes.root}>
             <Grid container>
-
+                {redirect}
                 <Paper className={classes.paper}>
                     <Grid container>
                         <Grid item md={1} sm={1} xs={2} justify="flex-start" alignItems="flex-end" container>

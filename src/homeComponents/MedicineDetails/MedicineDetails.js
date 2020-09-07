@@ -26,7 +26,7 @@ const MedicineDetails = (props) => {
 
   return (
     <div className={classes.modal}>
-      <img className={classes.medicineImage} src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="Medicine Image" />
+      {/* <img className={classes.medicineImage} src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="Medicine Image" />
       <div className={classes.medicineDetails}>
         <h3>Medicine Name: {props.medicineName}</h3>
         <h3>Medicine Types: {props.medicineType}</h3>
@@ -34,7 +34,7 @@ const MedicineDetails = (props) => {
       </div>
       <Button variant="contained" color="primary" className={classes.editButton}>
         Edit
-      </Button>
+      </Button> */}
     </div>
   );
 }
