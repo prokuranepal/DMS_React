@@ -13,6 +13,7 @@ import MissionInfo from './MissionInfo/MissionInfo';
 import DroneInfo from './DroneInfo/DroneInfo';
 import {socket} from '../../socket';
 import * as actions from '../../store/actions/droneControl';
+import CustomModal from '../../hoc/Modal/Modal'
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
@@ -61,18 +62,6 @@ const useStyles = makeStyles((theme) => ({
         padding: '5px',
         fontSize: '10px'
     },
-    modal: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    paper: {
-        backgroundColor: '#343a40',
-        borderRadius: '10px',
-        padding: theme.spacing(1, 2, 1, 1),
-        color: 'white',
-        width: '320px'
-    },
     buttonLayout: {
         display: 'flex',
         flexDirection: 'row',
@@ -87,16 +76,7 @@ const useStyles = makeStyles((theme) => ({
     
 }));
 
-function getModalStyle() {
-    const top = 40;
-    const left = 0;
 
-    return {
-        top: `${top}%`,
-        left: `${left}%`,
-        transform: `translate(${top}%, -${left}%)`,
-    };
-}
 const DroneData = props => {
     const classes = useStyles();
     const [openMissionList, setOpenMissionList] = React.useState(false);
@@ -105,7 +85,6 @@ const DroneData = props => {
     const [drone, setDrone] = React.useState(null);
     const [mission, setMission] = React.useState(null);
     const [droneInfo, setDroneInfo] = React.useState(null);
-    const [style, setStyle] = React.useState(getModalStyle);
     const activeDrones = useSelector(({ droneControl }) => droneControl.activeDrones);
     // console.log(activeDrones);
     const dispatch = useDispatch();
@@ -203,51 +182,19 @@ const DroneData = props => {
                 </Grid>
 
             </Grid>
-            <Modal
-                aria-labelledby="transition-modal-title"
-                aria-describedby="transition-modal-description"
-                className={classes.modal}
+            
+            <CustomModal
                 open={openMissionList}
-                onClose={handleCloseMission}
-                closeAfterTransition
-            >
-                <Fade in={openMissionList}>
-                    <div className={classes.paper} style={style}>
-                        <MissionList abort={handleCloseMission}  select={selectMission}/>
-
-                    </div>
-                </Fade>
-            </Modal>
-            <Modal
-                aria-labelledby="transition-modal-title"
-                aria-describedby="transition-modal-description"
-                className={classes.modal}
+                close={handleCloseMission}
+                component={<MissionList abort={handleCloseMission}  select={selectMission}/>} />
+            <CustomModal
                 open={openCheckList}
-                onClose={handleCloseCheck}
-                closeAfterTransition
-            >
-                <Fade in={openCheckList}>
-                    <div className={classes.paper} style={style}>
-                        <CheckList abort={handleCloseCheck} />
-
-                    </div>
-                </Fade>
-            </Modal>
-            <Modal
-                aria-labelledby="transition-modal-title"
-                aria-describedby="transition-modal-description"
-                className={classes.modal}
+                close={handleCloseCheck}
+                component={<CheckList abort={handleCloseCheck} />} />
+            <CustomModal 
                 open={openDroneList}
-                onClose={handleCloseDrone}
-                closeAfterTransition
-            >
-                <Fade in={openDroneList}>
-                    <div className={classes.paper} style={style}>
-                        <DroneList abort={handleCloseDrone} select={selectDrone} drones={activeDrones}/>
-
-                    </div>
-                </Fade>
-            </Modal>
+                close={handleCloseDrone}
+                component={<DroneList abort={handleCloseDrone} select={selectDrone} drones={activeDrones}/>}/>
         </Grid>
         // </div>
     )

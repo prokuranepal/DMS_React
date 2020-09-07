@@ -32,17 +32,17 @@ const RestrictedRoute = ({ component: Component, token, ...rest }) =>
         />}
   />;
 
-  /**
- * Landing page on the screen
- * Depending upon authentication directs to login screen or dashboard
- *
- * @param {Default} props - Receives navigation/router params.
- * @returns {Dashboard/Login} - It routes to login or dashboard depending upon authentication
- */
+/**
+* Landing page on the screen
+* Depending upon authentication directs to login screen or dashboard
+*
+* @param {Default} props - Receives navigation/router params.
+* @returns {Dashboard/Login} - It routes to login or dashboard depending upon authentication
+*/
 
 const App = (props) => {
   const dispatch = useDispatch();
-  const [redirectTo, setRedirectTo] = useState();
+  const [redirectTo, setRedirectTo] = useState('');
   const { themeColor, darkTheme, locale, isDirectionRTL } = useSelector(({ settings }) => settings);
   const { token, initURL } = useSelector(({ auth }) => auth);
   const isDarkTheme = darkTheme;
@@ -55,7 +55,7 @@ const App = (props) => {
     // }
 
     const tryLogin = async () => {
-  
+
       if (token === undefined || token === null || token === "undefined") {
         dispatch(authActions.setInitURL('/signin'));
         // return (<Redirect to={'/signin'} />)
@@ -78,41 +78,50 @@ const App = (props) => {
       }
     };
     tryLogin();
-  }, []);
+  }, [token]);
 
   let applyTheme = createMuiTheme(indigoTheme);
 
-  if(location.pathname === '/') {
-    if(token === null || token === undefined || token === "undefined") {
+  if (location.pathname === '/') {
+    if (token === null || token === undefined || token === "undefined") {
       return <Redirect to='/signin' />
     } else {
-      return <Redirect to='/app' /> 
+      const expiryDate = localStorage.getItem('expirationDate');
+      const expirationDate = new Date(expiryDate);
+      if (expirationDate <= new Date() || !token) {
+        // dispatch(authActions.setInitURL('/signin'));
+        // setRedirectTo('/signin');
+        dispatch(authActions.logout())
+        return (<Redirect to={'/signin'} />)
+      } else {
+        return <Redirect to='/app' />
+      }
     }
   }
-  const currentAppLocale = AppLocale[locale.locale];
-  return (
-    <ThemeProvider theme={applyTheme}>
-      <MuiPickersUtilsProvider utils={MomentUtils}>
-        <IntlProvider
-          locale={currentAppLocale.locale}
-          messages={currentAppLocale.messages}>
-          {/* <RTL> */}
-          <div className="app-main">
-            <Switch>
-              <RestrictedRoute path={`${match.url}app`} token={token}
-                component={AppLayout} />
-              <Route path='/signin' component={SignIn} />
-              {/* <Route path='/signup' component={SignUp} /> */}
-              {/*<Route*/}
-              {/*  component={asyncComponent(() => import('app/routes/extraPages/routes/404'))}/>*/}
-            </Switch>
-          </div>
-          {/* </RTL> */}
-        </IntlProvider>
-      </MuiPickersUtilsProvider>
-    </ThemeProvider>
-  );
-};
+    const currentAppLocale = AppLocale[locale.locale];
+    return (
+      <ThemeProvider theme={applyTheme}>
+        <MuiPickersUtilsProvider utils={MomentUtils}>
+          <IntlProvider
+            locale={currentAppLocale.locale}
+            messages={currentAppLocale.messages}>
+            {/* <RTL> */}
+            <div className="app-main">
+              <Switch>
+                <RestrictedRoute path={`${match.url}app`} token={token}
+                  component={AppLayout} />
+                <Route path='/signin' component={SignIn} />
+                {/* <Route path='/signup' component={SignUp} /> */}
+                {/*<Route*/}
+                {/*  component={asyncComponent(() => import('app/routes/extraPages/routes/404'))}/>*/}
+              </Switch>
+            </div>
+            {/* </RTL> */}
+          </IntlProvider>
+        </MuiPickersUtilsProvider>
+      </ThemeProvider>
+    );
+  };
 
 
-export default App;
+  export default App;

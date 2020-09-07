@@ -11,6 +11,7 @@ import { Link, Redirect } from 'react-router-dom';
 import Hidden from '@material-ui/core/Hidden';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../../../store/actions/imsMedicine';
+import Medicine from '../../../../containers/Medicine/Medicine';
 const useStyles = makeStyles({
     root: {
         flexGrow: 1,
@@ -32,7 +33,7 @@ const MedicineListContainer = props => {
     }
 
     const { medicineList } = useSelector(({ ims }) => ims);
-    console.log(props)
+    console.log(medicineList)
     useEffect(() => {
         if (props.location.aboutProps !== undefined) {
             dispatch(actions.getMedicines(props.location.aboutProps.type))
@@ -42,7 +43,9 @@ const MedicineListContainer = props => {
     }, [dispatch])
     return (
         <div className="app-wrapper">
-            <Grid container xs={12} >
+
+        <Medicine list={medicineList} />
+            {/* <Grid container xs={12} >
                 <Grid item xs={1} justify="center" alignItems="flex-end" container>
                     <Link to='/app/ims/categories' style={{ textDecoration: 'none', color: 'white' }}>
                         <IconButton type="submit" aria-label="search">
@@ -60,14 +63,14 @@ const MedicineListContainer = props => {
                 </Grid>
                 <Grid item lg={2} md={3} sm={3} xs={5} justify="center" container>
                     {/* <Hidden xsDown> */}
-                    <Link to='/app/ims/addmedicine' style={{ textDecoration: 'none', color: 'white' }}>
+                    {/* <Link to='/app/ims/addmedicine' style={{ textDecoration: 'none', color: 'white' }}>
                         <Button onClick={goToAddMedicine} variant="contained" color="primary">Add Item</Button>
-                    </Link>
+                    </Link> */}
                     {/* </Hidden> */}
-                </Grid>
+                {/* </Grid> */}
 
-            </Grid>
-            <MedicineList list={medicineList} />
+            {/* </Grid> */}
+            {/* <MedicineList list={medicineList} /> */}
         </div>
 
     );

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import SimpleAlert from '../UI/Alert/Alert';
 import User from './User';
-
+import {useSelector, useDispatch} from 'react-redux'
+import * as actions from '../../store/actions/users'
 const useStyles = makeStyles((theme) => ({
     users: {
 
@@ -14,16 +15,18 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 const ListUsers = props => {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(actions.getUsers());
+    },[dispatch])
+    const userData = useSelector(({users}) => users.users)
     const classes = useStyles();
+    console.log(userData);
     return(
     <Grid container className={classes.users}>
         <SimpleAlert />
         <Grid item xs={12}>
-            <User title='LEVEL 1' users={props.users1} />
-        </Grid>
-
-        <Grid item xs={12}>
-            <User title='LEVEL 2' users={props.users2} />
+            <User users={userData} />
         </Grid>
     </Grid>)
 }
