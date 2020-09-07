@@ -52,7 +52,10 @@ const setInitURL = (state, action)=> {
 }
 
 const signUpFail = (state, action) => {
-    return updateObject(state, {signUpError: action.message})
+    if(action.message !== undefined)
+        return updateObject(state, {signUpError: action.message})
+    else
+        return 0
 }
 
 const signUpSuccess = (state, action) => {

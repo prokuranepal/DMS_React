@@ -78,3 +78,26 @@ export const updateMedicineSuccess = () => {
         type: UPDATE_MEDICINE
     }
 }
+
+export const deleteMedicine = (id) => {
+    const url = '/medicines';
+    return dispatch => {
+
+        // axios.post(url, data, { headers: func.getToken() })
+        //     .then(response => {
+        //         dispatch(addMedicineSuccess());
+        //         console.log(response);
+        //     })
+
+        // .then(res => {
+        //     console.log(medicineData);
+        //     dispatch(addMedicineSuccess());
+        // })
+    }
+}
+
+export const deleteMedicineSuccess = () => {
+    return {
+        type: ADD_MEDICINE
+    }
+}

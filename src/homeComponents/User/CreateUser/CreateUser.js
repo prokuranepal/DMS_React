@@ -1,20 +1,21 @@
 import React, {useState, useEffect} from 'react'
 import {withRouter} from 'react-router'
 import {Link} from 'react-router-dom'
-import  { createUser1, createUser2, getUsers } from '../../store/actions/users'
+import  {  getUsers } from '../../../store/actions/users'
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
+// import FormControl from '@material-ui/core/FormControl';
+// import Select from '@material-ui/core/Select';
+// import InputLabel from '@material-ui/core/InputLabel';
+// import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { Paper, Typography } from '@material-ui/core';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
-
-const CreateUser = ({history, createUser1, createUser2}) => {
+import {useDispatch} from 'react-redux';
+import * as actions from '../../../store/actions/users';
+const CreateUser = ({history}) => {
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -69,33 +70,27 @@ const CreateUser = ({history, createUser1, createUser2}) => {
       }));
 
     const [formData, setFormData] = useState({
-        username: '',
-        fullname: '',
-        institution: '',
-        level: '',
-        image: ''
+        email: 'swainstha@gmail.com',
+        firstName: 'Swain',
+        lastName:'Shrestha',
+        phoneNumber: '9842558818',
+        healthFacilities: '5f2bb9d7e0d78272f38eb279',
+        password: 'abc'
     })
 
-    const { username, fullname, institution, level, image} = formData;
-
-    useEffect(() => {
-
-         getUsers();  
-
-    }, [])
+    const { email, firstName,lastName, phoneNumber, healthFacilities, password} = formData;
 
     const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
     const onSubmit = e => {
         e.preventDefault();
-
-
-        formData.level==='Level 1'
-            ? createUser1(formData, history, false) 
-            : createUser2(formData, history, false);
-        
     };
+
+    const dispatch = useDispatch()
+    const submitNewUser = () => {
+        dispatch(actions.addUser(formData))
+    }
 
     const classes = useStyles();
     return (
@@ -108,11 +103,12 @@ const CreateUser = ({history, createUser1, createUser2}) => {
                         <form className = {classes.form}  onSubmit={onSubmit}>
                         
 
-                            <TextField margin='normal' onChange={onChange} name='username' value={username} id="standard-basic" label="User Name" required/>
-                            <TextField margin='normal' onChange={onChange} name='fullname' value={fullname} id="standard-basic" label="Full Name" required/>
-                            <TextField margin='normal' onChange={onChange} name='institution' value={institution} id="standard-basic" label="Institution" required />
-                            
-                            <FormControl margin='normal' className={classes.formControl} required >
+                            <TextField margin='normal' onChange={onChange} name='email' value={email} id="standard-basic" label="Email" required/>
+                            <TextField margin='normal' onChange={onChange} name='firstName' value={firstName} id="standard-basic" label="First Name" required/>
+                            <TextField margin='normal' onChange={onChange} name='lastName' value={lastName} id="standard-basic" label="Last Name" required/>
+                            <TextField margin='normal' onChange={onChange} name='phoneNumber' value={phoneNumber} id="standard-basic" label="Phone Number" required />
+                            <TextField margin='normal' onChange={onChange} name='password' value={password} id="standard-basic" label="Password" required />
+                            {/* <FormControl margin='normal' className={classes.formControl} required >
                                 <InputLabel id="demo-simple-select-label"  >Level</InputLabel>
                                 <Select
                                 labelId="demo-simple-select-label"
@@ -122,12 +118,12 @@ const CreateUser = ({history, createUser1, createUser2}) => {
                                     <MenuItem value='Level 1'>Level 1</MenuItem>
                                     <MenuItem value='Level 2'>Level 2</MenuItem>
                                 </Select>
-                            </FormControl>
+                            </FormControl> */}
                         
-                            <TextField margin='normal' onChange={onChange} name= 'image' value= {image} id="standard-basic" label="Image" />
+                            <TextField margin='normal' onChange={onChange} name= 'healthFacilities' value= {healthFacilities} id="standard-basic" label="Health Post" />
 
                             <div>
-                                <Button className={classes.submit}  type='submit' variant="contained" color='primary'>
+                                <Button className={classes.submit}  onClick={submitNewUser}   type='submit' variant="contained" color='primary'>
                                     SUBMIT
                                 </Button>
                                 <Link to='/app/users/list-users' style={{textDecoration:'none', color: 'white'}}>
@@ -160,4 +156,4 @@ const mapStateToProps = state => ({
     
 
 
-export default connect(mapStateToProps, {createUser1, createUser2})(withRouter(CreateUser))
+export default connect(mapStateToProps)(withRouter(CreateUser))

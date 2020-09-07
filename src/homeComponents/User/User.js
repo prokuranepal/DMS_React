@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import {Link} from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
@@ -57,12 +57,16 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const User = ({title, users}) => {
+const User = (props) => {
     const classes = useStyles();
 
     const [open, setOpen] = React.useState(false);
-    const [userData, setUserData] = React.useState({})
+    const [userData, setUserData] = React.useState([])
 
+    useEffect(() => {
+      if(props.users.healthpost !== undefined)
+        setUserData(props.users.healthpost);
+    },[props.users])
 
     const handleClickOpen = (user) => {
       setOpen(true);
@@ -73,15 +77,11 @@ const User = ({title, users}) => {
       setOpen(false);
     };
     
-
+    console.log(props.users.healthpost,userData);
 
     return (
         <Paper className = {classes.layout} >
            <div className={classes.header}>
-                <Typography variant="h4"> 
-                        {title}
-                </Typography>
-
                 <Link to = "/app/users/create-user" style={{textDecoration: 'none'}}>
                   <Button
                       variant="contained"
@@ -97,12 +97,12 @@ const User = ({title, users}) => {
            </div>
            {
              
-             users.map((user) => (
+             userData.map((user) => {
         
-                <ListItem className= {classes.table} divider = {true} autoFocus = {true} key ={uuidv4()}>
+                return <ListItem className= {classes.table} divider = {true} autoFocus = {true} key ={uuidv4()}>
 
                   <ListItemText 
-                    primary={user.username} className = {classes.list} key ={uuidv4()}
+                    primary={user.firstname + " " + user.lastname} className = {classes.list} key ={uuidv4()}
                   />
                 
                 <Link to= {{
@@ -115,15 +115,13 @@ const User = ({title, users}) => {
                       <EditIcon  />
                     </IconButton>
                 </Link>
-
-                
                   <IconButton edge="end" aria-label="delete" onClick={() => handleClickOpen(user)} key ={uuidv4()}>
                       <DeleteIcon color = 'secondary'  />
                       
                   </IconButton> 
                 </ListItem> 
                   
-             ))
+              })
             
            }
 

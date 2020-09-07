@@ -1,14 +1,10 @@
 import React from 'react';
 import DroneListItem from './DroneListItem/DroneListItem';
 import CustomScrollbars from '../../util/CustomScrollbars';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import { useSelector } from 'react-redux';
 import Spinner from '../UI/Spinner/Spinner';
 
 
@@ -58,7 +54,7 @@ const DroneList = (props) => {
                     <Button variant="outlined" color='white' onClick={props.abort} data-test="button1-component">Abort</Button>
                     <Button variant="outlined" color="white" className={classes.button} onClick={() => props.select(value)} data-test="button2-component">Select</Button>
                 </div>
-            </FormControl>: <div>Spinner</div>}
+            </FormControl>: <Spinner/>}
         </div>
 
     )

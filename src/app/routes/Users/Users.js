@@ -6,8 +6,8 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import CreateUser from '../../../homeComponents/CreateUser/CreateUser';
-import EditUser from '../../../homeComponents/EditUser/EditUser';
+import CreateUser from '../../../homeComponents/User/CreateUser/CreateUser';
+import EditUser from '../../../homeComponents/User/EditUser/EditUser';
 import ListUsers from '../../../homeComponents/User/ListUsers';
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,12 +18,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const Users = ({ getUsers, users: { users1, users2 } }) => {
-
-  useEffect(() => {
-    getUsers();
-
-  }, [])
+const Users = () => {
 
   const classes = useStyles();
 
@@ -31,7 +26,7 @@ const Users = ({ getUsers, users: { users1, users2 } }) => {
     <div>
       <Grid container className={classes.root} >
         <Switch>
-          <Route path="/app/users/list-users" render={(props) => <ListUsers {...props} users1={users1} users2={users2}/>}/>
+          <Route path="/app/users/list-users" render={() => <ListUsers/>}/>
           <Route exact path="/app/users/create-user" component={CreateUser} />
           <Route exact path="/app/users/edit-user" component={EditUser} />
           <Redirect from="/app/users" to="/app/users/list-users" />

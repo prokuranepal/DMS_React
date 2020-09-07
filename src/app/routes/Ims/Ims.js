@@ -4,12 +4,9 @@ import { getUsers } from '../../../store/actions/users';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import MedicineTypes from './MedicineTypes/MedicineTypes';
 import MedicineListContainer from './MedicineList/MedicineListContainer';
 import OrderLists from '../../../homeComponents/OrderLists/OrderLists';
 import OrderDetails from './Orders/OrderDetails/OrderDetails';
-import AddMedicine from './AddMedicine/AddMedicine';
-import UpdateMedicine from './UpdateMedicine/UpdateMedicine';
 // import OrderDetails from '../../../containers/OrderDetails/OrderDetails';
 // import OrderLists from '../../../containers/OrderList/Orders';
 const useStyles = makeStyles((theme) => ({
@@ -28,14 +25,11 @@ const MissionPlanner = ({match}) => {
     <div>
       <Grid container className={classes.root} >
         <Switch>
-          <Route exact path={`${match.url}/categories`} component={MedicineTypes} />
           <Route exact path={`${match.url}/medicinelist`} component={MedicineListContainer} />
-          <Route exact path={`${match.url}/addmedicine`} component={AddMedicine} />
-          <Route exact path={`${match.url}/updatemedicine`} render={(props) => <UpdateMedicine {...props}/>} />
           <Route exact path={`${match.url}/orders/lists`} component={OrderLists} />
-          <Route exact path={`${match.url}/orders/details`} component={OrderDetails} />
+          <Route exact path={`${match.url}/orders/details`} render={(props) => <OrderDetails {...props}/>}/>/>
           <Redirect from={`${match.url}/orders`} to="/app/ims/orders/lists" />
-          <Redirect from="/app/ims" to={`${match.url}/categories`} />
+          <Redirect from="/app/ims" to={`${match.url}/medicinelist`} />
         </Switch>
       </Grid>
 

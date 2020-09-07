@@ -12,13 +12,12 @@ export const GET_CARDS = 'GET_CARDS';
 export const CARD_ERROR = 'CARD_ERROR';
 export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
-export const GET_USER1= 'GET_USER1';
-export const GET_USER2 = 'GET_USE2';
-export const CLEAR_USER1 = 'CLEAR_USER1';
-export const CLEAR_USER2 = 'CLEAR_USER2';
+
 export const DELETE_USER = 'DELETE_USER';
+export const ADD_USER = 'ADD_USER';
 export const GET_USERS= 'GET_USERS';
 export const USER_ERROR= 'USER_ERROR';
+export const UPDATE_USER = 'UPDATE_USER';
 export const SET_INIT_URL = 'SET_INIT_URL';
 
 export const GET_WEATHER_DATA = 'GET_WEATHER_DATA';
@@ -53,6 +52,7 @@ export const SET_MISSION = 'SET_MISSION';
 export const GET_MEDICINES = 'GET_MEDICINES';
 export const ADD_MEDICINE = 'ADD_MEDICINE';
 export const UPDATE_MEDICINE = 'UPDATE_MEDICINE';
+export const DELETE_MEDICINE = 'DELETE_MEDICINE';
 
 export const GET_ORDERS = 'GET_ORDERS';
 export const GET_ORDER_DETAILS = 'GET_ORDER_DETAILS';
