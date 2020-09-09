@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
-import URLSearchParams from "url-search-params";
+// import URLSearchParams from "url-search-params";
 import MomentUtils from "@date-io/moment";
 import { MuiPickersUtilsProvider } from "material-ui-pickers";
 import { Redirect, Route, Switch } from "react-router-dom";
@@ -13,7 +13,7 @@ import AppLocale from "../lngProvider";
 // import SignIn from "./SignIn";
 // import SignUp from "./SignUp";
 // import { setInitUrl } from "../store/actions/Auth";
-import { setDarkTheme, setThemeColor } from "../store/actions/Setting";
+// import { setDarkTheme, setThemeColor } from "../store/actions/Setting";
 import AppLayout from "./AppLayout";
 import SignIn from './Auth/Auth';
 import * as authActions from '../store/actions/auth';

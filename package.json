@@ -74,6 +74,7 @@
     "react-jvectormap": "^0.0.15",
     "react-leaflet": "^2.7.0",
     "react-loadable": "^5.5.0",
+    "react-loading-skeleton": "^2.1.1",
     "react-notifications": "^1.4.3",
     "react-number-format": "^4.3.1",
     "react-placeholder": "^3.0.2",

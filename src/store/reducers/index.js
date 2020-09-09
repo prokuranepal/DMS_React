@@ -5,7 +5,6 @@ import Settings from './Settings';
 import Common from './Common';
 import authReducer from './auth';
 import dashboard from './dashboard';
-import alert from './alert';
 import users from './users';
 import weather from './weather';
 import droneControl from './droneControl';
@@ -20,7 +19,6 @@ export default (history) => combineReducers({
   commonData: Common,
   auth: authReducer,
   dashboard: dashboard,
-  alert: alert,
   users: users,
   weather: weather,
   droneControl: droneControl,

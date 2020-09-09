@@ -4,8 +4,6 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
 import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import Fade from '@material-ui/core/Fade';
 import MissionList from '../../homeComponents/MissionList/MissionList';
 import CheckList from '../../homeComponents/CheckList/CheckList';
 import DroneList from '../../homeComponents/DroneList/DroneList';
@@ -92,13 +90,13 @@ const DroneData = props => {
         // console.log(data);
         setDroneInfo(data);
     }
-    // useEffect(() => {
-    //     socket.emit(drone);
-    //     socket.on("data",setData);
-    //     return function cleanup() {      
-    //         socket.off("data");
-    //     };
-    // },[drone]);
+    useEffect(() => {
+        socket.emit(drone);
+        socket.on("data",setData);
+        return function cleanup() {      
+            socket.off("data");
+        };
+    },[drone]);
 
     const handleOpenMission = () => {
         
@@ -127,6 +125,7 @@ const DroneData = props => {
     };
 
     const selectDrone = (drone) => {
+        console.log(drone);
         setDrone(drone);
         setOpenDroneList(false);
     }

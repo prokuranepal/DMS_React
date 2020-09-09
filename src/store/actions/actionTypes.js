@@ -1,3 +1,4 @@
+//AUTHENTICATION
 export const AUTH_START = 'AUTH_START';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAIL = 'AUTH_FAIL';
@@ -8,10 +9,20 @@ export const RESET_PASSWORD = 'RESET_PASSWORD';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_FAIL = 'SIGNUP_FAIL';
 
-export const GET_CARDS = 'GET_CARDS';
-export const CARD_ERROR = 'CARD_ERROR';
-export const SET_ALERT = 'SET_ALERT';
-export const REMOVE_ALERT = 'REMOVE_ALERT';
+
+//DAHSBOARD
+export const GET_CARDS_START = 'GET_CARDS_START';
+export const GET_CARDS_SUCCESS = 'GET_CARDS_SUCCESS';
+export const GET_CARDS_FAIL = 'GET_CARDS_FAIL';
+
+export const GET_HEALTHPOSTS_START = 'GET_HEALTHPOSTS_START';
+export const GET_HEALTHPOSTS_SUCCESS = 'GET_HEALTHPOSTS_SUCCESS';
+export const GET_HEALTHPOSTS_FAIL = 'GET_HEALTHPOSTS_FAIL';
+
+export const GET_PLACES_START = 'GET_PLACES_START';
+export const GET_PLACES_SUCCESS = 'GET_PLACES_SUCCESS';
+export const GET_PLACES_FAIL = 'GET_PLACES_FAIL';
+
 
 export const DELETE_USER = 'DELETE_USER';
 export const ADD_USER = 'ADD_USER';
@@ -58,10 +69,10 @@ export const GET_ORDERS = 'GET_ORDERS';
 export const GET_ORDER_DETAILS = 'GET_ORDER_DETAILS';
 export const UPDATE_ORDER = 'UPDATE_ORDER';
 
-export const GET_HEALTHPOSTS = 'GET_HEALTHPOSTS';
-
 export const GET_DRONES = 'GET_DRONES'
 export const ADD_DRONE = 'ADD_DRONE'
 export const UPDATE_DRONE = 'UPDATE_DRONE'
+
+
 
 

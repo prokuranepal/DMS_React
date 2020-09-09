@@ -1,69 +1,111 @@
 // import axios from 'axios';
 
-import { GET_CARDS, CARD_ERROR, GET_HEALTHPOSTS } from './actionTypes';
+
 // import * as axios from '../../response/falseFetch';
 import axios from '../../axios-orders';
 import * as actionTypes from './actionTypes';
-
 import * as func from './common';
 
 export const getCurrentCards = () => async dispatch => {
-    try {
-        // const res = await axios.get('api/dashboard');
-        // const url = './dashboardCardData';
-        const url = '/dashboard';
-        console.log(func.getToken());
-        axios.get(url,{headers: func.getToken()}).then(response => {
-            console.log(response);
-            dispatch({
-                type: GET_CARDS,
-                data: response.data,
-                // data: response.dashboardData
-            })
+    const url = '/dashboard';
+    console.log(func.getToken());
+    dispatch(getCardsStart());
+    axios.get(url, { headers: func.getToken() }).then(response => {
+        dispatch(getCardsSuccess(response.data));
+    })
+        .catch(error => {
+            dispatch(getCardsFail(error))
         })
-        
+}
 
-    } catch (error) {
-        dispatch({
-            type: CARD_ERROR,
-            // error: error.response.statusText, 
-            // status: error.response.status 
-            error: "data not found"
-        })
+
+const getCardsFail = (res) => {
+    return {
+        type: actionTypes.GET_CARDS_FAIL,
+        error: res
+    }
+}
+
+const getCardsStart = () => {
+    return {
+        type: actionTypes.GET_CARDS_START
+    }
+}
+
+const getCardsSuccess = (data) => {  
+    return {
+        type: actionTypes.GET_CARDS_SUCCESS,
+        data: data
     }
 }
 
 export const getPlaces = () => {
     return dispatch => {
         const url = '/places';
-        axios.get(url,{headers: func.getToken()}).then(response => {
-            // dispatch(setPlaces(response.data));
-            console.log(response)
+        dispatch(getPlacesStart());
+        axios.get(url, { headers: func.getToken() }).then(response => {
+            dispatch(getPlacesSuccess(response.data));
+            // console.log(response)
         })
+            .catch(err => {
+                console.log(err.response);
+                dispatch(getPlacesFail(err));
+            })
     }
 }
 
-export const setPlaces = (places) => {
+const getPlacesFail = (res) => {
     return {
-        type: actionTypes.SET_PLACES,
-        places: places
+        type: actionTypes.GET_PLACES_FAIL,
+        error: res
     }
 }
+
+const getPlacesStart = () => {
+    return {
+        type: actionTypes.GET_PLACES_START
+    }
+}
+
+const getPlacesSuccess = (places) => {
+    return {
+        type: actionTypes.GET_PLACES_SUCCESS,
+        // places: places
+    }
+}
+
+
 
 export const getHealthposts = () => {
     return dispatch => {
         const url = '/healthpost';
-        axios.get(url,{headers: func.getToken()})
-        .then(res => {
-            console.log(res.data)
-            dispatch(getHealthpostsSuccess(res.data))
-        })
+        axios.get(url, { headers: func.getToken() })
+            .then(res => {
+                console.log(res.data)
+                dispatch(getHealthpostsSuccess(res.data))
+            })
+            .catch(err => {
+                dispatch(getHealthpostsFail())
+            })
     }
 }
 
-export const getHealthpostsSuccess = (healthposts) => {
+const getHealthpostsSuccess = (healthposts) => {
     return {
-        type: GET_HEALTHPOSTS,
+        type: actionTypes.GET_HEALTHPOSTS_SUCCESS,
         healthposts: healthposts
+    }
+}
+
+const getHealthpostsStart = () => {
+    return {
+        type: actionTypes.GET_HEALTHPOSTS_START
+    }
+}
+
+const getHealthpostsFail = (error) => {
+    return {
+        type: actionTypes.GET_HEALTHPOSTS_FAIL,
+        error: error
     }
 }
