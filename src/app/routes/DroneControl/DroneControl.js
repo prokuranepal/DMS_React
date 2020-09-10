@@ -75,30 +75,37 @@ const DroneControl = props => {
     //for loading mission from drone
     const setMissionDetail = (mission) => {
         console.log(mission);
-        setMissionState(mission);
+        
+        // const waypoints = []
+        // for(let key in mission.waypoints) {
+        //     waypoints.push(mission.waypoints[key]);
+        // }
+        setMissionState({...missionState, ...mission});
+        // setMissionState({...missionState,waypoints: waypoints});
     }
 
     const dispatch = useDispatch();
 
     const setData = (data) => {
-        console.log(data);
+        // console.log(data);
         setDroneInfo(data);
     }
 
     const setHomePosition = (position) => {
-        console.log(position);
+        // console.log(position);
         setHome({
             ...home,lat:position.lat, lng:position.lng});
 
     }
     useEffect(() => {
-        console.log(drone, url, userId);
+        // console.log(drone, url, userId);
         if (drone !== null) {
-            socket.current = io('http://774946f968ad.ngrok.io/JT601');
+            console.log("send socket connection");
+            socket.current = io('http://a00c066d495a.ngrok.io/JT601');
             socket.current.emit("joinDMS", userId);
             socket.current.on("copter-data", setData);
             socket.current.on("homePosition", setHomePosition)
-            socket.current.on('mission', setMissionDetail);
+            socket.current.on('getMission', setMissionDetail);
             socket.current.on('connect', () => {
                 console.log("Connected Again");
             })
@@ -170,13 +177,13 @@ const DroneControl = props => {
     }
 
     const onStartMission = () => {
-        console.log("Start Mission", socket.current.connected);
+        // console.log("Start Mission", socket.current.connected);
         // console.log(socket.current);
         socket.current.emit("initiateFlight")
     }
     
     const onDownloadMission = () => {
-        socket.current.emit("mission")
+        socket.current.emit("getMission")
     }
     return <Grid container className={classes.root} >
         <Map
@@ -226,8 +233,7 @@ const DroneControl = props => {
             />
             {droneInfo !== null?<RotatedMarker icon={droneIcon} position={[droneInfo.lat, droneInfo.lng]} rotationAngle={droneInfo.head} rotationOrigin={'center'} />:null}
 
-            {missionDetail !== null && missionDetail !== undefined ?
-                        missionDetail.waypoints.map((miss, i, array) => {
+            {missionState !== null && missionState !== undefined ? missionState.waypoints.map((miss, i, array) => {
                             // console.log(miss);
                             return (<span key={i}><Marker
                                 position={[miss.lat, miss.lng]}>

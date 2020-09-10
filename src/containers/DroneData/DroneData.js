@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
 
 // let socket = null;
 const DroneData = props => {
-    const classes = useStyles();    
+    const classes = useStyles();
     return (
         // <div className="app-wrapper">
         <Grid container className={classes.root}>
@@ -115,9 +115,12 @@ const DroneData = props => {
                     <div className={classes.drone}>
                         <Button size="small" variant="contained" color="primary" onClick={props.handleOpenDrone}>Choose Drone</Button>
                         {props.drone !== null ? <DroneInfo data={props.droneInfo} /> : null}
-                        {props.mission !== null ? <MissionInfo onDownloadMission={props.onDownloadMission}   uploadMission={props.uploadMission} onStartMission={props.onStartMission} mission={props.mission}/> : null}
+                        {props.mission !== null ? <MissionInfo  uploadMission={props.uploadMission} onStartMission={props.onStartMission} mission={props.mission} /> : null}
 
                     </div>
+                    {props.drone !== null ?<div className={classes.drone}>
+                        <Button onClick={props.onDownloadMission} size="small" variant="contained" color="primary">Download</Button>
+                    </div>:null}
 
                 </Grid>
 

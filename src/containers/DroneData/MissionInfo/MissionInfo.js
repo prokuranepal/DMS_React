@@ -41,9 +41,10 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '10px'
     },
     buttons: {
+        width: '100%',
         display: 'flex',
-        flex: '0 0',
-        margin: '10px auto',
+        
+        margin: '10px 0px',
         justifyContent: 'space-evenly',
         color: 'white',
         alignItems: 'center',
@@ -68,10 +69,7 @@ const MissionInfo = props => {
                     <div><Button onClick={props.uploadMission} size="small" variant="contained" color="primary">Upload</Button></div>
                     <div>
                         <Button onClick={props.onStartMission} size="small" variant="contained" color="primary">Start</Button></div>
-                </div>
-                <div>
-                        <Button onClick={props.onDownloadMission} size="small" variant="contained" color="primary">Download</Button>
-                </div>
+                </div>  
         </Grid>
     </div>
     )
