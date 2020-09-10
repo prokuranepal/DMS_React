@@ -59,8 +59,7 @@ const MissionView = props => {
     const openMissionDetail = useSelector(({ mission }) => mission.missionDetail);
     
     const state = {
-        lat: 26.818123,
-        lng: 87.281345,
+        lat: -35.36326217651367, lng: 149.1652374267578,
         zoom: 17,
     }
     const initialMissionDetail = { name: '', radius: null, speed: null, home: '', destination: '', waypoints: [] };

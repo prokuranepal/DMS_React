@@ -1,4 +1,4 @@
-import socketIOClient from "socket.io-client";
+import io from "socket.io-client";
 
-const endpoint = 'http://992240c2839e.ngrok.io/JT601';
-export const socket = socketIOClient(endpoint);
+export const url = 'http://a00c066d495a.ngrok.io';
+export const socket = io(url);

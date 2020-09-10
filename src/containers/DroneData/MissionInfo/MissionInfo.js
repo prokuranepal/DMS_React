@@ -57,7 +57,7 @@ const MissionInfo = props => {
         <Grid container className={classes.dataItem}>
             <div className={classes.head}>Mission</div>
             <div className={classes.mission}>
-                <div><p className={classes.header}>Dharan To Dhankuta</p></div>
+                <div><p className={classes.header}>{props.mission.name}</p></div>
                 <div style={{ marginTop: '10px' }}>
                     <div><span className={classes.info}>Waypoints:15</span><span className={classes.info}>ETA:35mins</span></div>
                     <div><span className={classes.info}>Distance:600m</span></div>
@@ -68,6 +68,9 @@ const MissionInfo = props => {
                     <div><Button onClick={props.uploadMission} size="small" variant="contained" color="primary">Upload</Button></div>
                     <div>
                         <Button onClick={props.onStartMission} size="small" variant="contained" color="primary">Start</Button></div>
+                </div>
+                <div>
+                        <Button onClick={props.onDownloadMission} size="small" variant="contained" color="primary">Download</Button>
                 </div>
         </Grid>
     </div>

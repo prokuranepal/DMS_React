@@ -11,7 +11,7 @@ import CardBox from '../../../components/CardBox/index';
 import Hidden from '@material-ui/core/Hidden';
 import CustomLineChart from '../../../components/CustomLineChart/index'
 import ChartCard from '../../../components/ChartCard/ChartCard'
-// import * as cards from '../../../JSONFiles/dashboardCards';
+import * as cards from '../../../JSONFiles/dashboardCards';
 import DashbboardSkeleton from './DashboardSkeleton';
 
 const Dashboard = (props) => {
@@ -27,7 +27,7 @@ const Dashboard = (props) => {
     console.log(year);
     const { cardData, loading, graphs } = useSelector(({ dashboard }) => dashboard);
 
-    const card = cardData !== undefined && cardData !== null ? cardData.data.map((data, index) => {
+    const card = cardData !== undefined && cardData !== null ? cards.data.map((data, index) => {
         return (
             <Grid item lg={3} md={3} xs={6} key={index}>
                 <IconWithTextCard data={data} value={cardData[data.title]} style={{marginBottom: 0}}/>

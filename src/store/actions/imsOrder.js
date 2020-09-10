@@ -1,7 +1,7 @@
 import { GET_ORDER_DETAILS, GET_ORDERS, UPDATE_ORDER} from './actionTypes';
 // import * as axios from '../../response/falseFetch';
 import axios from '../../axios-orders';
-import * as func from './common';
+import * as func from './function';
 
 
 export const getOrders = () => {

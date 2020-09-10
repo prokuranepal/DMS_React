@@ -1,7 +1,7 @@
 import { ADD_MEDICINE, GET_MEDICINES, UPDATE_MEDICINE } from './actionTypes';
 // import * as axios from '../../response/falseFetch';
 import axios from '../../axios-orders';
-import * as func from './common';
+import * as func from './function';
 
 export const addMedicine = (medicineData) => {
     const url = '/medicines';

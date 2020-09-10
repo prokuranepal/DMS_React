@@ -18,6 +18,8 @@ import AppLayout from "./AppLayout";
 import SignIn from './Auth/Auth';
 import * as authActions from '../store/actions/auth';
 
+
+
 const RestrictedRoute = ({ component: Component, token, ...rest }) =>
   <Route
     {...rest}
@@ -47,6 +49,8 @@ const App = (props) => {
   const { token, initURL } = useSelector(({ auth }) => auth);
   const isDarkTheme = darkTheme;
   const { match, location } = props;
+
+  
 
   useEffect(() => {
     window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
@@ -98,30 +102,30 @@ const App = (props) => {
       }
     }
   }
-    const currentAppLocale = AppLocale[locale.locale];
-    return (
-      <ThemeProvider theme={applyTheme}>
-        <MuiPickersUtilsProvider utils={MomentUtils}>
-          <IntlProvider
-            locale={currentAppLocale.locale}
-            messages={currentAppLocale.messages}>
-            {/* <RTL> */}
-            <div className="app-main">
-              <Switch>
-                <RestrictedRoute path={`${match.url}app`} token={token}
-                  component={AppLayout} />
-                <Route path='/signin' component={SignIn} />
-                {/* <Route path='/signup' component={SignUp} /> */}
-                {/*<Route*/}
-                {/*  component={asyncComponent(() => import('app/routes/extraPages/routes/404'))}/>*/}
-              </Switch>
-            </div>
-            {/* </RTL> */}
-          </IntlProvider>
-        </MuiPickersUtilsProvider>
-      </ThemeProvider>
-    );
-  };
+  const currentAppLocale = AppLocale[locale.locale];
+  return (
+    <ThemeProvider theme={applyTheme}>
+      <MuiPickersUtilsProvider utils={MomentUtils}>
+        <IntlProvider
+          locale={currentAppLocale.locale}
+          messages={currentAppLocale.messages}>
+          {/* <RTL> */}
+          <div className="app-main">
+            <Switch>
+              <RestrictedRoute path={`${match.url}app`} token={token}
+                component={AppLayout} />
+              <Route path='/signin' component={SignIn} />
+              {/* <Route path='/signup' component={SignUp} /> */}
+              {/*<Route*/}
+              {/*  component={asyncComponent(() => import('app/routes/extraPages/routes/404'))}/>*/}
+            </Switch>
+          </div>
+          {/* </RTL> */}
+        </IntlProvider>
+      </MuiPickersUtilsProvider>
+    </ThemeProvider>
+  );
+};
 
 
-  export default App;
+export default App;

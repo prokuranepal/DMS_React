@@ -1,4 +1,4 @@
-import {setAlert} from './alert';
+// import {setAlert} from './alert';
 import axios from '../../axios-orders';
 import {
   
@@ -7,7 +7,7 @@ import {
     ADD_USER,
     UPDATE_USER
 } from './actionTypes'
-import * as func from './common';
+import * as func from './function';
 //Get users 
 
 export const getUsers = () =>  dispatch => {

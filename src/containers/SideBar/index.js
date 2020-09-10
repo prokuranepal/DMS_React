@@ -32,7 +32,7 @@ const SideBar = () => {
     type = 'temporary';
   }
 
-  console.log("navCollapsed in drawer file",type, navCollapsed)
+  // console.log("navCollapsed in drawer file",type, navCollapsed)
   return (
     <div className={`app-sidebar d-none ${drawerStyle}`}>
       <Drawer className="app-sidebar-content"
