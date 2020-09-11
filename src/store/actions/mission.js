@@ -8,7 +8,7 @@ import * as func from './function';
 
 
 export const createUpdateMission = (missionDetail, action) => {
-    console.log(missionDetail, action);
+    // console.log(missionDetail, action);
     // let url = '/create';
     // if (action === 'edit') {
     //     url = '/edit';
@@ -39,7 +39,7 @@ export const createMission = (missionDetail, url) => {
     return dispatch => {
         axios.post(url,missionDetail,{headers: func.getToken()} )
         .then(res => {
-            console.log(res);
+            // console.log(res);
             dispatch(createMissionSuccess());
         })
         .catch(err => {
@@ -58,7 +58,7 @@ export const updateMission = (missionDetail,url) => {
     return dispatch => {
         axios.put(url,missionDetail,{headers: func.getToken()} )
         .then(res => {
-            console.log(res);
+            // console.log(res);
             dispatch(updateMissionSuccess());
         })
         .catch(err => {
@@ -85,7 +85,7 @@ export const getMission = (missionId) => {
         const url = `/mission/${missionId}`;
         dispatch(getMissionStart());
         axios.get(url,{headers: func.getToken()}).then(response => {
-            console.log(response.data)
+            // console.log(response.data)
             dispatch(setMission(response.data));
         }).catch(err => {
             console.log(err);
@@ -109,7 +109,7 @@ export const setMission = (missionDetail) => {
 export const fetchMissionList = () => {
     return dispatch => {
         axios.get('/mission',{headers: func.getToken()}).then(res => {
-            console.log(res);
+            // console.log("Mission List",res);
             dispatch(fetchMissionListSuccess());
             dispatch(fetchMissionListUpdate(res.data));
         }).catch(err => {

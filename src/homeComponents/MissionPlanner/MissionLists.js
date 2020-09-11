@@ -64,7 +64,7 @@ const MissionLists = props => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const {missions} = useSelector(({ mission }) => mission);
-    console.log(missions);
+    // console.log(missions);
     useEffect(() => {
         dispatch(actions.fetchMissionList());
     },[dispatch])

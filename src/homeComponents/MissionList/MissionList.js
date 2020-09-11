@@ -40,7 +40,7 @@ const MissionList = (props) => {
         setValue(event.target.value);
     };
     const missions = useSelector(({ mission }) => mission.missions);
-    console.log(missions);
+    // console.log(missions);
     useEffect(() => {
         dispatch(actions.fetchMissionList());
     }, [dispatch]);
