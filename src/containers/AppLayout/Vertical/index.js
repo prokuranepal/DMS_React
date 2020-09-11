@@ -9,11 +9,14 @@ import { COLLAPSED_DRAWER, FIXED_DRAWER } from "../../../constants/ActionTypes";
 // import ColorOption from "containers/Customizer/ColorOption";
 import { isIOS, isMobile } from "react-device-detect";
 import { socket } from '../../../socket';
+import * as actions from '../../../store/actions/Common';
+import {useDispatch} from 'react-redux';
 
 const Vertical = (props) => {
 
   const { drawerType } = useSelector(({ settings }) => settings);
   const { userId } = useSelector(({ auth }) => auth);
+  const dispatch = useDispatch();
   const drawerStyle = drawerType.includes(FIXED_DRAWER) ? "fixed-drawer" : drawerType.includes(COLLAPSED_DRAWER) ? "collapsible-drawer" : "mini-drawer";
 
   //set default height and overflow for iOS mobile Safari 10+ support.
@@ -46,6 +49,10 @@ const Vertical = (props) => {
       socket.disconnect();
     };
   }, [socket, userId]);
+
+  useEffect(() => {
+    dispatch(actions.getNotifications());
+  }, [dispatch])
 
   return (
     <div className={`app-container ${drawerStyle}`}>

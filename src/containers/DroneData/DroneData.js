@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
         color: 'white',
     },
     drone: {
-        flex: '1 1',
+        flex: '1 0',
         display: 'flex',
         flexDirection: 'column',
         flexWrap: 'nowrap',
@@ -115,12 +115,18 @@ const DroneData = props => {
                     <div className={classes.drone}>
                         <Button size="small" variant="contained" color="primary" onClick={props.handleOpenDrone}>Choose Drone</Button>
                         {props.drone !== null ? <DroneInfo data={props.droneInfo} /> : null}
-                        {props.mission !== null ? <MissionInfo  uploadMission={props.uploadMission} onStartMission={props.onStartMission} mission={props.mission} /> : null}
-
+                        {props.drone !== null ?
+                            // <div className={classes.drone}>
+                                <Button onClick={props.onDownloadMission} size="small" variant="contained" color="primary">Download Mission</Button>
+                            // </div> 
+                            : null}
+                        {props.mission !== null && props.showMissionDetail? <MissionInfo uploadMission={props.uploadMission} onStartMission={props.onStartMission} mission={props.mission} /> : null}
+                        
                     </div>
-                    {props.drone !== null ?<div className={classes.drone}>
-                        <Button onClick={props.onDownloadMission} size="small" variant="contained" color="primary">Download</Button>
-                    </div>:null}
+                    {/* {props.drone !== null ?
+                        <div className={classes.drone}>
+                            <Button onClick={props.onDownloadMission} size="small" variant="contained" color="primary">Download</Button>
+                        </div> : null} */}
 
                 </Grid>
 

@@ -8,7 +8,7 @@ import { Map, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
 import { Icon } from "leaflet";
 import Green from '../../../assets/green.png';
 
-import { url } from '../../../socket';
+import url from '../../../url';
 import io from 'socket.io-client';
 import * as actions from '../../../store/actions/droneControl';
 import * as missionActions from '../../../store/actions/mission';
@@ -55,6 +55,7 @@ const DroneControl = props => {
     const [openMissionList, setOpenMissionList] = React.useState(false);
     const [openCheckList, setOpenCheckList] = React.useState(false);
     const [openDroneList, setOpenDroneList] = React.useState(false);
+    const [showMissionDetail, setShowMissionDetail] = React.useState(false);
     const [drone, setDrone] = React.useState(null);
     const [mission, setMission] = React.useState(null);
     const [droneInfo, setDroneInfo] = React.useState(null);
@@ -98,10 +99,10 @@ const DroneControl = props => {
 
     }
     useEffect(() => {
-        // console.log(drone, url, userId);
+        console.log(drone);
         if (drone !== null) {
             console.log("send socket connection");
-            socket.current = io('http://a00c066d495a.ngrok.io/JT601');
+            socket.current = io(`${url}/JT601`);
             socket.current.emit("joinDMS", userId);
             socket.current.on("copter-data", setData);
             socket.current.on("homePosition", setHomePosition)
@@ -168,6 +169,7 @@ const DroneControl = props => {
         setMission(mission);
         setOpenMissionList(false);
         dispatch(missionActions.getMission(mission));
+        setShowMissionDetail(true);
         // socket.current.emit("mission",mission);
     }
 
@@ -184,6 +186,8 @@ const DroneControl = props => {
     
     const onDownloadMission = () => {
         socket.current.emit("getMission")
+        setShowMissionDetail(false);
+
     }
     return <Grid container className={classes.root} >
         <Map
@@ -206,10 +210,10 @@ const DroneControl = props => {
                         handleOpenCheck={handleOpenCheck}
                         handleCloseMission={handleCloseMission}
                         handleOpenMission={handleOpenMission}
-
+                        showMissionDetail={showMissionDetail}
                         drone={drone}
                         droneInfo={droneInfo}
-                        mission={missionState}
+                        mission={missionDetail}
                         openMissionList={openMissionList}
                         openCheckList={openCheckList}
                         openDroneList={openDroneList}

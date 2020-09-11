@@ -55,16 +55,16 @@ const MissionView = props => {
     const [create, setCreate] = React.useState(false);
     const [currWaypointIndex, setCurrWaypointIndex] = React.useState(0);
     const [action, setAction] = React.useState("create");
-    
+
     const openMissionDetail = useSelector(({ mission }) => mission.missionDetail);
-    
+
     const state = {
         lat: -35.36326217651367, lng: 149.1652374267578,
         zoom: 17,
     }
     const initialMissionDetail = { name: '', radius: null, speed: null, home: '', destination: '', waypoints: [] };
     const [missionDetail, setMissionDetail] = React.useState({ name: '', radius: null, speed: null, home: '', destination: '', waypoints: [] });
-    
+
 
     //to update the localstate by the missionDetails sourced from server
     useEffect(() => {
@@ -72,7 +72,7 @@ const MissionView = props => {
             setMissionDetail(openMissionDetail);
             setCreate(true);
         }
-        
+
     }, [openMissionDetail]);
 
     //close the modal after choosing the mission
@@ -129,7 +129,7 @@ const MissionView = props => {
         setCreate(false);
         setDraggable(false);
         setMissionDetail(initialMissionDetail);
-        dispatch(actions.createUpdateMission(missionDetail,action));
+        dispatch(actions.createUpdateMission(missionDetail, action));
         setAction('create');
     }
 
@@ -137,7 +137,7 @@ const MissionView = props => {
     const onChange = (event, key) => {
         console.log(event.target.value, key);
         console.log(currWaypointIndex);
-        
+
         const m = {
             ...missionDetail,
         };
@@ -185,10 +185,34 @@ const MissionView = props => {
         dispatch(actions.getMission(missionId));
         setOpenMissionList(false);
     }
+
+    const onDeleteWaypoint = () => {
+        const deleteIndex = currWaypointIndex;
+        let newIndex = currWaypointIndex;
+        if (newIndex > 0) {
+            newIndex = newIndex - 1
+        } else {
+            newIndex = 0
+        }
+        setCurrWaypointIndex(newIndex);
+        const newWaypoints = [...missionDetail.waypoints]
+        newWaypoints.splice(deleteIndex, 1);
+        setMissionDetail({
+            ...missionDetail,
+            waypoints: newWaypoints
+        })
+    }
+
     return (
         <Grid container className={classes.root}>
             <Grid item xs={3}>
-                <MissionData action={action} onCancel={onCancel} onChangeMission={onChangeMission} onChange={onChange} createUpdateMission={createUpdateMission} mission={missionDetail} waypoint={missionDetail.waypoints[currWaypointIndex]} onCreateMission={startMissionCreation} openMission={openMission} create={create} />
+                <MissionData action={action} onCancel={onCancel}
+                    onChangeMission={onChangeMission} onChange={onChange}
+                    createUpdateMission={createUpdateMission} mission={missionDetail}
+                    waypoint={missionDetail.waypoints[currWaypointIndex]}
+                    onCreateMission={startMissionCreation} openMission={openMission}
+                    create={create}
+                    onDeleteWaypoint={onDeleteWaypoint} />
             </Grid>
             <Grid item xs={9}>
                 <Map
@@ -243,7 +267,7 @@ const MissionView = props => {
             >
                 <Fade in={openMissionList}>
                     <div className={classes.paper} style={modalStyle}>
-                        <MissionList abort={handleCloseMission}  select={selectMission} />
+                        <MissionList abort={handleCloseMission} select={selectMission} />
 
                     </div>
                 </Fade>
