@@ -8,21 +8,6 @@ import * as func from './function';
 
 
 export const createUpdateMission = (missionDetail, action) => {
-    // console.log(missionDetail, action);
-    // let url = '/create';
-    // if (action === 'edit') {
-    //     url = '/edit';
-    // }
-
-    // return dispatch => {
-    //     axios.post(missionDetail, url).then(response => {
-    //         if(action === 'create') {
-    //             dispatch(createMission());
-    //         } else {
-    //             dispatch(updateMission());
-    //         }
-    //     })
-    // }
     let url = '/mission';
     return dispatch => {
         if (action === 'create') {
@@ -74,7 +59,21 @@ export const updateMissionSuccess = () => {
     }
 }
 
-export const deleteMission = () => {
+export const deleteMission = (id) => {
+    const url = `/mission/${id}`;
+    return dispatch => {
+        axios.delete(url, {headers: func.getToken()})
+        .then(res => {
+            dispatch(deleteMissionSuccess());
+            console.log(res)
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
+}
+
+const deleteMissionSuccess = () => {
     return {
         type: DELETE_MISSION
     }
@@ -137,3 +136,4 @@ export const fetchMissionListFail = () => {
         type: FETCH_MISSION_LIST_FAIL
     }
 }
+

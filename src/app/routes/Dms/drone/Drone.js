@@ -1,18 +1,16 @@
-import React, { forwardRef, useEffect } from "react";
+import React, {useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import * as actions from '../../../../store/actions/dms'
 import IntlMessages from "../../../../util/IntlMessages";
 import MaterialTable from 'material-table';
-import Spinner from '../../../../homeComponents/UI/Spinner/Spinner'
 import TableIcons from '../../../../homeComponents/TableIcons/TableIcons';
-import Detail from '@material-ui/icons/DetailsOutlined'
 import { createMuiTheme } from '@material-ui/core/styles'
 
 
-function createData(name, droneId, numOfFlight, type, status) {
+// function createData(name, droneId, numOfFlight, type, status) {
 
-  return { name, droneId, numOfFlight, type, status };
-}
+//   return { name, droneId, numOfFlight, type, status };
+// }
 
 const Drone = () => {
   const [state, setState] = React.useState({

@@ -1,85 +1,82 @@
-import React, {useEffect} from 'react';
-import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
-import {Typography } from '@material-ui/core';
-import MissionList from './MissionList/MissionList';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useEffect } from "react";
+import MaterialTable from 'material-table';
+import TableIcons from '../../homeComponents/TableIcons/TableIcons';
 import * as actions from '../../store/actions/mission';
+import {useDispatch, useSelector} from 'react-redux';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        width: '100%',
-        backgroundColor:'#A5D8DD',
-        // height: '93vh'
-    },
-    subRoot: {
-        width: '80%',
-        margin: '20px auto',
-        backgroundColor: '#A5D8DD',
-        // minHeight: '50vh'
-    },
-    header: {
-        minHeight: '50px',
-        margin: 'auto'
-    },
-    text: {
-        padding: theme.spacing(3),
-        
-    }
-}));
+const CreateData = (data) => {
+    return {name:data.name, estimated_time: data.estimated_time, distance: data.distance, destination: data.destination.name, location: data.destination.location,
+    waypoints: data.wb, origin: data.hospital.name }
+}
+const MissionList = () => {
 
-// const missions = [
-//     {
-//         id: 'abc',
-//         source: 'Dharan',
-//         destination: 'Biratnagar'
-//     },
-//     {
-//         id: 'xyz',
-//         source: 'Dharan',
-//         destination: 'Biratnagar'
-//     },
-//     {
-//         id: 'efg',
-//         source: 'Dharan',
-//         destination: 'Biratnagar'
-//     },
-//     {
-//         id: 'mno',
-//         source: 'Dharan',
-//         destination: 'Biratnagar'
-//     },
-//     {
-//         id: 'mnop',
-//         source: 'Dharan',
-//         destination: 'Biratnagar'
-//     },
-//     {
-//         id: 'mnopq',
-//         source: 'Dharan',
-//         destination: 'Biratnagar'
-//     }
-// ]
-const MissionLists = props => {
-    const classes = useStyles();
+    const [state, setState] = React.useState({
+        columns: [
+            { title: 'Name', field: 'name' },
+            { title: 'Estimated Time', field: 'estimated_time'},
+            { title: 'Distance', field: 'distance'},
+            { title: 'Destination', field: 'destination' },
+            { title: 'Location', field: 'location' },
+            { title: 'Waypoints', field: 'waypoints' },
+            { title: 'Origin', field: 'origin' },
+        ],
+        data: [
+        ],
+    });
+    const [selectedRow, setSelectedRow] = React.useState(null);
+    const missions = useSelector(({mission}) => mission.missions);
     const dispatch = useDispatch();
-    const {missions} = useSelector(({ mission }) => mission);
-    // console.log(missions);
+
+    useEffect(() => {
+        const refinedMissions = missions.map(mission => {
+            return CreateData(mission);
+        })
+        console.log(refinedMissions);
+        setState(prevState => { return { ...prevState, data: refinedMissions } })
+    }, [missions])
+
     useEffect(() => {
         dispatch(actions.fetchMissionList());
     },[dispatch])
 
-    return(
-    <Grid container className={classes.root}>
-        <Grid container className={classes.subRoot}>
-            <div className={classes.header}>
-            <Typography variant="h4" className={classes.text}>MISSION LISTS</Typography>
+    return (
+        <div >
+            <div className="animated slideInUpTiny animation-duration-3">
+
+                <MaterialTable
+                    title="Mission List"
+                    columns={state.columns}
+                    data={state.data}
+                    icons={TableIcons}
+                    onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
+                    options={{
+                        rowStyle: rowData => ({
+                            backgroundColor: (selectedRow === rowData.tableData.id) ? '#EEE' : '#FFF',
+                            font: 'Roboto'
+                        }),
+                        headerStyle: {
+                            backgroundColor: '#01579b',
+                            color: '#FFF'
+                          }
+                    }}
+                    editable={{
+                        onRowDelete: (oldData) =>
+                            new Promise((resolve) => {
+                                setTimeout(() => {
+                                    resolve();
+                                    setState((prevState) => {
+                                        const data = [...prevState.data];
+                                        data.splice(data.indexOf(oldData), 1);
+                                        dispatch(actions.deleteMission())
+                                        return { ...prevState, data };
+                                    });
+                                }, 600);
+                            }),
+                    }}
+                />
             </div>
-                {missions.map(mission => {
-                    return <MissionList key={mission._id} id={mission._id} source={mission.destination.name} destination={mission.destination.location}/>
-                })}
-        </Grid>
-    </Grid>)
+        </div>
+    );
 }
 
-export default MissionLists;
+export default MissionList;
