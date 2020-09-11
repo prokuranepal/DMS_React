@@ -46,10 +46,10 @@ const setHealthposts = (state, action) => {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.GET_CARDS: return getCards(state, action);
-        case actionTypes.CARD_ERROR: return cardError(state, action);
-        case actionTypes.SET_PLACES: return setPlaces(state, action);
-        case actionTypes.GET_HEALTHPOSTS: return setHealthposts(state, action);
+        case actionTypes.GET_CARDS_SUCCESS: return getCards(state, action);
+        case actionTypes.GET_CARDS_FAIL: return cardError(state, action);
+        case actionTypes.GET_PLACES_SUCCESS: return setPlaces(state, action);
+        case actionTypes.GET_HEALTHPOSTS_SUCCESS: return setHealthposts(state, action);
         default:
             return state;
     }

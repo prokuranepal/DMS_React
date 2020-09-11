@@ -1,3 +1,3 @@
-import socketIOClient from "socket.io-client";
-const endpoint = '';
-export const socket = socketIOClient(endpoint);
+import io from "socket.io-client";
+import url from './url';
+export const socket = io(url);

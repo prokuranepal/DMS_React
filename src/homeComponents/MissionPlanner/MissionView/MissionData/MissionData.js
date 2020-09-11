@@ -8,6 +8,7 @@ import InputBase from '@material-ui/core/InputBase';
 import CustomScrollbars from '../../../../util/CustomScrollbars';
 import { useDispatch, useSelector } from 'react-redux'
 import * as dashboardActions from '../../../../store/actions/dashboard';
+import IconButton from "@material-ui/core/IconButton";
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
@@ -106,6 +107,7 @@ const MissionData = props => {
             dispatch(dashboardActions.getHealthposts())
         }
     }, [dispatch])
+
     return (
         <div className={classes.root}>
             <CustomScrollbars className=" scrollbar">
@@ -180,8 +182,8 @@ const MissionData = props => {
                                 {healthposts.map(healthpost => {
                                     return <option value={healthpost._id}>{healthpost.name}</option>
                                 })
-                            }
-                                
+                                }
+
                             </Select>
                         </div>
                     </form>
@@ -193,7 +195,13 @@ const MissionData = props => {
                     </div>
                     <div className={classes.form}>
                         {props.mission.waypoints.length !== 0 ?
-                            <div data-test="mission-waypoints-components"><div className={classes.inputContainer}><p>Waypoint</p></div>
+                            <div data-test="mission-waypoints-components">
+                                <div className={classes.inputContainer}>
+                                    <span className={`jr-menu-icon mr-3`}><p>Waypoint</p></span>
+                                    
+                                    <IconButton className={`jr-menu-icon mr-3`} onClick={props.onDeleteWaypoint}>
+                                        <i className={'zmdi zmdi-hc-fw  zmdi-delete'} />
+                                    </IconButton></div>
                                 <form noValidate autoComplete="off">
 
 

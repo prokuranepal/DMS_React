@@ -8,6 +8,7 @@ const initialState = {
 
 const setMissionDetail = (state, action) => {
 
+    console.log(action.missionDetail);
     return updateObject(state, {
         missionDetail: action.missionDetail
     })

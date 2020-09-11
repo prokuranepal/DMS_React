@@ -40,7 +40,7 @@ const DroneList = (props) => {
         <div data-test="container-component">
             {props.drones ?
             <FormControl component="fieldset">
-                <p className={classes.header}>Select Mission</p>
+                <p className={classes.header}>Select Drone</p>
                 <CustomScrollbars className="module-list-scroll scrollbar"
                     style={{ height: 200 >= 800 ? 'calc(100vh - 600px)' : 'calc(100vh - 400px)', minWidth: '300px' }}>
                     <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}  data-test="radio-component">

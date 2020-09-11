@@ -1,13 +1,8 @@
-import React, { useEffect } from 'react'
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types'
-import { getUsers } from '../../../store/actions/users'
+import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import CreateUser from '../../../homeComponents/User/CreateUser/CreateUser';
-import EditUser from '../../../homeComponents/User/EditUser/EditUser';
 import ListUsers from '../../../homeComponents/User/ListUsers';
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,8 +22,6 @@ const Users = () => {
       <Grid container className={classes.root} >
         <Switch>
           <Route path="/app/users/list-users" render={() => <ListUsers/>}/>
-          <Route exact path="/app/users/create-user" component={CreateUser} />
-          <Route exact path="/app/users/edit-user" component={EditUser} />
           <Redirect from="/app/users" to="/app/users/list-users" />
         </Switch>
       </Grid>
@@ -37,12 +30,4 @@ const Users = () => {
   )
 }
 
-Users.propTypes = {
-  getUsers: PropTypes.func.isRequired,
-}
-
-const mapStateToProps = state => ({
-  users: state.users
-})
-
-export default connect(mapStateToProps, { getUsers })(Users)
+export default Users;

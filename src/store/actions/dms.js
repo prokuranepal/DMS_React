@@ -2,7 +2,7 @@ import { GET_DRONES, ADD_DRONE, UPDATE_DRONE } from './actionTypes';
 // import * as axios from '../../response/falseFetch';
 import axios from '../../axios-orders';
 
-import * as func from './common';
+import * as func from './function';
 
 export const fetchDrones = () => dispatch => {
     try {
