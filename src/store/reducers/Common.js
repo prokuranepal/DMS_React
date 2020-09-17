@@ -1,9 +1,10 @@
-import {FETCH_ERROR, FETCH_START, FETCH_SUCCESS, HIDE_MESSAGE, SHOW_MESSAGE} from '../../constants/ActionTypes'
-
+import {FETCH_ERROR, FETCH_START, FETCH_SUCCESS, HIDE_MESSAGE, SHOW_MESSAGE, GET_NOTIFICATIONS_SUCCESS} from '../../constants/ActionTypes'
+import * as actionTypes from '../actions/actionTypes';
 const INIT_STATE = {
   error: "",
   loading: false,
-  message: ''
+  message: '',
+  notifications: ''
 };
 
 export default (state = INIT_STATE, action) => {
@@ -22,6 +23,9 @@ export default (state = INIT_STATE, action) => {
     }
     case HIDE_MESSAGE: {
       return {...state, loading: false, error: '', message: ''};
+    }
+    case actionTypes.GET_NOTIFICATIONS_SUCCESS: {
+      return {...state, notifications: action.data}
     }
     default:
       return state;

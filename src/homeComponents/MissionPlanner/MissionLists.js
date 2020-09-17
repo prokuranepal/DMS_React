@@ -40,7 +40,7 @@ const MissionList = () => {
     },[dispatch])
 
     return (
-        <div >
+        <div className="app-wrapper">
             <div className="animated slideInUpTiny animation-duration-3">
 
                 <MaterialTable

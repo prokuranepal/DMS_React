@@ -5,26 +5,22 @@ import IntlMessages from "../../../../util/IntlMessages";
 import MaterialTable from 'material-table';
 import TableIcons from '../../../../homeComponents/TableIcons/TableIcons';
 import { createMuiTheme } from '@material-ui/core/styles'
-import { Redirect } from "react-router";
+import * as cards from '../../../../JSONFiles/maintenanceCards';
+import Grid from '@material-ui/core/Grid';
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import Date from './Date';
+import IconWithTextCard from '../../../../components/statusCard/IconWithTextCard';
 
-// function createData(name, droneId, numOfFlight, type, status) {
-
-//   return { name, droneId, numOfFlight, type, status };
-// }
-
-const Drone = () => {
-  
+const Maintenance = () => {
   const [state, setState] = React.useState({
     columns: [
       { title: 'Name', field: 'name' },
-      { title: 'No. of flights', field: 'numOfFlight' },
       { title: 'Drone Id', field: 'droneId' },
+      { title: 'Description', field: 'description' },
       {
         title: 'Type', field: 'type',
         lookup: {
@@ -32,54 +28,51 @@ const Drone = () => {
           , 3: 'Fixed Wing', 4: 'Quadplane VTOL', 5: 'Tilt-Rotor VTOL'
         },
       },
-      // {
-      //   title: 'Time', field: 'time',
-      //   render: rowData => <DynamicIcon time={rowData.time}/>,
-      //   editComponent: props => (
-      //     <KeyboardTimePicker
-      //       margin="normal"
-      //       id="time-picker"
-      //       value={props.value}
-      //       onChange={props.onChange}
-      //       KeyboardButtonProps={{
-      //         'aria-label': 'change time',
-      //       }}
-      //     />
-      //   )
-      // },
+      {
+        title: 'Date Entered', field: 'date',
+        render: rowData => <Date date={rowData.date}/>,
+        editComponent: props => (
+          <KeyboardDatePicker
+            margin="normal"
+            id="date"
+            value={props.value}
+            onChange={props.onChange}
+            KeyboardButtonProps={{
+              'aria-label': 'change date',
+            }}
+          />
+        )
+      },
       {
         title: 'Status',
         field: 'status',
-        lookup: { 2: 'Under Maintenance', 1: 'Active', 0: 'Inactive' },
+        lookup: { 3: 'Overdue', 2: 'Completed', 1: 'In Progress', 0: 'Open' },
       },
     ],
     data: [
-      // { name: 'Mavic pro', numOfFlight: '125', type: 'Quad', droneId: 87, status: 0 },
-      // { name: 'Baaj 1.0', numOfFlight: '125', type: 'Quad',droneId: 87, status: 1 },
-      // { name: 'Phanthom', numOfFlight: '125', type: 'Quad',droneId: 87, status: 2 },
-      // { name: 'Mavic Air', numOfFlight: '125',type: 'Quad', droneId: 87, status: 0 },
-      // { name: 'Mavic Air 2', numOfFlight: '125', type: 'Quad',droneId: 87, status: 1 },
-      // { name: 'Dji spark', numOfFlight: '125',type: 'Quad', droneId: 87, status: 2 },
-      // { name: 'Mavic', numOfFlight: '125',type: 'Quad', droneId: 87, status: 1 },
+      { name: 'SOmething Happened 1', description:'', date: null, type: '1', droneId: 87, status: 0 },
+      { name: 'SOmething Happened 2', description:'', date: null, type: '2',droneId: 86, status: 1 },
+      { name: 'Something Happended 3', description:'', date: null, type: '4',droneId: 88, status: 2 },
+      { name: 'Something Happened 4', description:'', date: null,type: '4', droneId: 89, status: 0 },
+      { name: 'SOmething Happened 5', description:'', date: null, type: '5',droneId: 81, status: 3 },
     ],
   });
 
-  const dispatch = useDispatch();
-  const { drones } = useSelector(({ dms }) => dms);
+//   const dispatch = useDispatch();
+//   const { drones } = useSelector(({ dms }) => dms);
   // console.log(drones);
-  useEffect(() => {
-    dispatch(actions.fetchDrones())
-  }, [dispatch]);
+//   useEffect(() => {
+//     dispatch(actions.fetchDrones())
+//   }, [dispatch]);
 
-  useEffect(() => {
-    setState((prevState) => {
+//   useEffect(() => {
+//     setState((prevState) => {
 
-      return { ...prevState, data: drones };
-    });
-  }, [drones]);
+//       return { ...prevState, data: drones };
+//     });
+//   }, [drones]);
 
   const [selectedRow, setSelectedRow] = React.useState(null);
-  const [redirectTo, setRedirectTo] = React.useState(null);
 
   const theme = createMuiTheme({
     padding: '20px',
@@ -94,34 +87,44 @@ const Drone = () => {
 
   });
 
-
-  const openDroneDetail = (id) => {
-    console.log(id);
-    setSelectedRow(id)
-    setRedirectTo(<Redirect to={{
-      pathname: "/app/dms/dronedetail",
-      state: { droneId: id }
-
-    }} />)
+  const cardData = {
+      "completed": 4,
+      "inProgress": 5,
+      "overdue": 6,
+      "open": 7
   }
+
+  const card = cardData !== undefined && cardData !== null ? cards.data.map((data, index) => {
+        return (
+            <Grid item lg={3} md={3} xs={6} key={index}>
+                <IconWithTextCard data={data} value={cardData[data.title]} style={{marginBottom: 0}}/>
+            </Grid>
+        )
+    }) : null;
+
+
   return (
     <div>
-      {/* {redirectTo} */}
+         <div style={{paddingBottom: '30px'}}>
+        <Grid container spacing={5} justify="center">
+            {card}
+        </Grid>
+        </div>
       <div className="animated slideInUpTiny animation-duration-3">
-        <div className="jr-card">
-          {/* <div className="jr-card-header"> */}
+        {/* <div className="jr-card">
+          <div className="jr-card-header">
           <h1 className="mb-0  font-weight-bold"><IntlMessages id="Drones" /></h1>
           <h3 className="mb-0 mt-3">125 Total</h3>
-          {/* </div> */}
-        </div>
+          </div>
+        </div> */}
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <MaterialTable
             theme={theme}
-            title="Drones"
+            title="Maintenance"
             columns={state.columns}
             data={state.data}
             icons={TableIcons}
-            onRowClick={((evt, selectedRow) => openDroneDetail(selectedRow.tableData.id))}
+            // onRowClick={((evt, selectedRow) => openDroneDetail(selectedRow.tableData.id))}
             options={{
               rowStyle: rowData => ({
                 backgroundColor: (selectedRow === rowData.tableData.id) ? '#EEE' : '#FFF',
@@ -138,7 +141,7 @@ const Drone = () => {
                   setTimeout(() => {
                     resolve();
                     console.log(newData);
-                    dispatch(actions.addDrone(newData))
+                    // dispatch(actions.addDrone(newData))
                     setState((prevState) => {
                       const data = [...prevState.data];
                       data.push(newData);
@@ -152,7 +155,7 @@ const Drone = () => {
                     resolve();
                     if (oldData) {
                       console.log(newData);
-                      dispatch(actions.updateDrone(newData, newData._id))
+                      // dispatch(actions.updateDrone(newData, newData._id))
                       setState((prevState) => {
                         const data = [...prevState.data];
                         data[data.indexOf(oldData)] = newData;
@@ -161,23 +164,23 @@ const Drone = () => {
                     }
                   }, 600);
                 }),
-              onRowDelete: (oldData) =>
-                new Promise((resolve) => {
-                  setTimeout(() => {
-                    resolve();
-                    setState((prevState) => {
-                      const data = [...prevState.data];
-                      data.splice(data.indexOf(oldData), 1);
-                      return { ...prevState, data };
-                    });
-                  }, 600);
-                }),
+            //   onRowDelete: (oldData) =>
+            //     new Promise((resolve) => {
+            //       setTimeout(() => {
+            //         resolve();
+            //         setState((prevState) => {
+            //           const data = [...prevState.data];
+            //           data.splice(data.indexOf(oldData), 1);
+            //           return { ...prevState, data };
+            //         });
+            //       }, 600);
+            //     }),
             }}
           />
         </MuiPickersUtilsProvider>
       </div>
-    </div>
+      </div>
   );
 }
 
-export default Drone;
+export default Maintenance;

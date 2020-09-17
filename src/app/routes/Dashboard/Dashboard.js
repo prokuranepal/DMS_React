@@ -24,7 +24,7 @@ const Dashboard = (props) => {
     }, [dispatch])
     const date = new Date();
     const year = date.getFullYear();
-    console.log(year);
+    // console.log(year);
     const { cardData, loading, graphs } = useSelector(({ dashboard }) => dashboard);
 
     const card = cardData !== undefined && cardData !== null ? cards.data.map((data, index) => {

@@ -9,7 +9,7 @@ import CheckList from '../../homeComponents/CheckList/CheckList';
 import DroneList from '../../homeComponents/DroneList/DroneList';
 import MissionInfo from './MissionInfo/MissionInfo';
 import DroneInfo from './DroneInfo/DroneInfo';
-
+import CustomScrollbars from '../../util/CustomScrollbars';
 import CustomModal from '../../hoc/Modal/Modal'
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     body: {
         backgroundColor: '#495057',
         // minHeight: '50vh',
-        zIndex: 40,
+        zIndex: 2040,
         borderRadius: 10,
         marginTop: '-10px',
     },
@@ -43,7 +43,9 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: 'nowrap',
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: '10px'
+        marginBottom: '10px',
+        width: '100%',
+        height: '70vh'
     },
     data: {
         borderStyle: 'solid',
@@ -59,13 +61,16 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '10px'
     },
     buttonLayout: {
+        width: '100%'
+        // padding: '0px 30px'
+    },
+    rowButtonLayout: {
         display: 'flex',
         flexDirection: 'row',
-        margin: '20px 20px 15px',
-        padding: '0px 30px'
+        justifyContent: 'space-around',
+        margin: '10px 10px'
     },
     button: {
-
         marginTop: '10px',
     },
 
@@ -98,6 +103,7 @@ const DroneData = props => {
             </Grid>
 
             <Grid container className={classes.body}>
+            
                 <Grid item container className={classes.text}>
                     <Grid item xs={4} container justify="center">
                         <p>FLY</p>
@@ -111,26 +117,37 @@ const DroneData = props => {
 
                 </Grid>
                 <Grid container xs={12} className={classes.textColor}>
-
+                
                     <div className={classes.drone}>
+                    
                         <Button size="small" variant="contained" color="primary" onClick={props.handleOpenDrone}>Choose Drone</Button>
-                        {props.drone !== null ? <DroneInfo data={props.droneInfo} /> : null}
-                        {props.drone !== null ?
-                            // <div className={classes.drone}>
-                                <Button onClick={props.onDownloadMission} size="small" variant="contained" color="primary">Download Mission</Button>
-                            // </div> 
+                        <CustomScrollbars className=" scrollbar">
+                        {props.droneConnected ? <DroneInfo data={props.droneInfo} /> : null}
+                        {props.droneConnected ?
+                            <div className={classes.buttonLayout}>
+                            {/* <div> */}
+                                <div className={classes.rowButtonLayout}>
+                                    <Button onClick={props.onDownloadMission} size="small" variant="contained" color="primary">Download Mission</Button>
+                                </div>
+                                <div className={classes.rowButtonLayout}>
+                                    <Button onClick={props.onLand} size="small" variant="contained" color="primary">Land</Button>
+                                    <Button onClick={props.onRTL} size="small" variant="contained" color="primary">RTL</Button>
+                                    <Button onClick={props.onStartMission} size="small" variant="contained" color="primary">Fly</Button>
+                                </div>
+                            </div>
                             : null}
-                        {props.mission !== null && props.showMissionDetail? <MissionInfo uploadMission={props.uploadMission} onStartMission={props.onStartMission} mission={props.mission} /> : null}
-                        
+                        {props.mission !== null && props.showMissionDetail ? <MissionInfo uploadMission={props.uploadMission}  mission={props.mission} /> : null}
+                        </CustomScrollbars>
                     </div>
-                    {/* {props.drone !== null ?
+                    
+                    {/* {props.droneConnected ?
                         <div className={classes.drone}>
                             <Button onClick={props.onDownloadMission} size="small" variant="contained" color="primary">Download</Button>
                         </div> : null} */}
 
                 </Grid>
 
-            </Grid>
+            
 
             <CustomModal
                 open={props.openMissionList}
@@ -144,8 +161,10 @@ const DroneData = props => {
                 open={props.openDroneList}
                 close={props.handleCloseDrone}
                 component={<DroneList abort={props.handleCloseDrone} select={props.selectDrone} drones={props.activeDrones} />} />
+                
         </Grid>
-        // </div>
+        </Grid>
+
     )
 }
 

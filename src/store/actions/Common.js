@@ -58,7 +58,8 @@ const getNotificationsStart = () => {
 
 const getNotificationsSuccess = (data) => {
   return {
-    type: actionTypes.GET_NOTIFICATIONS_SUCCESS
+    type: actionTypes.GET_NOTIFICATIONS_SUCCESS,
+    data: data
   }
 }
 
