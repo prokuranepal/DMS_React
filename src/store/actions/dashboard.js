@@ -8,7 +8,7 @@ import * as func from './function';
 
 export const getCurrentCards = () => async dispatch => {
     const url = '/dashboard';
-    console.log(func.getToken());
+    // console.log(func.getToken());
     dispatch(getCardsStart());
     axios.get(url, { headers: func.getToken() }).then(response => {
         dispatch(getCardsSuccess(response.data));
@@ -81,7 +81,7 @@ export const getHealthposts = () => {
         const url = '/healthpost';
         axios.get(url, { headers: func.getToken() })
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
                 dispatch(getHealthpostsSuccess(res.data))
             })
             .catch(err => {

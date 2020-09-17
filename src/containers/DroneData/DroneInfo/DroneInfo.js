@@ -9,8 +9,8 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: '4px',
         borderColor: 'sky-blue',
         borderWidth: '1px',
-        width: '90%',
-        margin: '5px 0px',
+        width: '100%',
+        margin: '10px 0px auto ',
         padding: '5px'
     },
     dataItem: {
@@ -28,35 +28,35 @@ const DroneInfo = props => {
                     <Typography>VTOL</Typography>
 
                 </Grid>
-                <Grid sm={6} xs={12} className={classes.dataItem}>
+                <Grid  md={6} sm={12} className={classes.dataItem}>
                     <span>Voltage</span>
                     <Typography>{props.data.volt}</Typography>
                 </Grid>
-                <Grid sm={6} xs={12} className={classes.dataItem}>
+                <Grid  md={6} sm={12} className={classes.dataItem}>
                     <span>Altitude</span>
-                    <Typography>{props.data.altr}m</Typography>
+                    <Typography>{parseFloat(props.data.altr).toFixed(2)}m</Typography>
                 </Grid>
-                <Grid sm={6} xs={12} className={classes.dataItem}>
+                <Grid  md={6} sm={12} className={classes.dataItem}>
                     <span>Speed</span>
-                    <Typography>{props.data.gs}m/s</Typography>
+                    <Typography>{parseFloat(props.data.gs).toFixed(2)}m/s</Typography>
                 </Grid>
-                <Grid sm={6} xs={12} className={classes.dataItem}>
+                <Grid  md={6} sm={12} className={classes.dataItem}>
                     <span>Latitude</span>
                     <Typography>{parseFloat(props.data.lat).toFixed(4)}</Typography>
                 </Grid>
-                <Grid sm={6} xs={12} className={classes.dataItem}>
+                <Grid  md={6} sm={12} className={classes.dataItem}>
                     <span>Longitude</span>
                     <Typography>{parseFloat(props.data.lng).toFixed(4)}</Typography>
                 </Grid>
-                <Grid sm={6} xs={12} className={classes.dataItem}>
+                <Grid  md={6} sm={12} className={classes.dataItem}>
                     <span>GPS</span>
                     <Typography>{props.data.numSat}</Typography>
                 </Grid>
-                <Grid sm={6} xs={12} className={classes.dataItem}>
+                <Grid  md={6} sm={12} className={classes.dataItem}>
                     <span>Status</span>
                     <Typography>{props.data.status}</Typography>
                 </Grid>
-                <Grid sm={6} xs={12} className={classes.dataItem}>
+                <Grid  md={6} sm={12} className={classes.dataItem}>
                     <span>Mode</span>
                     <Typography>{props.data.mode}</Typography>
                 </Grid>

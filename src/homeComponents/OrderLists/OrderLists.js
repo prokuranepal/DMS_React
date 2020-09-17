@@ -19,6 +19,7 @@ const OrderTable = () => {
             { title: 'Order Date', field: 'orderDate' },
             { title: 'Delivery Date', field: 'deliveryDate' },
             { title: 'Status', field: 'status' },
+            
             // {
             //     title: 'Type', field: 'type',
             //     lookup: {

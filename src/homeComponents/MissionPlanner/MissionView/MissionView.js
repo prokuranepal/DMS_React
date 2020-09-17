@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     paper: {
         backgroundColor: '#343a40',
         borderRadius: '10px',
-        padding: theme.spacing(1, 2, 1, 1),
+        padding: theme.spacing(1, 1, 1, 1.3),
         color: 'white',
         width: '320px'
     },
@@ -137,8 +137,26 @@ const MissionView = props => {
         // console.log("Create Mission");
         setCreate(false);
         setDraggable(false);
+        const newWaypoints = [...missionDetail.waypoints];
+        const homeWaypoint = {
+            altitude: 0, radius: 0,
+            action: 'waypoint', lat: newWaypoints[0].lat,
+            lng: newWaypoints[0].lng
+        }
+        newWaypoints.splice(0, 0, homeWaypoint);
+        const newMissionDetail = {
+            ...missionDetail,
+            waypoints: newWaypoints
+        }
+        console.log(newWaypoints);
+        if (action === 'create') {
+            dispatch(actions.createUpdateMission(newMissionDetail, action));
+        } else {
+            dispatch(actions.createUpdateMission(missionDetail, action));
+            
+        }
         setMissionDetail(initialMissionDetail);
-        dispatch(actions.createUpdateMission(missionDetail, action));
+
         setAction('create');
     }
 

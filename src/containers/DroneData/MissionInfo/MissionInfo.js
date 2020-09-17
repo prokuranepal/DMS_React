@@ -9,8 +9,8 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: '4px',
         borderColor: 'sky-blue',
         borderWidth: '1px',
-        width: '90%',
-        margin: '5px 0px',
+        width: '100%',
+        margin: '5px 0px auto ',
         padding: '5px'
     },
     dataItem: {
@@ -67,8 +67,8 @@ const MissionInfo = props => {
             </div>
             <div className={classes.buttons}>
                     <div><Button onClick={props.uploadMission} size="small" variant="contained" color="primary">Upload</Button></div>
-                    <div>
-                        <Button onClick={props.onStartMission} size="small" variant="contained" color="primary">Start</Button></div>
+                    {/* <div> */}
+                        {/* <Button onClick={props.onStartMission} size="small" variant="contained" color="primary">Start</Button></div> */}
                 </div>  
         </Grid>
     </div>

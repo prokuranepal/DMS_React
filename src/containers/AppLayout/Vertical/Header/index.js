@@ -69,7 +69,7 @@ const Index =(props)=> {
             <marquee>Drone MX710 is flying from Dharan to Biratnagar, Drone MX710 is flying from Dharan to Biratnagar</marquee>
             </div> */}
           <ul className="header-notifications list-inline ml-auto">
-            <li className="list-inline-item">
+            {/* <li className="list-inline-item">
               <Dropdown
                 className="quick-menu"
                 isOpen={langSwitcher}
@@ -91,7 +91,7 @@ const Index =(props)=> {
               </Dropdown>
 
 
-            </li>
+            </li> */}
             <li className="list-inline-item app-tour">
               <Dropdown
                 className="quick-menu"
@@ -114,7 +114,7 @@ const Index =(props)=> {
                 </DropdownMenu>
               </Dropdown>
             </li>
-            <li className="list-inline-item mail-tour">
+            {/* <li className="list-inline-item mail-tour">
               <Dropdown
                 className="quick-menu"
                 isOpen={mailNotification}
@@ -137,7 +137,7 @@ const Index =(props)=> {
                   <MailNotification/>
                 </DropdownMenu>
               </Dropdown>
-            </li>
+            </li> */}
 
           </ul>
           

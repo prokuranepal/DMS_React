@@ -46,7 +46,7 @@ const MissionList = (props) => {
     }, [dispatch]);
     return (
         // <div className="module-list mail-list">
-        <div>
+        <div >
             {missions !== null ?
                 <FormControl component="fieldset">
                     <p className={classes.header}>Select Mission</p>
