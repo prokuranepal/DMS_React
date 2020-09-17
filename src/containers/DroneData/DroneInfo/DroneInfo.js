@@ -9,8 +9,8 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: '4px',
         borderColor: 'sky-blue',
         borderWidth: '1px',
-        width: '90%',
-        margin: '5px 0px',
+        width: '100%',
+        margin: '10px 0px auto ',
         padding: '5px'
     },
     dataItem: {

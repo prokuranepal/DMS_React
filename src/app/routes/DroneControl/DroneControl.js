@@ -23,9 +23,10 @@ import {
 } from 'react-flight-indicators';
 const useStyles = makeStyles((theme) => ({
     root: {
-        display: 'flex',
+        // display: 'flex',
         width: '100%',
-        backgroundColor: '#E7E7E7',
+        // backgroundColor: '#E7E7E7',
+        backgroundColor: '#495057',
         height: '89vh'
     },
     meters: {
@@ -56,6 +57,7 @@ const DroneControl = props => {
     const [openCheckList, setOpenCheckList] = React.useState(false);
     const [openDroneList, setOpenDroneList] = React.useState(false);
     const [droneConnected, setDroneConnected] = React.useState(false);
+    const [droneFirstConnected, setDroneFirstConnected] = React.useState(false);
     const [showMissionDetail, setShowMissionDetail] = React.useState(false);
     const [drone, setDrone] = React.useState(null);
     const [mission, setMission] = React.useState(null);
@@ -118,11 +120,13 @@ const DroneControl = props => {
             socket.current.on('connect', () => {
                 NotificationManager.info("Drone Connected");
                 // console.log("Connected Again");
+                setDroneFirstConnected(true);
                 setDroneConnected(true);
             })
             socket.current.on('disconnect', (reason) => {
                 // console.log(reason, "disconnected")
                 NotificationManager.info("Drone Disconnected");
+                
                 // if (reason === 'io server disconnect' || reason === 'transport close disconnected') {
                 // the disconnection was initiated by the server, you need to reconnect manually
                 socket.current.connect();
@@ -131,6 +135,7 @@ const DroneControl = props => {
                 // else the socket will automatically try to reconnect
             });
             return function cleanup() {
+                setDroneConnected(false);
                 console.log("Drone disconnect cleanup")
                 socket.current.removeAllListeners();
                 socket.current.disconnect();
@@ -223,80 +228,80 @@ const DroneControl = props => {
     }
 
     return <Grid container className={classes.root} >
-        <NotificationContainer />
-        <Map
-            center={[home.lat, home.lng]}
-            zoom={state.zoom}
-            style={{ width: '100%', height: '100%', zIndex: 0 }}
-            zoomControl={false}
-        >
-            <Grid container className={classes.data}>
-                <Grid item xs={3}>
-                    <DroneData
-                        onStartMission={onStartMission}
-                        uploadMission={uploadMission}
-                        onDownloadMission={onDownloadMission}
-                        onLand={onLand}
-                        onRTL={onRTL}
-                        selectMission={selectMission}
-                        selectDrone={selectDrone}
-                        handleCloseDrone={handleCloseDrone}
-                        handleOpenDrone={handleOpenDrone}
-                        handleCloseCheck={handleCloseCheck}
-                        handleOpenCheck={handleOpenCheck}
-                        handleCloseMission={handleCloseMission}
-                        handleOpenMission={handleOpenMission}
-                        showMissionDetail={showMissionDetail}
-                        droneConnected={droneConnected}
-                        droneInfo={droneInfo}
-                        mission={missionDetail}
-                        openMissionList={openMissionList}
-                        openCheckList={openCheckList}
-                        openDroneList={openDroneList}
-                        activeDrones={activeDrones}
+        <Grid item xs={3}>
+            <DroneData
+                onStartMission={onStartMission}
+                uploadMission={uploadMission}
+                onDownloadMission={onDownloadMission}
+                onLand={onLand}
+                onRTL={onRTL}
+                selectMission={selectMission}
+                selectDrone={selectDrone}
+                handleCloseDrone={handleCloseDrone}
+                handleOpenDrone={handleOpenDrone}
+                handleCloseCheck={handleCloseCheck}
+                handleOpenCheck={handleOpenCheck}
+                handleCloseMission={handleCloseMission}
+                handleOpenMission={handleOpenMission}
+                showMissionDetail={showMissionDetail}
+                droneFirstConnected={droneFirstConnected}
+                droneConnected={droneConnected}
+                droneInfo={droneInfo}
+                mission={missionDetail}
+                openMissionList={openMissionList}
+                openCheckList={openCheckList}
+                openDroneList={openDroneList}
+                activeDrones={activeDrones}
 
-                    />
-                </Grid>
-                <Grid item xs={3}>
-
-                </Grid>
-                <Grid item xs={3}>
-
-                </Grid>
-                <Grid item xs={3} container alignItems='flex-start' justify='flex-end' >
-                    {droneInfo !== null ? <span><AttitudeIndicator size={100} roll={(droneInfo.roll * 180) / 3.14} pitch={(droneInfo.pitch * 180) / 3.14} showBox={false} />
-                        <HeadingIndicator size={100} heading={droneInfo.head} showBox={false} /></span> : null}
-                </Grid>
-            </Grid>
-            <TileLayer
-                attribution='&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            {droneInfo !== null ? <RotatedMarker icon={droneIcon} position={[droneInfo.lat, droneInfo.lng]} rotationAngle={droneInfo.head} rotationOrigin={'center'} /> : null}
+        </Grid>
+        <Grid item xs={9}>
+            <NotificationContainer />
+            <Map
+                center={[home.lat, home.lng]}
+                zoom={state.zoom}
+                style={{ width: '100%', height: '100%', zIndex: 0 }}
+                zoomControl={false}
+            >
+                <Grid container className={classes.data}>
+                    <Grid item xs={9}>
 
-            {missionState !== null && missionState !== undefined ? missionState.waypoints.map((miss, i, array) => {
-                // console.log(miss);
-                return (<span key={i}><Marker
-                    position={[miss.lat, miss.lng]}>
-                    <Popup minWidth={90}>
-                        <span >
-                            <span>{miss.action} </span>
-                            <br />
-                            <span>Alt: {miss.altitude}m</span><br />
-                        </span>
-                    </Popup>
-                </Marker>
-                    {/* for lines between markers */}
-                    {array[i - 1] ? <Polyline weight={1} positions={[
-                        [array[i - 1].lat, array[i - 1].lng], [array[i].lat, array[i].lng],
-                    ]} color={'red'} /> : null}
+                    </Grid>
+
+                    <Grid item xs={3} container alignItems='flex-start' justify='flex-end' >
+                        {droneInfo !== null ? <span><AttitudeIndicator size={100} roll={(droneInfo.roll * 180) / 3.14} pitch={(droneInfo.pitch * 180) / 3.14} showBox={false} />
+                            <HeadingIndicator size={100} heading={droneInfo.head} showBox={false} /></span> : null}
+                    </Grid>
+                </Grid>
+                <TileLayer
+                    attribution='&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                {droneInfo !== null ? <RotatedMarker icon={droneIcon} position={[droneInfo.lat, droneInfo.lng]} rotationAngle={droneInfo.head} rotationOrigin={'center'} /> : null}
+
+                {missionState !== null && missionState !== undefined ? missionState.waypoints.map((miss, i, array) => {
+                    // console.log(miss);
+                    return (<span key={i}><Marker
+                        position={[miss.lat, miss.lng]}>
+                        <Popup minWidth={90}>
+                            <span >
+                                <span>{miss.action} </span>
+                                <br />
+                                <span>Alt: {miss.altitude}m</span><br />
+                            </span>
+                        </Popup>
+                    </Marker>
+                        {/* for lines between markers */}
+                        {array[i - 1] ? <Polyline weight={1} positions={[
+                            [array[i - 1].lat, array[i - 1].lng], [array[i].lat, array[i].lng],
+                        ]} color={'red'} /> : null}
                   }
-                </span>
-                )
-            }) : null
-            }
-        </Map>
-
+                    </span>
+                    )
+                }) : null
+                }
+            </Map>
+        </Grid>
     </Grid>
 }
 

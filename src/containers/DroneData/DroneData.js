@@ -10,7 +10,9 @@ import DroneList from '../../homeComponents/DroneList/DroneList';
 import MissionInfo from './MissionInfo/MissionInfo';
 import DroneInfo from './DroneInfo/DroneInfo';
 import CustomScrollbars from '../../util/CustomScrollbars';
-import CustomModal from '../../hoc/Modal/Modal'
+import CustomModal from '../../hoc/Modal/Modal';
+import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
+import PlaceIcon from '@material-ui/icons/Place';
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
@@ -18,9 +20,9 @@ const useStyles = makeStyles((theme) => ({
 
     },
     body: {
-        backgroundColor: '#495057',
+        // backgroundColor: '#495057',
         // minHeight: '50vh',
-        zIndex: 2040,
+        zIndex: 40,
         borderRadius: 10,
         marginTop: '-10px',
     },
@@ -45,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         marginBottom: '10px',
         width: '100%',
-        height: '70vh'
+        height: '75vh'
     },
     data: {
         borderStyle: 'solid',
@@ -53,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
         borderColor: 'sky-blue',
         borderWidth: '1px',
         width: '90%',
-        margin: '5px 0px',
+        margin: 'auto',
         padding: '5px'
     },
     dataItem: {
@@ -80,23 +82,34 @@ const useStyles = makeStyles((theme) => ({
 // let socket = null;
 const DroneData = props => {
     const classes = useStyles();
+    const [statusColor, setStatusColor] = React.useState('bg-red');
+
+    useEffect(() => {
+        if(props.droneConnected) {
+            setStatusColor('bg-green')
+        } else {
+            setStatusColor('bg-red');
+        }
+    },[props.droneConnected])
     return (
         // <div className="app-wrapper">
         <Grid container className={classes.root}>
             <Grid item container className={classes.top}>
                 <Grid item xs={4} container justify="center">
-                    <Fab className="jr-fab-btn bg-white text-black jr-btn-fab-xs">
-                        <i className="zmdi zmdi-search zmdi-hc-fw" />
+                    <Fab className={`jr-fab-btn text-black jr-btn-fab-xs ${statusColor}`}>
+                        
                     </Fab>
                 </Grid>
                 <Grid item xs={4} container justify="center" onClick={props.handleOpenMission}>
                     <Fab className="jr-fab-btn bg-white text-black jr-btn-fab-xs">
-                        <i className="zmdi zmdi-shopping-basket zmdi-hc-fw" />
+                        <PlaceIcon />
+                        {/* <i className="zmdi zmdi-shopping-basket zmdi-hc-fw" /> */}
                     </Fab>
                 </Grid>
                 <Grid item xs={4} container justify="center" onClick={props.handleOpenCheck}>
                     <Fab className="jr-fab-btn bg-white text-dark-grey jr-btn-fab-xs">
-                        <i className="zmdi zmdi-spinner zmdi-hc-fw" />
+                        <AssignmentTurnedInIcon size="small"/>
+                        {/* <i className="zmdi zmdi-assignment-list zmdi-hc-fw" /> */}
                     </Fab>
                 </Grid>
 
@@ -106,7 +119,7 @@ const DroneData = props => {
             
                 <Grid item container className={classes.text}>
                     <Grid item xs={4} container justify="center">
-                        <p>FLY</p>
+                        <p>ACTIVE</p>
                     </Grid>
                     <Grid item xs={4} container justify="center">
                         <p>MISSION</p>
@@ -122,8 +135,8 @@ const DroneData = props => {
                     
                         <Button size="small" variant="contained" color="primary" onClick={props.handleOpenDrone}>Choose Drone</Button>
                         <CustomScrollbars className=" scrollbar">
-                        {props.droneConnected ? <DroneInfo data={props.droneInfo} /> : null}
-                        {props.droneConnected ?
+                        {props.droneFirstConnected ? <DroneInfo data={props.droneInfo} /> : null}
+                        {props.droneFirstConnected ?
                             <div className={classes.buttonLayout}>
                             {/* <div> */}
                                 <div className={classes.rowButtonLayout}>
