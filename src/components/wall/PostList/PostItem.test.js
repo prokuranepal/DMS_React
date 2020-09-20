@@ -1,20 +1,6 @@
 import React from 'react';
 import PostItem from './PostItem';
-import {
-    configure,
-    shallow
-} from 'enzyme';
-import EnzymeAdapter from 'enzyme-adapter-react-16';
-// JestHook.mock('expo-font');
-configure({
-    adapter: new EnzymeAdapter
-})
 
-
-const setup = (props = {}, state = null) => {
-    return (shallow( < PostItem {...props}  />)
-    )
-}
 const dummy_data={
     postList:[{id:2,  
         user:"user1", 
@@ -30,13 +16,5 @@ const dummy_data={
     user:"user1",
   
 }
-describe('<PostItem />', () => {
-  
-
-it("PostItem render", () => { 
-        const wrapper= setup({...dummy_data});
-        expect(wrapper).toMatchSnapshot();
-  
-})
-})
-
+import testSnapFunction from '../../../util/testSnapFunction';
+testSnapFunction("<PostItem/>", "Snapshot test for PostItem",<PostItem {...dummy_data}/> )

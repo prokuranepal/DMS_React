@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<PostItem /> PostItem render 1`] = `ShallowWrapper {}`;
+exports[`<PostItem/> Snapshot test for PostItem 1`] = `ShallowWrapper {}`;
