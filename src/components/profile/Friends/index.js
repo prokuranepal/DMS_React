@@ -15,7 +15,7 @@ function Status(props) {
 const Friends = ({friendList}) => {
   return (
     <Widget styleName="jr-card-profile-sm"
-            title={<span>Friends - 530 <span className="text-grey">(27 Mutual)</span></span>}>
+            title={'Friends - 530(27 Mutual)'}>
       <div className="pt-2">
         <ul className="jr-fnd-list mb-0">
           {friendList.map((user, index) =>
