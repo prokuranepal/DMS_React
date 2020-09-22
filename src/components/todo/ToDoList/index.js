@@ -1,7 +1,7 @@
 import React from 'react';
 import {SortableContainer} from 'react-sortable-hoc';
 import ToDoItem from './ToDoItem';
-import CustomScrollbars from 'util/CustomScrollbars';
+import CustomScrollbars from '../../../util/CustomScrollbars';
 
 const ToDoList = SortableContainer(({toDos, onTodoSelect, onTodoChecked, onMarkAsStart, width}) => {
   return (

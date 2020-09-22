@@ -6,10 +6,10 @@ import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
+import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { Paper, Typography } from '@material-ui/core';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
@@ -79,7 +79,7 @@ const CreateUser = ({history, createUser1, createUser2}) => {
     const { username, fullname, institution, level, image} = formData;
 
     useEffect(() => {
-
+            console.log("getUsers called")
          getUsers();  
 
     }, [])
@@ -89,8 +89,7 @@ const CreateUser = ({history, createUser1, createUser2}) => {
 
     const onSubmit = e => {
         e.preventDefault();
-
-
+        console.log("level",formData.level)
         formData.level==='Level 1'
             ? createUser1(formData, history, false) 
             : createUser2(formData, history, false);
@@ -105,10 +104,10 @@ const CreateUser = ({history, createUser1, createUser2}) => {
                     
                         <Grid item xs={12}>
                         <Typography variant='h4' className={classes.header}>ADD USER</Typography>
-                        <form className = {classes.form}  onSubmit={onSubmit}>
+                        <form className = {classes.form}  onSubmit={onSubmit} data-test="formSubmit">
                         
 
-                            <TextField margin='normal' onChange={onChange} name='username' value={username} id="standard-basic" label="User Name" required/>
+                            <TextField margin='normal' onChange={onChange} name='username' value={username} data-test="username" id="standard-basic" label="User Name" required/>
                             <TextField margin='normal' onChange={onChange} name='fullname' value={fullname} id="standard-basic" label="Full Name" required/>
                             <TextField margin='normal' onChange={onChange} name='institution' value={institution} id="standard-basic" label="Institution" required />
                             
@@ -117,7 +116,8 @@ const CreateUser = ({history, createUser1, createUser2}) => {
                                 <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                onChange={onChange} name= 'level' value = {level} 
+                                onChange={onChange} name= 'level' value = {level}
+                                data-test="selectOnChange" 
                                 >
                                     <MenuItem value='Level 1'>Level 1</MenuItem>
                                     <MenuItem value='Level 2'>Level 2</MenuItem>
