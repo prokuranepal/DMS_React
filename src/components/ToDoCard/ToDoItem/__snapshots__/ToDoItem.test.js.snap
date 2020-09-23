@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ToDoItem/> Snapshot test for ToDoItem 1`] = `ShallowWrapper {}`;

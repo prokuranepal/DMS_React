@@ -1,7 +1,7 @@
 import React from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
-import labels from 'app/routes/mail/data/labels'
+// import labels from 'app/routes/mail/data/labels'
 
 const MailListItem = ({mail, onMailSelect, onMailChecked, onStartSelect}) => {
   return (
@@ -63,11 +63,11 @@ const MailListItem = ({mail, onMailSelect, onMailChecked, onStartSelect}) => {
 
           </div>
           <div className="labels">
-            {labels.map((label, index) => {
+            {/* {labels.map((label, index) => {
               return (mail.labels).includes(label.id) && <div key={index}
                                                               className={`badge text-white bg-${label.color}`}>{label.title}</div>
             })
-            }
+            } */}
           </div>
         </div>
 

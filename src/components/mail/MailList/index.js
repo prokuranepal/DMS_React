@@ -1,6 +1,6 @@
 import React from 'react';
 import MailListItem from './MailListItem';
-import CustomScrollbars from 'util/CustomScrollbars';
+import CustomScrollbars from '../../../util/CustomScrollbars';
 
 const MailList = ({mails, onMailSelect, onMailChecked, onStartSelect, width}) => {
   return (

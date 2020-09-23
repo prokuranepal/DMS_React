@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button/> Snapshot test for Button 1`] = `ShallowWrapper {}`;

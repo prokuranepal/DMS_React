@@ -5,7 +5,7 @@ const DefaultTimeLineItem = ({styleName, timeLine}) => {
   return (
     <div className={`timeline-item ${styleName}`}>
       <div className="timeline-badge timeline-img">
-        <img src={require("assets/images/pentagon.png")} alt="Pentagon" title="Pentagon"/>
+        <img src={require("../../assets/images/pentagon.png")} alt="Pentagon" title="Pentagon"/>
       </div>
 
       <div className="timeline-panel ">

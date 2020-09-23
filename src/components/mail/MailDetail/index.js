@@ -4,8 +4,8 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-import labels from 'app/routes/mail/data/labels';
-import CustomScrollbars from 'util/CustomScrollbars';
+// import labels from '../../../app/routes/mail/data/labels';
+import CustomScrollbars from '../../../util/CustomScrollbars';
 
 class MailDetail extends React.Component {
 
@@ -45,10 +45,10 @@ class MailDetail extends React.Component {
               </div>
 
               <div className="labels">
-                {labels.map((label, index) => {
+                {/* {labels.map((label, index) => {
                   return (mail.labels).includes(label.id) && <div key={index}
                                                                   className={`badge text-white bg-${label.color}`}>{label.title}</div>
-                })}
+                })} */}
               </div>
 
 
@@ -147,7 +147,7 @@ class MailDetail extends React.Component {
           <div className="attachment-block">
             <h3>Attachments ({mail.hasAttachments.length})</h3>
             <div className="row">
-              {mail.attachments.map((attachment, index) =>
+              {mail.hasAttachments.map((attachment, index) =>
                 <div className="col-3" key={index}>
                   <img className="size-100" src={attachment.preview} alt={attachment.fileName}/>
                   <div className="size">{attachment.size}</div>

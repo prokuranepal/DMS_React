@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import GreedImage from "./GridImage";
-import Auxiliary from "util/Auxiliary";
+import Auxiliary from "../../../util/Auxiliary";
 
 const MediaList = (props) => {
 

@@ -1,5 +1,5 @@
 import React from "react";
-import Widget from "components/Widget/index";
+import Widget from "../..//Widget/index";
 
 const Photos = ({photoList}) => {
 

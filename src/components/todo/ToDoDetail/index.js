@@ -4,12 +4,12 @@ import Input from '@material-ui/core/Input'
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Avatar from '@material-ui/core/Avatar';
-import labels from 'app/routes/todo/data/labels';
+// import labels from 'app/routes/todo/data/labels';
 import {DatePicker} from '@material-ui/pickers';
-import users from 'app/routes/todo/data/users'
+// import users from 'app/routes/todo/data/users'
 import Moment from 'moment';
 import ConversationCell from './ConversationCell';
-import CustomScrollbars from 'util/CustomScrollbars';
+import CustomScrollbars from '../../../util/CustomScrollbars';
 
 
 class ToDoDetail extends React.Component {
@@ -103,7 +103,7 @@ class ToDoDetail extends React.Component {
     const {todo, editNote, editTitle, title, notes, message, conversation} = this.state;
     let user = null;
     if (todo.user > 0)
-      user = users.find((user) => user.id === todo.user);
+      // user = users.find((user) => user.id === todo.user);
     return (
       <div className="module-detail module-list">
         <CustomScrollbars className="module-list-scroll scrollbar"
@@ -154,7 +154,7 @@ class ToDoDetail extends React.Component {
                       },
                     }}>
 
-                    {users.map((user, index) =>
+                    {/* {users.map((user, index) =>
                       <MenuItem key={index} value={user.id} onClick={() => {
                         this.handleRequestClose();
                         todo.user = user.id;
@@ -164,7 +164,7 @@ class ToDoDetail extends React.Component {
                           <Avatar src={user.thumb} alt={user.name}/><h4>{user.name}</h4>
                         </div>
                       </MenuItem>
-                    )}
+                    )} */}
 
                   </Menu>
 
@@ -209,14 +209,14 @@ class ToDoDetail extends React.Component {
                             width: 150,
                           },
                         }}>
-                    {labels.map(label =>
+                    {/* {labels.map(label =>
                       <MenuItem key={label.id} onClick={() => {
                         this.handleRequestClose();
                         onLabelUpdate(todo, label)
                       }}>
                         {label.title}
                       </MenuItem>,
-                    )}
+                    )} */}
                   </Menu>
                 </div>
               </div>
