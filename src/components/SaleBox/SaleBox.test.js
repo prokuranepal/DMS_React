@@ -2,7 +2,7 @@ import testSnapFunction from '../../util/testSnapFunction';
 import SaleBox from './index'
 import React from 'react';
 const dummy_data= {
-    styleName:{width:2}, 
+    styleName:'', 
     headerStyle:{fontSize:3}, 
     itemStyle:{border:2}, 
     footerStyle:{color:"yellow"},
