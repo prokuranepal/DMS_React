@@ -25,7 +25,8 @@ const dummy_data=
     {name:"8",
     type:{
         image:"image",
-        name:"name"
+        name:"name",
+        type:"type1"
     }}
 
 
@@ -53,7 +54,7 @@ it("ImsCard Components", () => {
     const linkComponent= findByTestAttr(wrapper,"link-component")
     const img = wrapper.find('img')
     const h3 = wrapper.find('h3')
-    expect(linkComponent.prop('to').aboutProps).toEqual({name:"8"})
+    expect(linkComponent.prop('to').aboutProps).toEqual({type:"type1"})
     expect(img.prop("src")).toEqual("image")
     expect(img.prop("alt")).toEqual("name")
     expect(h3.text()).toEqual("name")

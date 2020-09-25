@@ -25,9 +25,9 @@ const findByTestAttr=(wrapper, val)=>{
 const dummy_data={
 drone:
     {name:"8",
-    code:"605",
-    type:"fixed wing",
-    value:"value"}
+    droneId:"605",
+    type:3,
+    _id:"value"}
 }
 
 describe('DroneListItem />', () => {
@@ -56,9 +56,9 @@ it("DroneListItem Components", () => {
     const droneCodeComponent= findByTestAttr(wrapper,"dronecode-component")
     const droneNameComponent= findByTestAttr(wrapper,"dronename-component")
     expect(innerRadioComponent.prop('value')).toEqual("value")
-    expect(droneTypeComponent.text()).toEqual('Type:fixed wing') 
+    expect(droneTypeComponent.text()).toEqual('Type: Fixed Wing') 
     expect(droneNameComponent.text()).toEqual('8') 
-    expect(droneCodeComponent.text()).toEqual('Code:605') 
+    expect(droneCodeComponent.text()).toEqual('Code: 605') 
 
 })
 })

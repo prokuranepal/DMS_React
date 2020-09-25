@@ -19,7 +19,7 @@ const Modal = ({open, onClose, user, deleteUser}) => {
     
     const onSubmit = e => {
         e.preventDefault();
-      
+      console.log(user.username, username)
         if(user.username === username){
             deleteUser(user);
             onClose()
@@ -29,7 +29,7 @@ const Modal = ({open, onClose, user, deleteUser}) => {
 
   return (
     <div>
-      <Dialog open={open} onClose={onClose} aria-labelledby="form-dialog-title">
+      <Dialog open={open} onClose={onClose}  data-test="dialogComp" aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">DELETE USER</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -44,14 +44,15 @@ const Modal = ({open, onClose, user, deleteUser}) => {
             type="text"
             value= {username}
             fullWidth
+            data-test="textFieldComp"
           />
         </DialogContent>
         <DialogActions>
             
-          <Button onClick={onSubmit} color="secondary">
+          <Button onClick={onSubmit} color="secondary" data-test="onDelete">
             DELETE
           </Button>
-          <Button onClick={onClose} color="primary">
+          <Button onClick={onClose} color="primary" data-test="onClose">
             CANCEL
           </Button>
         </DialogActions>

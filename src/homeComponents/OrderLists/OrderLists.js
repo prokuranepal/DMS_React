@@ -8,7 +8,7 @@ import { Redirect } from 'react-router';
 const OrderTable = () => {
     const dispatch = useDispatch();
 
-    const { orderList } = useSelector(({ imsOrder }) => imsOrder);
+    const orderList= useSelector(({ imsOrder }) => imsOrder.orderList);
     // console.log(orderList);
     // const statusStyle = status.includes("completed") ? "text-white bg-success" : status.includes("in processing") ? "bg-amber" : status.includes("cancelled") ? "text-white bg-danger" : "text-white bg-grey";
     const [state, setState] = React.useState({
@@ -74,6 +74,7 @@ const OrderTable = () => {
             <div className="animated slideInUpTiny animation-duration-3">
                 {redirect}
                 <MaterialTable
+                    data-test="orderlist-component"
                     title="Orders"
                     columns={state.columns}
                     data={state.data}

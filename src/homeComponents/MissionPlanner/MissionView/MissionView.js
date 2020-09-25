@@ -183,6 +183,7 @@ const MissionView = props => {
             ...missionDetail,
             [key]: event.target.value
         };
+        console.log("value of m", m)
         setMissionDetail(m);
 
     }
@@ -191,6 +192,7 @@ const MissionView = props => {
     const onClick = (index) => {
         console.log("Marker Clicked", index);
         setCurrWaypointIndex(index);
+        console.log(index, currWaypointIndex, "current waypoint")
     }
 
     //open mission list in a modal
@@ -234,13 +236,19 @@ const MissionView = props => {
     return (
         <Grid container className={classes.root}>
             <Grid item xs={3}>
-                <MissionData action={action} onCancel={onCancel}
-                    onChangeMission={onChangeMission} onChange={onChange}
-                    createUpdateMission={createUpdateMission} mission={missionDetail}
-                    waypoint={missionDetail.waypoints[currWaypointIndex]}
-                    onCreateMission={startMissionCreation} openMission={openMission}
-                    create={create}
-                    onDeleteWaypoint={onDeleteWaypoint} />
+                <MissionData data-test="missionData" 
+                action={action} //touched
+                onCancel={onCancel} 
+                onChangeMission={onChangeMission} //done 
+                onChange={onChange}  //done
+                createUpdateMission={createUpdateMission} 
+                mission={missionDetail} //done
+                waypoint={missionDetail.waypoints[currWaypointIndex]} 
+                onCreateMission={startMissionCreation} 
+                openMission={openMission} //done
+                create={create} //done  
+                onDeleteWaypoint={onDeleteWaypoint} />
+                /> 
             </Grid>
             <Grid item xs={9}>
                 <Map
@@ -248,7 +256,7 @@ const MissionView = props => {
                     zoom={17}
                     style={{ width: '100%', height: '100%' }}
                     zoomControl={false}
-                    onClick={handleClick}
+                    onClick={handleClick} data-test="mapComp"
                 >
 
                     <TileLayer
@@ -262,6 +270,7 @@ const MissionView = props => {
                                 draggable={draggable}
                                 onDragend={(event) => updatePosition(event, i)}
                                 position={[miss.lat, miss.lng]}
+                                data-test="markerComp"
                                 onClick={() => onClick(i)}>
                                 <Popup minWidth={90}>
                                     <span >
@@ -292,10 +301,11 @@ const MissionView = props => {
                 open={openMissionList}
                 onClose={handleCloseMission}
                 closeAfterTransition
+                data-test="modalComp"
             >
                 <Fade in={openMissionList}>
                     <div className={classes.paper} style={modalStyle}>
-                        <MissionList abort={handleCloseMission} select={selectMission} />
+                        <MissionList abort={handleCloseMission}  select={selectMission} data-test="missionList" />
 
                     </div>
                 </Fade>

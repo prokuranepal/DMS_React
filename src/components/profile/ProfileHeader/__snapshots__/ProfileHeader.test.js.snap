@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProfileHeader /> Snapshot test for ProfileHeader  1`] = `ShallowWrapper {}`;

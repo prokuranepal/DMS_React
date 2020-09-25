@@ -88,7 +88,7 @@ it("DroneList render", () => {
 
 it("radio Component", () => {
     const radioComponent= findByTestAttr(wrapper,"radio-component")
-    expect(radioComponent.prop("value")).toEqual("1")
+    expect(radioComponent.prop("value")).toEqual(null)
     radioComponent.props().onChange({target:{value:"77"}})
     wrapper.update()
     const radioComponent1= findByTestAttr(wrapper,"radio-component")
@@ -108,7 +108,7 @@ it("button Component2", () => {
     button2Component.props().onClick()
     wrapper.update()
     expect(function_click).toHaveBeenCalledTimes(1); 
-    expect(function_click).toHaveBeenCalledWith("1")   
+    expect(function_click).toHaveBeenCalledWith(null)   
 
 })
 

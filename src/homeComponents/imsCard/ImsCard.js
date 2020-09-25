@@ -19,7 +19,7 @@ const ImsCard = props => {
   return (
     
     <div className="col-xl-3 col-md-4 col-sm-6 col-12">
-      <Link to={{pathname: '/app/ims/medicinelist', aboutProps: {type: props.type.type}}} style={{textDecoration:'none', color: 'white'}}>
+      <Link to={{pathname: '/app/ims/medicinelist', aboutProps: {type: props.type.type}}} style={{textDecoration:'none', color: 'white'}} data-test="link-component">
       <div className="card product-item">
         <div className="card-header border-0 p-0">
           <div className="card-image">

@@ -46,24 +46,24 @@ const MissionList = (props) => {
     }, [dispatch]);
     return (
         // <div className="module-list mail-list">
-        <div >
-            {missions !== null ?
-                <FormControl component="fieldset">
-                    <p className={classes.header}>Select Mission</p>
-                    <CustomScrollbars className="module-list-scroll scrollbar"
-                        style={{ height: 200 >= 800 ? 'calc(100vh - 600px)' : 'calc(100vh - 400px)', minWidth: '300px' }}>
-                        <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
-                            {missions.map((mission, index) =>
-                                // <FormControlLabel control={}>
-                                <MissionListItem key={index} mission={mission} />
-                            )}
-                        </RadioGroup>
-                    </CustomScrollbars>
-                    <div className={classes.buttonLayout}>
-                        <Button variant="outlined" color='white' onClick={props.abort}>Abort</Button>
-                        <Button variant="outlined" color="white" className={classes.button} onClick={() => props.select(value)}>Select</Button>
-                    </div>
-                </FormControl> : <Spinner />}
+       <div>
+           {missions !== null?
+        <FormControl component="fieldset">
+            <p className={classes.header}>Select Mission</p>
+        <CustomScrollbars className="module-list-scroll scrollbar"
+            style={{ height: 200 >= 800 ? 'calc(100vh - 600px)' : 'calc(100vh - 400px)', minWidth: '300px' }}>
+            <RadioGroup data-test="radioGroup" aria-label="gender" name="gender1" value={value} onChange={handleChange}>
+                {missions.map((mission, index) =>
+                    // <FormControlLabel control={}>
+                    <MissionListItem key={index} mission={mission} data-test="missionList" />
+                )}
+            </RadioGroup>
+        </CustomScrollbars>
+        <div className={classes.buttonLayout}>
+                        <Button variant="outlined" color='primary' onClick={props.abort} data-test="abortButton">Abort</Button>
+                        <Button variant="outlined" color="primary" className={classes.button} onClick={() => props.select(value)} data-test="selectButton">Select</Button>
+                        </div>
+        </FormControl>:<Spinner/>}
         </div>
 
     )
