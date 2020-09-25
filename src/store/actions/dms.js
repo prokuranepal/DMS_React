@@ -1,4 +1,4 @@
-import { GET_DRONES, ADD_DRONE, UPDATE_DRONE } from './actionTypes';
+import { GET_DRONES, ADD_DRONE, UPDATE_DRONE, GET_MAINTENANCE } from './actionTypes';
 // import * as axios from '../../response/falseFetch';
 import axios from '../../axios-orders';
 
@@ -44,6 +44,7 @@ const addDroneSuccess = (drones) => {
 }
 
 export const updateDrone = (drone, droneId) => dispatch => {
+    console.log(drone, droneId);
     try {
         const url = `/drones/${droneId}`;
         console.log(func.getToken());
@@ -60,4 +61,53 @@ const updateDroneSuccess = (drones) => {
     return {
         type: UPDATE_DRONE
     }
+}
+
+export const getMaintenance = () => dispatch =>{
+
+    const url = '/maintenance';
+    axios.get(url,{headers: func.getToken()} )
+    .then(res => {
+        return {
+            type: GET_MAINTENANCE,
+            data: res.data
+        }
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
+export const addMaintenance = (data) => dispatch =>{
+    const url = '/maintenance';
+    console.log(data);
+    axios.post(url, data,{headers: func.getToken()} )
+    .then(res => {
+        console.log(res)
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
+
+export const updateMaintenance = (data, id) => dispatch =>{
+    const url = `/maintenance/${id}`;
+    console.log(data,id)
+    axios.put(url, data,{headers: func.getToken()} )
+    .then(res => {
+        console.log(res)
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
+
+export const deleteMaintenance = id => dispatch =>{
+    const url = `/maintenance/${id}`;
+    axios.delete(url,{headers: func.getToken()} )
+    .then(res => {
+        console.log(res)
+    })
+    .catch(err => {
+        console.log(err);
+    })
 }

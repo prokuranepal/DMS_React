@@ -143,9 +143,9 @@ const DroneData = props => {
                                     <Button onClick={props.onDownloadMission} size="small" variant="contained" color="primary">Download Mission</Button>
                                 </div>
                                 <div className={classes.rowButtonLayout}>
-                                    <Button onClick={props.onLand} size="small" variant="contained" color="primary">Land</Button>
-                                    <Button onClick={props.onRTL} size="small" variant="contained" color="primary">RTL</Button>
-                                    <Button onClick={props.onStartMission} size="small" variant="contained" color="primary">Fly</Button>
+                                    <Button onClick={() => props.onLand('land')} size="small" variant="contained" color="primary">Land</Button>
+                                    <Button onClick={() => props.onRTL('rtl')} size="small" variant="contained" color="primary">RTL</Button>
+                                    <Button disabled={props.checklistPass} onClick={() => props.onStartMission('start')} size="small" variant="contained" color="primary">Fly</Button>
                                 </div>
                             </div>
                             : null}

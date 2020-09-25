@@ -61,6 +61,7 @@ const MissionView = props => {
     const [action, setAction] = React.useState("create");
 
     const openMissionDetail = useSelector(({ mission }) => mission.missionDetail);
+    const loading = useSelector(({ mission }) => mission.loading);
     const [center, setCenter] = React.useState({
         lat: -35.36326217651367, lng: 149.1652374267578
     });
@@ -83,6 +84,13 @@ const MissionView = props => {
             setDraggable(true);
         }
     }, [openMissionDetail]);
+
+    useEffect(() => {
+        if(!loading) {
+            setMissionDetail(initialMissionDetail);
+            setAction('create');
+        }
+    },[loading]);
 
     //close the modal after choosing the mission
     const handleCloseMission = () => {
@@ -155,9 +163,10 @@ const MissionView = props => {
             dispatch(actions.createUpdateMission(missionDetail, action));
             
         }
-        setMissionDetail(initialMissionDetail);
+        // setMissionDetail(initialMissionDetail);
+        // setAction('create');
 
-        setAction('create');
+        
     }
 
     //callback function for change in parameter of a particular waypoint provided by index

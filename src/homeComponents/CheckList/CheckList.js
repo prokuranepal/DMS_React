@@ -1,14 +1,11 @@
 import React from 'react';
 import CheckListItem from './CheckListItem/CheckListItem';
 import CustomScrollbars from '../../util/CustomScrollbars';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-
+import {useDispatch} from 'react-redux';
+import * as actions from '../../store/actions/droneControl';
 const useStyles = makeStyles((theme) => ({
     header: {
         fontSize: '20px',
@@ -43,19 +40,23 @@ export const checks1 = [{
     name: 'Battery Level',
     value: false
 }];
- const CheckList = (props) => {
+
+
+const CheckList = (props) => {
     const classes = useStyles();
-   
+    const dispatch = useDispatch()
     const [checks, setChecks] = React.useState(checks1);
 
     const handleOnChange = (event, index) => {
-        const cc = [];
-        cc.push(...checks);
+        const cc = [...checks];
+        // cc.push(...checks);
         cc[index] = {
             ...cc[index],
             value: event.target.checked};
         setChecks(cc);
+        dispatch(actions.checkListPass(cc));
     };
+
     return (
         // <div className="module-list mail-list">
         <FormControl component="fieldset" data-test="container-component">
@@ -66,7 +67,6 @@ export const checks1 = [{
                     // <FormControlLabel control={}>
                     <CheckListItem key={index} name={check.name} checked={check.value} onChange={(event) => handleOnChange(event, index)} data-test={`checklist-component${index}`}/>
                 )} 
-           
         </CustomScrollbars>
         <div className={classes.buttonLayout}>
                         <Button variant="outlined" onClick={props.abort } data-test="abort-component">Abort</Button>

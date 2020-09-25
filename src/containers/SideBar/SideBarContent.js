@@ -36,6 +36,12 @@ const SideBarContent = () => {
               icon: 'maintenance',
               type: 'item',
               link: '/app/dms/maintenance'
+            },
+            {
+              name: 'Healthposts',
+              icon: 'health',
+              type: 'item',
+              link: '/app/dms/healthpost'
             }
           ]
         },

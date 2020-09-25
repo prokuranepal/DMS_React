@@ -3,7 +3,8 @@ import { updateObject } from '../utility';
 
 const initialState = {
     missionDetail: null,
-    missions: []
+    missions: [],
+    loading: false
 };
 
 const setMissionDetail = (state, action) => {
@@ -20,10 +21,18 @@ const updateMissionList = (state, action) => {
     })
 }
 
+const setMissionLoading = (state, action) => {
+
+    return updateObject(state, {
+        loading: action.loading
+    })
+}
+
 const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {
         case actionTypes.SET_MISSION: return setMissionDetail(state, action);
         case actionTypes.FETCH_MISSION_LIST_UPDATE: return updateMissionList(state, action);
+        case actionTypes.MISSION_CREATE_LOADING: return setMissionLoading(state, action);
         default:
             return state;
     }

@@ -1,7 +1,4 @@
-import {
-    CREATE_MISSION, UPDATE_MISSION, DELETE_MISSION, GET_MISSION_START, SET_MISSION, FETCH_MISSION_LIST_SUCCESS
-    , FETCH_MISSION_LIST_UPDATE, FETCH_MISSION_LIST_FAIL
-} from './actionTypes';
+import * as actionTypes from './actionTypes';
 // import * as axios from '../../response/falseFetch';
 import axios from '../../axios-orders';
 import * as func from './function';
@@ -22,9 +19,11 @@ export const createUpdateMission = (missionDetail, action) => {
 
 export const createMission = (missionDetail, url) => {
     return dispatch => {
-        axios.post(url,missionDetail,{headers: func.getToken()} )
+        dispatch(setLoading(true));
+        axios.post(url,missionDetail,{headers: func.getToken()})
         .then(res => {
             // console.log(res);
+            dispatch(setLoading(false));
             dispatch(createMissionSuccess());
         })
         .catch(err => {
@@ -33,9 +32,16 @@ export const createMission = (missionDetail, url) => {
     }
 }
 
+export const setLoading = (loading) => {
+    return {
+        type: actionTypes.MISSION_CREATE_LOADING,
+        loading: loading
+    }
+}
+
 export const createMissionSuccess = () => {
     return {
-        type: CREATE_MISSION
+        type: actionTypes.CREATE_MISSION
     }
 }
 
@@ -55,7 +61,7 @@ export const updateMission = (missionDetail,url) => {
 
 export const updateMissionSuccess = () => {
     return {
-        type: UPDATE_MISSION
+        type: actionTypes.UPDATE_MISSION
     }
 }
 
@@ -75,7 +81,7 @@ export const deleteMission = (id) => {
 
 const deleteMissionSuccess = () => {
     return {
-        type: DELETE_MISSION
+        type: actionTypes.DELETE_MISSION
     }
 }
 
@@ -94,13 +100,13 @@ export const getMission = (missionId) => {
 
 export const getMissionStart = () => {
     return {
-        type: GET_MISSION_START
+        type: actionTypes.GET_MISSION_START
     }
 }
 
 export const setMission = (missionDetail) => {
     return {
-        type: SET_MISSION,
+        type: actionTypes.SET_MISSION,
         missionDetail: missionDetail
     }
 }
@@ -120,20 +126,20 @@ export const fetchMissionList = () => {
 
 export const fetchMissionListSuccess = () => {
     return {
-        type: FETCH_MISSION_LIST_SUCCESS
+        type: actionTypes.FETCH_MISSION_LIST_SUCCESS
     }
 }
 
 export const fetchMissionListUpdate = (missions) => {
     return {
-        type: FETCH_MISSION_LIST_UPDATE,
+        type: actionTypes.FETCH_MISSION_LIST_UPDATE,
         missions: missions
     }
 }
 
 export const fetchMissionListFail = () => {
     return {
-        type: FETCH_MISSION_LIST_FAIL
+        type: actionTypes.FETCH_MISSION_LIST_FAIL
     }
 }
 
