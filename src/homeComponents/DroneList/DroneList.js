@@ -1,14 +1,10 @@
 import React from 'react';
 import DroneListItem from './DroneListItem/DroneListItem';
 import CustomScrollbars from '../../util/CustomScrollbars';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import { useSelector } from 'react-redux';
 import Spinner from '../UI/Spinner/Spinner';
 
 
@@ -33,17 +29,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 const DroneList = (props) => {
     const classes = useStyles();
-    const [value, setValue] = React.useState('1');
+    const [value, setValue] = React.useState(null);
     
     const handleChange = (event) => {
         setValue(event.target.value);
     };
+    // console.log(props.drones)
     return (
         // <div className="module-list mail-list">
         <div data-test="container-component">
             {props.drones ?
             <FormControl component="fieldset">
-                <p className={classes.header}>Select Mission</p>
+                <p className={classes.header}>Select Drone</p>
                 <CustomScrollbars className="module-list-scroll scrollbar"
                     style={{ height: 200 >= 800 ? 'calc(100vh - 600px)' : 'calc(100vh - 400px)', minWidth: '300px' }}>
                     <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}  data-test="radio-component">
@@ -57,7 +54,7 @@ const DroneList = (props) => {
                     <Button variant="outlined" color='white' onClick={props.abort} data-test="button1-component">Abort</Button>
                     <Button variant="outlined" color="white" className={classes.button} onClick={() => props.select(value)} data-test="button2-component">Select</Button>
                 </div>
-            </FormControl>: <div>Spinner</div>}
+            </FormControl>: <Spinner/>}
         </div>
 
     )

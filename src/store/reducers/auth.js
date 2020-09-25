@@ -6,11 +6,12 @@ const initialState = {
     // toke: null,
     // userId: null,
     userId: localStorage.getItem('userId'),
-    error: null,
+    signUpError: null,
     loading: false,
     expiryDate: localStorage.getItem('expirationDate'),
     initURL: '',
-    authRedirectPath: '/'
+    authRedirectPath: '/',
+    signUpSuccess: null
 };
 
 const authStart = ( state, action ) => {
@@ -18,11 +19,12 @@ const authStart = ( state, action ) => {
 };
 
 const authSuccess = (state, action) => {
+    console.log("Hello")
     return updateObject( state, { 
         token: action.token,
         userId: action.userId,
         error: null,
-        loading: false
+        loading: false,
      } );
 };
 
@@ -49,6 +51,17 @@ const setInitURL = (state, action)=> {
     return updateObject(state, {initURL: action.url})
 }
 
+const signUpFail = (state, action) => {
+    if(action.message !== undefined)
+        return updateObject(state, {signUpError: action.message})
+    else
+        return 0
+}
+
+const signUpSuccess = (state, action) => {
+    return updateObject(state, {signUpSuccess: action.message})
+}
+
 const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {
         case actionTypes.AUTH_START: return authStart(state, action);
@@ -58,6 +71,8 @@ const reducer = ( state = initialState, action ) => {
         case actionTypes.SET_AUTH_REDIRECT_PATH: return setAuthRedirectPath(state,action);
         case actionTypes.AUTHENTICATE: return authenticate(state,action);
         case actionTypes.SET_INIT_URL: return setInitURL(state, action);
+        case actionTypes.SIGNUP_FAIL: return signUpFail(state, action);
+        case actionTypes.SIGNUP_SUCCESS: return signUpSuccess(state, action);
         default:
             return state;
     }

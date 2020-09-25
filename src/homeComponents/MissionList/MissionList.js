@@ -1,16 +1,15 @@
-import React, {useEffect} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import MissionListItem from './MissionListItem/MissionListItem';
 import CustomScrollbars from '../../util/CustomScrollbars';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+
 import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import Radio from '@material-ui/core/Radio';
+
 import RadioGroup from '@material-ui/core/RadioGroup';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Spinner from '../UI/Spinner/Spinner';
-import * as actions from '../../store/actions/droneControl';
+import * as actions from '../../store/actions/mission';
 
 const useStyles = makeStyles((theme) => ({
     header: {
@@ -35,15 +34,16 @@ const MissionList = (props) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const [value, setValue] = React.useState('1');
-    
+
     const handleChange = (event) => {
+        console.log(event.target.value);
         setValue(event.target.value);
     };
-    const missions = useSelector(({ droneControl }) => droneControl.missions);
-
+    const missions = useSelector(({ mission }) => mission.missions);
+    // console.log(missions);
     useEffect(() => {
         dispatch(actions.fetchMissionList());
-    },[]);
+    }, [dispatch]);
     return (
         // <div className="module-list mail-list">
        <div>
@@ -65,7 +65,7 @@ const MissionList = (props) => {
                         </div>
         </FormControl>:<Spinner/>}
         </div>
-        
+
     )
 };
 

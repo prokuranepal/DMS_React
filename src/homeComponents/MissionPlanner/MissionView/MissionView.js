@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     paper: {
         backgroundColor: '#343a40',
         borderRadius: '10px',
-        padding: theme.spacing(1, 2, 1, 1),
+        padding: theme.spacing(1, 1, 1, 1.3),
         color: 'white',
         width: '320px'
     },
@@ -52,27 +52,45 @@ const MissionView = props => {
     const modalStyle = getModalStyle();
     const [openMissionList, setOpenMissionList] = React.useState(false);
     const [draggable, setDraggable] = React.useState(false);
+
+    //to check if a new mission is being (created or edited) or not
     const [create, setCreate] = React.useState(false);
     const [currWaypointIndex, setCurrWaypointIndex] = React.useState(0);
+
+    //set action to create to edit
     const [action, setAction] = React.useState("create");
-    
+
     const openMissionDetail = useSelector(({ mission }) => mission.missionDetail);
-    const state = {
-        lat: 26.818123,
-        lng: 87.281345,
-        zoom: 17,
-    }
+    const loading = useSelector(({ mission }) => mission.loading);
+    const [center, setCenter] = React.useState({
+        lat: -35.36326217651367, lng: 149.1652374267578
+    });
     const initialMissionDetail = { name: '', radius: null, speed: null, home: '', destination: '', waypoints: [] };
-    const [missionDetail, setMissionDetail] = React.useState({ name: '', radius: null, speed: null, home: '', destination: '', waypoints: [] });
-    
+    const [missionDetail, setMissionDetail] = React.useState(initialMissionDetail);
+
 
     //to update the localstate by the missionDetails sourced from server
     useEffect(() => {
         if (openMissionDetail !== null) {
+            console.log("Mission from server");
             setMissionDetail(openMissionDetail);
             setCreate(true);
+            const c = openMissionDetail.waypoints[0]
+            setCenter({
+                ...center,
+                lat: c.lat,
+                lng: c.lng
+            })
+            setDraggable(true);
         }
     }, [openMissionDetail]);
+
+    useEffect(() => {
+        if(!loading) {
+            setMissionDetail(initialMissionDetail);
+            setAction('create');
+        }
+    },[loading]);
 
     //close the modal after choosing the mission
     const handleCloseMission = () => {
@@ -124,18 +142,38 @@ const MissionView = props => {
 
     //callback function for click on confirm button
     const createUpdateMission = () => {
-        console.log("Create Mission");
+        // console.log("Create Mission");
         setCreate(false);
         setDraggable(false);
-        setMissionDetail(initialMissionDetail);
-        dispatch(actions.createUpdateMission(missionDetail,action));
-        setAction('create');
+        const newWaypoints = [...missionDetail.waypoints];
+        const homeWaypoint = {
+            altitude: 0, radius: 0,
+            action: 'waypoint', lat: newWaypoints[0].lat,
+            lng: newWaypoints[0].lng
+        }
+        newWaypoints.splice(0, 0, homeWaypoint);
+        const newMissionDetail = {
+            ...missionDetail,
+            waypoints: newWaypoints
+        }
+        console.log(newWaypoints);
+        if (action === 'create') {
+            dispatch(actions.createUpdateMission(newMissionDetail, action));
+        } else {
+            dispatch(actions.createUpdateMission(missionDetail, action));
+            
+        }
+        // setMissionDetail(initialMissionDetail);
+        // setAction('create');
+
+        
     }
 
     //callback function for change in parameter of a particular waypoint provided by index
     const onChange = (event, key) => {
-        console.log(event.target.value, key);
-        console.log(currWaypointIndex);
+        // console.log(event.target.value, key);
+        // console.log(currWaypointIndex);
+
         const m = {
             ...missionDetail,
         };
@@ -181,30 +219,45 @@ const MissionView = props => {
 
     const selectMission = (missionId) => {
         setAction('edit');
-        console.log(missionId);
+        // console.log(missionId);
         dispatch(actions.getMission(missionId));
         setOpenMissionList(false);
     }
+
+    const onDeleteWaypoint = () => {
+        console.log(missionDetail.waypoints, currWaypointIndex)
+        const deleteIndex = currWaypointIndex;
+        let newIndex = currWaypointIndex;
+        if (newIndex > 0) {
+            newIndex = newIndex - 1
+        } else {
+            newIndex = 0
+        }
+        setCurrWaypointIndex(newIndex);
+        const newWaypoints = [...missionDetail.waypoints]
+        newWaypoints.splice(deleteIndex, 1);
+        setMissionDetail({
+            ...missionDetail,
+            waypoints: newWaypoints
+        })
+    }
+    console.log(create);
     return (
         <Grid container className={classes.root}>
             <Grid item xs={3}>
-                <MissionData data-test="missionData" 
-                action={action} //touched
-                onCancel={onCancel} 
-                onChangeMission={onChangeMission} //done 
-                onChange={onChange}  //done
-                createUpdateMission={createUpdateMission} 
-                mission={missionDetail} //done
-                waypoint={missionDetail.waypoints[currWaypointIndex]} 
-                onCreateMission={startMissionCreation} 
-                openMission={openMission} //done
-                create={create} //done  
-                /> 
+                <MissionData 
+                data-test="missionData" action={action} onCancel={onCancel}
+                    onChangeMission={onChangeMission} onChange={onChange}
+                    createUpdateMission={createUpdateMission} mission={missionDetail}
+                    waypoint={missionDetail.waypoints[currWaypointIndex]}
+                    onCreateMission={startMissionCreation} openMission={openMission}
+                    create={create}
+                    onDeleteWaypoint={onDeleteWaypoint} />
             </Grid>
             <Grid item xs={9}>
                 <Map
-                    center={[state.lat, state.lng]}
-                    zoom={state.zoom}
+                    center={[center.lat, center.lng]}
+                    zoom={17}
                     style={{ width: '100%', height: '100%' }}
                     zoomControl={false}
                     onClick={handleClick} data-test="mapComp"

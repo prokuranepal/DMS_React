@@ -12,6 +12,7 @@ import Hidden from '@material-ui/core/Hidden';
 import CustomLineChart from '../../../components/CustomLineChart/index'
 import ChartCard from '../../../components/ChartCard/ChartCard'
 import * as cards from '../../../JSONFiles/dashboardCards';
+import DashbboardSkeleton from './DashboardSkeleton';
 
 const Dashboard = (props) => {
 
@@ -19,30 +20,28 @@ const Dashboard = (props) => {
     useEffect(() => {
         dispatch(actions.getCurrentCards());
         dispatch(actions.getPlaces());
-    }, [])
+        dispatch(actions.getHealthposts())
+    }, [dispatch])
     const date = new Date();
     const year = date.getFullYear();
-    console.log(year);
+    // console.log(year);
     const { cardData, loading, graphs } = useSelector(({ dashboard }) => dashboard);
 
-    const card = cardData !== null ? cards.data.map((data, index) => {
+    const card = cardData !== undefined && cardData !== null ? cards.data.map((data, index) => {
         return (
             <Grid item lg={3} md={3} xs={6} key={index}>
                 <IconWithTextCard data={data} value={cardData[data.title]} style={{marginBottom: 0}}/>
             </Grid>
         )
     }) : null;
-    // console.log(graphs);
-    // console.log("Reducer",sidechartdata);
-    // console.log("Import", sideChartData);
     return (
         <div className={classes.Dashboard}>
+            
             <div className={classes.Content}>
                 <div className={classes.View}>
-                    {(loading || cardData === null)
-                        ? <Spinner />
-
-                        : <Fragment>
+                    
+                {(loading || (cardData === undefined || cardData === null))?<DashbboardSkeleton />:
+                        <Fragment>
                             <div style={{padding: '20px'}}>
                                 <Grid container spacing={5} justify="center">
                                     {card}
@@ -92,7 +91,7 @@ const Dashboard = (props) => {
                             </div>
                         </Fragment>}
                 </div>
-            </div>
+            </div>}
 
         </div>
     )

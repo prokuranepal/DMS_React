@@ -1,7 +1,8 @@
 // import axios from 'axios';
-import * as axios from '../../response/falseFetch';
-import axios1 from '../../axios-orders';
+// import * as axios from '../../response/falseFetch';
+import axios from '../../axios-orders';
 import * as actionTypes from './actionTypes';
+
 const headers = {
     "Content-Type": "application/json"
   };
@@ -12,6 +13,7 @@ export const authStart = () => {
 };
 
 export const authSuccess = (token, userId) => {
+    console.log(token, userId)
     return {
         type: actionTypes.AUTH_SUCCESS,
         token: token,
@@ -54,13 +56,13 @@ export const logout = () => {
     };
 };
 
-export const checkAuthTimeout = (expirationTime, refreshToken) => {
+export const checkAuthTimeout = (expirationTime) => {
     // console.log("CheckoutTime", expirationTime);
     return dispatch => {
-        const refresh_token = refreshToken;
+        // const refresh_token = refreshToken;
         setTimeout(() => {
-            // dispatch(logout());
-            dispatch(sendRefreshToken(refresh_token));
+            dispatch(logout());
+            // dispatch(sendRefreshToken(refresh_token));
         }, (expirationTime) * 1000);
     };
 };
@@ -76,36 +78,56 @@ const sendRefreshToken = (refreshToken) => {
         axios.post(url, data)
             .then(response => {
                 console.log(response);
-                response = response.authResponse;
-                const expirationDate = new Date(new Date().getTime() + response.data.expires_in * 1000);
-                localStorage.setItem('token', response.data.id_token);
+                // response = response.authResponse;
+                const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+                
+                localStorage.setItem('token', response.data.token);
+                
+                localStorage.setItem('userId', response.data.userId);// localStorage.setItem('token', response.data.id_token);
                 localStorage.setItem('expirationDate', expirationDate);
-                localStorage.setItem('userId', response.data.user_id);
-                localStorage.setItem('refreshToken', response.data.refresh_token);
-                dispatch(authSuccess(response.data.id_token, response.data.user_id));
-                dispatch(checkAuthTimeout(response.data.expires_in, response.data.refresh_token));
+                // localStorage.setItem('userId', response.data.user_id);
+                // localStorage.setItem('refreshToken', response.data.refresh_token);
+                // dispatch(authSuccess(response.data.id_token, response.data.user_id));
+                // dispatch(checkAuthTimeout(response.data.expires_in, response.data.refresh_token));
             });
     }
 }
 
-export const signUp = (email, password) => {
+export const signUp = (data) => {
     return dispatch => {
         const url = '/users/signup';
-        const authData = {
-            email: email,
-            password: password,
-            returnSecureToken: true
-        };
-        axios.post(url, authData)
+        // const authData = {
+        //     fullName: fullName,
+        //     email: email,
+        //     password: password,
+        //     returnSecureToken: true
+        // };
+        // console.log(data);
+        axios.post(url, data,{
+            headers: headers
+          })
             .then(response => {
-                dispatch(signUpSuccess());
+                console.log(response.data.success);
+                dispatch(signUpSuccess(response.data.status));
+            })
+            .catch(err => {
+                console.log(err.response.data.err.message)
+                dispatch(signUpFail(err.response.data.err.message));
             });
     }
 }
 
-export const signUpSuccess = () => {
+export const signUpSuccess = (message) => {
     return {
-        type: actionTypes.SIGNUP_SUCCESS
+        type: actionTypes.SIGNUP_SUCCESS,
+        message: message
+    }
+}
+
+export const signUpFail = (message) => {
+    return {
+        type: actionTypes.SIGNUP_FAIL,
+        message: message
     }
 }
 
@@ -120,25 +142,26 @@ export const signIn = (email, password) => {
         // let url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyDL3N1A50XmBEQGRPrAN2zCudp9mpIe28I';
         // const url = './auth.js';
         const url = '/users/login';
-        axios1.post(url, authData, {
+        axios.post(url, authData, {
             headers: headers
           })
             .then(response => {
-                // response = response;
-                // const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+                // response = response.authResponse;
+                const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
                 // console.log(new Date().getTime());
-                console.log(response);
+                console.log(response.data.expiresIn);
                 // console.log(response.data.idToken,response.data.expiresIn, expirationDate, expirationDate.getTime() - new Date().getTime());
                 localStorage.setItem('token', response.data.token);
-                // localStorage.setItem('expirationDate', expirationDate);
+                localStorage.setItem('expirationDate', expirationDate);
                 localStorage.setItem('userId', response.data.userId);
                 // localStorage.setItem('refreshToken', response.data.refreshToken);
                 dispatch(authSuccess(response.data.token, response.data.userId));
+                dispatch(checkAuthTimeout(response.data.expiresIn));
                 // dispatch(checkAuthTimeout(response.data.expiresIn, response.data.refreshToken));
             })
             .catch(err => {
-                console.log(err);
-                dispatch(authFail(err));
+                console.log(err.response,err);
+                // dispatch(authFail(err.response.data.err.message));
             });
     };
 };

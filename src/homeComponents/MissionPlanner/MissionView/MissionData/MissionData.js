@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -6,6 +6,9 @@ import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import InputBase from '@material-ui/core/InputBase';
 import CustomScrollbars from '../../../../util/CustomScrollbars';
+import { useDispatch, useSelector } from 'react-redux'
+import * as dashboardActions from '../../../../store/actions/dashboard';
+import IconButton from "@material-ui/core/IconButton";
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
@@ -96,17 +99,25 @@ const BootstrapInput = withStyles((theme) => ({
 
 const MissionData = props => {
     const classes = useStyles();
+    const { healthposts } = useSelector(({ dashboard }) => dashboard);
     // console.log(props.waypoint);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        if (healthposts.length === 0) {
+            dispatch(dashboardActions.getHealthposts())
+        }
+    }, [dispatch])
+
     return (
         <div className={classes.root}>
             <CustomScrollbars className=" scrollbar">
-            {props.create ?null:
-                <div className={classes.buttons} data-test="create-components">
-                    <div><Button onClick={props.openMission} size="small" variant="contained" color="primary" data-test="open-mission-button">Open</Button></div>
-                    <div> 
-                        <Button onClick={props.onCreateMission} size="small" variant="contained" color="primary" data-test="create-mission-button">Create</Button></div>
-                </div>}
-                {props.create ? <div data-test="created-components"><div className={classes.form}>
+                {props.create ? null :
+                    <div className={classes.buttons}>
+                        <div><Button onClick={props.openMission} size="small" variant="contained" color="primary">Open</Button></div>
+                        <div>
+                            <Button onClick={props.onCreateMission} size="small" variant="contained" color="primary">Create</Button></div>
+                    </div>}
+                {props.create ? <div><div className={classes.form}>
                     <div className={classes.inputContainer}><p>Edit Mission</p></div>
                     <form noValidate autoComplete="off">
                         <div className={classes.inputContainer}>
@@ -117,8 +128,7 @@ const MissionData = props => {
                                 variant="outlined"
                                 label="Mission Name"
                                 value={props.mission.name}
-                                onChange={(event) => props.onChangeMission(event,'name')}
-                                data-test="mission-name"
+                                onChange={(event) => props.onChangeMission(event, 'name')}
                             />
                         </div>
                         <div className={classes.inputContainer}>
@@ -128,9 +138,7 @@ const MissionData = props => {
                                 size="small"
                                 value={props.mission.speed}
                                 variant="outlined"
-                                onChange={(event) => props.onChangeMission(event,'speed')}
-                                data-test="mission-speed"
-
+                                onChange={(event) => props.onChangeMission(event, 'speed')}
                             />
                         </div>
                         <div className={classes.inputContainer}>
@@ -140,42 +148,60 @@ const MissionData = props => {
                                 size="small"
                                 value={props.mission.radius}
                                 variant="outlined"
-                                onChange={(event) => props.onChangeMission(event,'radius')}
-                                data-test="mission-radius"
+                                onChange={(event) => props.onChangeMission(event, 'radius')}
                             />
                         </div>
                         <div className={classes.inputContainer}>
-                        <span>Home</span>
+                            <span>Home</span>
                             <CssTextField
                                 style={{ width: '50%' }}
                                 size="small"
                                 value={props.mission.home}
                                 variant="outlined"
-                                onChange={(event) => props.onChangeMission(event,'home')}
-                                data-test="mission-home"
+                                onChange={(event) => props.onChangeMission(event, 'home')}
                             />
                         </div>
                         <div className={classes.inputContainer}>
-                        <span>Destination</span>
-                            <CssTextField
+                            <span>Destination</span>
+                            {/* <CssTextField
                                 style={{ width: '50%' }}
                                 size="small"
                                 value={props.mission.destination}
                                 variant="outlined"
                                 onChange={(event) => props.onChangeMission(event,'destination')}
-                                data-test="mission-destination"
-                            />
+                            /> */}
+                            <Select
+                                native
+                                variant="outlined"
+                                input={<BootstrapInput />}
+                                style={{ width: '60%' }}
+                                value={props.mission.destination}
+                                onChange={(event) => props.onChangeMission(event, 'destination')}
+                            >
+                                <option value={''}></option>
+                                {healthposts.map(healthpost => {
+                                    return <option value={healthpost._id}>{healthpost.name}</option>
+                                })
+                                }
+
+                            </Select>
                         </div>
                     </form>
                 </div>
                     <div className={classes.buttons}>
-                        <div><Button onClick={props.onCancel} size="small" variant="contained" color="primary" data-test="cancel-button">Cancel</Button></div>
-                        <div>{props.action === 'create'?<Button onClick={props.createUpdateMission} data-test="create-confirm-button" size="small" variant="contained" color="primary" disabled={props.mission.waypoints.length === 0}>Confirm</Button>:
-                            <Button onClick={props.createUpdateMission} data-test="create-update-button"size="small" variant="contained" color="primary" disabled={props.mission.waypoints.length === 0}>Update</Button>}</div>
+                        <div><Button onClick={props.onCancel} size="small" variant="contained" color="primary">Cancel</Button></div>
+                        <div>{props.action === 'create' ? <Button onClick={props.createUpdateMission} size="small" variant="contained" color="primary" disabled={props.mission.waypoints.length === 0}>Confirm</Button> :
+                            <Button onClick={props.createUpdateMission} size="small" variant="contained" color="primary" disabled={props.mission.waypoints.length === 0}>Update</Button>}</div>
                     </div>
                     <div className={classes.form}>
                         {props.mission.waypoints.length !== 0 ?
-                            <div data-test="mission-waypoints-components"><div className={classes.inputContainer}><p>Waypoint</p></div>
+                            <div data-test="mission-waypoints-components">
+                                <div className={classes.inputContainer}>
+                                    <span className={`jr-menu-icon mr-3`}><p>Waypoint</p></span>
+                                    
+                                    <IconButton className={`jr-menu-icon mr-3`} onClick={props.onDeleteWaypoint}>
+                                        <i className={'zmdi zmdi-hc-fw  zmdi-delete'} />
+                                    </IconButton></div>
                                 <form noValidate autoComplete="off">
 
 
@@ -213,6 +239,7 @@ const MissionData = props => {
                                             data-test="waypoint-action"
                                         >
                                             <option value={''}></option>
+                                            <option value={'takeoff'}>Take Off</option>
                                             <option value={'waypoint'}>Waypoint</option>
                                             <option value={'hover'}>Hover</option>
                                             <option value={'payload'}>Payload Drop</option>
@@ -241,11 +268,11 @@ const MissionData = props => {
 
                                         />
                                     </div>
-                                </form></div>:
-                        <div className={classes.noWaypoint} data-test="no-waypoints-components"><h3>No Waypoints</h3></div>}
-                </div></div> : null}
+                                </form></div> :
+                            <div className={classes.noWaypoint}><h3>No Waypoints</h3></div>}
+                    </div></div> : null}
             </CustomScrollbars>
-                </div>
+        </div>
     )
 }
 

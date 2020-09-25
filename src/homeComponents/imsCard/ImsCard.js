@@ -1,26 +1,25 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 // import Card from '@material-ui/core/Card';
 // import CardMedia from '@material-ui/core/CardMedia';
 // import CardContent from '@material-ui/core/CardContent';
 // import CardActionArea from '@material-ui/core/CardActionArea';
 // import Typography from '@material-ui/core/Typography';
 import {Link} from 'react-router-dom';
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 200,
-    marginBottom: 30,
-    margin: 'auto'
-  },
-});
+// const useStyles = makeStyles({
+//   root: {
+//     maxWidth: 200,
+//     marginBottom: 30,
+//     margin: 'auto'
+//   },
+// });
 
 const ImsCard = props => {
-  const classes = useStyles();
 // console.log(props.type)
   return (
     
-    <div className="col-xl-3 col-md-4 col-sm-6 col-12" data-test="container-component">
-      <Link to={{pathname: '/app/ims/medicinelist', aboutProps: {name: props.name}}} style={{textDecoration:'none', color: 'white'}} data-test="link-component">
+    <div className="col-xl-3 col-md-4 col-sm-6 col-12">
+      <Link to={{pathname: '/app/ims/medicinelist', aboutProps: {type: props.type.type}}} style={{textDecoration:'none', color: 'white'}}>
       <div className="card product-item">
         <div className="card-header border-0 p-0">
           <div className="card-image">

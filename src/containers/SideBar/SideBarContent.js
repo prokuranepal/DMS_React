@@ -20,16 +20,28 @@ const SideBarContent = () => {
           type: 'collapse',
           children: [
             {
-              name: 'drone',
+              name: 'Drone',
               icon: 'airplane',
               type: 'item',
               link: '/app/dms/drone'
             },
             {
-              name: 'drone report',
+              name: 'Drone Report',
               icon: 'receipt',
               type: 'item',
               link: '/app/dms/dronereport'
+            },
+            {
+              name: 'Maintenance',
+              icon: 'maintenance',
+              type: 'item',
+              link: '/app/dms/maintenance'
+            },
+            {
+              name: 'Healthposts',
+              icon: 'health',
+              type: 'item',
+              link: '/app/dms/healthpost'
             }
           ]
         },

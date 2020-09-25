@@ -1,14 +1,27 @@
-import * as axios from '../../response/falseFetch';
+// import * as axios from '../../response/falseFetch';
+import axios from '../../axios-orders';
 import * as actionTypes from './actionTypes';
-
+import * as func from './function';
 export const fetchActiveDrones = () => {
     return dispatch => {
-        axios.get('./activeDrones.js').then(res => {
+        axios.get('/drones?status=1',{headers: func.getToken()}).then(res => {
             dispatch(fetchActiveDronesSuccess());
-            dispatch(fetchActiveDronesUpdate(res.activeDrones));
+            // console.log(res.data)
+            dispatch(fetchActiveDronesUpdate(res.data));
         }).catch(err => {
             dispatch(fetchActiveDronesFail());
         });
+    }
+}
+
+export const checkListPass = (data) => {
+    let pass = true;
+    for (let i = 0; i < data.length; i++) {
+        pass = pass & data[i].value
+    }
+    return {
+        type: actionTypes.CHECKLIST_PASS,
+        pass: pass
     }
 }
 
@@ -32,33 +45,3 @@ export const fetchActiveDronesFail = () => {
     }
 }
 
-export const fetchMissionList = () => {
-    return dispatch => {
-        axios.get('./missionList.js').then(res => {
-            dispatch(fetchMissionListSuccess());
-            dispatch(fetchMissionListUpdate(res.missions));
-        }).catch(err => {
-            dispatch(fetchMissionListFail());
-        });
-    }
-}
-
-
-export const fetchMissionListSuccess = () => {
-    return {
-        type: actionTypes.FETCH_MISSION_LIST_SUCCESS
-    }
-}
-
-export const fetchMissionListUpdate = (missions) => {
-    return {
-        type: actionTypes.FETCH_MISSION_LIST_UPDATE,
-        missions: missions
-    }
-}
-
-export const fetchMissionListFail = () => {
-    return {
-        type: actionTypes.FETCH_MISSION_LIST_FAIL
-    }
-}

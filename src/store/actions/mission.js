@@ -1,57 +1,97 @@
-import { CREATE_MISSION, UPDATE_MISSION, DELETE_MISSION, GET_MISSION_START, SET_MISSION } from './actionTypes';
-import * as axios from '../../response/falseFetch';
+import * as actionTypes from './actionTypes';
+// import * as axios from '../../response/falseFetch';
+import axios from '../../axios-orders';
+import * as func from './function';
+
+
 export const createUpdateMission = (missionDetail, action) => {
-    console.log(missionDetail);
-    let url = './create';
-    if (action === 'edit') {
-        url = './edit';
-    }
-    // return dispatch => {
-    //     axios.post(missionDetail, url).then(response => {
-    //         if(action === 'create') {
-    //             dispatch(createMission());
-    //         } else {
-    //             dispatch(updateMission());
-    //         }
-    //     })
-    // }
+    let url = '/mission';
     return dispatch => {
         if (action === 'create') {
-            dispatch(createMission());
+            dispatch(createMission(missionDetail, url));
         } else {
-            dispatch(updateMission());
+            url = `mission/${missionDetail._id}`
+            dispatch(updateMission(missionDetail, url));
         }
     }
 
 }
 
-export const createMission = () => {
-    return {
-        type: CREATE_MISSION
+export const createMission = (missionDetail, url) => {
+    return dispatch => {
+        dispatch(setLoading(true));
+        axios.post(url,missionDetail,{headers: func.getToken()})
+        .then(res => {
+            // console.log(res);
+            dispatch(setLoading(false));
+            dispatch(createMissionSuccess());
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 }
 
-export const updateMission = () => {
+export const setLoading = (loading) => {
     return {
-        type: UPDATE_MISSION
+        type: actionTypes.MISSION_CREATE_LOADING,
+        loading: loading
     }
 }
 
-export const deleteMission = () => {
+export const createMissionSuccess = () => {
     return {
-        type: DELETE_MISSION
+        type: actionTypes.CREATE_MISSION
+    }
+}
+
+export const updateMission = (missionDetail,url) => {
+    return dispatch => {
+        axios.put(url,missionDetail,{headers: func.getToken()} )
+        .then(res => {
+            // console.log(res);
+            dispatch(updateMissionSuccess());
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+}
+    
+
+export const updateMissionSuccess = () => {
+    return {
+        type: actionTypes.UPDATE_MISSION
+    }
+}
+
+export const deleteMission = (id) => {
+    const url = `/mission/${id}`;
+    return dispatch => {
+        axios.delete(url, {headers: func.getToken()})
+        .then(res => {
+            dispatch(deleteMissionSuccess());
+            console.log(res)
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
+}
+
+const deleteMissionSuccess = () => {
+    return {
+        type: actionTypes.DELETE_MISSION
     }
 }
 
 export const getMission = (missionId) => {
     return dispatch => {
-        const url = './missionDetail.js';
-        const data = {
-            missionId: missionId
-        };
+        const url = `/mission/${missionId}`;
         dispatch(getMissionStart());
-        axios.post(url, data).then(response => {
-            dispatch(setMission(response.missionDetail));
+        axios.get(url,{headers: func.getToken()}).then(response => {
+            // console.log(response.data)
+            dispatch(setMission(response.data));
         }).catch(err => {
             console.log(err);
         })
@@ -60,13 +100,46 @@ export const getMission = (missionId) => {
 
 export const getMissionStart = () => {
     return {
-        type: GET_MISSION_START
+        type: actionTypes.GET_MISSION_START
     }
 }
 
 export const setMission = (missionDetail) => {
     return {
-        type: SET_MISSION,
+        type: actionTypes.SET_MISSION,
         missionDetail: missionDetail
     }
 }
+
+export const fetchMissionList = () => {
+    return dispatch => {
+        axios.get('/mission',{headers: func.getToken()}).then(res => {
+            // console.log("Mission List",res);
+            dispatch(fetchMissionListSuccess());
+            dispatch(fetchMissionListUpdate(res.data));
+        }).catch(err => {
+            dispatch(fetchMissionListFail());
+        });
+    }
+}
+
+
+export const fetchMissionListSuccess = () => {
+    return {
+        type: actionTypes.FETCH_MISSION_LIST_SUCCESS
+    }
+}
+
+export const fetchMissionListUpdate = (missions) => {
+    return {
+        type: actionTypes.FETCH_MISSION_LIST_UPDATE,
+        missions: missions
+    }
+}
+
+export const fetchMissionListFail = () => {
+    return {
+        type: actionTypes.FETCH_MISSION_LIST_FAIL
+    }
+}
+

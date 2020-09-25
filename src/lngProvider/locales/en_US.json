@@ -550,8 +550,11 @@
   "signIn.signUp": "Create an account",
   "signIn.connectWith": "or connect with",
   "signUp.alreadyMember": "I am already a member",
-  "appModule.signin": "Sign In",
-  "appModule.signup": "Sign Up",
+  "signUp.fullName": "Full Name",
+  "signUp.firstName": "First Name",
+  "signUp.lastName": "Last Name",
+  "signIn.signIn": "Sign In",
+  "signUp.signUp": "Sign Up",
   "pages.samplePage": "Sample Page",
   "pages.samplePage.description": "Start building your app. Happy Coding!",
   "mailNotification.title": "Messages",
@@ -581,6 +584,10 @@
   "dashboard.application":"Application",
   "dashboard.weekly":"Weekly",
 
-  "appModule.medicine.name": "Medicine Name",
-  "appModule.addItem": "Add Item"
+  "ims.medicine.name": "Medicine Name",
+  "ims.medicine.addItem": "Add Item",
+  "ims.medicine.dosage": "Dosage",
+  "ims.medicine.suppliers": "Supplier ID",
+  "ims.medicine.company": "Company Name",
+  "ims.medicine.updateItem": "Update Item"
 }

@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 // const url='http://01692a29d8cd.ngrok.io/';
-const url = process.env.URL;
+// const url = process.env.URL;
+import url from './url';
 
 const instance = axios.create({
     // baseURL: 'http://35.243.172.120'
@@ -13,3 +14,4 @@ const instance = axios.create({
 });
 
 export default instance;
+

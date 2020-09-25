@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
-import Grid from "@material-ui/core/Grid";
+// import Grid from "@material-ui/core/Grid";
 import { Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import { COLLAPSED_DRAWER, FIXED_DRAWER } from "../../../../constants/ActionTypes";
 // import SearchBox from "components/SearchBox";
@@ -69,7 +69,7 @@ const Index =(props)=> {
             <marquee>Drone MX710 is flying from Dharan to Biratnagar, Drone MX710 is flying from Dharan to Biratnagar</marquee>
             </div> */}
           <ul className="header-notifications list-inline ml-auto">
-            <li className="list-inline-item">
+            {/* <li className="list-inline-item">
               <Dropdown
                 className="quick-menu"
                 isOpen={langSwitcher}
@@ -91,7 +91,7 @@ const Index =(props)=> {
               </Dropdown>
 
 
-            </li>
+            </li> */}
             <li className="list-inline-item app-tour">
               <Dropdown
                 className="quick-menu"
@@ -114,7 +114,7 @@ const Index =(props)=> {
                 </DropdownMenu>
               </Dropdown>
             </li>
-            <li className="list-inline-item mail-tour">
+            {/* <li className="list-inline-item mail-tour">
               <Dropdown
                 className="quick-menu"
                 isOpen={mailNotification}
@@ -137,7 +137,7 @@ const Index =(props)=> {
                   <MailNotification/>
                 </DropdownMenu>
               </Dropdown>
-            </li>
+            </li> */}
 
           </ul>
           

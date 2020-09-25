@@ -27,15 +27,17 @@ const StyledTableRow = withStyles((theme) => ({
     },
 }))(TableRow);
 
-function createData(sno, name, dosage, type, quantity, date) {
-    return { sno, name, dosage, type, quantity, date };
+let counter = 0;
+function createData(itemId,name, dosages, type, quantity, exp_date) {
+    counter += 1;
+    return { id: counter,itemId, name, dosages, type, quantity, exp_date };
 }
 
-const rows = [
-    createData(1, "Paracetamol", 500, "Tablet", 10, "2020-06-30"),
-    createData(2, "Cough Syrup", '-', "Liquid", 2, "2020-06-30"),
-    createData(3, "Brufen", 200, "Capsule", 10, "2020-06-30")
-];
+// const rows = [
+//     createData(1, "Paracetamol", 500, "Tablet", 10, "2020-06-30"),
+//     createData(2, "Cough Syrup", '-', "Liquid", 2, "2020-06-30"),
+//     createData(3, "Brufen", 200, "Capsule", 10, "2020-06-30")
+// ];
 
 const useStyles = makeStyles((theme: Theme) =>
 createStyles({
@@ -54,9 +56,12 @@ createStyles({
 })
 );
 
-export default function CustomizedTables() {
+const CustomizedTables = (props) => {
     const classes = useStyles();
-
+    const rows = props.items.map(item => {
+        return createData(item.medicine._id, item.medicine.title, item.medicine.dosages,item.medicine.type, item.medicine.quantity, item.medicine.exp_date)
+    })
+    // console.log(props.items);
     return (
         <div className={classes.root}>
             <Typography variant="h6">&nbsp;&nbsp;Ordered Items</Typography>
@@ -77,14 +82,14 @@ export default function CustomizedTables() {
                             {rows.map((row) => (
                                 <StyledTableRow key={row.name}>
 
-                                    <StyledTableCell component="th" scope="row">{row.sno}</StyledTableCell>
+                                    <StyledTableCell component="th" scope="row">{row.id}</StyledTableCell>
                                     <StyledTableCell align="right">
                                         {row.name}
                                     </StyledTableCell>
-                                    <StyledTableCell align="right">{row.dosage}</StyledTableCell>
+                                    <StyledTableCell align="right">{row.dosages}</StyledTableCell>
                                     <StyledTableCell align="right">{row.type}</StyledTableCell>
                                     <StyledTableCell align="right">{row.quantity}</StyledTableCell>
-                                    <StyledTableCell align="right">{row.date}</StyledTableCell>
+                                    <StyledTableCell align="right">{row.exp_date}</StyledTableCell>
                                 </StyledTableRow>
                             ))}
                         </TableBody>
@@ -94,3 +99,5 @@ export default function CustomizedTables() {
         </div>
     );
 }
+
+export default CustomizedTables;
