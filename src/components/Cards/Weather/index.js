@@ -1,6 +1,6 @@
 import React from 'react';
-import WeatherDetail from "../../Weather/WeatherDetail";
-import CardLayout from "components/CardLayout";
+import WeatherDetail from "../../../homeComponents/Weather/WeatherDetail";
+import CardLayout from "../../CardLayout";
 
 const WeatherCard = () => {
   return (

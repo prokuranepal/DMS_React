@@ -19,7 +19,7 @@ import { Paper, Typography } from '@material-ui/core';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import { setAlert } from '../../store/actions/alert';
 
-const EditUser = ({history, createUser1, createUser2, location, setAlert}) => {
+const EditUser = ({history, createUser1, createUser2, locations, setAlert}) => {
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -83,11 +83,11 @@ const EditUser = ({history, createUser1, createUser2, location, setAlert}) => {
 
     useEffect(() => {
             setFormData({
-                username: location.state.user.username,
-                fullname: location.state.user.fullname,
-                institution: location.state.user.institution,
-                level: location.state.user.level,
-                image: location.state.user.image
+                username: locations.state.user.username,
+                fullname: locations.state.user.fullname,
+                institution: locations.state.user.institution,
+                level: locations.state.user.level,
+                image: locations.state.user.image
             }) 
 
 
@@ -99,7 +99,7 @@ const EditUser = ({history, createUser1, createUser2, location, setAlert}) => {
     const onSubmit = e => {
         e.preventDefault();
 
-        if(_.isEqual(formData, location.state.user)){
+        if(_.isEqual(formData, locations.state.user)){
             setAlert('There is no change to update', 'warning')
         }else{
             
@@ -123,7 +123,7 @@ const EditUser = ({history, createUser1, createUser2, location, setAlert}) => {
                 {/* Main Create User Component */}
                
                 <Grid container className = {classes.users}>
-                <SimpleAlert />
+                <SimpleAlert alerts={[]}/>
 
                     <Paper className = {classes.layout}>
                         <Grid item xs={12}>
@@ -131,10 +131,10 @@ const EditUser = ({history, createUser1, createUser2, location, setAlert}) => {
                         
                             <Typography variant='h4' className={classes.header}>EDIT USER</Typography>
                            
-                            	 <form className={classes.form} onSubmit={onSubmit}>
+                            	 <form className={classes.form} onSubmit={onSubmit} data-test='formSubmit'>
                           
-                                        <TextField margin='normal' onChange={onChange} name='username' value={username} id="standard-basic" label="User Name" required />
-                                        <TextField margin='normal' onChange={onChange} name='fullname' value={fullname} id="standard-basic" label="Full Name" required/>
+                                        <TextField margin='normal' onChange={onChange} name='username'  value={username} id="standard-basic" label="User Name" required />
+                                        <TextField margin='normal' data-test="usernameComp" onChange={onChange} name='fullname' value={fullname} id="standard-basic" label="Full Name" required/>
                                         <TextField margin='normal' onChange={onChange} name='institution' value={institution} id="standard-basic" label="Institution"  required/>
                                         
                                         <FormControl margin='normal' className={classes.formControl} required>

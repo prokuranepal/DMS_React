@@ -1,5 +1,5 @@
 import React from "react";
-import WidgetHeader from "components/WidgetHeader/index";
+import WidgetHeader from "../../WidgetHeader/index";
 
 function Status(props) {
   const isType = props.isType;

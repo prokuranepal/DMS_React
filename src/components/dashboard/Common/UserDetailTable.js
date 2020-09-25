@@ -9,7 +9,7 @@ const UserDetailTable = ({data, tableStyle}) => {
         <tbody>
         {data.map(data => {
           return (
-            <UserDetailCell key={data.id} data={data}/>
+            <UserDetailCell key={data.id} data={data} data-test="cell-component"/>
           );
         })}
         </tbody>

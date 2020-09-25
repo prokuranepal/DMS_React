@@ -1,34 +1,14 @@
 import React from 'react';
+import ActivityBoxComponent from './ActivityBoxComponent';
 
 const ActivityBox = ({visit, newVisit, lastWeekVisit, styleName}) => {
+  let values= [{title: "Page / Visit", value:visit}, {title:"New Visit",value:newVisit}]
+  let content = values.map((val,index)=><ActivityBoxComponent key={index} propTitle={val.title} propValue={val.value}/>)
   return (
 
     <div
       className={`list-group-item d-flex justify-content-between text-center border-left-0 border-right-0 ${styleName}`}>
-      <div className="my-2">
-        <div className="mb-1 text-muted">
-          Page / Visit
-        </div>
-        <div className="text-grey text-darken-3">
-          {visit}
-        </div>
-      </div>
-      <div className="my-2">
-        <div className="mb-1 text-muted">
-          % New Visit
-        </div>
-        <div className="text-grey text-darken-3">
-          {newVisit}
-        </div>
-      </div>
-      <div className="my-2">
-        <div className="mb-1 text-muted">
-          Last Week Visit
-        </div>
-        <div className="text-grey text-darken-3">
-          {lastWeekVisit}
-        </div>
-      </div>
+     {content}
     </div>
 
   )

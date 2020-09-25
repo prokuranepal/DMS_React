@@ -36,30 +36,31 @@ const OrderTableCell = (props) => {
       tabIndex={-1}
       key={id}
     >
-      {link}
-      <td>{orderId}</td>
+      <div data-test="link-component">{link}</div>
+      <td data-test="orderId-component">{orderId}</td>
       <td>
         <div className="user-profile d-flex flex-row align-items-center">
           <Avatar
             alt={name}
             src={image}
             className="user-avatar"
+            data-test="image-component"
           />
           <div className="user-detail">
-            <h5 className="user-name">{name} </h5>
+            <h5 className="user-name" data-test="username-component">{name}</h5>
           </div>
         </div>
       </td>
-      <td>{orderDate}</td>
-      <td>{deliveryDate}</td>
-      <td>{from}</td>
+      <td data-test= "orderdate-component">{orderDate}</td>
+      <td data-test= "deliverydate-component">{deliveryDate}</td>
+      <td data-test= "from-component">{from}</td>
       <td className="status-cell text-right">
-        <div className={` badge text-uppercase ${statusStyle}`}>{status}</div>
+        <div className={` badge text-uppercase ${statusStyle}` } data-test= "status-component">{status}</div>
       </td>
       <td className="text-right">
-        <IconButton onClick={onOptionMenuSelect}>
+        <IconButton onClick={onOptionMenuSelect} data-test= "iconbutton-component">
           <i className="zmdi zmdi-more-vert" /></IconButton>
-        <CardMenu menuState={menuState} anchorEl={anchorE1}
+        <CardMenu menuState={menuState} anchorEl={anchorE1} data-test= "cardmenu-component"
           handleRequestClose={(event) => handleRequestClose(event, orderId)} />
       </td>
     </tr>

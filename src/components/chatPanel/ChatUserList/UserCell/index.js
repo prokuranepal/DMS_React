@@ -3,8 +3,8 @@ import React from 'react';
 const UserCell = ({chat, selectedSectionId, onSelectUser}) => {
   return (
     <div key={chat.id} className={`chat-user-item ${selectedSectionId === chat.id ? 'active' : ''}`} onClick={() => {
-      onSelectUser(chat);
-    }}>
+      onSelectUser(chat); 
+    }} data-test={`usercell-componentmounted${chat.id}`}>
       <div className="chat-user-row row">
         <div className="chat-avatar col-xl-2 col-3">
           <div className="chat-avatar-mode">
@@ -28,3 +28,4 @@ const UserCell = ({chat, selectedSectionId, onSelectUser}) => {
 };
 
 export default UserCell;
+

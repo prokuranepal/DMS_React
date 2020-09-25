@@ -1,7 +1,7 @@
 import React from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import WidgetHeader from "components/WidgetHeader/index";
+import WidgetHeader from "../../WidgetHeader/index";
 
 const Communities =(props)=> {
 

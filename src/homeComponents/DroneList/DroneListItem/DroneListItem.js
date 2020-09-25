@@ -31,12 +31,12 @@ const useStyles = makeStyles((theme) => ({
 const DroneListItem = (props) => {
     const classes = useStyles();
     return (
-        <div className={classes.root}>
+        <div className={classes.root} data-test="container-component">
 
-            <Radio size='small' color='white' value={props.drone.value} />
+            <Radio size='small' color='white' value={props.drone.value} data-test="innerradio-component" />
             <div className={classes.body}>
-                <p className={classes.header}>{props.drone.name}</p>
-                <div><span className={classes.info}>Code:{props.drone.code}</span><span className={classes.info}>Type:{props.drone.type}</span></div>
+                <p className={classes.header} data-test="dronename-component">{props.drone.name}</p>
+                <div><span className={classes.info} data-test="dronecode-component">Code:{props.drone.code}</span><span className={classes.info} data-test="dronetype-component">Type:{props.drone.type}</span></div>
             </div>
 
         </div>

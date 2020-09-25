@@ -1,6 +1,6 @@
 import React from 'react';
 import CardTabs from "./CardTabs";
-import CardLayout from "components/CardLayout";
+import CardLayout from "../../CardLayout";
 
 
 const TabbedCard = () => {

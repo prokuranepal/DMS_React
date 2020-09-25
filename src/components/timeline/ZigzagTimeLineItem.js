@@ -7,8 +7,8 @@ const ZigzagTimeLineItem = ({styleName, timeLine}) => {
     <div className={`timeline-item ${styleName}`}>
       <div className="timeline-badge timeline-img">
         {styleName.includes("timeline-inverted") ?
-          <img className="size-60" src={require("assets/images/pentagon_1.png")} alt="Pentagon" title="Pentagon"/> :
-          <img className="size-60" src={require("assets/images/pentagon.png")} alt="Pentagon" title="Pentagon"/>}
+          <img className="size-60" src={require("../../assets/images/pentagon_1.png")} alt="Pentagon" title="Pentagon"/> :
+          <img className="size-60" src={require("../../assets/images/pentagon.png")} alt="Pentagon" title="Pentagon"/>}
       </div>
 
       <div className="timeline-panel ">

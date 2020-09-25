@@ -1,7 +1,7 @@
 import React from 'react';
 import PostBoxes from "./PostBoxes";
 import {post} from "./data";
-import CardLayout from "components/CardLayout";
+import CardLayout from "../../CardLayout";
 
 const ListCard = () => {
   return (
@@ -14,7 +14,7 @@ const ListCard = () => {
       </div>
       <div className="card-body bg-transparent">
         <ul className="post-list">
-          {post.map((post, index) => <PostBoxes key={index} post={post}/>)}
+          {post.map((post, index) => <PostBoxes key={index} post={post} data-test="postbox-component"/>)}
         </ul>
       </div>
     </CardLayout>

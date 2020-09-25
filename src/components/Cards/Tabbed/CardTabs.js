@@ -5,7 +5,7 @@ import SwipeableViews from 'react-swipeable-views';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
-function TabContainer({children, dir}) {
+export function TabContainer({children, dir}) {
   return (
     <div dir={dir} style={{padding: 8 * 3}}>
       {children}
@@ -40,6 +40,7 @@ const CardTabs = (props) => {
           indicatorColor="primary"
           textColor="primary"
           fullWidth
+          data-test="tab-component"
         >
           <Tab className="tab" label="HOME"/>
           <Tab className="tab" label="PROFILE"/>
@@ -49,6 +50,7 @@ const CardTabs = (props) => {
           axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
           index={value}
           onChangeIndex={handleChangeIndex}
+          data-test="swipe-component"
         >
           <TabContainer dir={theme.direction}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
             tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation

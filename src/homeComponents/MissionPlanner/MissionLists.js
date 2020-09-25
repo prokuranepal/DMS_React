@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const missions = [
+export const missions = [
     {
         id: 'abc',
         source: 'Dharan',
@@ -66,7 +66,7 @@ const MissionLists = props => {
             <Typography variant="h4" className={classes.text}>MISSION LISTS</Typography>
             </div>
                 {missions.map(mission => {
-                    return <MissionList key={mission.id} id={mission.id} source={mission.source} destination={mission.destination}/>
+                    return <MissionList key={mission.id} id={mission.id} source={mission.source} destination={mission.destination} data-test="mission-component"/>
                 })}
         </Grid>
     </Grid>)

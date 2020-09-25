@@ -1,8 +1,8 @@
 import React from "react";
 
-import Widget from "components/Widget/index";
+import Widget from "../../Widget/index";
 import EventItem from "./EventItem";
-import {eventList} from "../../../app/routes/socialApps/routes/Profile/data"
+// import {eventList} from "../../../app/routes/socialApps/routes/Profile/data"
 
 const Events = () => {
   return (
@@ -12,9 +12,9 @@ const Events = () => {
         <p className="text-grey jr-fs-sm mb-0">What Kiley is up-to</p>
       </div>
       <div className="pt-md-3">
-        {eventList.map((data, index) =>
+        {/* {eventList.map((data, index) =>
           <EventItem key={index} data={data}/>
-        )}
+        )} */}
       </div>
     </Widget>
   );

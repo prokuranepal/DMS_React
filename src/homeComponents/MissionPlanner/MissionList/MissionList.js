@@ -34,9 +34,9 @@ const MissionList = props => {
             <Paper className={classes.paper}>
                 <Grid container wrap="nowrap" spacing={2}>
                     <Grid item xs={12} sm={8} md={10}>
-                        <Typography>Mission ID: {props.id}</Typography>
-                        <Typography>Source: {props.source}</Typography>
-                        <Typography>Destination: {props.destination}</Typography>
+                        <Typography data-test="id-component">Mission ID: {props.id}</Typography>
+                        <Typography data-test="source-component">Source: {props.source}</Typography>
+                        <Typography data-test="destination-component">Destination: {props.destination}</Typography>
                     </Grid>
                     <Grid container item xs={0} sm={4} md={2}>
                     <Link className={classes.button} to='/app/missionplanner/missionview' style={{textDecoration:'none', color: 'white'}}>

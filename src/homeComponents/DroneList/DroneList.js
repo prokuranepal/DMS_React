@@ -40,22 +40,22 @@ const DroneList = (props) => {
     };
     return (
         // <div className="module-list mail-list">
-        <div>
-            {props.drones !== null ?
+        <div data-test="container-component">
+            {props.drones ?
             <FormControl component="fieldset">
                 <p className={classes.header}>Select Mission</p>
                 <CustomScrollbars className="module-list-scroll scrollbar"
                     style={{ height: 200 >= 800 ? 'calc(100vh - 600px)' : 'calc(100vh - 400px)', minWidth: '300px' }}>
-                    <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
+                    <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}  data-test="radio-component">
                         {props.drones.map((drone, index) =>
                             // <FormControlLabel control={}>
-                            <DroneListItem key={index} drone={drone} />
+                            <DroneListItem key={index} drone={drone} data-test="dronelist-component"/>
                         )}
                     </RadioGroup>
                 </CustomScrollbars>
                 <div className={classes.buttonLayout}>
-                    <Button variant="outlined" color='white' onClick={props.abort}>Abort</Button>
-                    <Button variant="outlined" color="white" className={classes.button} onClick={() => props.select(value)}>Select</Button>
+                    <Button variant="outlined" color='white' onClick={props.abort} data-test="button1-component">Abort</Button>
+                    <Button variant="outlined" color="white" className={classes.button} onClick={() => props.select(value)} data-test="button2-component">Select</Button>
                 </div>
             </FormControl>: <div>Spinner</div>}
         </div>

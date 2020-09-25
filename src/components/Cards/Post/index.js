@@ -1,6 +1,6 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import CardLayout from 'components/CardLayout';
+import CardLayout from '../../CardLayout';
 
 const PostCard = () => {
   return (
