@@ -11,6 +11,10 @@ Welcome to DMS's documentation!
    :caption: Contents:
 
 .. js:autofunction:: MainApp
+.. js:autofunction:: ActivityBox
+.. js:autofunction:: CardBox
+
+
 
 Indices and tables
 ==================
