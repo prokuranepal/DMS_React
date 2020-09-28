@@ -18,7 +18,6 @@ before_script:
 
 script:
   - npm test -- --coverage --passWithNoTests
-  - make -C docscripts/ html
   - touch docscripts/build/html/.nojekyll
 #   - CI=false npm run build
 
