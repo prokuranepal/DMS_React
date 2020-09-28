@@ -17,7 +17,7 @@ before_script:
 
 script:
   - npm test -- --coverage --passWithNoTests
-  - touch docscripts/build/html/.nojekyll
+  - touch docs/build/html/.nojekyll
 #   - CI=false npm run build
 
 after_script:
@@ -28,7 +28,7 @@ deploy:
     verbose: true
     token: $GITHUB_TOKEN
     edge: true
-    local_dir: ./docscripts/build/html/
+    local_dir: ./docs/build/html/
     keep_history: true
 
 # language: node_js
