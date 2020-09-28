@@ -17,19 +17,19 @@ before_script:
 
 script:
   - npm test -- --coverage --passWithNoTests
-  - touch docs/build/html/.nojekyll
+  # - touch docs/build/html/.nojekyll
 #   - CI=false npm run build
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
   # - COVERALLS_REPO_TOKEN=$coveralls_repo_token npm run coveralls
-deploy:
-  - provider: pages
-    verbose: true
-    github_token: $GITHUB_TOKEN
-    edge: true
-    local_dir: docs/build/html/
-    keep_history: true
+# deploy:
+#   - provider: pages
+#     verbose: true
+#     github_token: $GITHUB_TOKEN
+#     edge: true
+#     local_dir: docs/build/html/
+#     keep_history: true
 
 # language: node_js
 # node_js:
