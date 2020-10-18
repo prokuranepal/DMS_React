@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import * as actions from '../../../../store/actions/dms'
+
 import IntlMessages from "../../../../util/IntlMessages";
 import MaterialTable from 'material-table';
 import TableIcons from '../../../../homeComponents/TableIcons/TableIcons';
@@ -12,6 +12,7 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import * as actions from '../../../../store/actions/dms';
 
 // function createData(name, droneId, numOfFlight, type, status) {
 
@@ -64,6 +65,7 @@ const Drone = () => {
     ],
   });
 
+  const [numDrones, setNumDrones] = React.useState(0)
   const dispatch = useDispatch();
   const { drones } = useSelector(({ dms }) => dms);
   // console.log(drones);
@@ -76,6 +78,7 @@ const Drone = () => {
 
       return { ...prevState, data: drones };
     });
+    setNumDrones(drones.length)
   }, [drones]);
 
   const [selectedRow, setSelectedRow] = React.useState(null);
@@ -97,7 +100,8 @@ const Drone = () => {
 
   const openDroneDetail = (id) => {
     console.log(id);
-    setSelectedRow(id)
+    setSelectedRow(id);
+    // dispatch(actions.fetchDroneDetail(id));
     setRedirectTo(<Redirect to={{
       pathname: "/app/dms/dronedetail",
       state: { droneId: id }
@@ -106,12 +110,12 @@ const Drone = () => {
   }
   return (
     <div>
-      {/* {redirectTo} */}
+      {redirectTo}
       <div className="animated slideInUpTiny animation-duration-3">
         <div className="jr-card">
           {/* <div className="jr-card-header"> */}
           <h1 className="mb-0  font-weight-bold"><IntlMessages id="Drones" /></h1>
-          <h3 className="mb-0 mt-3">125 Total</h3>
+          <h3 className="mb-0 mt-3">{numDrones} Total</h3>
           {/* </div> */}
         </div>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>

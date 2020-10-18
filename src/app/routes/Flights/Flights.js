@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import * as actions from '../../../store/actions/dms'
+import * as actions from '../../../store/actions/flights'
 import IntlMessages from "../../../util/IntlMessages";
 import MaterialTable from 'material-table';
 import TableIcons from '../../../homeComponents/TableIcons/TableIcons';
@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import IconWithTextCard from '../../../components/statusCard/IconWithTextCard';
 import { Redirect } from "react-router";
 
-const Incident = () => {
+const Flights = () => {
     const [state, setState] = React.useState({
         columns: [
             { title: 'Name', field: 'name' },
@@ -36,26 +36,29 @@ const Incident = () => {
         ],
     });
 
-    //   const dispatch = useDispatch();
-    //   const { drones } = useSelector(({ dms }) => dms);
+    const dispatch = useDispatch();
+    //   const { flightList } = useSelector(({ flights }) => flights);
     // console.log(drones);
     //   useEffect(() => {
-    //     dispatch(actions.fetchDrones())
+    //     dispatch(actions.fetchFlights())
     //   }, [dispatch]);
 
     //   useEffect(() => {
     //     setState((prevState) => {
 
-    //       return { ...prevState, data: drones };
+    //       return { ...prevState, data: flightList };
     //     });
-    //   }, [drones]);
+    //   }, [flightList]);
 
     const [selectedRow, setSelectedRow] = React.useState(null);
     const [redirectTo, setRedirectTo] = React.useState(null);
+    
+
     const openFlightDetail = (id) => {
+        // dispatch(actions.fetchFlightDetails(id))
         console.log(id);
         setRedirectTo(<Redirect to={{
-            pathname: '/app/dms/dronedetail',
+            pathname: '/app/flights/flightdetail',
             state: {id:id}
         }} />)
     }
@@ -102,7 +105,7 @@ const Incident = () => {
 
                 <MaterialTable
                     theme={theme}
-                    title="Maintenance"
+                    title="Flights"
                     columns={state.columns}
                     data={state.data}
                     icons={TableIcons}
@@ -164,4 +167,4 @@ const Incident = () => {
     );
 }
 
-export default Incident;
+export default Flights;

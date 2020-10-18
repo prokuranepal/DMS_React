@@ -3,7 +3,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import asyncComponent from "../../../util/asyncComponent";
 import DroneDetail from './DroneDetail/DroneDetail';
 
-const Table = ({ match }) => (
+const DMS = ({ match }) => (
   <div className="app-wrapper">
     <Switch>
       <Route path={`${match.url}/drone`} component={asyncComponent(() => import("./drone/Drone"))}/>
@@ -15,4 +15,4 @@ const Table = ({ match }) => (
   </div>
 );
 
-export default Table;
+export default DMS;

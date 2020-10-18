@@ -91,10 +91,10 @@ const DroneControl = props => {
     useEffect(() => {
         // console.log(drone);
         if (drone !== null) {
-            console.log("send socket connection");
+            console.log("send socket connection", drone);
             const d = new Date();
             const n = d.getMilliseconds();
-            socket.current = io(`${url}/JT601`);
+            socket.current = io(`${url}/${drone}`);
             socket.current.emit("joinDMS", userId);
             socket.current.emit("homePosition", { timestamp: n })
             socket.current.on("copter-data", setData);

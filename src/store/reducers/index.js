@@ -12,6 +12,7 @@ import mission from './mission';
 import ims from './imsMedicine'
 import imsOrder from './imsOrder';
 import dms from './dms';
+import flights from './flights'
 
 export default (history) => combineReducers({
   router: connectRouter(history),
@@ -25,5 +26,6 @@ export default (history) => combineReducers({
   mission: mission,
   ims:ims,
   imsOrder: imsOrder,
-  dms:dms
+  dms:dms,
+  flights: flights
 });

@@ -27,7 +27,7 @@ const MissionPlanner = ({match}) => {
         <Switch>
           <Route exact path={`${match.url}/medicinelist`} component={MedicineListContainer} />
           <Route exact path={`${match.url}/orders/lists`} component={OrderLists} />
-          <Route exact path={`${match.url}/orders/details`} render={(props) => <OrderDetails {...props}/>}/>/>
+          <Route exact path={`${match.url}/orders/details`} render={(props) => <OrderDetails {...props}/>}/>
           <Redirect from={`${match.url}/orders`} to="/app/ims/orders/lists" />
           <Redirect from="/app/ims" to={`${match.url}/medicinelist`} />
         </Switch>

@@ -72,7 +72,7 @@ const MissionView = props => {
     //to update the localstate by the missionDetails sourced from server
     useEffect(() => {
         if (openMissionDetail !== null) {
-            console.log("Mission from server");
+            console.log("Mission from server", openMissionDetail);
             setMissionDetail(openMissionDetail);
             setCreate(true);
             const c = openMissionDetail.waypoints[0]

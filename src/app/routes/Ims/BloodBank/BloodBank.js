@@ -5,7 +5,7 @@ import TableIcons from '../../../../homeComponents/TableIcons/TableIcons';
 import * as actions from '../../../../store/actions/dashboard';
 import { useDispatch, useSelector } from 'react-redux';
 
-const Healthposts = (props) => {
+const BloodBank = (props) => {
     const [state, setState] = React.useState({
         columns: [
             // { title: 'ID', field: 'healthpostId' },
@@ -106,4 +106,4 @@ const Healthposts = (props) => {
     );
 }
 
-export default Healthposts;
+export default BloodBank;

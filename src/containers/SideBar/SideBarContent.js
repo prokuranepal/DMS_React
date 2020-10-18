@@ -25,15 +25,15 @@ const SideBarContent = () => {
               type: 'item',
               link: '/app/dms/drone'
             },
-            {
-              name: 'Drone Report',
-              icon: 'receipt',
-              type: 'item',
-              link: '/app/dms/dronereport'
-            },
+            // {
+            //   name: 'Drone Report',
+            //   icon: 'receipt',
+            //   type: 'item',
+            //   link: '/app/dms/dronereport'
+            // },
             {
               name: 'Maintenance',
-              icon: 'maintenance',
+              icon: 'alert-circle',
               type: 'item',
               link: '/app/dms/maintenance'
             },
@@ -102,10 +102,10 @@ const SideBarContent = () => {
           link: '/app/events'
         },
         {
-          name: 'sidebar.issues',
+          name: 'sidebar.flights',
           type: 'item',
           icon: 'alert-circle',
-          link: '/app/issues'
+          link: '/app/flights'
         },
         {
           name: 'sidebar.users',
