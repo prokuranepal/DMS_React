@@ -35,7 +35,7 @@ describe('<MissionList />', () => {
  
     beforeEach(() => {
       store = mockStore({
-         droneControl:{
+         mission:{
               missions:[{missionId:1,data:{}},{missionId:2,data:{}}]
          }
       });

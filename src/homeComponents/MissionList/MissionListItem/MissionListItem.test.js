@@ -22,11 +22,11 @@ const setAlertFunction= jest.fn()
 
 const dummy_data= {
 mission:{
-    title:"dharan-dhangadi",
-    value:22,
-    waypoints:[{lat:45, lng:54},{lat:43, lng:53},{lat:44, lng:55}],
-    dist:33,
-    ETA: 40
+    name:"dharan-dhangadi",
+    _id:22,
+    wp:[{lat:45, lng:54},{lat:43, lng:53},{lat:44, lng:55}],
+    distance:33,
+    estimated_time: 40
 }
 }
 

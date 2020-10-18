@@ -47,6 +47,7 @@ const MissionList = () => {
                     title="Mission List"
                     columns={state.columns}
                     data={state.data}
+                    data-test="missiontable"
                     icons={TableIcons}
                     onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
                     options={{

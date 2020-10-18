@@ -1,0 +1,18 @@
+
+> dms_frontend@0.1.0 test /home/sa/react_workspace/DMS_React
+> react-scripts test "-t" "<MissionData />"
+
+
+
+
+> dms_frontend@0.1.0 test /home/sa/react_workspace/DMS_React
+> react-scripts test "-t" "<MissionData />"
+
+
+
+
+> dms_frontend@0.1.0 test /home/sa/react_workspace/DMS_React
+> react-scripts test
+
+
+

@@ -18,19 +18,23 @@ configure({
 const getValue1=jest.fn();
 getValue1.mockReturnValue({lat:101,lng:102});
 
-describe('MissionView />', () => {
+describe('<MissionView />', () => {
     let store;
   beforeEach(() => {
       store = mockStore({
           mission:{
               missionDetail:{
                   waypoints:[{lat:2, lng:1,action:22, altitude:20},{lat:1,lng:2,action:21, altitude:10}]
-              }
+              },
+              missions:[{id:1, mission:"mission1"}, {id:2, mission:"mission2"}]
           },
            droneControl:{
           missions:[
               "mission1", "mission2", "mission3"
           ]
+      },
+      dashboard:{
+        healthposts:[{_id:1, name:"dashboard1"},{_id:2,name:"dashboard2"}]
       }
       }
      );
@@ -114,7 +118,7 @@ expect(findByTestAttr(wrapper, "missionData").at(0).props().action).toEqual("cre
     expect(findByTestAttr(wrapper, "modalComp").at(0).props().open).toEqual(false)
 
 
-  expect(markerComp.props().draggable).toEqual(false)
+  expect(markerComp.props().draggable).toEqual(true)
 
   act(()=>{missionData.props().onCreateMission()})
     wrapper.update()

@@ -2,10 +2,12 @@ import React from 'react';
 import MissionData from './MissionData';
 import {
     configure,
-    shallow
+    mount
 } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
-
+import configureStore from 'redux-mock-store';
+import { Provider } from 'react-redux';
+const mockStore = configureStore([]);
 // JestHook.mock('expo-font');
 configure({
     adapter: new EnzymeAdapter
@@ -37,22 +39,28 @@ const dummy_data={
     action:"create"
 }
 
-const setup = (props = {}, state = null) => {
-    return (shallow( < MissionData {...props}  />)
-    )
+const setup = (props = {}, store1=null, state = null) => {
+    return mount(<Provider store={store1} >< MissionData {...props}  /></Provider>)
+    
 }
 
 const findByTestAttr=(wrapper, val)=>{
-    return wrapper.find(`[data-test='${val}']`)
+    return wrapper.find(`[data-test='${val}']`).at(0)
 }
 
 
-describe('MissionData />', () => {
+describe('<MissionData />', () => {
 
+let store;
+  beforeEach(() => {
 
-//   beforeEach(() => {
-//     wrapper = setup(dummy_data)
-//   });
+store = mockStore({
+dashboard:{
+    healthposts:[{_id:1,name:"dashboard1"},{_id:2,name:"dashboard2"}]
+}}
+);
+store.dispatch=jest.fn();
+});
 
   afterEach(() => {
     jest.clearAllMocks();
@@ -60,14 +68,14 @@ describe('MissionData />', () => {
 
 
 it("MissionData snapshot", () => {
-        let wrapper = setup(dummy_data);
+        let wrapper = setup(dummy_data,store);
         expect(wrapper).toMatchSnapshot();
 
   
 })
 
 it("Create Components exist", () => {
-    const wrapper =setup({...dummy_data, create:false})
+    const wrapper =setup({...dummy_data, create:false},store)
    const createComponents = findByTestAttr(wrapper, "create-components")
     expect(createComponents).toHaveLength(1)
     const createdComponents = findByTestAttr(wrapper, "created-components")
@@ -81,7 +89,7 @@ it("Create Components exist", () => {
 })
 
 it("Created Components exist", () => {
-    const wrapper =setup(dummy_data)
+    const wrapper =setup(dummy_data,store)
    const createComponents = findByTestAttr(wrapper, "create-components")
     expect(createComponents).toHaveLength(0)
     const createdComponents = findByTestAttr(wrapper, "created-components")
@@ -89,7 +97,7 @@ it("Created Components exist", () => {
 
 })
 it("Mission Name Component", () => {
-    const wrapper =setup(dummy_data)
+    const wrapper =setup(dummy_data,store)
    const missionName = findByTestAttr(wrapper, "mission-name")
     expect(missionName.prop("value")).toEqual("Dharan-Biratnagar");
     missionName.props().onChange("event");
@@ -99,7 +107,7 @@ it("Mission Name Component", () => {
 })
 
 it("Mission radius Component", () => {
-    const wrapper =setup(dummy_data)
+    const wrapper =setup(dummy_data,store)
    const missionradius = findByTestAttr(wrapper, "mission-radius")
     expect(missionradius.prop("value")).toEqual(50);
     missionradius.props().onChange("event");
@@ -109,7 +117,7 @@ it("Mission radius Component", () => {
 })
 
 it("Mission Speed Component", () => {
-    const wrapper =setup(dummy_data)
+    const wrapper =setup(dummy_data,store)
    const missionSpeed = findByTestAttr(wrapper, "mission-speed")
     expect(missionSpeed.prop("value")).toEqual(5);
     missionSpeed.props().onChange("event");
@@ -118,7 +126,7 @@ it("Mission Speed Component", () => {
 
 })
 it("Mission home Component", () => {
-    const wrapper =setup(dummy_data)
+    const wrapper =setup(dummy_data,store)
    const missionhome = findByTestAttr(wrapper, "mission-home")
     expect(missionhome.prop("value")).toEqual("Dharan");
     missionhome.props().onChange("event");
@@ -126,17 +134,17 @@ it("Mission home Component", () => {
     expect(function_click).toHaveBeenCalledWith("event","home")
 
 })
-it("Mission destination Component", () => {
-    const wrapper =setup(dummy_data)
-   const missionradius = findByTestAttr(wrapper, "mission-destination")
-    expect(missionradius.prop("value")).toEqual("Biratnagar");
-    missionradius.props().onChange("event");
-    expect(function_click).toHaveBeenCalledTimes(1);
-    expect(function_click).toHaveBeenCalledWith("event","destination")
+// it("Mission destination Component", () => {
+//     const wrapper =setup(dummy_data,store)
+//    const missionradius = findByTestAttr(wrapper, "mission-destination")
+//     expect(missionradius.prop("value")).toEqual("Biratnagar");
+//     missionradius.props().onChange("event");
+//     expect(function_click).toHaveBeenCalledTimes(1);
+//     expect(function_click).toHaveBeenCalledWith("event","destination")
 
-})
+// })
 it("Mission cancel/confirm Component", () => {
-    const wrapper =setup(dummy_data)
+    const wrapper =setup(dummy_data,store)
    const cancelButton = findByTestAttr(wrapper, "cancel-button")
     cancelButton.props().onClick("event");
     expect(function_click).toHaveBeenCalledTimes(1);
@@ -144,25 +152,25 @@ it("Mission cancel/confirm Component", () => {
     confirmButton.props().onClick()
     expect(function_click).toHaveBeenCalledTimes(2);
     expect(confirmButton.prop("disabled")).toEqual(false)
-    const wrapper2 = setup({...dummy_data, mission:{...dummy_data.mission, waypoints:[]}})
+    const wrapper2 = setup({...dummy_data, mission:{...dummy_data.mission, waypoints:[]}},store)
     const confirmButton2 = findByTestAttr(wrapper2, "create-confirm-button")
     expect(confirmButton2.prop("disabled")).toEqual(true)
     const updateButton = findByTestAttr(wrapper, "create-update-button")
     expect(updateButton).toHaveLength(0)
 })
 it("Mission update Component", () => {
-    const wrapper =setup({...dummy_data,action:"update"})
+    const wrapper =setup({...dummy_data,action:"update"}, store)
     const updateButton = findByTestAttr(wrapper, "create-update-button")
      updateButton.props().onClick()
     expect(function_click).toHaveBeenCalledTimes(1);
     expect(updateButton.prop("disabled")).toEqual(false)
-    const wrapper2 = setup({...dummy_data,action:"update", mission:{...dummy_data.mission, waypoints:[]}})
+    const wrapper2 = setup({...dummy_data,action:"update", mission:{...dummy_data.mission, waypoints:[]}},store)
     const updateButton2 = findByTestAttr(wrapper2, "create-update-button")
     expect(updateButton2.prop("disabled")).toEqual(true)
 
 })
 it("Mission waypoints Components", () => {
-    const wrapper =setup(dummy_data)
+    const wrapper =setup(dummy_data,store)
     const missionWaypoint = findByTestAttr(wrapper, "mission-waypoints-components")
     expect(missionWaypoint).toHaveLength(1)
     const noMissionWaypoint = findByTestAttr(wrapper, "no-waypoints-components")
@@ -170,7 +178,7 @@ it("Mission waypoints Components", () => {
 
 })
 it("Mission no waypoints Components", () => {
-    const wrapper =setup({...dummy_data, mission:{...dummy_data.mission, waypoints:[]}})
+    const wrapper =setup({...dummy_data, mission:{...dummy_data.mission, waypoints:[]}},store)
     const missionWaypoint = findByTestAttr(wrapper, "mission-waypoints-components")
     expect(missionWaypoint).toHaveLength(0)
     const noMissionWaypoint = findByTestAttr(wrapper, "no-waypoints-components")
@@ -179,7 +187,7 @@ it("Mission no waypoints Components", () => {
 })
 
 it("Waypoint altitude Component", () => {
-    const wrapper =setup(dummy_data)
+    const wrapper =setup(dummy_data,store)
     const waypointaltitude = findByTestAttr(wrapper, "waypoint-altitude")
     expect(waypointaltitude.prop("value")).toEqual(100)
     waypointaltitude.props().onChange("event")
@@ -189,7 +197,7 @@ it("Waypoint altitude Component", () => {
 
 })
 it("Waypoint radius Component", () => {
-    const wrapper =setup(dummy_data)
+    const wrapper =setup(dummy_data,store)
     const waypointradius = findByTestAttr(wrapper, "waypoint-radius")
     expect(waypointradius.prop("value")).toEqual(45)
     waypointradius.props().onChange("event")
@@ -200,7 +208,7 @@ it("Waypoint radius Component", () => {
 })
 
 it("Waypoint action Component", () => {
-    const wrapper =setup(dummy_data)
+    const wrapper =setup(dummy_data,store)
     const waypointaction = findByTestAttr(wrapper, "waypoint-action")
     expect(waypointaction.prop("value")).toEqual("land")
     waypointaction.props().onChange("event")
@@ -210,13 +218,13 @@ it("Waypoint action Component", () => {
 
 })
 it("Waypoint latitude Component", () => {
-    const wrapper =setup(dummy_data)
+    const wrapper =setup(dummy_data,store)
     const waypointlat = findByTestAttr(wrapper, "waypoint-lat")
     expect(waypointlat.prop("value")).toEqual("85.343434")
    
 })
 it("Waypoint longitude Component", () => {
-    const wrapper =setup(dummy_data)
+    const wrapper =setup(dummy_data,store)
     const waypointlng = findByTestAttr(wrapper, "waypoint-lng")
     expect(waypointlng.prop("value")).toEqual("127.39283")
    
