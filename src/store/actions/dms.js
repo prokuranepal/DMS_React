@@ -1,4 +1,4 @@
-import { GET_DRONES, ADD_DRONE, UPDATE_DRONE, GET_MAINTENANCE } from './actionTypes';
+import { GET_DRONES, ADD_DRONE, UPDATE_DRONE, GET_MAINTENANCE, GET_DRONE_DETAIL } from './actionTypes';
 // import * as axios from '../../response/falseFetch';
 import axios from '../../axios-orders';
 
@@ -23,6 +23,28 @@ const fetchDronesSuccess = (drones) => {
         drones: drones
     }
 }
+
+export const fetchDroneDetail = (id) => dispatch => {
+    try {
+        const url = `/drones/${id}`;
+        console.log(func.getToken());
+        axios.get(url,{headers: func.getToken()}).then(response => {
+            console.log(response);
+            dispatch(fetchDroneDetailSuccess(response.data))
+        })
+    } catch (error) {
+       
+    }
+}
+
+const fetchDroneDetailSuccess = (data) => {
+    return {
+        type: GET_DRONE_DETAIL,
+        droneDetail: data
+    }
+}
+
+
 
 export const addDrone = (drone) => dispatch => {
     try {

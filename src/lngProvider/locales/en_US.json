@@ -13,6 +13,8 @@
   "sidebar.weather": "Weather",
   "sidebar.events": "Event Logs",
   "sidebar.users": "Users",
+  "sidebar.flights": "Flights",
+  "sidebar.maintenance": "Maintenance",
   "sidebar.dashboard.misc": "Misc",
   "sidebar.dashboard.ecommerce": "eCommerce",
   "sidebar.dashboard.news": "News",

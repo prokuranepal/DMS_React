@@ -4,7 +4,8 @@ import { updateObject } from '../utility';
 
 const initialState = {
    drones: [],
-   maintenance: []
+   maintenance: [],
+   droneDetail: null
     
 }
 
@@ -21,13 +22,19 @@ const fetchMaintenance = (state, action) => {
     })
 }
 
+const fetchDroneDetail = (state, action) => {
+    return updateObject(state, {
+        droneDetail: action.droneDetail
+    })
+}
+
 
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.GET_DRONES: return fetchDrones(state, action);
         case actionTypes.GET_MAINTENANCE: return fetchMaintenance(state, action)
-        
+        case actionTypes.GET_DRONE_DETAIL: return fetchDroneDetail(state, action)
         default:
             return state;
     }
