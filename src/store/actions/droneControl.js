@@ -14,6 +14,17 @@ export const fetchActiveDrones = () => {
     }
 }
 
+export const checkListPass = (data) => {
+    let pass = true;
+    for (let i = 0; i < data.length; i++) {
+        pass = pass & data[i].value
+    }
+    return {
+        type: actionTypes.CHECKLIST_PASS,
+        pass: pass
+    }
+}
+
 
 export const fetchActiveDronesSuccess = () => {
     return {

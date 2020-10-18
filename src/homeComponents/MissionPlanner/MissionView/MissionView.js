@@ -61,6 +61,7 @@ const MissionView = props => {
     const [action, setAction] = React.useState("create");
 
     const openMissionDetail = useSelector(({ mission }) => mission.missionDetail);
+    const loading = useSelector(({ mission }) => mission.loading);
     const [center, setCenter] = React.useState({
         lat: -35.36326217651367, lng: 149.1652374267578
     });
@@ -71,7 +72,7 @@ const MissionView = props => {
     //to update the localstate by the missionDetails sourced from server
     useEffect(() => {
         if (openMissionDetail !== null) {
-            console.log("Mission from server");
+            console.log("Mission from server", openMissionDetail);
             setMissionDetail(openMissionDetail);
             setCreate(true);
             const c = openMissionDetail.waypoints[0]
@@ -83,6 +84,13 @@ const MissionView = props => {
             setDraggable(true);
         }
     }, [openMissionDetail]);
+
+    useEffect(() => {
+        if(!loading) {
+            setMissionDetail(initialMissionDetail);
+            setAction('create');
+        }
+    },[loading]);
 
     //close the modal after choosing the mission
     const handleCloseMission = () => {
@@ -155,9 +163,10 @@ const MissionView = props => {
             dispatch(actions.createUpdateMission(missionDetail, action));
             
         }
-        setMissionDetail(initialMissionDetail);
+        // setMissionDetail(initialMissionDetail);
+        // setAction('create');
 
-        setAction('create');
+        
     }
 
     //callback function for change in parameter of a particular waypoint provided by index
@@ -236,19 +245,14 @@ const MissionView = props => {
     return (
         <Grid container className={classes.root}>
             <Grid item xs={3}>
-                <MissionData data-test="missionData" 
-                action={action} //touched
-                onCancel={onCancel} 
-                onChangeMission={onChangeMission} //done 
-                onChange={onChange}  //done
-                createUpdateMission={createUpdateMission} 
-                mission={missionDetail} //done
-                waypoint={missionDetail.waypoints[currWaypointIndex]} 
-                onCreateMission={startMissionCreation} 
-                openMission={openMission} //done
-                create={create} //done  
-                onDeleteWaypoint={onDeleteWaypoint} />
-                /> 
+                <MissionData 
+                data-test="missionData" action={action} onCancel={onCancel}
+                    onChangeMission={onChangeMission} onChange={onChange}
+                    createUpdateMission={createUpdateMission} mission={missionDetail}
+                    waypoint={missionDetail.waypoints[currWaypointIndex]}
+                    onCreateMission={startMissionCreation} openMission={openMission}
+                    create={create}
+                    onDeleteWaypoint={onDeleteWaypoint} />
             </Grid>
             <Grid item xs={9}>
                 <Map

@@ -32,7 +32,7 @@ const getCardsStart = () => {
     }
 }
 
-const getCardsSuccess = (data) => {  
+const getCardsSuccess = (data) => {
     return {
         type: actionTypes.GET_CARDS_SUCCESS,
         data: data
@@ -79,6 +79,7 @@ const getPlacesSuccess = (places) => {
 export const getHealthposts = () => {
     return dispatch => {
         const url = '/healthpost';
+        getHealthpostsStart();
         axios.get(url, { headers: func.getToken() })
             .then(res => {
                 // console.log(res.data)
@@ -108,4 +109,43 @@ const getHealthpostsFail = (error) => {
         type: actionTypes.GET_HEALTHPOSTS_FAIL,
         error: error
     }
+}
+
+export const addHealthPosts = (data) => dispatch =>{
+    const url = '/healthpost';
+    console.log(data);
+    axios.post(url, data, { headers: func.getToken() })
+        .then(res => {
+            console.log(res)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+}
+
+export const deleteHealthPosts = (id) => dispatch =>{
+    const url = `/healthpost/${id}`;
+    axios.delete(url, { headers: func.getToken() })
+        .then(res => {
+            console.log(res)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+
+export const updateHealthPosts = (data, id) => dispatch =>{
+    const url = `/healthpost/${id}`;
+    console.log(data, id)
+    axios.put(url, data, { headers: func.getToken() })
+        .then(res => {
+            console.log(res, "Success")
+            return {
+                type: actionTypes.GET_HEALTHPOSTS_SUCCESS
+            }
+        })
+        .catch(err => {
+            console.log(err, "Error")
+        })
 }

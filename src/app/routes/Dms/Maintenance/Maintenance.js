@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import * as actions from '../../../../store/actions/dms'
 import IntlMessages from "../../../../util/IntlMessages";
 import MaterialTable from 'material-table';
 import TableIcons from '../../../../homeComponents/TableIcons/TableIcons';
@@ -14,7 +13,7 @@ import {
 import DateFnsUtils from '@date-io/date-fns';
 import Date from './Date';
 import IconWithTextCard from '../../../../components/statusCard/IconWithTextCard';
-
+import * as actions from '../../../../store/actions/dms'
 const Maintenance = () => {
   const [state, setState] = React.useState({
     columns: [
@@ -58,19 +57,20 @@ const Maintenance = () => {
     ],
   });
 
-//   const dispatch = useDispatch();
-//   const { drones } = useSelector(({ dms }) => dms);
-  // console.log(drones);
-//   useEffect(() => {
-//     dispatch(actions.fetchDrones())
-//   }, [dispatch]);
+  const dispatch = useDispatch();
 
-//   useEffect(() => {
-//     setState((prevState) => {
+  const { maintenance } = useSelector(({ dms }) => dms);
+  
+  useEffect(() => {
+    // dispatch(actions.getMaintenance())
+  }, [dispatch]);
 
-//       return { ...prevState, data: drones };
-//     });
-//   }, [drones]);
+  useEffect(() => {
+    setState((prevState) => {
+
+      return { ...prevState, data: maintenance };
+    });
+  }, [maintenance]);
 
   const [selectedRow, setSelectedRow] = React.useState(null);
 
@@ -84,7 +84,6 @@ const Maintenance = () => {
         main: '#ff9100',
       },
     },
-
   });
 
   const cardData = {
@@ -141,7 +140,7 @@ const Maintenance = () => {
                   setTimeout(() => {
                     resolve();
                     console.log(newData);
-                    // dispatch(actions.addDrone(newData))
+                    dispatch(actions.addMaintenance(newData))
                     setState((prevState) => {
                       const data = [...prevState.data];
                       data.push(newData);
@@ -155,7 +154,7 @@ const Maintenance = () => {
                     resolve();
                     if (oldData) {
                       console.log(newData);
-                      // dispatch(actions.updateDrone(newData, newData._id))
+                      dispatch(actions.updateMaintenance(newData, newData._id))
                       setState((prevState) => {
                         const data = [...prevState.data];
                         data[data.indexOf(oldData)] = newData;

@@ -12,26 +12,15 @@ import url from '../../../url';
 import io from 'socket.io-client';
 import * as actions from '../../../store/actions/droneControl';
 import * as missionActions from '../../../store/actions/mission';
+import {AttitudeIndicator, HeadingIndicator} from 'react-flight-indicators';
+import Dialog from '../../../homeComponents/Dialog/Dialog';
 
-import {
-    Airspeed,
-    Altimeter,
-    AttitudeIndicator,
-    HeadingIndicator,
-    TurnCoordinator,
-    Variometer
-} from 'react-flight-indicators';
 const useStyles = makeStyles((theme) => ({
     root: {
-        // display: 'flex',
         width: '100%',
         // backgroundColor: '#E7E7E7',
         backgroundColor: '#495057',
         height: '89vh'
-    },
-    meters: {
-        fontSize: 20,
-        margin: 'auto'
     },
     data: {
         zIndex: 500,
@@ -40,61 +29,55 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+const droneIcon = new Icon({
+    iconUrl: Green,
+    iconSize: [25, 25]
+});
+
 const DroneControl = props => {
 
     const classes = useStyles();
-    const state = {
-        lat: 26.818123,
-        lng: 87.281345,
-        zoom: 17,
-    };
-    const droneIcon = new Icon({
-        iconUrl: Green,
-        iconSize: [25, 25]
-    });
+    let socket = useRef();
+    const dispatch = useDispatch(); 
 
     const [openMissionList, setOpenMissionList] = React.useState(false);
     const [openCheckList, setOpenCheckList] = React.useState(false);
     const [openDroneList, setOpenDroneList] = React.useState(false);
+
     const [droneConnected, setDroneConnected] = React.useState(false);
     const [droneFirstConnected, setDroneFirstConnected] = React.useState(false);
+
     const [showMissionDetail, setShowMissionDetail] = React.useState(false);
-    const [drone, setDrone] = React.useState(null);
     const [mission, setMission] = React.useState(null);
+    const [enableFly, setEnableFly] = React.useState(false);
+
     const [droneInfo, setDroneInfo] = React.useState(null);
-    const [home, setHome] = React.useState({ lat: 26.818123, lng: 87.281345 })
+    const [drone, setDrone] = React.useState(null);
+
+    const [home, setHome] = React.useState({ lat: 26.818123, lng: 87.281345 });
+    const [missionState, setMissionState] = React.useState(null);
+    const [dialogData, setDialogData] = React.useState({open: false, handleClose: null})
+    const [dialogOpen, setDialogOpen] = React.useState(false);
+    const [command, setCommand] = React.useState(null);
+
     const activeDrones = useSelector(({ droneControl }) => droneControl.activeDrones);
     const userId = useSelector(({ auth }) => auth.userId);
-    let socket = useRef();
     const missionDetail = useSelector(({ mission }) => mission.missionDetail);
-
-    const [missionState, setMissionState] = React.useState(null);
+    const checklistPass = useSelector(({droneControl}) => droneControl.checklistPass)
 
     //for loading mission from server
     useEffect(() => {
-        // console.log(missionDetail)
         setMissionState(missionDetail);
     }, [missionDetail]);
 
     //for loading mission from drone
     const setMissionDetail = (mission) => {
-        console.log(mission);
-
-        // const waypoints = []
-        // for(let key in mission.waypoints) {
-        //     waypoints.push(mission.waypoints[key]);
-        // }
-        // console.log(missionState);
         if (mission.waypoints !== undefined) {
             setMissionState({ ...missionState, ...mission }, () => console.log(missionState));
         }
-        // setMissionState({...missionState,waypoints: waypoints});
     }
 
-    const dispatch = useDispatch();
-
     const setData = (data) => {
-        // console.log(data);
         setDroneInfo(data);
     }
 
@@ -103,15 +86,15 @@ const DroneControl = props => {
         setHome({
             ...home, lat: position.lat, lng: position.lng
         });
-
     }
+
     useEffect(() => {
         // console.log(drone);
         if (drone !== null) {
-            console.log("send socket connection");
+            console.log("send socket connection", drone);
             const d = new Date();
             const n = d.getMilliseconds();
-            socket.current = io(`${url}/JT601`);
+            socket.current = io(`${url}/${drone}`);
             socket.current.emit("joinDMS", userId);
             socket.current.emit("homePosition", { timestamp: n })
             socket.current.on("copter-data", setData);
@@ -162,6 +145,10 @@ const DroneControl = props => {
         setOpenCheckList(false);
     };
 
+    const handleCloseDialog = () => {
+        setDialogOpen(false)
+    }
+
     const handleOpenDrone = () => {
         // console.log("Handle Open Drone");
         dispatch(actions.fetchActiveDrones());
@@ -196,20 +183,18 @@ const DroneControl = props => {
         socket.current.emit("mission", { mission: mission, timestamp: n });
     }
 
-    const onStartMission = () => {
-        // console.log("Start Mission", socket.current.connected);
-        // console.log(socket.current);
-        const d = new Date();
-        const n = d.getMilliseconds();
-        socket.current.emit("initiateFlight", { timestamp: n })
-    }
-
     const onDownloadMission = () => {
         const d = new Date();
         const n = d.getMilliseconds();
         socket.current.emit("getMission", { timestamp: n })
         setShowMissionDetail(false);
 
+    }
+
+    const onStartMission = () => {
+        const d = new Date();
+        const n = d.getMilliseconds();
+        socket.current.emit("initiateFlight", { timestamp: n })
     }
 
     const onLand = () => {
@@ -220,21 +205,36 @@ const DroneControl = props => {
     }
 
     const onRTL = () => {
-
         const d = new Date();
         const n = d.getMilliseconds();
         socket.current.emit("rtl", { timestamp: n });
-        console.log("on RTL");
+    }
+
+    const setCommandMessage = (command) => {
+        setCommand(command);
+        setDialogOpen(true);
+    }
+
+    const sendCommand = () => {
+        setDialogOpen(false);
+        const d = new Date();
+        const n = d.getMilliseconds();
+        socket.current.emit(command, { timestamp: n });
+        setCommand(null);
     }
 
     return <Grid container className={classes.root} >
         <Grid item xs={3}>
             <DroneData
-                onStartMission={onStartMission}
-                uploadMission={uploadMission}
                 onDownloadMission={onDownloadMission}
-                onLand={onLand}
-                onRTL={onRTL}
+                // onStartMission={onStartMission}
+                // onLand={onLand}
+                // onRTL={onRTL}
+                checklistPass={checklistPass}
+                onStartMission={setCommandMessage}
+                onLand={setCommandMessage}
+                onRTL={setCommandMessage}
+                uploadMission={uploadMission}
                 selectMission={selectMission}
                 selectDrone={selectDrone}
                 handleCloseDrone={handleCloseDrone}
@@ -256,10 +256,11 @@ const DroneControl = props => {
             />
         </Grid>
         <Grid item xs={9}>
+            <Dialog open={dialogOpen} command={command} handleClose={handleCloseDialog} agree={sendCommand}/>
             <NotificationContainer />
             <Map
                 center={[home.lat, home.lng]}
-                zoom={state.zoom}
+                zoom={17}
                 style={{ width: '100%', height: '100%', zIndex: 0 }}
                 zoomControl={false}
             >
