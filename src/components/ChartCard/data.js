@@ -26,7 +26,6 @@ export const latestPostList = [
 
 ];
 
-
 export const lableList = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 export const appNotification = [
   {

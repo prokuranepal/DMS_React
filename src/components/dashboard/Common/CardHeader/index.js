@@ -23,14 +23,16 @@ const CardHeader = (props) => {
   return (
     <div className={`jr-card-header d-flex align-items-start ${styleName}`}>
       <div className="mr-auto">
-        <h3 className="card-heading">{heading}</h3>
-        {subHeading && <p className="sub-heading">{subHeading}</p>}
+        <h3 className="card-heading" data-test="headingComp">{heading}</h3>
+        {subHeading && <p className="sub-heading" data-test="subHeading">{subHeading}</p>}
       </div>
 
-      <IconButton className="icon-btn text-dark" onClick={onOptionMenuSelect}>
+      <IconButton className="icon-btn text-dark" onClick={onOptionMenuSelect}
+      data-test="iconButton"
+      >
         <i className="zmdi zmdi-chevron-down"/>
       </IconButton>
-      <CardMenu menuState={menuState} anchorEl={anchorE1}
+       <CardMenu menuState={menuState} anchorEl={anchorE1} data-test="cardMenu"
                 handleRequestClose={handleRequestClose}/>
     </div>
   )

@@ -5,7 +5,13 @@ const ContactList = ({onSelectUser, selectedSectionId, contactList}) => {
   return (
     <div className="chat-user">
       {contactList.map((user, index) =>
-        <UserCell key={index} user={user} selectedSectionId={selectedSectionId} onSelectUser={onSelectUser}/>
+        <UserCell 
+        key={index} 
+        user={user} 
+        selectedSectionId={selectedSectionId} 
+        onSelectUser={onSelectUser}
+        data-test="userCellComp"
+        />
       )}
     </div>
   )

@@ -6,6 +6,17 @@ import {
 } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 // JestHook.mock('expo-font');
+import {
+    latestPostList,
+    lableList,
+    appNotification,
+    announcementsNotification,
+    products,
+    marketingData,
+    sideChartData,
+    totalRevenueData,
+    projects
+} from './data'
 configure({
     adapter: new EnzymeAdapter
 })
