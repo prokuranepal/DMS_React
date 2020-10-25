@@ -9,12 +9,12 @@ const NavMenuItem = props => {
 
   return (
     <List component="div" className='nav-menu-item'>
-      <NavLink className="prepend-icon nav-menu-link" to={link}>
+      <NavLink className="prepend-icon nav-menu-link" to={link} data-test="linkComp">
         {/* Display an icon if any */}
         {!!icon && (
           <i className={'zmdi zmdi-hc-fw  zmdi-' + icon}/>
         )}
-        <span className="nav-text"><IntlMessages id={name}/></span>
+        <span className="nav-text"><IntlMessages id={name} data-test="nameComp"/></span>
       </NavLink>
     </List>
   )

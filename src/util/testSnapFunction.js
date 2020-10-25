@@ -32,6 +32,18 @@ export const mockAlert = ()=>{
         alert:jest.fn()
       }));
     };
+const useHistoryFunc=jest.fn();
+const listenFunc = jest.fn();
+useHistoryFunc.mockReturnValue({
+    listen:listenFunc
+})
+export const mockHistory = ()=>{
+    jest.resetModules();
+    // jest.doMock('react-router-dom/cjs/react-router-dom', () => ({
+    //     useHistory: listenFunc
+    //   }));
+
+    };
 export default function testSnapFunction(oDesc, descriptions,element){
     describe(oDesc, () => {
 

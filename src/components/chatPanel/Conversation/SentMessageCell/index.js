@@ -6,11 +6,12 @@ const SentMessageCell = ({conversation}) => {
 
       <img className="rounded-circle avatar size-40 align-self-end"
            src="https://via.placeholder.com/150x150"
-           alt={conversation.name}/>
+           alt={conversation.name}
+           data-test="nameComp"/>
 
       <div className="bubble jambo-card">
-        <div className="message">{conversation.message}</div>
-        <div className="time text-muted text-right mt-2">{conversation.sentAt}</div>
+        <div className="message" data-test="messageComp">{conversation.message} </div>
+        <div className="time text-muted text-right mt-2" data-test="sentAtComp">{conversation.sentAt}</div>
       </div>
 
     </div>

@@ -10,15 +10,16 @@ const NotificationItem = ({notification}) => {
         <Avatar
           alt={name}
           src={image}
+          data-test="avatarComp"
         />
         <span className="badge badge-danger rounded-circle">{badge}</span>
       </div>
       <div className="media-body">
         <div className="d-flex justify-content-between align-items-center">
-          <h5 className="text-capitalize user-name mb-0"><span className="jr-link">{name}</span></h5>
-          <span className="meta-date"><small>{time}</small></span>
+          <h5 className="text-capitalize user-name mb-0"><span className="jr-link" data-test="nameComp">{name}</span></h5>
+          <span className="meta-date"><small data-test="timeComp">{time}</small></span>
         </div>
-        <p className="sub-heading">{message}</p>
+        <p className="sub-heading" data-test="messageComp">{message}</p>
         <Button className="jr-btn jr-btn-xs text-muted"><i className="zmdi zmdi-mail-reply"/><span>Reply</span></Button>
         <Button className="jr-btn jr-btn-xs text-muted"><i className="zmdi zmdi-eye"/><span>Read</span></Button>
       </div>

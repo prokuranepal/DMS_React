@@ -7,10 +7,12 @@ import CustomScrollbars from '../../util/CustomScrollbars';
 const MailNotification = () => {
 
   return (
-    <CustomScrollbars className="messages-list scrollbar" style={{height: 280}}>
+    <CustomScrollbars className="messages-list scrollbar" style={{height: 280}} 
+    data-test="customScrollComp">
       <ul className="list-unstyled">
         {notifications.map((notification, index) => <NotificationItem key={index}
-                                                                      notification={notification}/>)}
+                                                                      notification={notification}
+                                                                      data-test="notificationItemComp"/>)}
       </ul>
     </CustomScrollbars>
   )
