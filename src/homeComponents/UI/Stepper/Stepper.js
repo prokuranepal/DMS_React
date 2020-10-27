@@ -27,22 +27,22 @@ function getSteps() {
     return ['Order Placed', 'Order Confirmed', 'Flight Confirmed', 'On Flight', 'Order Received'];
 }
 
-function getStepContent(stepIndex: number) {
-    switch (stepIndex) {
-        case 0:
-            return 'Order Placed';
-        case 1:
-            return 'Order Confirmed';
-        case 2:
-            return 'Flight Confirmed';
-        case 3:
-            return 'On Flight';
-        case 4:
-            return 'Order received';
-        default:
-            return "Order Completed";
-    }
-}
+// function getStepContent(stepIndex: number) {
+//     switch (stepIndex) {
+//         case 0:
+//             return 'Order Placed';
+//         case 1:
+//             return 'Order Confirmed';
+//         case 2:
+//             return 'Flight Confirmed';
+//         case 3:
+//             return 'On Flight';
+//         case 4:
+//             return 'Order received';
+//         default:
+//             return "Order Completed";
+//     }
+// }
 
 export default function HorizontalLabelPositionBelowStepper() {
     const classes = useStyles();
@@ -57,15 +57,15 @@ export default function HorizontalLabelPositionBelowStepper() {
         <div className={classes.root}>
             
             <Paper className={classes.paper}>
-            <Stepper activeStep={activeStep} alternativeLabel>
+            <Stepper activeStep={activeStep} alternativeLabel data-test="stepperComp">
                 {steps.map((label) => (
-                    <Step key={label}>
+                    <Step key={label} data-test="stepLabelComp">
                         <StepLabel>{label}</StepLabel>
                     </Step>
                 ))}
             </Stepper>
             <div>
-                <Button variant="contained" color="primary" onClick={handleNext}>
+                <Button variant="contained" color="primary" data-test="buttonComp" onClick={handleNext}>
                     {activeStep >= steps.length - 1 ? 'Finish' : 'Next'}
                 </Button>
             </div>

@@ -22,7 +22,7 @@ const Vertical =(props)=> {
     }
 
     return (
-      <div className={`app-container ${drawerStyle}`}>
+      <div className={`app-container ${drawerStyle}`} data-test="drawerComp">
         {/* <Tour/> */}
 
         <SideBar/>

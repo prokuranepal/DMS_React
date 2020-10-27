@@ -32,6 +32,14 @@ export const mockAlert = ()=>{
         alert:jest.fn()
       }));
     };
+
+export const mockDevice = ()=>{
+    jest.resetModules();
+    jest.doMock('react-device-detect', () => ({
+        isIOS:false,
+        isMobile:true
+      }));
+    };
 const useHistoryFunc=jest.fn();
 const listenFunc = jest.fn();
 useHistoryFunc.mockReturnValue({

@@ -48,7 +48,7 @@ const Profile = (props) => {
         <div className="mb-xl-4 mb-3">
           <p>You are following {name}</p>
           {authUser === id ? null :
-            <Button size="small" variant="contained" className="mb-0" color="primary"
+            <Button size="small" variant="contained" className="mb-0" color="primary" data-test="buttonComp"
                     onClick={handleToggle}>{isFollow === true ? 'Follow' : 'Unfollow'}</Button>
           }
         </div>
