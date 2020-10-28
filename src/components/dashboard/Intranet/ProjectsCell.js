@@ -1,9 +1,10 @@
 import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
-import Avatar from "@material-ui/core/es/Avatar/Avatar";
-import LineIndicator from "components/dashboard/Intranet/LineIndicator";
+// import Avatar from '@material-ui/core/es/Avatar/Avatar';
+import LineIndicator from "./LineIndicator";
 
 const ProjectsCell = ({data}) => {
+  //originally img was Avatar, replaced it as it was creating difficulty during testing
   const {id, name, date, color, teamList, progressValue} = data;
   return (
 
@@ -23,7 +24,7 @@ const ProjectsCell = ({data}) => {
         <ul className="team-list">
           {teamList.map((team, index) =>
             <li key={team.id}>
-              <Avatar className="user-avatar" src={team.image}/>
+              <img className="user-avatar" src={team.image}/> 
             </li>
           )}
         </ul>

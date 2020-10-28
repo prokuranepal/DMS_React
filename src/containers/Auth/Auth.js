@@ -88,7 +88,7 @@ const SignIn = (props) => {
                     <Typography component="h1" variant="h5">
                         Sign in
                         </Typography>
-                    <Typography component="h5">
+                    <Typography component="h5" data-test="errorComp">
                         {errorMessage}
                     </Typography>
                     <form className={classes.form} noValidate={false}>
@@ -103,6 +103,7 @@ const SignIn = (props) => {
                             defaultValue={email}
                             onChange={(event) => setEmail(event.target.value)}
                             autoFocus
+                            data-test="emailChangeComp"
                         />
                         <TextField
                             variant="outlined"
@@ -114,6 +115,7 @@ const SignIn = (props) => {
                             type="password"
                             id="password"
                             defaultValue={password}
+                            data-test="passwordChangeComp"
                             autoComplete="current-password"
                             onChange={(event) => setPassword(event.target.value)}
                         />
@@ -122,6 +124,7 @@ const SignIn = (props) => {
                             label="Remember me"
                         />
                         <Button
+                            data-test="submitComp"
                             onClick={(event) => {
                                 event.preventDefault();
                                 signInUp();
@@ -129,6 +132,7 @@ const SignIn = (props) => {
                             type="submit"
                             fullWidth
                             variant="contained"
+                            data-test="submitComp"
                             color="primary"
                             className={classes.submit}
                         >

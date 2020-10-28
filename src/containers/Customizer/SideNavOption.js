@@ -9,9 +9,9 @@ import {
   COLLAPSED_DRAWER,
   FIXED_DRAWER,
   MINI_DRAWER,
-} from 'constants/ActionTypes'
+} from '../../constants/ActionTypes'
 
-import { setDrawerType} from '../../actions/index';
+import { setDrawerType} from '../../store/actions/index';
 
 import {Button, ButtonGroup} from 'reactstrap';
 
@@ -40,11 +40,14 @@ const Customizer =()=> {
           <ButtonGroup>
             <Button color="default"
                     className={`jr-btn  ${drawerType === FIXED_DRAWER && 'active' } `}
+                    data-test="buttonComp1"
                     onClick={setFixedDrawer}>Fixed</Button>
             <Button color="default"
+                    data-test="buttonComp2"
                     className={`jr-btn ${drawerType === COLLAPSED_DRAWER && 'active'} `}
                     onClick={setCollapsedDrawer}>Collapsed</Button>
             <Button color="default"
+                    data-test="buttonComp3"
                     className={`jr-btn ${drawerType === MINI_DRAWER && 'active' } `}
                     onClick={setMiniDrawer}>Mini</Button>
           </ButtonGroup>

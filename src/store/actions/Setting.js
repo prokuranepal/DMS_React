@@ -13,7 +13,7 @@ export function toggleCollapsedNav(isNavCollapsed) {
 }
 
 export function setDrawerType(drawerType) {
-    return {type: DRAWER_TYPE, drawerType};
+    return {type: DRAWER_TYPE, drawerType:drawerType};
 }
 
 export function updateWindowWidth(width) {

@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
 import SideNavOption from './SideNavOption';
-import {changeDirection, setDarkTheme, setThemeColor} from 'actions/index';
+import {changeDirection, setDarkTheme, setThemeColor} from '../../store/actions/index';
 import {
   AMBER,
   BLUE,
@@ -25,7 +25,7 @@ import {
   GREEN,
   INDIGO,
   PINK
-} from 'constants/ThemeColors';
+} from '../../constants/ThemeColors';
 
 
 const ColorOption = (props) => {
@@ -35,12 +35,19 @@ const ColorOption = (props) => {
   const {themeColor, darkTheme, isDirectionRTL} = useSelector(({settings}) => settings);
 
   useEffect(() => {
-    const params = new URLSearchParams(props.location.search);
+    let params;
+    try{
+    params = new (props.location.search);
+    
     if (params.has("theme-name")) {
       document.body.classList.add(params.get('theme-name'));
     } else {
       document.body.classList.add(themeColor);
     }
+  }
+  
+  catch(e)
+  {}
   }, [props.location.search, themeColor]);
 
   const toggleCustomizer = () => {
@@ -67,19 +74,19 @@ const ColorOption = (props) => {
   return (
 
     <div className="theme-option">
-      <IconButton onClick={toggleCustomizer}>
+      <IconButton onClick={toggleCustomizer}data-test="iconButtonComp1">
         <i className="zmdi zmdi-settings zmdi-hc-spin text-white"/>
       </IconButton>
       <Drawer className="app-sidebar-content right-sidebar"
-
               anchor="right"
               open={drawerStatus}
-              onClose={closeCustomizer}>
+              onClose={closeCustomizer}
+              data-test="drawerComp">
         <div className="color-theme">
           <div className="color-theme-header">
             <h3 className="color-theme-title">Service Panel </h3>
 
-            <IconButton className="icon-btn" onClick={closeCustomizer}>
+            <IconButton className="icon-btn" onClick={closeCustomizer} data-test="iconButtonComp2">
               <i className="zmdi zmdi-close text-white"/>
             </IconButton>
           </div>
@@ -87,11 +94,14 @@ const ColorOption = (props) => {
             <h3>Light Sidenav</h3>
             <ul className="color-option">
               <li><span
-                onClick={() => handleThemeColor(INDIGO)}
+                data-test="spanComp"
+                onClick={() => handleThemeColor(INDIGO)} 
                 className={`jr-link bg-indigo ${themeColor === INDIGO && 'active'}`}/>
               </li>
               <li><span
-                onClick={() => handleThemeColor(CYAN)}
+                              data-test="spanComp"
+
+                onClick={() => handleThemeColor(CYAN)} 
                 className={`jr-link bg-cyan ${themeColor === CYAN && 'active'}`}/>
               </li>
               <li><span
@@ -169,11 +179,12 @@ const ColorOption = (props) => {
                 <Switch color="primary"
                         checked={darkTheme}
                         onChange={handleDarkTheme}
+                        data-test="switchComp"
                 />
               </div>
             </div>
             <div className="mt-3">
-              <SideNavOption closeCustomizer={closeCustomizer}/>
+              <SideNavOption closeCustomizer={closeCustomizer} data-test="sideNavComp"/>
             </div>
           </div>
         </div>

@@ -84,31 +84,31 @@ it("Components Header", () => {
     expect(dropDownComp.prop('isOpen')).toEqual(false)
     expect(dropDownComp3.prop('isOpen')).toEqual(false);
     expect(dropDownComp2.prop('isOpen')).toEqual(false);
-    iconButtonComp.props().onClick();
+    act(()=>iconButtonComp.props().onClick());
     wrapper.update()
     expect(store.dispatch).toHaveBeenCalledTimes(1)
     expect(store.dispatch).toHaveBeenCalledWith({"isNavCollapsed": false, "type": "TOGGLE_COLLAPSED_NAV"})
-    dropDownComp.props().toggle()
+    act(()=>dropDownComp.props().toggle())
     wrapper.update();
     let dropDownComp9 = findByTestAttr(wrapper, "dropDownComp").at(0)
     expect(dropDownComp9.prop('isOpen')).toEqual(true)
     languageSwitcherComp.props().switchLanguage()
     expect(store.dispatch).toHaveBeenCalledTimes(2)
     expect(store.dispatch).toHaveBeenCalledWith( {"payload": undefined, "type": "SWITCH_LANGUAGE"})
-    languageSwitcherComp.props().handleRequestClose()
+    act(()=>languageSwitcherComp.props().handleRequestClose())
     wrapper.update();
     let dropDownComp8 = findByTestAttr(wrapper, "dropDownComp").at(0)
     expect(dropDownComp8.prop('isOpen')).toEqual(false)
     let dropDownComp7 = findByTestAttr(wrapper, "dropDownComp2").at(0)
     
-    dropDownComp2.props().toggle();
+    act(()=>dropDownComp2.props().toggle());
     wrapper.update()
 
     expect(dropDownComp7.prop('isOpen')).toEqual(false)
 
     let dropDownComp6 = findByTestAttr(wrapper, "dropDownComp2").at(0)
     
-    dropDownComp6.props().toggle();
+    act(()=>dropDownComp6.props().toggle());
     wrapper.update()
 
     expect(dropDownComp6.prop('isOpen')).toEqual(true)
