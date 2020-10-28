@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
-import CardMenu from 'components/dashboard/Common/CardMenu';
+import CardMenu from '../CardMenu';
 
 const TimerView = (props) => {
 
@@ -27,7 +27,7 @@ const TimerView = (props) => {
             <IconButton className="jr-menu-icon mr-auto" aria-label="Menu">
               <span className="menu-icon bg-white"/>
             </IconButton>
-            <IconButton className="icon-btn p-2" onClick={onOptionMenuSelect}><i
+            <IconButton className="icon-btn p-2" onClick={onOptionMenuSelect} data-test="iconButton"><i
               className="zmdi zmdi-more-vert text-white"/></IconButton>
           </div>
 
@@ -75,6 +75,7 @@ const TimerView = (props) => {
         </div>
 
         <CardMenu menuState={menuState} anchorEl={anchorE1}
+          data-test="cardMenu"
                   handleRequestClose={handleRequestClose}/>
       </div>
     )

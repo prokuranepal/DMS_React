@@ -37,6 +37,7 @@ const SideBar = () => {
     <div className={`app-sidebar d-none ${drawerStyle}`}>
       <Drawer className="app-sidebar-content"
                 variant={type}
+                data-test="drawerComp"
                 open={type.includes('temporary') ? navCollapsed : true}
                 onClose={onToggleCollapsedNav}
                 classes={{

@@ -26,11 +26,49 @@ export const mockPlatform = OS => {
       select: config => config[OS],
     }));
   };
+  export const mockSocket = OS => {
+    jest.resetModules();
+    jest.doMock('../socket', () => ({
+      socket:{
+          emit:jest.fn(),
+          on:jest.fn(),
+          off:jest.fn()
+
+      },
+      emit:jest.fn(),
+      on:jest.fn(),
+      off:jest.fn()
+    }));
+  };
 export const mockAlert = ()=>{
     jest.resetModules();
     jest.doMock('react-native/Libraries/Alert/Alert', () => ({
         alert:jest.fn()
       }));
+    };
+
+    export const mockAvatar = ()=>{
+      jest.resetModules();
+      jest.doMock('@material-ui/core/es/Avatar/Avatar', (props) => <div >{props.children}</div>);
+      };
+export const mockDevice = ()=>{
+    jest.resetModules();
+    jest.doMock('react-device-detect', () => ({
+        isIOS:false,
+        isMobile:true
+      }));
+    };
+const useHistoryFunc=jest.fn();
+const listenFunc = jest.fn();
+useHistoryFunc.mockReturnValue({
+    listen:listenFunc
+})
+export const mockHistory = ()=>{
+    jest.resetModules();
+    // jest.doMock('react-router-dom/cjs/react-router-dom', () => ({
+    //     useHistory: listenFunc
+    //   }));
+
     };
 export default function testSnapFunction(oDesc, descriptions,element){
     describe(oDesc, () => {

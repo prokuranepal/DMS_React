@@ -15,7 +15,7 @@ const NavSection = props => {
       {!!icon && (
         <i className={'zmdi zmdi-hc-fw  zmdi-' + icon}/>
       )}
-      <IntlMessages id={name}/>
+      <IntlMessages id={name} data-test= "nameComp"/>
     </List>
   );
 
@@ -25,11 +25,11 @@ const NavSection = props => {
           children.map((item, index) => {
             switch (item.type) {
               case 'section' :
-                return <NavSection {...item} key={index}/>;
+                return <NavSection {...item} key={index} data-test="sectionComp"/>;
               case 'collapse' :
-                return <NavCollapse {...item} key={index}/>;
+                return <NavCollapse {...item} key={index} data-test="collapseComp"/>;
               case 'item' :
-                return <NavMenuItem {...item} key={index}/>;
+                return <NavMenuItem {...item} key={index} data-test="itemComp"/>;
             }
           })
         }

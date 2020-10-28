@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ToDoItem from "./ToDoItem/index";
-
+import data from './data'
 class SimpleToDo extends React.Component {
 
   constructor(props) {
@@ -13,6 +13,7 @@ class SimpleToDo extends React.Component {
   }
 
   onTodoChecked(data) {
+    
     data.selected = !data.selected;
     const toDos = this.state.toDos.map(todo => (todo.id === data.id) ? data : todo);
     this.setState({
@@ -26,7 +27,7 @@ class SimpleToDo extends React.Component {
       <div className="todo-cell-group">
         {toDos.map((todo, index) =>
           <ToDoItem key={index} index={index} todo={todo}
-                    onTodoChecked={this.onTodoChecked.bind(this)}/>
+                    onTodoChecked={this.onTodoChecked.bind(this, todo)} data-test="todoComp"/>
         )}
       </div>
     )

@@ -9,3 +9,11 @@ export {
     logout
     
 } from './auth'
+export {
+    setDrawerType,
+    setDarkTheme,
+    setThemeColor,
+    changeDirection
+
+}
+from './Setting'

@@ -115,7 +115,6 @@ expect(findByTestAttr(wrapper, "missionData").at(0).props().action).toEqual("cre
 
 
   expect(markerComp.props().draggable).toEqual(false)
-
   act(()=>{missionData.props().onCreateMission()})
     wrapper.update()
     expect(findByTestAttr(wrapper, "markerComp").at(0).props().draggable).toEqual(true);

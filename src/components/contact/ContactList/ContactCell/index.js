@@ -52,38 +52,41 @@ class ContactCell extends React.Component {
                   onClick={() => {
                     onContactSelect(contact)
                   }}
+                  data-test="checkBoxComp"
         />
         <div className="col-auto px-1 actions d-none d-xs-flex">
           <IconButton className="icon-btn p-1" onClick={() => {
             addFavourite(contact)
-          }}>
-            {starred ? <i className="zmdi zmdi-star"/> : <i className="zmdi zmdi-star-outline"/>}
+          }}
+          data-test="iconButtonComp"          
+          >
+            {starred ? <i className="zmdi zmdi-star" data-test="starredComp" /> : <i className="zmdi zmdi-star-outline" data-test="nonStarredComp"/>}
           </IconButton>
         </div>
         {(thumb === null || thumb === '') ?
-          <div className="rounded-circle size-40 bg-blue text-center text-white mx-1 mx-md-3"
+          <div data-test="noThumbComp" className="rounded-circle size-40 bg-blue text-center text-white mx-1 mx-md-3"
                style={{fontSize: 20}}>
             {name.charAt(0).toUpperCase()}
           </div> :
-          <img className="rounded-circle size-40 mx-1 mx-md-3" alt={name} src={thumb}/>}
+          <img data-test="thumbComp" className="rounded-circle size-40 mx-1 mx-md-3" alt={name} src={thumb}/>}
 
         <div className="col con-inf-mw-100">
           <p className="mb-0">
-                        <span className="text-truncate contact-name text-dark">
+                        <span className="text-truncate contact-name text-dark" data-test="nameComp">
                             {name}
                         </span>
             <span className="d-inline-block toolbar-separator">&nbsp;</span>
-            <span className="text-truncate job-title text-dark">
+            <span className="text-truncate job-title text-dark" data-test="designationComp">
                             {designation}
                         </span>
           </p>
 
           <div className="text-muted">
-                        <span className="email d-inline-block mr-2">
-                            {email},
+                        <span className="email d-inline-block mr-2" data-test="emailComp">
+                            {email}
                         </span>
 
-            <span className="phone d-inline-block">
+            <span className="phone d-inline-block" data-test="phoneComp">
                             {phone}
                         </span>
           </div>
@@ -91,7 +94,7 @@ class ContactCell extends React.Component {
 
 
         <div className="col-auto px-1 actions d-none d-sm-flex">
-          <IconButton className="icon-btn p-2" onClick={this.onContactOptionSelect}>
+          <IconButton className="icon-btn p-2" data-test="iconButtonComp2" onClick={this.onContactOptionSelect}>
             <i className="zmdi zmdi-more-vert"/>
           </IconButton>
 
@@ -99,7 +102,7 @@ class ContactCell extends React.Component {
                 anchorEl={anchorEl}
                 open={menuState}
                 onClose={this.handleRequestClose}
-
+                data-test="menuComp"
                 MenuListProps={{
                   style: {
                     width: 100,
@@ -114,13 +117,13 @@ class ContactCell extends React.Component {
                   this.onDeleteContact(contact)
                 }
               }
-              }>
+              } data-test="menuItemComp">
                 {option}
               </MenuItem>,
             )}
           </Menu>
           {addContactState &&
-          <AddContact open={addContactState} contact={contact} onSaveContact={onSaveContact}
+          <AddContact data-test="addContactComp" open={addContactState} contact={contact} onSaveContact={onSaveContact}
                       onContactClose={this.onContactClose} onDeleteContact={this.onDeleteContact}/>}
         </div>
       </div>

@@ -5,9 +5,11 @@ const ContactList = ({contactList, addFavourite, onContactSelect, onSaveContact,
   return (
     <div className="contact-main-content">
       {contactList.map((contact, index) =>
-        <ContactCell key={index} contact={contact} onDeleteContact={onDeleteContact}
-                     onSaveContact={onSaveContact}
-                     addFavourite={addFavourite} onContactSelect={onContactSelect}/>
+        <ContactCell 
+        data-test="contactCellComp"
+        key={index} contact={contact} onDeleteContact={onDeleteContact}
+        onSaveContact={onSaveContact}
+        addFavourite={addFavourite} onContactSelect={onContactSelect}/>
       )}
 
     </div>

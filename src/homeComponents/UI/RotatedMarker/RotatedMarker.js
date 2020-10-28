@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 // import { Marker } from 'react-leaflet';
-import * as Marker from 'leaflet-rotatedmarker';
+// import * as Marker from 'leaflet-rotatedmarker';
 
 export default class RotatedMarker {
   static propTypes = {

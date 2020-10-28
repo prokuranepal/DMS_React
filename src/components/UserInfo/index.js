@@ -30,7 +30,8 @@ const UserInfo = () => {
         className="user-avatar "
       />
       <div className="user-detail">
-          <h4 className="user-name d-flex"onClick={handleClick} ><span className='text-truncate'>Robert Johnson</span> 
+          <h4 className="user-name d-flex" 
+          onClick={handleClick} data-test="onClickComp"><span className='text-truncate'>Robert Johnson</span> 
           {/* <i className="zmdi zmdi-caret-down zmdi-hc-fw align-middle"/> */}
         </h4>
       </div>
@@ -39,6 +40,7 @@ const UserInfo = () => {
             anchorEl={anchorE1}
             open={open}
             onClose={handleRequestClose}
+            data-test="menuComp"
             PaperProps={{
               style: {
                 minWidth: 120,
@@ -47,7 +49,7 @@ const UserInfo = () => {
               }
             }}
       >
-        <MenuItem onClick={handleRequestClose}>
+        <MenuItem onClick={handleRequestClose} >
           <i className="zmdi zmdi-account zmdi-hc-fw mr-2"/>
           <IntlMessages id="popup.profile"/>
         </MenuItem>
@@ -55,7 +57,7 @@ const UserInfo = () => {
           <i className="zmdi zmdi-settings zmdi-hc-fw mr-2"/>
           <IntlMessages id="popup.setting"/>
         </MenuItem>
-        <MenuItem onClick={() => {
+        <MenuItem  data-test="menuItemComp" onClick={() => {
           handleRequestClose();
           dispatch(logout());
         }}>

@@ -56,9 +56,8 @@ const Index =(props)=> {
     return (
       <AppBar className="app-main-header">
         <Toolbar className="app-toolbar" disableGutters={false}>
-          
           <IconButton className={`jr-menu-icon mr-3 ${drawerStyle}`} aria-label="Menu"
-                      onClick={onToggleCollapsedNav}>
+                      onClick={onToggleCollapsedNav} data-test="iconButtonComp">
             <span className="menu-icon"/>
           </IconButton>
 
@@ -73,7 +72,8 @@ const Index =(props)=> {
               <Dropdown
                 className="quick-menu"
                 isOpen={langSwitcher}
-                toggle={onLangSwitcherSelect}>
+                toggle={onLangSwitcherSelect}
+                data-test="dropDownComp">
 
                 <DropdownToggle
                   className="d-inline-block"
@@ -85,7 +85,7 @@ const Index =(props)=> {
                 </DropdownToggle>
 
                 <DropdownMenu right className="w-50">
-                  <LanguageSwitcher switchLanguage={onSwitchLanguage}
+                  <LanguageSwitcher switchLanguage={onSwitchLanguage} data-test="languageSwitcherComp"
                                     handleRequestClose={handleRequestClose}/>
                 </DropdownMenu>
               </Dropdown>
@@ -96,7 +96,8 @@ const Index =(props)=> {
               <Dropdown
                 className="quick-menu"
                 isOpen={appNotification}
-                toggle={onAppNotificationSelect}>
+                toggle={onAppNotificationSelect}
+                data-test="dropDownComp2">
 
                 <DropdownToggle
                   className="d-inline-block"
@@ -116,6 +117,7 @@ const Index =(props)=> {
             </li>
             <li className="list-inline-item mail-tour">
               <Dropdown
+                data-test="dropDownComp3"
                 className="quick-menu"
                 isOpen={mailNotification}
                 toggle={onMailNotificationSelect}

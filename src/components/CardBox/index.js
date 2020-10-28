@@ -1,5 +1,9 @@
 import React from 'react';
-
+/**
+ * Uses the provided style, and data to present a nice card box
+ * @returns {CardBox} returns a well styled card 
+ * @param {props} props heading, children, styleName, cardStyle, childrenStyle, headerOutside, headingStyle
+ */
 const CardBox = ({heading, children, styleName, cardStyle, childrenStyle, headerOutside, headingStyle}) => {
 
   return (

@@ -19,11 +19,11 @@ const ListUsers = props => {
     <Grid container className={classes.users}>
         <SimpleAlert />
         <Grid item xs={12}>
-            <User title='LEVEL 1' users={props.users1} />
+            <User title='LEVEL 1' users={props.users1} data-test="user1Comp"/>
         </Grid>
 
         <Grid item xs={12}>
-            <User title='LEVEL 2' users={props.users2} />
+            <User title='LEVEL 2' users={props.users2} data-test="user2Comp"/>
         </Grid>
     </Grid>)
 }

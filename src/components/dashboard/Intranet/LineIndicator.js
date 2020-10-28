@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Aux from "util/Auxiliary";
+import Aux from "../../../util/Auxiliary";
 
 const LineIndicator = ({width, color}) => {
 

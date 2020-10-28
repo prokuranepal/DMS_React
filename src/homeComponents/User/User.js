@@ -78,7 +78,7 @@ const User = ({title, users}) => {
     return (
         <Paper className = {classes.layout} >
            <div className={classes.header}>
-                <Typography variant="h4"> 
+                <Typography variant="h4" data-test="titleComp"> 
                         {title}
                 </Typography>
 
@@ -101,7 +101,7 @@ const User = ({title, users}) => {
         
                 <ListItem className= {classes.table} divider = {true} autoFocus = {true} key ={uuidv4()}>
 
-                  <ListItemText 
+                  <ListItemText data-test="listItemComp"
                     primary={user.username} className = {classes.list} key ={uuidv4()}
                   />
                 
@@ -117,17 +117,17 @@ const User = ({title, users}) => {
                 </Link>
 
                 
-                  <IconButton edge="end" aria-label="delete" onClick={() => handleClickOpen(user)} key ={uuidv4()}>
+                  <IconButton data-test="iconButtonComp" edge="end" aria-label="delete" onClick={() => handleClickOpen(user)} key ={uuidv4()}>
                       <DeleteIcon color = 'secondary'  />
                       
                   </IconButton> 
-                </ListItem> 
+                </ListItem>
                   
              ))
             
            }
 
-          <Modal open={open} onClose={handleClose} user= {userData} key={uuidv4()} />
+          <Modal data-test="modalComp" open={open} onClose={handleClose} user= {userData} key={uuidv4()} />
             
         </Paper>
     )

@@ -7,10 +7,10 @@ const LanguageItem = ({language, switchLanguage, handleRequestClose}) => {
     <li className="pointer" onClick={() => {
       handleRequestClose();
       switchLanguage(language);
-    }}>
+    }} data-test="liClick">
       <div className="d-flex align-items-center">
         <i className={`flag flag-24 flag-${icon}`}/>
-        <h4 className="mb-0 ml-2">{name}</h4>
+        <h4 className="mb-0 ml-2" data-test="languageName">{name}</h4>
       </div>
     </li>
   );

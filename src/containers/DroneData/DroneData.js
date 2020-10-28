@@ -165,12 +165,14 @@ const DroneData = props => {
                         <i className="zmdi zmdi-search zmdi-hc-fw" />
                     </Fab>
                 </Grid>
-                <Grid item xs={4} container justify="center" onClick={handleOpenMission}>
+                <Grid item xs={4} container justify="center" onClick={handleOpenMission}
+                data-test="openMissionComp">
                     <Fab className="jr-fab-btn bg-white text-black jr-btn-fab-xs">
                         <i className="zmdi zmdi-shopping-basket zmdi-hc-fw" />
                     </Fab>
                 </Grid>
-                <Grid item xs={4} container justify="center" onClick={handleOpenCheck}>
+                <Grid item xs={4} container justify="center" data-test="handleOpenCheckComp" onClick={handleOpenCheck}
+                openCheckComp>
                     <Fab className="jr-fab-btn bg-white text-dark-grey jr-btn-fab-xs">
                         <i className="zmdi zmdi-spinner zmdi-hc-fw" />
                     </Fab>
@@ -194,9 +196,9 @@ const DroneData = props => {
                 <Grid container xs={12} className={classes.textColor}>
 
                     <div className={classes.drone}>
-                        <Button  size="small" variant="contained" color="primary" onClick={handleOpenDrone}>Choose Drone</Button>
-                        {drone !== null?<DroneInfo data={droneInfo}/>: null}
-                        {mission !== null?<MissionInfo/>:null}
+                        <Button  size="small" variant="contained" color="primary" onClick={handleOpenDrone}data-test="openDroneComp">Choose Drone</Button>
+                        {drone !== null?<DroneInfo data={droneInfo} data-test="droneInfoComp"/>: null}
+                        {mission !== null?<MissionInfo data-test="missionInfoComp"/>:null}
                         
                     </div>
 
@@ -210,10 +212,13 @@ const DroneData = props => {
                 open={openMissionList}
                 onClose={handleCloseMission}
                 closeAfterTransition
+                data-test="modalComp"
             >
-                <Fade in={openMissionList}>
+                <Fade in={openMissionList} data-test="openMissionListComp">
                     <div className={classes.paper} style={style}>
-                        <MissionList abort={handleCloseMission}  select={selectMission}/>
+                        <MissionList abort={handleCloseMission}  select={selectMission}
+                        data-test="missionListComp"
+                        />
 
                     </div>
                 </Fade>
@@ -225,8 +230,10 @@ const DroneData = props => {
                 open={openCheckList}
                 onClose={handleCloseCheck}
                 closeAfterTransition
+                data-test="modalTestComp2"
+
             >
-                <Fade in={openCheckList}>
+                <Fade in={openCheckList} data-test="openCheckListComp">
                     <div className={classes.paper} style={style}>
                         <CheckList abort={handleCloseCheck} />
 
@@ -240,10 +247,12 @@ const DroneData = props => {
                 open={openDroneList}
                 onClose={handleCloseDrone}
                 closeAfterTransition
+                data-test="modalComp3"
             >
-                <Fade in={openDroneList}>
+                <Fade in={openDroneList} data-test="openDroneListComp">
                     <div className={classes.paper} style={style}>
-                        <DroneList abort={handleCloseDrone} select={selectDrone} drones={activeDrones}/>
+                        <DroneList abort={handleCloseDrone} select={selectDrone} 
+                        data-test="droneListComp" drones={activeDrones}/>
 
                     </div>
                 </Fade>
