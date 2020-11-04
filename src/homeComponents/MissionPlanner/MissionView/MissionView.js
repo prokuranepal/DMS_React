@@ -7,6 +7,8 @@ import { Map, TileLayer, Marker, Popup, Polyline, ZoomControl } from 'react-leaf
 import MissionData from './MissionData/MissionData';
 import MissionList from '../../MissionList/MissionList';
 import { useDispatch, useSelector } from 'react-redux';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 import * as actions from '../../../store/actions/mission';
 
 const useStyles = makeStyles((theme) => ({
@@ -61,13 +63,14 @@ const MissionView = props => {
     const [action, setAction] = React.useState("create");
 
     const openMissionDetail = useSelector(({ mission }) => mission.missionDetail);
+    const message = useSelector(({ mission }) => mission.message);
     const loading = useSelector(({ mission }) => mission.loading);
     const [center, setCenter] = React.useState({
         lat: -35.36326217651367, lng: 149.1652374267578
     });
-    const initialMissionDetail = { name: '', radius: null, speed: null, home: '', destination: '', waypoints: [] };
+    const initialMissionDetail = { name: '', radius: null, speed: 15, home: '', destination: '', waypoints: [] };
     const [missionDetail, setMissionDetail] = React.useState(initialMissionDetail);
-
+    const [openSnack, setOpenSnack] = React.useState(false);
 
     //to update the localstate by the missionDetails sourced from server
     useEffect(() => {
@@ -86,9 +89,10 @@ const MissionView = props => {
     }, [openMissionDetail]);
 
     useEffect(() => {
-        if(!loading) {
-            setMissionDetail(initialMissionDetail);
-            setAction('create');
+        if(!loading && message !== "") {
+            // setMissionDetail(initialMissionDetail);
+            // setAction('create');
+            setOpenSnack(true);
         }
     },[loading]);
 
@@ -120,7 +124,7 @@ const MissionView = props => {
                 const m = { ...missionDetail };
 
                 m.waypoints.push({
-                    altitude: 0, radius: 0,
+                    altitude: 10, radius: 10,
                     action: 'waypoint', lat: event.latlng.lat,
                     lng: event.latlng.lng
                 });
@@ -143,7 +147,7 @@ const MissionView = props => {
     //callback function for click on confirm button
     const createUpdateMission = () => {
         // console.log("Create Mission");
-        setCreate(false);
+        // setCreate(false);
         setDraggable(false);
         const newWaypoints = [...missionDetail.waypoints];
         const homeWaypoint = {
@@ -161,12 +165,10 @@ const MissionView = props => {
             dispatch(actions.createUpdateMission(newMissionDetail, action));
         } else {
             dispatch(actions.createUpdateMission(missionDetail, action));
-            
+
         }
         // setMissionDetail(initialMissionDetail);
         // setAction('create');
-
-        
     }
 
     //callback function for change in parameter of a particular waypoint provided by index
@@ -224,6 +226,10 @@ const MissionView = props => {
         setOpenMissionList(false);
     }
 
+    function Alert(props) {
+        return <MuiAlert elevation={6} variant="filled" {...props} />;
+      }
+
     const onDeleteWaypoint = () => {
         console.log(missionDetail.waypoints, currWaypointIndex)
         const deleteIndex = currWaypointIndex;
@@ -241,18 +247,28 @@ const MissionView = props => {
             waypoints: newWaypoints
         })
     }
-    console.log(create);
+
+    const handleCloseSnack = () => {
+        setOpenSnack(false);
+    }
+    // console.log(create);
     return (
         <Grid container className={classes.root}>
+            <Snackbar open={openSnack} autoHideDuration={4000} onClose={handleCloseSnack}>
+                <Alert onClose={handleCloseSnack} severity="success">
+                    {message}
+                </Alert>
+            </Snackbar>
             <Grid item xs={3}>
-                <MissionData 
-                data-test="missionData" action={action} onCancel={onCancel}
+                <MissionData
+                    data-test="missionData" action={action} onCancel={onCancel}
                     onChangeMission={onChangeMission} onChange={onChange}
                     createUpdateMission={createUpdateMission} mission={missionDetail}
                     waypoint={missionDetail.waypoints[currWaypointIndex]}
                     onCreateMission={startMissionCreation} openMission={openMission}
                     create={create}
-                    onDeleteWaypoint={onDeleteWaypoint} />
+                    onDeleteWaypoint={onDeleteWaypoint}
+                    loading={loading} />
             </Grid>
             <Grid item xs={9}>
                 <Map
@@ -309,7 +325,7 @@ const MissionView = props => {
             >
                 <Fade in={openMissionList}>
                     <div className={classes.paper} style={modalStyle}>
-                        <MissionList abort={handleCloseMission}  select={selectMission} data-test="missionList" />
+                        <MissionList abort={handleCloseMission} select={selectMission} data-test="missionList" />
 
                     </div>
                 </Fade>

@@ -111,8 +111,8 @@ export const signUp = (data) => {
                 dispatch(signUpSuccess(response.data.status));
             })
             .catch(err => {
-                console.log(err.response.data.err.message)
-                dispatch(signUpFail(err.response.data.err.message));
+                // console.log(err.response.data.err.message)
+                // dispatch(signUpFail(err.response.data.err.message));
             });
     }
 }

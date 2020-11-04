@@ -8,6 +8,7 @@ export const createUpdateMission = (missionDetail, action) => {
     let url = '/mission';
     return dispatch => {
         if (action === 'create') {
+            
             dispatch(createMission(missionDetail, url));
         } else {
             url = `mission/${missionDetail._id}`
@@ -19,23 +20,25 @@ export const createUpdateMission = (missionDetail, action) => {
 
 export const createMission = (missionDetail, url) => {
     return dispatch => {
-        dispatch(setLoading(true));
+        dispatch(setLoading(true,"CREATING"));
         axios.post(url,missionDetail,{headers: func.getToken()})
         .then(res => {
             // console.log(res);
-            dispatch(setLoading(false));
+            dispatch(setLoading(false, "Mission created Successfully"));
             dispatch(createMissionSuccess());
         })
         .catch(err => {
+            dispatch(setLoading(false, "Mission could not be created"));
             console.log(err)
         })
     }
 }
 
-export const setLoading = (loading) => {
+export const setLoading = (loading, message) => {
     return {
         type: actionTypes.MISSION_CREATE_LOADING,
-        loading: loading
+        loading: loading,
+        message: message
     }
 }
 
@@ -47,13 +50,17 @@ export const createMissionSuccess = () => {
 
 export const updateMission = (missionDetail,url) => {
     return dispatch => {
+        dispatch(setLoading(true, "UPDATING"));
         axios.put(url,missionDetail,{headers: func.getToken()} )
         .then(res => {
             // console.log(res);
+            dispatch(setLoading(false, "Mission updated Successfully"));
             dispatch(updateMissionSuccess());
         })
         .catch(err => {
+            dispatch(setLoading(false, "Mission could not be updated"));
             console.log(err)
+
         })
     }
 }

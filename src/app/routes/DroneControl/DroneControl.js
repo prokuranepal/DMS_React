@@ -231,7 +231,8 @@ const DroneControl = props => {
                 // onLand={onLand}
                 // onRTL={onRTL}
                 checklistPass={checklistPass}
-                onStartMission={setCommandMessage}
+                // onStartMission={setCommandMessage}
+                onStartMission={onStartMission}
                 onLand={setCommandMessage}
                 onRTL={setCommandMessage}
                 uploadMission={uploadMission}

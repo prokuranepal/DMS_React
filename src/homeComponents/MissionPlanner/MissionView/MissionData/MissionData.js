@@ -9,6 +9,7 @@ import CustomScrollbars from '../../../../util/CustomScrollbars';
 import { useDispatch, useSelector } from 'react-redux'
 import * as dashboardActions from '../../../../store/actions/dashboard';
 import IconButton from "@material-ui/core/IconButton";
+import CircularProgress from '@material-ui/core/CircularProgress';
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
@@ -48,7 +49,20 @@ const useStyles = makeStyles((theme) => ({
     },
     noWaypoint: {
         padding: '40px'
-    }
+    },
+    buttonProgress: {
+        color: 'white',
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        marginTop: -12,
+        marginLeft: -12,
+      },
+      wrapper: {
+        margin: theme.spacing.unit,
+        position: 'relative',
+      }
+
 }));
 
 const CssTextField = withStyles({
@@ -195,9 +209,10 @@ const MissionData = props => {
                     </form>
                 </div>
                     <div className={classes.buttons}>
-                        <div><Button onClick={props.onCancel} size="small" variant="contained" color="primary" data-test="cancel-button">Cancel</Button></div>
-                        <div>{props.action === 'create' ? <Button onClick={props.createUpdateMission} size="small" variant="contained" color="primary" disabled={props.mission.waypoints.length === 0} data-test="create-confirm-button">Confirm</Button> :
-                            <Button onClick={props.createUpdateMission} size="small" variant="contained" color="primary" disabled={props.mission.waypoints.length === 0}  data-test="create-update-button">Update</Button>}</div>
+                        <div><Button onClick={props.onCancel} size="small" variant="contained" color="primary" data-test="cancel-button">Close</Button></div>
+                        <div className={classes.wrapper}>{props.action === 'create' ? <Button onClick={props.createUpdateMission} size="small" variant="contained" color="primary" disabled={props.mission.waypoints.length === 0} data-test="create-confirm-button">Confirm</Button> :
+                            <Button onClick={props.createUpdateMission} size="small" variant="contained" color="primary" disabled={props.mission.waypoints.length === 0}  data-test="create-update-button">Update</Button>}
+                            {props.loading && <CircularProgress size={24} className={classes.buttonProgress}/>}</div>
                     </div>
                     <div className={classes.form}>
                         {props.mission.waypoints.length !== 0 ?

@@ -4,7 +4,8 @@ import { updateObject } from '../utility';
 const initialState = {
     missionDetail: null,
     missions: [],
-    loading: false
+    loading: false,
+    message: ""
 };
 
 const setMissionDetail = (state, action) => {
@@ -24,7 +25,8 @@ const updateMissionList = (state, action) => {
 const setMissionLoading = (state, action) => {
 
     return updateObject(state, {
-        loading: action.loading
+        loading: action.loading,
+        message: action.message
     })
 }
 
