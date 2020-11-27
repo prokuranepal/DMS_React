@@ -45,9 +45,9 @@ const OrderTableCell = (props) => {
         <div className={` badge text-uppercase ${statusStyle}`}>{status}</div>
       </td>
       <td className="text-right">
-        <IconButton onClick={onOptionMenuSelect}>
+        <IconButton onClick={onOptionMenuSelect} data-test="buttonComp">
           <i className="zmdi zmdi-more-vert"/></IconButton>
-        <CardMenu menuState={menuState} anchorEl={anchorE1}
+        <CardMenu menuState={menuState} anchorEl={anchorE1} data-test="cardMenuComp"
                   handleRequestClose={handleRequestClose}/>
       </td>
     </tr>

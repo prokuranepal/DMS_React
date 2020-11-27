@@ -6,7 +6,7 @@ import DisplayDate from "../DisplayDate/index";
 import Card from '@material-ui/core/Card';
 import {Input} from "reactstrap";
 
-
+export const new_date=new Date().toString();
 const PostItem = (props) => {
 
   const [message, setMessage] = useState("");
@@ -24,6 +24,7 @@ const PostItem = (props) => {
   });
 
   useEffect(() => {
+    console.log("useEffect is being called")
     setPost(props.postData);
   }, [props.postData]);
 
@@ -32,7 +33,7 @@ const PostItem = (props) => {
       const commentData = {
         user: props.user,
         comment: message,
-        date: new Date().toString(),
+        date: new_date,
         likeCount: 0,
         isLike: true,
         commentList: []
@@ -62,8 +63,9 @@ const PostItem = (props) => {
       likeCount: (post.isLike === true ? post.likeCount - 1 : post.likeCount + 1)
     });
   };
-
+// console.log("post ", post)
   const {user, date, mediaList, viewCount, likeCount, isLike, commentList, text} = post;
+  console.log("user Post", user);  
   return (
     <Card className="jr-card">
       <div className="jr-wall-content">
@@ -101,13 +103,17 @@ const PostItem = (props) => {
         </div>
 
         <div className="jr-wall-comment-box">
-          {commentList.map((commentData, index) => <CommentBox key={index} index={index} commentData={commentData}/>)}
+          {commentList.map(
+            (commentData, index) => {
+              console.log("commentData",commentData)
+              return <CommentBox key={index} data-test='commentListComp' index={index} commentData={commentData}/>})}
         </div>
         <div className="jr-wall-comment-box">
           <div className="media mb-2">
             <Avatar className="mr-3 size-36" src={user.image}/>
             <div className="media-body">
               <Input
+              data-test="inputComp"
                 type="textarea"
                 id="required" className="border-0"
                 onChange={(event) => updateCommentValue(event)}

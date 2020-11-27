@@ -24,7 +24,7 @@ const FriendsTable = () => {
         <tbody>
         {data.map(data => {
           return (
-            <FriendsTableCell key={data.id} data={data}/>
+            <FriendsTableCell data-test= "FriendsCell" key={data.id} data={data}/>
           );
         })}
         </tbody>
