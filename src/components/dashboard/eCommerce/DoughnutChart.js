@@ -2,7 +2,7 @@ import React from 'react';
 import {Doughnut} from 'react-chartjs-2';
 
 
-export const data = (canvas) => {
+const data = (canvas) => {
   const ctx = canvas.getContext("2d");
   const _stroke = ctx.stroke;
   ctx.stroke = function () {

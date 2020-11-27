@@ -9,11 +9,10 @@ const BrowserCell = ({browser}) => {
         alt={title}
         src={image}
         className="user-avatar-sm mr-3"
-        data-test="avatarComp"
       />
       <div className="user-detail">
-        <h4 className="mb-0" data-test="titleComp">{title}</h4>
-        <div className="user-description" data-test="subTitleComp">{subTitle}</div>
+        <h4 className="mb-0">{title}</h4>
+        <div className="user-description">{subTitle}</div>
       </div>
     </div>
 

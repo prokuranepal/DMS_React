@@ -35,7 +35,7 @@ const AssignmentTable = () => {
         <tbody>
         {data.map(data => {
           return (
-            <AssignmentTableCell key={data.id} data={data} data-test="assignmentCellComp"/>
+            <AssignmentTableCell key={data.id} data={data}/>
           );
         })}
         </tbody>

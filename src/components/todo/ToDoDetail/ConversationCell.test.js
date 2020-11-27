@@ -1,5 +1,5 @@
 import testSnapFunction from '../../../util/testSnapFunction';
-import ConversationCell from './ConversationCell'
+import ConversationCell from './index'
 import React from 'react';
 const dummy_data={
    conversation:{

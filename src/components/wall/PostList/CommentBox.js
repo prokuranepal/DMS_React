@@ -39,9 +39,9 @@ const CommentBox = (props) => {
   };
 
   const handleCommentToggle = () => {
-    setIsComment((previousState) => (
-        !previousState
-      
+    setIsComment((previousState) => ({
+        isComment: !previousState.isComment,
+      }
     ));
   };
 
@@ -54,16 +54,15 @@ const CommentBox = (props) => {
         <DisplayDate date={date}/>
         <p className="mt-2">{comment}</p>
         <div className="flex-row">
-          <Button data-test="buttonComp1" variant="contained" color="primary" className="mr-3 mb-1" size="small"
+          <Button variant="contained" color="primary" className="mr-3 mb-1" size="small"
                   onClick={handleLikeToggle}>{isLike === true ? 'Like' : 'UnLike'}</Button>
-          <Button data-test="buttonComp2" variant="contained" className="bg-light-blue text-white mb-1" size="small"
+          <Button variant="contained" className="bg-light-blue text-white mb-1" size="small"
                   onClick={handleCommentToggle}>Comment</Button>
-        </div>{console.log(isComment,"isComment")}
+        </div>
         {isComment === true ? <div className="media mt-3">
           <Avatar className="mr-3 size-30" src={user.image}/>
           <div className="media-body">
             <Input
-            data-test="pressComp"
               id="required" className="border-0"
               placeholder="Type Comments"
               onKeyPress={(event) => handleKeyPress(event)}

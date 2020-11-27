@@ -15,11 +15,10 @@ const CustomerCell = ({data}) => {
             alt={name}
             src={image}
             className="user-avatar"
-            data-test="avatarComp"
           />
           <div className="user-detail">
-            <h5 className="user-name" data-test="nameComp">{name}</h5>
-            <p className="user-description" data-test="userId">{userId}</p>
+            <h5 className="user-name">{name} </h5>
+            <p className="user-description">{userId} </p>
           </div>
         </div>
       </td>

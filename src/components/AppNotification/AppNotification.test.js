@@ -21,7 +21,8 @@ configure({
 */
 
 const setup = (props = {}, state = null) => {
-    return shallow( < AppNotification {...props}  />
+    return shallow( < AppNotification {...props}  /
+        >
     )
 }
 

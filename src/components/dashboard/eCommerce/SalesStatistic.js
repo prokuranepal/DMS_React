@@ -1,9 +1,8 @@
 import React from 'react';
 import {Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
-// import {salesStatisticData} from "../../../app/routes/dashboard/routes/Listing/data";
-import SalesGauge from "./SalesGauge";
+import {salesStatisticData} from "../../../app/routes/dashboard/routes/Listing/data";
+import SalesGauge from "components/dashboard/eCommerce/SalesGauge";
 
-const salesStatisticData = ["dfd"]
 const SalesStatistic = () => {
   return (
     <div className="jr-card">
