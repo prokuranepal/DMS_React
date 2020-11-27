@@ -78,6 +78,7 @@ const Drone = () => {
 
       return { ...prevState, data: drones };
     });
+    console.log(drones);
     setNumDrones(drones.length)
   }, [drones]);
 
@@ -101,13 +102,14 @@ const Drone = () => {
   const openDroneDetail = (id) => {
     console.log(id);
     setSelectedRow(id);
-    // dispatch(actions.fetchDroneDetail(id));
+    dispatch(actions.fetchDroneDetail(id));
     setRedirectTo(<Redirect to={{
       pathname: "/app/dms/dronedetail",
       state: { droneId: id }
 
     }} />)
   }
+
   return (
     <div>
       {redirectTo}
@@ -125,10 +127,10 @@ const Drone = () => {
             columns={state.columns}
             data={state.data}
             icons={TableIcons}
-            onRowClick={((evt, selectedRow) => openDroneDetail(selectedRow.tableData.id))}
+            onRowClick={((evt, selectedRow) => openDroneDetail(selectedRow._id))}
             options={{
               rowStyle: rowData => ({
-                backgroundColor: (selectedRow === rowData.tableData.id) ? '#EEE' : '#FFF',
+                backgroundColor: (selectedRow === rowData._id) ? '#EEE' : '#FFF',
                 font: 'Roboto'
               }),
               headerStyle: {

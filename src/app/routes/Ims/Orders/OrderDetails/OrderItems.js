@@ -59,7 +59,7 @@ createStyles({
 const CustomizedTables = (props) => {
     const classes = useStyles();
     const rows = props.items.map(item => {
-        return createData(item.medicine._id, item.medicine.title, item.medicine.dosages,item.medicine.type, item.medicine.quantity, item.medicine.exp_date)
+        return createData(item.medicine._id, item.medicine.name, item.medicine.dosage,item.medicine.type, item.medicine.quantity, item.medicine.exp_date)
     })
     // console.log(props.items);
     return (

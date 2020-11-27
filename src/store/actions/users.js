@@ -5,7 +5,9 @@ import {
     GET_USERS,
     DELETE_USER,
     ADD_USER,
-    UPDATE_USER
+    UPDATE_USER,
+    GET_USER_PROFILE,
+    UPDATE_USER_PROFILE
 } from './actionTypes'
 import * as func from './function';
 //Get users 
@@ -69,4 +71,42 @@ export const deleteUser = (id) => dispatch => {
         console.log(err)
     })
         
+}
+
+export const getUserProfile = (id) => dispatch => {
+    const url = `/users/${id}`;
+    axios.get(url,{headers: func.getToken()})
+    .then(response => {
+        console.log(response);
+        dispatch(getUserProfileSuccess(response.data));
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
+
+export const getUserProfileSuccess = (data) => {
+    return {
+        type: GET_USER_PROFILE,
+        userProfile: data
+    }
+}
+
+export const updateUserProfile = (id) => dispatch => {
+    const url = `/users/${id}`;
+    axios.get(url,{headers: func.getToken()})
+    .then(response => {
+        console.log(response);
+
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
+
+export const updateUserProfileSuccess = (data) => {
+    return {
+        type: UPDATE_USER_PROFILE,
+        userProfile: data
+    }
 }

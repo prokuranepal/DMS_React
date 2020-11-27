@@ -29,6 +29,9 @@ export const ADD_USER = 'ADD_USER';
 export const GET_USERS= 'GET_USERS';
 export const USER_ERROR= 'USER_ERROR';
 export const UPDATE_USER = 'UPDATE_USER';
+export const GET_USER_PROFILE = 'GET_USER_PROFILE';
+export const UPDATE_USER_PROFILE = 'UPDATE_USER_PROFILE';
+
 export const SET_INIT_URL = 'SET_INIT_URL';
 
 export const GET_WEATHER_DATA = 'GET_WEATHER_DATA';

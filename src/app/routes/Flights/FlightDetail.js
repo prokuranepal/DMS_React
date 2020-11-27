@@ -9,7 +9,8 @@ import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIcon from '@material-ui/icons/ArrowBackRounded';
 import { Link, Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
+import * as func from '../../../Functions/functions'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -40,75 +41,73 @@ const info = {
 }
 
 const mapDetails = {
-        waypoints: [{
-            action: "waypoint",
-            altitude: 0,
-            lat: -35.362935421360326,
-            lng: 149.16551953867867,
-            radius: 0
-        },
-        {
-            action: "takeoff",
-            altitude: "10",
-            lat: -35.362935421360326,
-            lng: 149.16551953867867,
-            radius: "30"
-        },
-        {
-            action: "waypoint",
-            altitude: "20",
-            lat: -35.36441071920064,
-            lng: 149.16912420964968,
-            radius: "30",
-        },
-        {
-            action: "waypoint",
-            altitude: "30",
-            lat: -35.36302950005562,
-            lng: 149.17195575058955,
-            radius: "30"
-        },
-        {
-            action: "waypoint",
-            altitude: "40",
-            lat: -35.35918294246014,
-            lng: 149.1710548057451,
-            radius: "30",
-        },
-        {
-            action: "waypoint",
-            altitude: "30",
-            lat: -35.35853600340818,
-            lng: 149.16732231996068,
-            radius: "30"
-        },
-        {
-            action: "waypoint",
-            altitude: "20",
-            lat: -35.36010962990983,
-            lng: 149.16412611086943,
-            radius: "30"
-        },
-        {
-            action: "land",
-            altitude: 0,
-            lat: -35.3626623365603,
-            lng: 149.1651986642558,
-            radius: 0
-        }
-        ]
+    waypoints: [{
+        action: "waypoint",
+        altitude: 0,
+        lat: -35.362935421360326,
+        lng: 149.16551953867867,
+        radius: 0
+    },
+    {
+        action: "takeoff",
+        altitude: "10",
+        lat: -35.362935421360326,
+        lng: 149.16551953867867,
+        radius: "30"
+    },
+    {
+        action: "land",
+        altitude: 0,
+        lat: -35.3626623365603,
+        lng: 149.1651986642558,
+        radius: 0
+    }
+    ]
 }
 
 
 const FlightDetail = (props) => {
     const classes = useStyles();
-    // const {flightDetails} = useSelector(({ flights }) => flights);
+    const { flightDetails } = useSelector(({ flights }) => flights);
     const [redirect, setRedirect] = React.useState(null);
+    const [info, setInfo] = React.useState({
+        duration: '100 min',
+        date: '27 August, 2020',
+        startTime: '15:09:10',
+        endTime: '16:49:00',
+        origin: "Dharan",
+        destination: "Biratnagar",
+        missionId: '345',
+        droneId: 'JT601',
+        orderId: '123'
+
+    })
     useEffect(() => {
         if (props.location.state === undefined) {
             setRedirect(<Redirect to='/app/flights/flights' />)
         }
     }, [])
+
+    useEffect(() => {
+        console.log(flightDetails);
+        if (flightDetails !== null) {
+            const newInfo = {
+                ...info,
+                duration: func.getDuration(flightDetails.startTime,flightDetails.endTime),
+                date: func.getDate(flightDetails.createdAt),
+                startTime: func.getTime(flightDetails.startTime),
+                endTime: func.getTime(flightDetails.endTime),
+                origin: flightDetails.mission.hospital.name,
+                destination: flightDetails.mission.destination.name,
+                missionId: flightDetails.mission._id,
+                droneId: flightDetails.drone.droneId,
+                orderId: '123'
+            }
+
+            setInfo(newInfo);
+        }
+
+    }, [flightDetails])
 
     return (
         <div className={classes.root}>
@@ -130,7 +129,7 @@ const FlightDetail = (props) => {
                 </Paper>
 
                 <FlightInfo info={info} />
-                <FlightMap mission={mapDetails} />
+                <FlightMap mission={flightDetails ? flightDetails.mission : mapDetails} />
             </Grid>
         </div>
     )

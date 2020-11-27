@@ -53,7 +53,7 @@ const SignIn = (props) => {
     const signIn = () => {
       
             dispatch(actions.signIn(email, password));
-            console.log("SIgn In")
+            // console.log("SIgn In")
     }
     return (
 

@@ -13,7 +13,7 @@ export const authStart = () => {
 };
 
 export const authSuccess = (token, userId) => {
-    console.log(token, userId)
+    // console.log(token, userId)
     return {
         type: actionTypes.AUTH_SUCCESS,
         token: token,
@@ -56,28 +56,31 @@ export const logout = () => {
     };
 };
 
-export const checkAuthTimeout = (expirationTime) => {
+export const checkAuthTimeout = (expirationTime, refreshToken) => {
     // console.log("CheckoutTime", expirationTime);
     return dispatch => {
         // const refresh_token = refreshToken;
         setTimeout(() => {
-            dispatch(logout());
-            // dispatch(sendRefreshToken(refresh_token));
+            // dispatch(logout());
+            dispatch(sendRefreshToken(refreshToken));
         }, (expirationTime) * 1000);
     };
 };
 
 const sendRefreshToken = (refreshToken) => {
     return dispatch => {
+        // console.log("refresh token");
         // let url = 'https://securetoken.googleapis.com/v1/token?key=AIzaSyDL3N1A50XmBEQGRPrAN2zCudp9mpIe28I';
-        let url = './auth.js';
+        let url = '/users/token';
         const data = {
-            grant_type: "refresh_token",
-            refresh_token: refreshToken
+            // grant_type: "refresh_token",
+            refreshToken: refreshToken
         }
-        axios.post(url, data)
+        axios.post(url, data,{
+            headers: headers
+          })
             .then(response => {
-                console.log(response);
+                // console.log(response);
                 // response = response.authResponse;
                 const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
                 
@@ -88,7 +91,7 @@ const sendRefreshToken = (refreshToken) => {
                 // localStorage.setItem('userId', response.data.user_id);
                 // localStorage.setItem('refreshToken', response.data.refresh_token);
                 // dispatch(authSuccess(response.data.id_token, response.data.user_id));
-                // dispatch(checkAuthTimeout(response.data.expires_in, response.data.refresh_token));
+                dispatch(checkAuthTimeout(response.data.expiresIn, response.data.refreshToken));
             });
     }
 }
@@ -107,12 +110,12 @@ export const signUp = (data) => {
             headers: headers
           })
             .then(response => {
-                console.log(response.data.success);
+                // console.log(response.data.success);
                 dispatch(signUpSuccess(response.data.status));
             })
             .catch(err => {
-                console.log(err.response.data.err.message)
-                dispatch(signUpFail(err.response.data.err.message));
+                // console.log(err.response.data.err.message)
+                // dispatch(signUpFail(err.response.data.err.message));
             });
     }
 }
@@ -138,7 +141,7 @@ export const signIn = (email, password) => {
             email: email,
             password: password
         };
-        console.log(authData);
+        // console.log(authData);
         // let url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyDL3N1A50XmBEQGRPrAN2zCudp9mpIe28I';
         // const url = './auth.js';
         const url = '/users/login';
@@ -149,15 +152,15 @@ export const signIn = (email, password) => {
                 // response = response.authResponse;
                 const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
                 // console.log(new Date().getTime());
-                console.log(response.data.expiresIn);
+                // console.log(response.data.expiresIn, response.data.refreshToken);
                 // console.log(response.data.idToken,response.data.expiresIn, expirationDate, expirationDate.getTime() - new Date().getTime());
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('expirationDate', expirationDate);
                 localStorage.setItem('userId', response.data.userId);
                 // localStorage.setItem('refreshToken', response.data.refreshToken);
                 dispatch(authSuccess(response.data.token, response.data.userId));
-                dispatch(checkAuthTimeout(response.data.expiresIn));
-                // dispatch(checkAuthTimeout(response.data.expiresIn, response.data.refreshToken));
+                // dispatch(checkAuthTimeout(response.data.expiresIn));
+                dispatch(checkAuthTimeout(response.data.expiresIn, response.data.refreshToken));
             })
             .catch(err => {
                 console.log(err.response,err);
@@ -174,7 +177,7 @@ export const setAuthRedirectPath = (path) => {
 };
 
 export const authCheckState = () => {
-    console.log("authCheckState");
+    // console.log("authCheckState");
     return dispatch => {
         const token = localStorage.getItem('token');
         if (!token) {
@@ -202,7 +205,7 @@ export const resetPassword = (email) => {
         const url = 'https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyDL3N1A50XmBEQGRPrAN2zCudp9mpIe28I';
         axios.post(url, data)
             .then(response => {
-                console.log(response);
+                // console.log(response);
             }).catch(err => {
                 console.log("Something error");
             });

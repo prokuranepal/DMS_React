@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Widget from "../../Widget/index";
-// import {aboutList} from '../../../app/routes/socialApps/routes/Profile/data'
+import {aboutList} from '../../../homeComponents/User/Profile/data'
 import AboutItem from "./AboutItem";
 
 
@@ -27,12 +27,12 @@ const About =()=> {
           </Tabs>
           <div className="jr-tabs-content jr-task-list">
             <div className="row">
-              {/* {value === 0 && aboutList.map((about) => <div
+              {value === 0 && aboutList.map((about) => <div
                 className="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12"><AboutItem data={about}/></div>)}
               {value === 1 && aboutList.map((about) => <div
                 className="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12"><AboutItem data={about}/></div>)}
               {value === 2 && aboutList.map((about) => <div
-                className="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12"><AboutItem data={about}/></div>)} */}
+                className="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12"><AboutItem data={about}/></div>)}
             </div>
           </div>
         </div>

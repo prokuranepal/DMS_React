@@ -6,12 +6,12 @@ import SideBar from "../../SideBar/index";
 // import Footer from "components/Footer";
 // import Tour from "components/Tour/index";
 import { COLLAPSED_DRAWER, FIXED_DRAWER } from "../../../constants/ActionTypes";
-import {NotificationContainer, NotificationManager} from 'react-notifications';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
 // import ColorOption from "containers/Customizer/ColorOption";
 import { isIOS, isMobile } from "react-device-detect";
 import url from '../../../url';
 import * as actions from '../../../store/actions/Common';
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import io from "socket.io-client";
 
 const Vertical = (props) => {
@@ -29,20 +29,23 @@ const Vertical = (props) => {
   }
   const socket = useRef();
   const printNotifications = (data) => {
-    NotificationManager.info(data.message);
-    console.log(data);
+    if (data.message !== undefined) {
+      NotificationManager.info(data.message);
+    }
+    // console.log("Notification ", data);
   }
 
   useEffect(() => {
     // console.log(userId);
     socket.current = io(url);
-    if(socket.current.connected) {
+    if (socket.current.connected) {
       socket.current.off("notifications");
     }
     socket.current.emit("joinDMS", userId);
+    socket.current.emit("joinDMS", 'asasdds');
     socket.current.on("notifications", printNotifications);
     socket.current.on('disconnect', (reason) => {
-      console.log(reason, "reconnecting after disconnect")
+      // console.log(reason, "reconnecting after disconnect")
       // if (reason === 'io server disconnect' || reason === 'transport close disconnected') {
       // the disconnection was initiated by the server, you need to reconnect manually
       socket.current.connect();
@@ -51,7 +54,7 @@ const Vertical = (props) => {
       // else the socket will automatically try to reconnect
     });
     return function cleanup() {
-      console.log("Base disconnect cleanup")
+      // console.log("Base disconnect cleanup")
       socket.current.off("notifications");
       socket.current.disconnect();
     };
@@ -64,7 +67,7 @@ const Vertical = (props) => {
   return (
     <div className={`app-container ${drawerStyle}`}>
       {/* <Tour/> */}
-      <NotificationContainer/>
+      <NotificationContainer />
       <SideBar />
       <div className="app-main-container">
         <div className="app-header">

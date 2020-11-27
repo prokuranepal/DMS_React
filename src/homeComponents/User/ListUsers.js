@@ -3,6 +3,7 @@ import MaterialTable from 'material-table';
 import TableIcons from '../../homeComponents/TableIcons/TableIcons';
 import { useSelector, useDispatch } from 'react-redux'
 import * as actions from '../../store/actions/users'
+import { Redirect } from 'react-router';
 
 const ListUsers = props => {
 
@@ -21,6 +22,7 @@ const ListUsers = props => {
     });
     const dispatch = useDispatch();
     const userData = useSelector(({ users }) => users.users)
+    const [redirectTo, setRedirectTo] = React.useState(null);
 
     useEffect(() => {
         dispatch(actions.getUsers());
@@ -32,16 +34,24 @@ const ListUsers = props => {
 
     const [selectedRow, setSelectedRow] = React.useState(null);
 
-    console.log(userData);
+    const selectUser = (id) => {
+        // console.log(id);
+        setRedirectTo(<Redirect to={{
+            pathname: '/app/users/profile',
+            state: { id: id }
+        }} />)
+    }
+    // console.log(userData);
     return (
         <div className="app-wrapper">
+            {redirectTo}
             <div className="animated slideInUpTiny animation-duration-3">
                 <MaterialTable
                     title="Users"
                     columns={state.columns}
                     data={state.data}
                     icons={TableIcons}
-                    onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
+                    onRowClick={((evt, selectedRow) => selectUser(selectedRow.tableData.id))}
                     options={{
                         rowStyle: rowData => ({
                             backgroundColor: (selectedRow === rowData.tableData.id) ? '#EEE' : '#FFF',
