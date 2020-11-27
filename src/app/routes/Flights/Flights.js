@@ -55,7 +55,7 @@ const Flights = () => {
     
 
     const openFlightDetail = (id) => {
-        // dispatch(actions.fetchFlightDetails(id))
+        dispatch(actions.fetchFlightDetails(id))
         console.log(id);
         setRedirectTo(<Redirect to={{
             pathname: '/app/flights/flightdetail',

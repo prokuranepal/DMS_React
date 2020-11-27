@@ -4,7 +4,7 @@ import { updateObject } from '../utility';
 
 const initialState = {
     flightList:[],
-    flightDetails: {}
+    flightDetails: null
 }
 
 const getFlightList = (state, action) => {

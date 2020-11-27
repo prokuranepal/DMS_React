@@ -10,8 +10,8 @@ export const data = [
         cardColor: 'secondary',
         icon: 'airplane',
         value: '0',
-        name: 'Flying Time',
-        title: 'flyingTime'
+        name: 'Flight Time',
+        title: 'flightTime'
     }, {
         cardColor: 'info',
         icon: 'flight-takeoff',

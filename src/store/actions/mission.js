@@ -24,21 +24,22 @@ export const createMission = (missionDetail, url) => {
         axios.post(url,missionDetail,{headers: func.getToken()})
         .then(res => {
             // console.log(res);
-            dispatch(setLoading(false, "Mission created Successfully"));
+            dispatch(setLoading(false, "Mission created Successfully", "success"));
             dispatch(createMissionSuccess());
         })
         .catch(err => {
-            dispatch(setLoading(false, "Mission could not be created"));
+            dispatch(setLoading(false, "Mission could not be created", "error"));
             console.log(err)
         })
     }
 }
 
-export const setLoading = (loading, message) => {
+export const setLoading = (loading, message, severity) => {
     return {
         type: actionTypes.MISSION_CREATE_LOADING,
         loading: loading,
-        message: message
+        message: message,
+        severity: severity
     }
 }
 
@@ -54,11 +55,11 @@ export const updateMission = (missionDetail,url) => {
         axios.put(url,missionDetail,{headers: func.getToken()} )
         .then(res => {
             // console.log(res);
-            dispatch(setLoading(false, "Mission updated Successfully"));
+            dispatch(setLoading(false, "Mission updated Successfully", "success"));
             dispatch(updateMissionSuccess());
         })
         .catch(err => {
-            dispatch(setLoading(false, "Mission could not be updated"));
+            dispatch(setLoading(false, "Mission could not be updated", "error"));
             console.log(err)
 
         })

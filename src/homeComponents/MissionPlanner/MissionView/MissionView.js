@@ -65,6 +65,7 @@ const MissionView = props => {
     const openMissionDetail = useSelector(({ mission }) => mission.missionDetail);
     const message = useSelector(({ mission }) => mission.message);
     const loading = useSelector(({ mission }) => mission.loading);
+    const severity = useSelector(({ mission }) => mission.severity);
     const [center, setCenter] = React.useState({
         lat: -35.36326217651367, lng: 149.1652374267578
     });
@@ -255,7 +256,7 @@ const MissionView = props => {
     return (
         <Grid container className={classes.root}>
             <Snackbar open={openSnack} autoHideDuration={4000} onClose={handleCloseSnack}>
-                <Alert onClose={handleCloseSnack} severity="success">
+                <Alert onClose={handleCloseSnack} severity={severity}>
                     {message}
                 </Alert>
             </Snackbar>

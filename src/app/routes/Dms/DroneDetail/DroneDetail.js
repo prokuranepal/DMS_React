@@ -10,11 +10,15 @@ import Grid from '@material-ui/core/Grid';
 import IconWithTextCard from '../../../../components/statusCard/IconWithTextCard';
 import { Redirect } from "react-router";
 
+function createData(flightId, origin, destination, missionId, purpose) {
+
+    return { flightId, origin, destination, missionId, purpose };
+}
+
 const DroneDetail = (props) => {
     const [state, setState] = React.useState({
         columns: [
-            { title: 'Name', field: 'name' },
-            { title: 'Drone Id', field: 'droneId' },
+            { title: 'Flight ID', field: 'flightId' },
             { title: 'Origin', field: 'origin' },
             //   { title: 'Location', field: 'originLocation' },
             { title: 'Destination', field: 'destination' },
@@ -28,44 +32,47 @@ const DroneDetail = (props) => {
             }
         ],
         data: [
-            { name: 'FLight 1', droneId: '1', origin: "Nepal", destination: '1', missionId: 87, purpose: 0 },
-            { name: 'FLight 2', droneId: '3', origin: "Nepal", destination: '2', missionId: 86, purpose: 1 },
-            { name: 'FLight 3', droneId: '4', origin: "Nepal", destination: '4', missionId: 88, purpose: 2 },
-            { name: 'FLight 4', droneId: '5', origin: "Nepal", destination: '4', missionId: 89, purpose: 0 },
-            { name: 'FLight 5', droneId: '6', origin: "Nepal", destination: '5', missionId: 81, purpose: 1 },
         ],
     });
-
-    const dispatch = useDispatch();
-    //   const { flightList } = useSelector(({ flights }) => flights);
-    // console.log(drones);
-    //   useEffect(() => {
-    //     dispatch(actions.fetchFlights())
-    //   }, [dispatch]);
-
-    //   useEffect(() => {
-    //     setState((prevState) => {
-
-    //       return { ...prevState, data: flightList };
-    //     });
-    //   }, [flightList]);
 
     const [selectedRow, setSelectedRow] = React.useState(null);
     const [redirectTo, setRedirectTo] = React.useState(null);
     const [redirect, setRedirect] = React.useState(null);
-    
+    const [cardData, setCardData] = React.useState({ "droneId": 0, "flightTime": 0, "flights": 0, "crashes": 0 })
+    const droneDetail = useSelector(({ dms }) => dms.droneDetail)
+    const dispatch = useDispatch();
+
     useEffect(() => {
-        if (props.location.state === undefined) {
-            setRedirect(<Redirect to='/app/dms/drone' />)
+        // console.log(props.location);
+        if (props.location.state === undefined || props.location.state === null) {
+            // console.log("undefined");
+            setRedirect(<Redirect to='/app/dms/drone'/>)
         }
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        console.log(droneDetail);
+        const dDetail = droneDetail ? droneDetail.flights.map(m => {
+            // console.log(m)
+            return createData(m._id,m.mission.hospital.name , m.mission.destination.name, m.mission?m.mission._id:null, 0)
+        }) : []
+        setState((prevState) => {
+
+            return { ...prevState, data: dDetail };
+        });
+        if (droneDetail !== null) {
+            const cData = { "droneId": droneDetail.droneId, "flightTime": droneDetail.flightTime, "flights": droneDetail.numOfFlight, "crashes": 0 }
+            setCardData(cData);
+        }
+    }, [droneDetail]);
+
 
     const openFlightDetail = (id) => {
-        // dispatch(actions.fetchFlightDetails(id))
+        dispatch(actions.fetchFlightDetails(id))
         console.log(id);
         setRedirectTo(<Redirect to={{
             pathname: '/app/flights/flightdetail',
-            state: {id:id}
+            state: { id: id }
         }} />)
     }
 
@@ -79,15 +86,7 @@ const DroneDetail = (props) => {
                 main: '#ff9100',
             },
         },
-
     });
-
-    const cardData = {
-        "droneId": 6,
-        "flyingTime": '00:45:56',
-        "flights": 5,
-        "crashes": 1
-    }
 
     const card = cardData !== undefined && cardData !== null ? cards.data.map((data, index) => {
         return (
@@ -115,7 +114,7 @@ const DroneDetail = (props) => {
                     columns={state.columns}
                     data={state.data}
                     icons={TableIcons}
-                    onRowClick={((evt, selectedRow) => openFlightDetail(selectedRow))}
+                    onRowClick={((evt, selectedRow) => openFlightDetail(selectedRow.flightId))}
                     options={{
                         rowStyle: rowData => ({
                             backgroundColor: (selectedRow === rowData.tableData.id) ? '#EEE' : '#FFF',

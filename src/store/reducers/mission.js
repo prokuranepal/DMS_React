@@ -5,7 +5,8 @@ const initialState = {
     missionDetail: null,
     missions: [],
     loading: false,
-    message: ""
+    message: "",
+    severity: "success"
 };
 
 const setMissionDetail = (state, action) => {
@@ -26,7 +27,8 @@ const setMissionLoading = (state, action) => {
 
     return updateObject(state, {
         loading: action.loading,
-        message: action.message
+        message: action.message,
+        severity: action.severity
     })
 }
 

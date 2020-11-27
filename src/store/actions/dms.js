@@ -29,7 +29,7 @@ export const fetchDroneDetail = (id) => dispatch => {
         const url = `/drones/${id}`;
         console.log(func.getToken());
         axios.get(url,{headers: func.getToken()}).then(response => {
-            console.log(response);
+            // console.log(response);
             dispatch(fetchDroneDetailSuccess(response.data))
         })
     } catch (error) {
