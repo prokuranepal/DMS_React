@@ -1,8 +1,7 @@
 import React from 'react';
 import {Area, AreaChart, ResponsiveContainer} from 'recharts';
 
-import {expanseData} from '../../Components/data'
-
+const expanseData={};
 const MonthlyIncome = () => (
   <ResponsiveContainer width="100%" height={110}>
     <AreaChart data={expanseData}>

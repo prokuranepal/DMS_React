@@ -3,7 +3,7 @@ import * as actionTypes from './actionTypes';
 
 export const fetchActiveDrones = () => {
     return dispatch => {
-        axios.get('./activeDrones.js').then(res => {
+        return axios.get('./activeDrones.js').then(res => {
             dispatch(fetchActiveDronesSuccess());
             dispatch(fetchActiveDronesUpdate(res.activeDrones));
         }).catch(err => {
@@ -34,7 +34,7 @@ export const fetchActiveDronesFail = () => {
 
 export const fetchMissionList = () => {
     return dispatch => {
-        axios.get('./missionList.js').then(res => {
+        return axios.get('./missionList.js').then(res => {
             dispatch(fetchMissionListSuccess());
             dispatch(fetchMissionListUpdate(res.missions));
         }).catch(err => {

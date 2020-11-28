@@ -3,12 +3,12 @@ import CustomerCell from './CustomerCell';
 
 let counter = 0;
 
-function createData(name, userId, image, order) {
+export function createData(name, userId, image, order) {
   counter += 1;
   return {id: counter, name, userId, image, order};
 }
 
-const data = [
+export const data = [
   createData('John Smith', 'Co-Founder', "https://via.placeholder.com/150x150", '3'),
   createData('Alex Dolgove', 'CEO', "https://via.placeholder.com/150x150", '1'),
   createData('Domnic Brown', 'Co-Founder', "https://via.placeholder.com/150x150", '0'),
@@ -22,7 +22,7 @@ const CustomerTable = () => {
       <tbody>
       {data.map(data => {
         return (
-          <CustomerCell key={data.id} data={data}/>
+          <CustomerCell key={data.id} data={data} data-test="customerCell"/>
         );
       })}
       </tbody>

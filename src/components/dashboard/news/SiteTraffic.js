@@ -1,6 +1,6 @@
 import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
-import SiteTrafficChart from "components/dashboard/Common/SiteTrafficChart";
+import SiteTrafficChart from "../Common/SiteTrafficChart";
 
 const SiteTraffic = () => {
   return (

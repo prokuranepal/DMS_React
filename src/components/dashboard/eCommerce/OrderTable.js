@@ -34,7 +34,7 @@ const OrderTable = () => {
         <tbody>
         {data.map(data => {
           return (
-            <OrderTableCell key={data.id} data={data}/>
+            <OrderTableCell data-test= "orderCell" key={data.id} data={data}/>
           );
         })}
         </tbody>

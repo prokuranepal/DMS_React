@@ -31,9 +31,9 @@ const PostList = (props) => {
   };
     return (
       <>
-        <WriteBox addPost={addPost} user={user}/>
+        <WriteBox addPost={addPost} user={user} data-test="writeComp"/>
         {postList.map((post) => {
-            return <PostItem key={post.id} index={post.id} postData={post} user={user}/>
+            return <PostItem data-test="postComp" key={post.id} index={post.id} postData={post} user={user}/>
           }
         )}
       </>

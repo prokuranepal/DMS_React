@@ -32,35 +32,35 @@ const getWeatherByPlace = async (p) => {
     }
 }
 
-const getWeatherByLatLon = async (lat, lon) => {
-    const api = '7d075324e76eb73bf9c70e7381fa4bc6';
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${api}`;
-    console.log(url);
-    try {
-        const response = await axios.get(url);
-        // console.log(response.statusText);
-        if (response.statusText === "OK") {
-            // console.log(response);
-            const res = {
-                lat: lat,
-                lon: lon,
-                main: response.data.weather[0].description,
-                iconId: response.data.weather[0].id,
-                temp: (response.data.main.temp - 273).toFixed(2),
-                temp_min: (response.data.main.temp_min - 273).toFixed(2),
-                temp_max: (response.data.main.temp_max - 273).toFixed(2),
-                humidity: response.data.main.humidity,
-                wind_speed: response.data.wind.speed
-            }
-            // console.log(res);
-            return res;
-        } else {
-            throw new Error("Error");
-        }
-    } catch (e) {
-        console.log(e.message);
-    }
-}
+// const getWeatherByLatLon = async (lat, lon) => {
+//     const api = '7d075324e76eb73bf9c70e7381fa4bc6';
+//     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${api}`;
+//     console.log(url);
+//     try {
+//         const response = await axios.get(url);
+//         // console.log(response.statusText);
+//         if (response.statusText === "OK") {
+//             // console.log(response);
+//             const res = {
+//                 lat: lat,
+//                 lon: lon,
+//                 main: response.data.weather[0].description,
+//                 iconId: response.data.weather[0].id,
+//                 temp: (response.data.main.temp - 273).toFixed(2),
+//                 temp_min: (response.data.main.temp_min - 273).toFixed(2),
+//                 temp_max: (response.data.main.temp_max - 273).toFixed(2),
+//                 humidity: response.data.main.humidity,
+//                 wind_speed: response.data.wind.speed
+//             }
+//             // console.log(res);
+//             return res;
+//         } else {
+//             throw new Error("Error");
+//         }
+//     } catch (e) {
+//         console.log(e.message);
+//     }
+// }
 
 export const getWeather = () => {
     return async (dispatch, getState) => {
@@ -69,7 +69,7 @@ export const getWeather = () => {
         // console.log(places);
         const weathers = [];
         const url = './places.js';
-        axioss.get(url).then(response => {
+        return axioss.get(url).then(response => {
             dispatch(setPlaces(response.placesResponse));
             const places = response.placesResponse.data;
             // console.log(places);
