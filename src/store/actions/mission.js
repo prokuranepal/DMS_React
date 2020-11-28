@@ -50,7 +50,7 @@ export const getMission = (missionId) => {
             missionId: missionId
         };
         dispatch(getMissionStart());
-        axios.post(url, data).then(response => {
+        return axios.post(url, data).then(response => {
             dispatch(setMission(response.missionDetail));
         }).catch(err => {
             console.log(err);

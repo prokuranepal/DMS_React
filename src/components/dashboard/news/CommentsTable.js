@@ -22,7 +22,7 @@ const PopularAuthorsTable = () => {
     <div className="jr-comments">
       {data.map(data => {
         return (
-          <CommentsCell key={data.id} data={data}/>
+          <CommentsCell key={data.id} data-test='commentsCell' data={data}/>
         );
       })}
     </div>

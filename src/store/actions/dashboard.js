@@ -15,13 +15,13 @@ export const getToken = () => {
   };
 
 export const getCurrentCards = () => async dispatch => {
+  
     try {
         // const res = await axios.get('api/dashboard');
         // const url = './dashboardCardData';
         const url = '/dashboard';
-        console.log(getToken());
-        axios.get(url,{headers: getToken()}).then(response => {
-            console.log(response);
+       return axios.get(url,{headers: getToken()}).then(response => {
+            console.log('response backend',response.data, GET_CARDS);
             dispatch({
                 type: GET_CARDS,
                 data: response.data
@@ -30,6 +30,8 @@ export const getCurrentCards = () => async dispatch => {
         
 
     } catch (error) {
+    console.log('response backend e');
+
         dispatch({
             type: CARD_ERROR,
             // error: error.response.statusText, 
@@ -42,7 +44,7 @@ export const getCurrentCards = () => async dispatch => {
 export const getPlaces = () => {
     return dispatch => {
         const url = './places.js';
-        axios1.get(url).then(response => {
+       return axios1.get(url).then(response => {
             dispatch(setPlaces(response.placesResponse));
         })
     }

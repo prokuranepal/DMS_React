@@ -1,5 +1,5 @@
 import React from 'react';
-import StateBox from "components/StatBox/index"
+import StateBox from "../../StatBox/index"
 
 const StatBoxes = () => (
   <div className="row">

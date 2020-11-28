@@ -21,6 +21,7 @@
     "array-move": "^2.2.1",
     "autosuggest-highlight": "^3.1.1",
     "axios": "^0.19.2",
+    "axios-mock-adapter": "^1.19.0",
     "babel-preset-stage-2": "^6.24.1",
     "bootstrap": "^4.4.1",
     "bootstrap-v4-rtl": "^4.4.1-1",

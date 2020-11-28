@@ -65,7 +65,7 @@ export const checkAuthTimeout = (expirationTime, refreshToken) => {
     };
 };
 
-const sendRefreshToken = (refreshToken) => {
+export const sendRefreshToken = (refreshToken) => {
     return dispatch => {
         // let url = 'https://securetoken.googleapis.com/v1/token?key=AIzaSyDL3N1A50XmBEQGRPrAN2zCudp9mpIe28I';
         let url = './auth.js';
@@ -73,7 +73,7 @@ const sendRefreshToken = (refreshToken) => {
             grant_type: "refresh_token",
             refresh_token: refreshToken
         }
-        axios.post(url, data)
+       return axios.post(url, data)
             .then(response => {
                 console.log(response);
                 response = response.authResponse;
@@ -96,7 +96,7 @@ export const signUp = (email, password) => {
             password: password,
             returnSecureToken: true
         };
-        axios.post(url, authData)
+        return axios.post(url, authData)
             .then(response => {
                 dispatch(signUpSuccess());
             });

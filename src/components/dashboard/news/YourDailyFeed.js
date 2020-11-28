@@ -32,7 +32,7 @@ const YourDailyFeed = () => {
     <div className="pb-3">
       {feeds.map(feed => {
         return (
-          <YourDailyFeedCell key={feed.id} feed={feed}/>
+          <YourDailyFeedCell data-test="feedCellComp" key={feed.id} feed={feed}/>
         );
       })}
     </div>

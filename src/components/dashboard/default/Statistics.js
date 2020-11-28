@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import IconButton from '@material-ui/core/IconButton';
 
-import {lableList} from '../../../app/routes/dashboard/routes/Misc/data'
-import ChartCard from 'components/dashboard/Common/ChartCard';
-import Chart from "components/dashboard/default/Chart";
+// import {lableList} from '../../../app/routes/dashboard/routes/Misc/data'
+import ChartCard from '../Common/ChartCard';
+import Chart from "./Chart";
 
+const lableList=[{},{}]
 const Statistics = () => {
 
   const [value, setValue] = useState(0);
@@ -30,6 +31,7 @@ const Statistics = () => {
           {value === 0 ?
             <div className='statistics-chartjs'>
               <Chart
+              data-test="value0Comp"
                 borderColor="#FFF"
                 pointBorderColor='#FFF'
                 pointBackgroundColor='#FFF'
@@ -48,6 +50,7 @@ const Statistics = () => {
             value === 1 ?
               <div className='statistics-chartjs'>
                 <Chart
+                data-test="value1Comp"
                   borderColor="#FFF"
                   pointBorderColor='#FFF'
                   pointBackgroundColor='#FFF'
@@ -64,6 +67,7 @@ const Statistics = () => {
               </div>
               : <div className='statistics-chartjs'>
                 <Chart
+                data-test="value2Comp"
                   borderColor="#FFF"
                   pointBorderColor='#FFF'
                   pointBackgroundColor='#FFF'
@@ -81,7 +85,7 @@ const Statistics = () => {
         </ChartCard>
         <div className="jr-card-social jr-card-social-around pb-2">
           <ul className="social-link">
-            <li onClick={handleChange}>
+            <li onClick={handleChange} data-test="clickComp">
               <IconButton color={value === 0 ? "primary" : "default"}>
                 <i className="zmdi zmdi-timer zmdi-hc-lg"/>
               </IconButton>
