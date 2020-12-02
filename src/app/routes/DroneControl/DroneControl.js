@@ -233,13 +233,14 @@ const DroneControl = props => {
             default:
 
         }
-        setDialogMessage(msg, () => {
-            setDialogOpen(true)
-        });
-        
+        // console.log("Inside command message")
+        setDialogMessage(msg);
+        setDialogOpen(true);
+        // console.log(dialogMessage,"asas", dialogOpen, command)
     }
 
     const sendCommand = () => {
+        // console.log("Inside send command ")
         setDialogOpen(false);
         const d = new Date();
         const n = d.getMilliseconds();
