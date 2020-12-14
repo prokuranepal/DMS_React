@@ -19,6 +19,12 @@ import * as actions from '../../../../store/actions/dms';
 //   return { name, droneId, numOfFlight, type, status };
 // }
 
+/**
+ * This shows a table of drones, both active and inactive
+ * @returns {Drones} - Returns a list of Drones
+ * @argument {Drones} - No Arguments
+ */
+
 const Drone = () => {
   
   const [state, setState] = React.useState({

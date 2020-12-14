@@ -14,6 +14,13 @@ import ChartCard from '../../../components/ChartCard/ChartCard'
 import * as cards from '../../../JSONFiles/dashboardCards';
 import DashbboardSkeleton from './DashboardSkeleton';
 
+/**
+ * This is the main landing page after signIn which shows data of number of drones, active drones, number of health posts and graphs of number of deliveries per certain interval of time of the Hospitals and each of its constituent Health posts
+ * The store and default route path are 
+ * @returns {Dashboard} - Returns the Dashboard component with cards and graphs
+ * @argument {Dashboard} - No Arguments
+ */
+
 const Dashboard = (props) => {
 
     const dispatch = useDispatch();

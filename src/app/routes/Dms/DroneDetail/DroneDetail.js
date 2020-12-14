@@ -15,6 +15,12 @@ function createData(flightId, origin, destination, missionId, purpose) {
     return { flightId, origin, destination, missionId, purpose };
 }
 
+/**
+ * This shows a detailed information of a specific drone
+ * @returns {DroneDetail} - Returns some details of the drone and a material table of the flights it has performed.
+ * @argument {DroneDetail} - No Arguments
+ */
+
 const DroneDetail = (props) => {
     const [state, setState] = React.useState({
         columns: [

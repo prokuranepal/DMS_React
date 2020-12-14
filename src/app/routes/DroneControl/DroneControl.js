@@ -34,6 +34,14 @@ const droneIcon = new Icon({
     iconSize: [25, 25]
 });
 
+/**
+ * This shows a complete control system of flights of a drone. Here we can choose the drone we want 
+ * to observe, upload a mission to the drone, see its real time location with other flight details and finally
+ * fly, rtl and land the drone.
+ * @returns {Drones} - Returns a map, dialog box and some flight details.
+ * @argument {Drones} - No Arguments
+ */
+
 const DroneControl = props => {
 
     const classes = useStyles();
@@ -55,6 +63,7 @@ const DroneControl = props => {
     const [drone, setDrone] = React.useState(null);
 
     const [home, setHome] = React.useState({ lat: 26.818123, lng: 87.281345 });
+    const [positionList, setPositionList] = React.useState([]);
     const [missionState, setMissionState] = React.useState(null);
     const [dialogData, setDialogData] = React.useState({open: false, handleClose: null})
     const [dialogOpen, setDialogOpen] = React.useState(false);
@@ -80,6 +89,9 @@ const DroneControl = props => {
 
     const setData = (data) => {
         setDroneInfo(data);
+        const latLng = {...positionList};
+        latLng.push({lat: data.lat, lng: data.lng});
+        setPositionList(latLng);
     }
 
     const setHomePosition = (position) => {
@@ -89,10 +101,10 @@ const DroneControl = props => {
         });
     }
 
-    useEffect(() => {
-        const socket1 = io(`url`)
-        socket1.emit("joinDMS", '5fa283c19827ab1a65bf2cd9');
-    },[])
+    // useEffect(() => {
+    //     const socket1 = io(`url`)
+    //     socket1.emit("joinDMS", '5fa283c19827ab1a65bf2cd9');
+    // },[])
 
     useEffect(() => {
         // console.log(drone);
@@ -296,8 +308,9 @@ const DroneControl = props => {
                     </Grid>
 
                     <Grid item xs={3} container alignItems='flex-start' justify='flex-end' >
-                        {droneInfo !== null ? <span><AttitudeIndicator size={100} roll={(droneInfo.roll * 180) / 3.14} pitch={(droneInfo.pitch * 180) / 3.14} showBox={false} />
-                            <HeadingIndicator size={100} heading={droneInfo.head} showBox={false} /></span> : null}
+                        {droneInfo !== null ? <div><div><AttitudeIndicator size={130} roll={(droneInfo.roll * 180) / 3.14} pitch={(droneInfo.pitch * 180) / 3.14} showBox={false} /></div>
+                            <div><HeadingIndicator size={130} heading={droneInfo.head} showBox={false} /></div>
+                            </div> : null} }
                     </Grid>
                 </Grid>
                 <TileLayer
@@ -325,8 +338,17 @@ const DroneControl = props => {
                   }
                     </span>
                     )
-                }) : null
-                }
+                }) : null}
+                {positionList.length !== 0 ? positionList.map((position,i, array) => {
+                      return (
+                        <span key={i}>
+                            {array[i - 1] ? <Polyline weight={1} positions={[
+                            [array[i - 1].lat, array[i - 1].lng], [array[i].lat, array[i].lng],
+                        ]} color={'red'} /> : null}
+                        </span>
+                      )
+                  }):null}
+                
             </Map>
         </Grid>
     </Grid>
