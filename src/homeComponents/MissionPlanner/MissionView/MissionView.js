@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Modal from '@material-ui/core/Modal';
 import Fade from '@material-ui/core/Fade';
@@ -10,6 +10,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import * as actions from '../../../store/actions/mission';
+import * as droneActions from '../../../store/actions/droneControl';
+import url from '../../../url';
+import io from 'socket.io-client';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -73,6 +76,15 @@ const MissionView = props => {
     const [missionDetail, setMissionDetail] = React.useState(initialMissionDetail);
     const [openSnack, setOpenSnack] = React.useState(false);
 
+    //choos drone to get home position of the drone to draw a mission
+    const activeDrones = useSelector(({ droneControl }) => droneControl.activeDrones);
+    const [drone, setDrone] = React.useState(null);
+    const [openDroneList, setOpenDroneList] = React.useState(false);
+    const [home, setHome] = React.useState({ lat: 26.818123, lng: 87.281345 });
+    const userId = useSelector(({ auth }) => auth.userId);
+    const socket = useRef();
+
+
     //to update the localstate by the missionDetails sourced from server
     useEffect(() => {
         if (openMissionDetail !== null) {
@@ -90,12 +102,12 @@ const MissionView = props => {
     }, [openMissionDetail]);
 
     useEffect(() => {
-        if(!loading && message !== "") {
+        if (!loading && message !== "") {
             // setMissionDetail(initialMissionDetail);
             // setAction('create');
             setOpenSnack(true);
         }
-    },[loading]);
+    }, [loading]);
 
     //close the modal after choosing the mission
     const handleCloseMission = () => {
@@ -229,7 +241,7 @@ const MissionView = props => {
 
     function Alert(props) {
         return <MuiAlert elevation={6} variant="filled" {...props} />;
-      }
+    }
 
     const onDeleteWaypoint = () => {
         console.log(missionDetail.waypoints, currWaypointIndex)
@@ -252,6 +264,51 @@ const MissionView = props => {
     const handleCloseSnack = () => {
         setOpenSnack(false);
     }
+
+    //For Drones
+    const handleOpenDrone = () => {
+        // console.log("Handle Open Drone");
+        dispatch(droneActions.fetchActiveDrones());
+        setOpenDroneList(true);
+    };
+
+    const handleCloseDrone = () => {
+        setOpenDroneList(false);
+    };
+
+    const selectDrone = (drone) => {
+        // console.log(drone);
+        // socket.current.off("joinDMS");
+        setDrone(drone);
+        setOpenDroneList(false);
+
+    }
+
+    const setHomePosition = (position) => {
+        console.log(position);
+        setHome({
+            ...home, lat: position.lat, lng: position.lng
+        });
+    }
+
+    useEffect(() => {
+        // console.log(drone);
+        if (drone !== null) {
+            const d = new Date();
+            const n = d.getMilliseconds();
+            socket.current = io(`${url}/${drone}`);
+            socket.current.emit("joinDMS", userId);
+            socket.current.emit("homePosition", { timestamp: n })
+            socket.current.on("homePosition", setHomePosition)
+            return function cleanup() {
+                
+                console.log("Drone disconnect cleanup")
+                socket.current.removeAllListeners();
+                socket.current.disconnect();
+            };
+        }
+    }, [drone]);
+
     // console.log(create);
     return (
         <Grid container className={classes.root}>
@@ -269,11 +326,20 @@ const MissionView = props => {
                     onCreateMission={startMissionCreation} openMission={openMission}
                     create={create}
                     onDeleteWaypoint={onDeleteWaypoint}
-                    loading={loading} />
+                    loading={loading}
+
+                    selectDrone={selectDrone}
+                    activeDrones={activeDrones}
+                    openDroneList={openDroneList}
+                    handleCloseDrone={handleCloseDrone}
+                    handleOpenDrone={handleOpenDrone}
+
+                    
+                />
             </Grid>
             <Grid item xs={9}>
                 <Map
-                    center={[center.lat, center.lng]}
+                    center={[home.lat, home.lng]}
                     zoom={17}
                     style={{ width: '100%', height: '100%' }}
                     zoomControl={false}
