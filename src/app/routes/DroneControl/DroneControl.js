@@ -78,6 +78,7 @@ const DroneControl = props => {
     //for loading mission from server
     useEffect(() => {
         setMissionState(missionDetail);
+        
     }, [missionDetail]);
 
     //for loading mission from drone
@@ -88,10 +89,16 @@ const DroneControl = props => {
     }
 
     const setData = (data) => {
-        setDroneInfo(data);
-        const latLng = {...positionList};
+        
+        // let latLng = [...positionList, {lat: data.lat, lng: data.lng}];
+        let latLng = positionList;
         latLng.push({lat: data.lat, lng: data.lng});
-        setPositionList(latLng);
+        setPositionList(latLng)
+        // console.log(positionList)
+        // setPositionList(latLng, () => {
+        //     console.log(positionList, "jyggy");
+        // });
+        setDroneInfo(data);
     }
 
     const setHomePosition = (position) => {
@@ -99,6 +106,9 @@ const DroneControl = props => {
         setHome({
             ...home, lat: position.lat, lng: position.lng
         });
+        // let d = positionList;
+        // d.push({lat: position.lat, lng: position.lng})
+        // setPositionList(d)
     }
 
     // useEffect(() => {
@@ -207,6 +217,7 @@ const DroneControl = props => {
         const n = d.getMilliseconds();
         socket.current.emit("getMission", { timestamp: n })
         setShowMissionDetail(false);
+        console.log("sas",positionList);
 
     }
 
@@ -342,9 +353,9 @@ const DroneControl = props => {
                 {positionList.length !== 0 ? positionList.map((position,i, array) => {
                       return (
                         <span key={i}>
-                            {array[i - 1] ? <Polyline weight={1} positions={[
+                            {array[i - 1] ? <Polyline weight={2} positions={[
                             [array[i - 1].lat, array[i - 1].lng], [array[i].lat, array[i].lng],
-                        ]} color={'red'} /> : null}
+                        ]} color={'green'} /> : null}
                         </span>
                       )
                   }):null}

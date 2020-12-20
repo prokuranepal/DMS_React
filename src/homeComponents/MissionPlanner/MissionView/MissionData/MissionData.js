@@ -117,7 +117,7 @@ const MissionData = props => {
     const dispatch = useDispatch();
     const classes = useStyles();
     const healthposts = useSelector(({ dashboard }) => dashboard.healthposts);
-    console.log("healthposts from dashboard", healthposts)
+    // console.log("healthposts from dashboard", healthposts)
     // console.log(props.waypoint);
     useEffect(() => {
         if (healthposts.length === 0) {
