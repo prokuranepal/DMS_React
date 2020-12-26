@@ -10,6 +10,7 @@ matrix:
       python: 2.7
       script:
         - pip install sphinx-js
+        - make -C docscripts/ html
     - language: node_js
       node_js:
       - "10.15.3"
@@ -24,7 +25,6 @@ matrix:
 
       script:
       - npm test -- --coverage --passWithNoTests
-      - make -C docscripts/ html
   # - touch docs/build/html/.nojekyll
 #   - CI=false npm run build
 
