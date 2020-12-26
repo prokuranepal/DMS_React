@@ -13,6 +13,8 @@ Welcome to DMS's documentation!
 .. js:autofunction:: MainApp
 .. js:autofunction:: ActivityBox
 .. js:autofunction:: CardBox
+.. js:autofunction:: InfoCard
+.. js:autofunction:: CheckList
 
 
 
