@@ -65,6 +65,8 @@ it("Components ColorOption", () => {
 
     // let spanComp1 = wrapper.find(<span/>) //was not able to find span component no matter what
     expect(drawerComp.prop('open')).toEqual(false)
+
+
     // expect(spanComp1.prop('className')).toEqual('jr-link bg-indigo false')
     // expect(switchComp.prop('checked')).toEqual(true)
     // iconButtonComp1.props().onClick();

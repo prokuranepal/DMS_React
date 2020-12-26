@@ -37,7 +37,7 @@ const MedicineListContainer = props => {
                             <ArrowBackIcon />
                         </IconButton>
                     </Link>
-                </Grid>
+                </Grid> 
                 <Grid item lg={3} md={3} sm={3} xs={5} justify="center" alignItems="center" container>
                     <Typography variant="h5">{props.location.aboutProps ? props.location.aboutProps.name : "Medicines"}</Typography>
                 </Grid>
@@ -49,7 +49,7 @@ const MedicineListContainer = props => {
                 <Grid item lg={2} md={3} sm={3} xs={5} justify="center" container>
                     {/* <Hidden xsDown> */}
                     <Link to='/app/ims/addmedicine' style={{ textDecoration: 'none', color: 'white' }}>
-                        <Button onClick={goToAddMedicine} variant="contained" color="primary">Add Item</Button>
+                        <Button data-test="buttonComp" onClick={goToAddMedicine} variant="contained" color="primary">Add Item</Button>
                         </Link>
                     {/* </Hidden> */}
                 </Grid>

@@ -45,9 +45,9 @@ describe('imsMedicine', () => {
         {
             store.dispatch(addMedicine()).then(
                 ()=>{
-                let expectedActions = {
+                let expectedActions = [{
                         "type": "ADD_MEDICINE"
-                }
+                }]
                 expect(store.getActions()).toEqual(expectedActions)
                 }
             )

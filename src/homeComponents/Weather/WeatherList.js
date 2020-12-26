@@ -3,11 +3,10 @@ import Moment from 'moment';
 
 
 const WeatherList = (props) => {
-
   return (
     <div className="text-muted mb-4 pb-1">
       {
-        props.weather.map((data, index) => <DayWeather dayData={data} key={index}/>)
+        props.weather.map((data, index) => <DayWeather data-test="weather" dayData={data} key={index}/>)
       }
     </div>
   )
@@ -21,6 +20,7 @@ const DayWeather = ({dayData}) => {
 
   let bgColorClass = 'list-weather-widget ';
   // Set the background colour based on the temperature
+  console.log("temp console weather list", dayData)
   if (temp >= 30) {
     bgColorClass += 'very-warm';
   } else if (temp > 20 && temp < 30) {

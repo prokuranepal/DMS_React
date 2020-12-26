@@ -34,7 +34,7 @@ function createData(index: number, eventId: number, source: string, description:
     return { index, eventId, source, description };
 }
 
-const rows = [
+export const rows = [
     createData(12, 4201, 'GSM', "Drone Max 720 has reached Dharan at 9:45 AM"),
     createData(11, 4202, 'GSM', "Drone Max 720 has been launched from Biratnagar at 7930 AM"),
     createData(10, 4203, 'GSM', "Nobel Health post ordered medicines at 9:15 AM"),
@@ -77,7 +77,7 @@ const EventLog = props => {
                     </TableHead>
                     <TableBody>
                         {rows.map((row) => (
-                            <StyledTableRow key={row.index}>
+                            <StyledTableRow key={row.index} data-test="rowsComp">
                                 <StyledTableCell component="th" scope="row">
                                     {row.index}
                                 </StyledTableCell>

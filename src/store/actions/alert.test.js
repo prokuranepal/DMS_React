@@ -39,7 +39,6 @@ describe('alert', () => {
                         "alertType": "alertType1",
                         "id": id,
                         "msg": "message1"}}]
-                    console.log("alert test", store.getActions())
                     expect(store.getActions()).toEqual(expectedActions)
         //     const newState=store.getState()
         //     const expectedState={

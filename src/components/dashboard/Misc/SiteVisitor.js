@@ -1,8 +1,8 @@
 import React from 'react';
-import {countryList1} from "../../../app/routes/dashboard/routes/data";
+import {countryList1} from "../../../components/dashboard/Common/country_routes.js";
 
 import {VectorMap} from "react-jvectormap";
-import CountryListItem from "components/dashboard/Common/CountryListItem";
+import CountryListItem from "../../../components/dashboard/Common/CountryListItem";
 
 const SiteVisitor = () => {
   return (
@@ -15,7 +15,7 @@ const SiteVisitor = () => {
         <h4 className="mb-2 text-muted">Countries</h4>
         <div className="row">
           <div className="col-lg-6 col-sm-6 col-12 mb-5 mb-md-1">
-            {countryList1.map((country, index) => <CountryListItem key={index} country={country}/>)}
+            {/* {countryList1.map((country, index) => <CountryListItem key={index} country={country}/>)} */}
           </div>
           <div className="col-lg-6 col-sm-6 col-12 mb-5 mb-md-1">
             {countryList1.map((country, index) => <CountryListItem key={index} country={country}/>)}

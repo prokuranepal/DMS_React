@@ -23,12 +23,12 @@ const Dashboard = (props) => {
     const date = new Date();
     const year = date.getFullYear();
     console.log(year);
-    const { cardData, loading, graphs } = useSelector(({ dashboard }) => dashboard);
-
+    const dashboard= useSelector(({ dashboard }) => dashboard);
+    const { cardData, loading, graphs }= dashboard; 
     const card = cardData !== null ? cards.data.map((data, index) => {
         return (
             <Grid item lg={3} md={3} xs={6} key={index}>
-                <IconWithTextCard data={data} value={cardData[data.title]} style={{marginBottom: 0}}/>
+                <IconWithTextCard data={data} data-test='cardMap' value={cardData[data.title]} style={{marginBottom: 0}}/>
             </Grid>
         )
     }) : null;
@@ -58,22 +58,26 @@ const Dashboard = (props) => {
                                         </CardBox>
                                     </Grid>
                                     <Hidden only="sm">
+                                    {console.log("dashboard healthPost", graphs, loading, graphs.healthPosts)}
                                        
                                         {(loading || graphs === null || graphs.healthPosts === null)
                                             ? <Spinner /> : <Grid item md={4}>
-                    
-                                                {graphs.healthPosts.map((healthPost, index) => {
-                                                    return <div className="col-12" key={index}>
+                                                {graphs.healthPosts.map((healthPost, index) => {``
+                                                    console.log("inside healthPost map")
+                                                    return (<div className="col-12" key={index} data-test='lineComp'>
                                                         {/* { console.log(Object.values(healthPost.data[year]))} */}
                                                         <ChartCard styleName="bg-gradient-primary text-white">
                                                             <div className="chart-title">
                                                                 <h2 className="mb-1">{healthPost.name}</h2>
                                                                 <p>Number of Deliveries</p>
                                                             </div>
-                                                            <ResponsiveContainer width="100%" height={90}>
+                                                            {console.log("dashboard console", healthPost)}
+                                                            <ResponsiveContainer width="100%" height={90} 
+                                                                    >
                                                                 <CustomLineChart
                                                                     chartData={Object.values(healthPost.data[year])}
                                                                     labels={Object.keys(healthPost.data[year])}
+                                                                    data-test="lineComp"                                                                    
                                                                     borderColor="#FFF"
                                                                     pointBorderColor="#FFF"
                                                                     pointBackgroundColor="#FF9800"
@@ -83,7 +87,7 @@ const Dashboard = (props) => {
                                                                 />
                                                             </ResponsiveContainer>
                                                         </ChartCard>
-                                                    </div>
+                                                    </div>)
                                                 })}
 
                                             </Grid>}
