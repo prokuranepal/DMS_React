@@ -46,9 +46,9 @@ export const checks1 = [{
     value: false
 }];
 /**
- * This is the main entry point after index.js
- * The store and default route path are 
- * @returns {App} - Directs to App component which based on authentication decides wheter to direct to login or authentication';
+ * CheckList component to choose an item from multiple options. For instance to choose different drones in drone control
+ * @param {props}  props: abort function to take action on menu abortions
+ * @returns {CheckList} - A checklist component to choose items;
  */
  const CheckList = (props) => {
     const classes = useStyles();
