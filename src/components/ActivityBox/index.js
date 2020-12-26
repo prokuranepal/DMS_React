@@ -1,7 +1,7 @@
 import React from 'react';
 import ActivityBoxComponent from './ActivityBoxComponent';
 /**
- * Wraps provided components in a nice box
+ * Wraps provided components in a nice box kjlj
  * @returns {ActivityBoxComponent} returns a well styled div component
  * @param {props} props visit, newVisit, lastWeekVisit, styleName
  */

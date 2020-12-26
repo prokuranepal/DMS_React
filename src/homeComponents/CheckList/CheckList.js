@@ -29,6 +29,8 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
+
+
 export const checks1 = [{
     name: 'Permission',
     value: false
@@ -43,11 +45,15 @@ export const checks1 = [{
     name: 'Battery Level',
     value: false
 }];
+/**
+ * This is the main entry point after index.js
+ * The store and default route path are 
+ * @returns {App} - Directs to App component which based on authentication decides wheter to direct to login or authentication';
+ */
  const CheckList = (props) => {
     const classes = useStyles();
    
     const [checks, setChecks] = React.useState(checks1);
-
     const handleOnChange = (event, index) => {
         const cc = [];
         cc.push(...checks);
