@@ -75,7 +75,7 @@ export const sendRefreshToken = (refreshToken) => {
         }
        return axios.post(url, data)
             .then(response => {
-                console.log(response);
+                // console.log(response);
                 response = response.authResponse;
                 const expirationDate = new Date(new Date().getTime() + response.data.expires_in * 1000);
                 localStorage.setItem('token', response.data.id_token);
@@ -116,7 +116,7 @@ export const signIn = (email, password) => {
             email: email,
             password: password
         };
-        console.log(authData);
+        // console.log(authData);
         // let url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyDL3N1A50XmBEQGRPrAN2zCudp9mpIe28I';
         // const url = './auth.js';
         const url = '/users/login';
@@ -127,7 +127,7 @@ export const signIn = (email, password) => {
                 // response = response;
                 // const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
                 // console.log(new Date().getTime());
-                console.log(response);
+                // console.log(response);
                 // console.log(response.data.idToken,response.data.expiresIn, expirationDate, expirationDate.getTime() - new Date().getTime());
                 localStorage.setItem('token', response.data.token);
                 // localStorage.setItem('expirationDate', expirationDate);
@@ -137,7 +137,7 @@ export const signIn = (email, password) => {
                 // dispatch(checkAuthTimeout(response.data.expiresIn, response.data.refreshToken));
             })
             .catch(err => {
-                console.log(err);
+                // console.log(err);
                 dispatch(authFail(err));
             });
     };
@@ -170,7 +170,7 @@ export const authCheckState = () => {
 };
 
 export const resetPassword = (email) => {
-    console.log(email);
+    // console.log(email);
     return dispatch => {
         const data = {
             requestType: "PASSWORD_RESET",

@@ -38,7 +38,7 @@ const Ims = () => {
                 <div className="animated slideInUpTiny animation-duration-3">
                     <div className="row products-grid-row">
                         {types.map((type, index) => (
-                            <ImsCard key={index} type={type} />
+                            <ImsCard data-test="cardComp" key={index} type={type} />
                         ))}
                     </div>
                 </div>

@@ -16,7 +16,7 @@ import {
   import {DARK_INDIGO} from '../../constants/ThemeColors';
   
   const rltLocale = ['ar'];
-  const initialSettings = {
+  export const initialSettings = {
     navCollapsed: false,
     drawerType: TOGGLE_COLLAPSED_NAV,
     themeColor: DARK_INDIGO,

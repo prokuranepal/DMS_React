@@ -14,8 +14,9 @@ const MailListItem = ({mail, onMailSelect, onMailChecked, onStartSelect}) => {
                   onMailChecked(mail)
                 }}
                 value="SelectMail"
+                data-test="checkboxComp"
       />
-      <IconButton type="button" className="icon-btn size-50 p-0" onClick={() => {
+      <IconButton type="button" className="icon-btn size-50 p-0" data-test="iconButtonComp" onClick={() => {
         onStartSelect(mail);
       }}>
         {mail.starred ?
@@ -35,7 +36,7 @@ const MailListItem = ({mail, onMailSelect, onMailChecked, onStartSelect}) => {
         }
       </div>
 
-      <div className="module-list-info" onClick={() => {
+      <div className="module-list-info" data-test="onMailSelectComp" onClick={() => {
         onMailSelect(mail);
       }}>
 

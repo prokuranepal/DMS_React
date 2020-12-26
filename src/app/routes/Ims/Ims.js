@@ -20,9 +20,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const MissionPlanner = ({match}) => {
-
-  const classes = useStyles();
-
+  let classes=null
+try{
+   classes= useStyles();
+}
+catch{}
   return (
     <div>
       <Grid container className={classes.root} >

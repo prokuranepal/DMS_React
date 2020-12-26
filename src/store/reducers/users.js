@@ -6,7 +6,7 @@ import {GET_USERS,
     CLEAR_USER2, 
     DELETE_USER} from '../actions/actionTypes'
 
-const initialState = {
+export const initialState = {
 
 users1: [],
 users2: [],

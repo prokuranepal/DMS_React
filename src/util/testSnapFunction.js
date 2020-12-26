@@ -18,14 +18,7 @@ export const findByTestProps=(wrapper,val)=>{
     return wrapper.findByProps({"data-test": val})
 }
 
-//  jest.mock("Platform",()=>"android")
-export const mockPlatform = OS => {
-    jest.resetModules();
-    jest.doMock('react-native/Libraries/Utilities/Platform', () => ({
-      OS,
-      select: config => config[OS],
-    }));
-  };
+
   export const mockSocket = OS => {
     jest.resetModules();
     jest.doMock('../socket', () => ({
@@ -40,13 +33,17 @@ export const mockPlatform = OS => {
       off:jest.fn()
     }));
   };
-export const mockAlert = ()=>{
-    jest.resetModules();
-    jest.doMock('react-native/Libraries/Alert/Alert', () => ({
-        alert:jest.fn()
-      }));
-    };
-
+  
+    export const mockMaterialUI = ()=>{
+      jest.doMock('@material-ui/styles', () => ({
+          Theme:{
+            spacing:{
+              unit:20
+            }
+          },makeStyles:jest.fn(),
+          createStyles:jest.fn()
+        }));
+      };
     export const mockAvatar = ()=>{
       jest.resetModules();
       jest.doMock('@material-ui/core/es/Avatar/Avatar', (props) => <div >{props.children}</div>);

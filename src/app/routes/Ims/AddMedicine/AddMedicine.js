@@ -25,8 +25,9 @@ import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme= Theme) =>
     createStyles({
+        
         wrapper: {
             margin: theme.spacing.unit,
             position: 'relative',
@@ -50,7 +51,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const AddMedicine = props => {
 
-
+console.log("addMedicine", Theme, createStyles())
     const [name, setName] = useState('');
     const [type, setType] = useState('');
     const [quantity, setQuanity] = useState(0);
@@ -118,6 +119,7 @@ const AddMedicine = props => {
                                 label={<IntlMessages id="appModule.medicine.name" />}
                                 value={name}
                                 onChange={handleChange('name')}
+                                data-test="textComp"
                                 margin="normal"
                                 fullWidth
                                 className="mt-1"
@@ -127,6 +129,7 @@ const AddMedicine = props => {
                                 <Select
                                     native
                                     value={type}
+                                    data-test="selectComp"
                                     onChange={handleChange('type')}
                                     input={<Input id="age-native-simple" />}
 
@@ -148,6 +151,7 @@ const AddMedicine = props => {
                                 label="Quantity"
                                 value={quantity}
                                 type="number"
+                                data-test="quantityComp"
                                 onChange={handleChange('quantity')}
                                 margin="normal"
                                 fullWidth
@@ -159,11 +163,12 @@ const AddMedicine = props => {
                                     value={selectedDate}
                                     onChange={handleChange('selectedDate')}
                                     animateYearScrolling={false}
+                                    data-test="dateComp"
                                     className="mt-1"
                                 />
                             </FormControl>
                             <div className={classes.wrapper}>
-                                <Button onClick={addMedicine} disabled={loading} color="primary" variant="contained" className={buttonClassname}>
+                                <Button onClick={addMedicine} data-test="addMedicineComp" disabled={loading} color="primary" variant="contained" className={buttonClassname}>
                                     <IntlMessages id="appModule.addItem" />
                                     {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
                                 </Button>
