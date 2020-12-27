@@ -7,8 +7,9 @@ before_install:
   - sudo apt-get update
   - sudo apt-get install python3 -y
   - sudo apt-get install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget
-  - python --version
-  - sudo pip install sphinx-js
+  - python3 --version
+  - python3 -m pip3 install --upgrade pip
+  - sudo pip3 install sphinx-js
 matrix:
   include:
     - language: python
