@@ -5,6 +5,8 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import {logout} from '../../store/actions/auth';
 import IntlMessages from '../../util/IntlMessages';
+import { Redirect } from 'react-router';
+// import ArrowDropDownCircleIcon from '@material-ui/icons/ArrowDropDownCircle';
 
 const UserInfo = () => {
 
@@ -12,7 +14,7 @@ const UserInfo = () => {
 
   const [anchorE1, setAnchorE1] = useState(null);
   const [open, setOpen] = useState(false);
-
+  const [link, setLink] = useState(null);
   const handleClick = event => {
     setOpen(true);
     setAnchorE1(event.currentTarget);
@@ -22,6 +24,11 @@ const UserInfo = () => {
     setOpen(false);
   };
 
+  const linkProfile = () => {
+    const l = <Redirect to="/app/profile" />
+    setLink(l);
+  }
+
   return (
     <div className="user-profile d-flex flex-row align-items-center">
       <Avatar
@@ -30,9 +37,11 @@ const UserInfo = () => {
         className="user-avatar "
       />
       <div className="user-detail">
-          <h4 className="user-name d-flex"onClick={handleClick} ><span className='text-truncate'>Robert Johnson</span> 
-          {/* <i className="zmdi zmdi-caret-down zmdi-hc-fw align-middle"/> */}
+          <h4 className="user-name d-flex" onClick={handleClick} ><span className='text-truncate'>Robert Johnson</span> 
+          {/* <div className={{marginLeft: '50px'}}><ArrowDropDownCircleIcon /></div> */}
+          <i className="zmdi zmdi-caret-down zmdi-hc-fw align-middle"/>
         </h4>
+        
       </div>
       <Menu className="user-info"
             id="simple-menu"
@@ -47,14 +56,15 @@ const UserInfo = () => {
               }
             }}
       >
-        <MenuItem onClick={handleRequestClose}>
+        {link}
+        <MenuItem onClick={linkProfile}>
           <i className="zmdi zmdi-account zmdi-hc-fw mr-2"/>
           <IntlMessages id="popup.profile"/>
         </MenuItem>
-        <MenuItem onClick={handleRequestClose}>
+        {/* <MenuItem onClick={handleRequestClose}>
           <i className="zmdi zmdi-settings zmdi-hc-fw mr-2"/>
           <IntlMessages id="popup.setting"/>
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem onClick={() => {
           handleRequestClose();
           dispatch(logout());

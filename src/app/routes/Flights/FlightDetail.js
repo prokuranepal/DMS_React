@@ -12,6 +12,15 @@ import { Link, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import * as func from '../../../Functions/functions'
 
+
+/**
+ * This shows the details of a particular flight like drone used, mission followed, duration, time of flight etc
+ * along with the waypoints in a map.
+ * @returns {FlightDetail} - Returns a map and the flight info.
+ * @argument {FlightDetail} - Flight ID
+ */
+
+
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '80%',
@@ -82,12 +91,15 @@ const FlightDetail = (props) => {
         orderId: '123'
 
     })
+
+    //redirect to flight list page if the url of flight details is loaded without choosing the flight
     useEffect(() => {
         if (props.location.state === undefined) {
             setRedirect(<Redirect to='/app/flights/flights' />)
         }
     }, [])
 
+    //load flight details to state and render it after it is fetched from the server
     useEffect(() => {
         console.log(flightDetails);
         if (flightDetails !== null) {

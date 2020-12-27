@@ -10,6 +10,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import * as dashboardActions from '../../../../store/actions/dashboard';
 import IconButton from "@material-ui/core/IconButton";
 import CircularProgress from '@material-ui/core/CircularProgress';
+import CustomModal from '../../../../hoc/Modal/Modal';
+import DroneList from '../../../../homeComponents/DroneList/DroneList';
+
+/**
+ * This shows a complete mission planner, Here we can make a mission with its, name, source and destination 
+ * along with different waypoints with their, latitude, longitude, altitude, radius etc.
+ * @returns {Drones} - Returns a map and some input fields
+ * @argument {Drones} - No Arguments
+ */
+
+
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
@@ -57,11 +68,11 @@ const useStyles = makeStyles((theme) => ({
         left: '50%',
         marginTop: -12,
         marginLeft: -12,
-      },
-      wrapper: {
+    },
+    wrapper: {
         margin: theme.spacing.unit,
         position: 'relative',
-      }
+    }
 
 }));
 
@@ -114,8 +125,8 @@ const BootstrapInput = withStyles((theme) => ({
 const MissionData = props => {
     const dispatch = useDispatch();
     const classes = useStyles();
-    const  healthposts  = useSelector(({ dashboard }) => dashboard.healthposts);
-    console.log("healthposts from dashboard",healthposts)
+    const healthposts = useSelector(({ dashboard }) => dashboard.healthposts);
+    // console.log("healthposts from dashboard", healthposts)
     // console.log(props.waypoint);
     useEffect(() => {
         if (healthposts.length === 0) {
@@ -126,6 +137,9 @@ const MissionData = props => {
     return (
         <div className={classes.root}>
             <CustomScrollbars className=" scrollbar">
+                <div className={classes.buttons} data-test="create-components" >
+                    <Button size="small" variant="contained" color="primary" onClick={props.handleOpenDrone}>Choose Drone</Button>
+                </div>
                 {props.create ? null :
                     <div className={classes.buttons} data-test="create-components" >
                         <div><Button onClick={props.openMission} size="small" variant="contained" color="primary" data-test="open-mission-button">Open</Button></div>
@@ -211,15 +225,15 @@ const MissionData = props => {
                     <div className={classes.buttons}>
                         <div><Button onClick={props.onCancel} size="small" variant="contained" color="primary" data-test="cancel-button">Close</Button></div>
                         <div className={classes.wrapper}>{props.action === 'create' ? <Button onClick={props.createUpdateMission} size="small" variant="contained" color="primary" disabled={props.mission.waypoints.length === 0} data-test="create-confirm-button">Confirm</Button> :
-                            <Button onClick={props.createUpdateMission} size="small" variant="contained" color="primary" disabled={props.mission.waypoints.length === 0}  data-test="create-update-button">Update</Button>}
-                            {props.loading && <CircularProgress size={24} className={classes.buttonProgress}/>}</div>
+                            <Button onClick={props.createUpdateMission} size="small" variant="contained" color="primary" disabled={props.mission.waypoints.length === 0} data-test="create-update-button">Update</Button>}
+                            {props.loading && <CircularProgress size={24} className={classes.buttonProgress} />}</div>
                     </div>
                     <div className={classes.form}>
                         {props.mission.waypoints.length !== 0 ?
                             <div data-test="mission-waypoints-components">
                                 <div className={classes.inputContainer}>
                                     <span className={`jr-menu-icon mr-3`}><p>Waypoint</p></span>
-                                    
+
                                     <IconButton className={`jr-menu-icon mr-3`} onClick={props.onDeleteWaypoint}>
                                         <i className={'zmdi zmdi-hc-fw  zmdi-delete'} />
                                     </IconButton></div>
@@ -292,6 +306,10 @@ const MissionData = props => {
                                 </form></div> :
                             <div className={classes.noWaypoint} data-test="no-waypoints-components"><h3>No Waypoints</h3></div>}
                     </div></div> : null}
+                <CustomModal
+                    open={props.openDroneList}
+                    close={props.handleCloseDrone}
+                    component={<DroneList abort={props.handleCloseDrone} select={props.selectDrone} drones={props.activeDrones} />} />
             </CustomScrollbars>
         </div>
     )

@@ -13,7 +13,14 @@ import {
 import DateFnsUtils from '@date-io/date-fns';
 import Date from './Date';
 import IconWithTextCard from '../../../../components/statusCard/IconWithTextCard';
-import * as actions from '../../../../store/actions/dms'
+import * as actions from '../../../../store/actions/dms';
+
+/**
+ * This shows a table of incidents and maintenance to be done, doing or done
+ * @returns {Maintenance} - Returns a material-table of maintenance
+ * @argument {Maintenance} - No Arguments
+ */
+
 const Maintenance = () => {
   const [state, setState] = React.useState({
     columns: [

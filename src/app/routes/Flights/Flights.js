@@ -10,6 +10,12 @@ import Grid from '@material-ui/core/Grid';
 import IconWithTextCard from '../../../components/statusCard/IconWithTextCard';
 import { Redirect } from "react-router";
 
+/**
+ * This shows a list of flights
+ * @returns {Flights} - Returns a material table of flights
+ * @argument {Flights} - Flight Info
+ */
+
 const Flights = () => {
     const [state, setState] = React.useState({
         columns: [
@@ -54,6 +60,7 @@ const Flights = () => {
     const [redirectTo, setRedirectTo] = React.useState(null);
     
 
+    //fetch flight details of a particular flight
     const openFlightDetail = (id) => {
         dispatch(actions.fetchFlightDetails(id))
         console.log(id);

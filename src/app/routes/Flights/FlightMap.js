@@ -20,6 +20,12 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
+/**
+ * This shows waypoints of a particular flight in a map.
+ * @returns {FlightInfo} - Returns a map
+ * @argument {FlightInfo} - Flight's Mission waypoints'
+ */
+
 const FlightMap = (props) => {
     const classes = useStyles();
     const [home, setHome] = React.useState({ lat: -35.362935421360326, lng: 149.16551953867867 });

@@ -8,7 +8,7 @@ import * as actions from '../../store/actions/Common';
 const AppNotification = () => {
   // const dispatch = useDispatch();
   // const notification = useSelector(({commonData}) => commonData.notifications);
-  
+  // console.log(notification);
 
   // useEffect(() => {
   //   dispatch(actions.getNotifications());

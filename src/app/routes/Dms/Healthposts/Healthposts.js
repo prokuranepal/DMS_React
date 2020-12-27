@@ -5,6 +5,12 @@ import TableIcons from '../../../../homeComponents/TableIcons/TableIcons';
 import * as actions from '../../../../store/actions/dashboard';
 import { useDispatch, useSelector } from 'react-redux';
 
+/**
+ * This shows a table of constituent healthposts.
+ * @returns {Healthposts} - Returns a material table of healthposts.
+ * @argument {Healthposts} - No Arguments
+ */
+
 const Healthposts = (props) => {
     const [state, setState] = React.useState({
         columns: [
@@ -26,10 +32,12 @@ const Healthposts = (props) => {
 
     const healthposts = useSelector(({ dashboard }) => dashboard.healthposts)
 
+    //fetch healthposts
     useEffect(() => {
         dispatch(actions.getHealthposts())
     }, [dispatch]);
 
+    //set the state for fetched health posts.
     useEffect(() => {
         // console.log("Health posts changed")
         setState((prevState) => {

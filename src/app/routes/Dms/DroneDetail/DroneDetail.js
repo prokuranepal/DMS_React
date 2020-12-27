@@ -15,6 +15,12 @@ function createData(flightId, origin, destination, missionId, purpose) {
     return { flightId, origin, destination, missionId, purpose };
 }
 
+/**
+ * This shows a detailed information of a specific drone
+ * @returns {DroneDetail} - Returns some details of the drone and a material table of the flights it has performed.
+ * @argument {DroneDetail} - Drone ID
+ */
+
 const DroneDetail = (props) => {
     const [state, setState] = React.useState({
         columns: [
@@ -42,6 +48,7 @@ const DroneDetail = (props) => {
     const droneDetail = useSelector(({ dms }) => dms.droneDetail)
     const dispatch = useDispatch();
 
+    //if this url is loaded directly without first choosing the drone, it will redirect to the drone list page
     useEffect(() => {
         // console.log(props.location);
         if (props.location.state === undefined || props.location.state === null) {
@@ -50,6 +57,8 @@ const DroneDetail = (props) => {
         }
     }, []);
 
+
+    //set the state for drone details
     useEffect(() => {
         console.log(droneDetail);
         const dDetail = droneDetail ? droneDetail.flights.map(m => {
@@ -67,6 +76,7 @@ const DroneDetail = (props) => {
     }, [droneDetail]);
 
 
+    //fetch flight details after choosing a specific flight from the flight list
     const openFlightDetail = (id) => {
         dispatch(actions.fetchFlightDetails(id))
         console.log(id);
