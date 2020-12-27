@@ -50,6 +50,8 @@ deploy:
     edge: true
     local_dir: docs/build/html
     keep_history: true
+    on:
+      branch: testing
 
 
 
