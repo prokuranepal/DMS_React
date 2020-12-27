@@ -5,6 +5,7 @@
   "engines": {
     "node": "10.15.3"
   },
+  "homepage": "https://prokuranepal.github.io/DMS_React",
   "dependencies": {
     "@amcharts/amcharts4": "^4.7.18",
     "@amcharts/amcharts4-geodata": "^4.1.9",
