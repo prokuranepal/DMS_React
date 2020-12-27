@@ -3,13 +3,15 @@ sudo: true
 env:
   global:
     - CC_TEST_REPORTER_ID=19bd0503e6a203cc0df5e353251ded94a58b6a57d389666378b939cae2daa4b0
+    - PYTHON=3.5
 before_install:
   - sudo apt-get update
   - sudo apt-get install python3 -y
+  - export PYTHON=3.5
   - sudo apt-get install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget
-  - python3 --version
-  - python3 -m pip3 install --upgrade pip
-  - sudo pip3 install sphinx-js
+  - python --version
+  - python -m pip install --upgrade pip
+  - sudo pip install sphinx-js
 matrix:
   include:
     - language: python
