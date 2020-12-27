@@ -12,6 +12,15 @@ import IconButton from "@material-ui/core/IconButton";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import CustomModal from '../../../../hoc/Modal/Modal';
 import DroneList from '../../../../homeComponents/DroneList/DroneList';
+
+/**
+ * This shows a complete mission planner, Here we can make a mission with its, name, source and destination 
+ * along with different waypoints with their, latitude, longitude, altitude, radius etc.
+ * @returns {Drones} - Returns a map and some input fields
+ * @argument {Drones} - No Arguments
+ */
+
+
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',

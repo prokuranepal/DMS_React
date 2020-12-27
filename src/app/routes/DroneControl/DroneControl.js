@@ -38,8 +38,8 @@ const droneIcon = new Icon({
  * This shows a complete control system of flights of a drone. Here we can choose the drone we want 
  * to observe, upload a mission to the drone, see its real time location with other flight details and finally
  * fly, rtl and land the drone.
- * @returns {Drones} - Returns a map, dialog box and some flight details.
- * @argument {Drones} - No Arguments
+ * @returns {DroneControl} - Returns a map, dialog box and some flight details.
+ * @argument {DroneControl} - No Arguments
  */
 
 const DroneControl = props => {
@@ -88,34 +88,22 @@ const DroneControl = props => {
         }
     }
 
+    //set the state for drone data along with its trajectory
     const setData = (data) => {
-        
-        // let latLng = [...positionList, {lat: data.lat, lng: data.lng}];
-        let latLng = positionList;
-        latLng.push({lat: data.lat, lng: data.lng});
-        setPositionList(latLng)
-        // console.log(positionList)
-        // setPositionList(latLng, () => {
-        //     console.log(positionList, "jyggy");
-        // });
+        setPositionList(arr => [...arr, {lat: data.lat, lng: data.lng}])
         setDroneInfo(data);
     }
 
+    //set home position. it is retrieved only once while initially connecting to the drone
     const setHomePosition = (position) => {
         console.log(position);
         setHome({
             ...home, lat: position.lat, lng: position.lng
         });
-        // let d = positionList;
-        // d.push({lat: position.lat, lng: position.lng})
-        // setPositionList(d)
     }
 
-    // useEffect(() => {
-    //     const socket1 = io(`url`)
-    //     socket1.emit("joinDMS", '5fa283c19827ab1a65bf2cd9');
-    // },[])
 
+    //set the socket route after choosing a drone
     useEffect(() => {
         // console.log(drone);
         if (drone !== null) {
@@ -156,46 +144,53 @@ const DroneControl = props => {
     }, [drone, userId]);
 
 
+    //handle opening the dialog box for mission list
     const handleOpenMission = () => {
         // console.log("Handle Open Mission");
         setOpenMissionList(true);
     };
 
+    //handle closing the dialog box for mission list
     const handleCloseMission = () => {
         setOpenMissionList(false);
     };
 
+    //handle opening the dialog box for checklist
     const handleOpenCheck = () => {
         // console.log("Handle Open Check");
         setOpenCheckList(true);
     };
 
+    //handle closing the dialog box for checklist
     const handleCloseCheck = () => {
         setOpenCheckList(false);
     };
 
+    //handle closing the dialog box for confirming if it is okay to do an action of fly, rtl or land
     const handleCloseDialog = () => {
         setDialogOpen(false)
     }
 
+    //fetch the drones and show it in a dialog box after 'Choose Drone' is clicked
     const handleOpenDrone = () => {
         // console.log("Handle Open Drone");
         dispatch(actions.fetchActiveDrones());
         setOpenDroneList(true);
     };
 
+    //handle closing the dialog box for drone selection
     const handleCloseDrone = () => {
         setOpenDroneList(false);
     };
 
+    //select drone
     const selectDrone = (drone) => {
-        // console.log(drone);
-        // socket.current.off("joinDMS");
         setDrone(drone);
         setOpenDroneList(false);
 
     }
 
+    //select mission
     const selectMission = (mission) => {
         // console.log(mission)
         setMission(mission);
@@ -205,6 +200,7 @@ const DroneControl = props => {
         // socket.current.emit("mission",mission);
     }
 
+    //upload mission
     const uploadMission = () => {
         // console.log(missionState);
         const d = new Date();
@@ -212,34 +208,17 @@ const DroneControl = props => {
         socket.current.emit("mission", { mission: mission, timestamp: n });
     }
 
+    //download mission
     const onDownloadMission = () => {
         const d = new Date();
         const n = d.getMilliseconds();
         socket.current.emit("getMission", { timestamp: n })
         setShowMissionDetail(false);
-        console.log("sas",positionList);
+        // console.log("sas",positionList);
 
     }
 
-    // const onStartMission = () => {
-    //     const d = new Date();
-    //     const n = d.getMilliseconds();
-    //     socket.current.emit("initiateFlight", { timestamp: n })
-    // }
-
-    // const onLand = () => {
-
-    //     const d = new Date();
-    //     const n = d.getMilliseconds();
-    //     socket.current.emit("land", { timestamp: n });
-    // }
-
-    // const onRTL = () => {
-    //     const d = new Date();
-    //     const n = d.getMilliseconds();
-    //     socket.current.emit("rtl", { timestamp: n });
-    // }
-
+    //set the message to be shown in a dialog box for fly, rtl or land
     const setCommandMessage = (command) => {
         setCommand(command);
         let msg = '';
@@ -262,6 +241,7 @@ const DroneControl = props => {
         // console.log(dialogMessage,"asas", dialogOpen, command)
     }
 
+    //set a socket emit for fly, rtl or land
     const sendCommand = () => {
         // console.log("Inside send command ")
         setDialogOpen(false);

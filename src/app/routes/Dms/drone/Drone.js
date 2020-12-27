@@ -75,10 +75,13 @@ const Drone = () => {
   const dispatch = useDispatch();
   const { drones } = useSelector(({ dms }) => dms);
   // console.log(drones);
+
+  //fetch drones
   useEffect(() => {
     dispatch(actions.fetchDrones())
   }, [dispatch]);
 
+  //update the state after data is fetched
   useEffect(() => {
     setState((prevState) => {
 

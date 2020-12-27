@@ -32,10 +32,12 @@ const Healthposts = (props) => {
 
     const healthposts = useSelector(({ dashboard }) => dashboard.healthposts)
 
+    //fetch healthposts
     useEffect(() => {
         dispatch(actions.getHealthposts())
     }, [dispatch]);
 
+    //set the state for fetched health posts.
     useEffect(() => {
         // console.log("Health posts changed")
         setState((prevState) => {

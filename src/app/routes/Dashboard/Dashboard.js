@@ -24,6 +24,8 @@ import DashbboardSkeleton from './DashboardSkeleton';
 const Dashboard = (props) => {
 
     const dispatch = useDispatch();
+
+    //get server response for data on associated healthposts, places etc
     useEffect(() => {
         dispatch(actions.getCurrentCards());
         dispatch(actions.getPlaces());

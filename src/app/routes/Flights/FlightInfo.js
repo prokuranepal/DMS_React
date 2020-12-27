@@ -3,6 +3,13 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+
+/**
+ * This shows the detail of a particular flight.
+ * @returns {FlightInfo} - Returns a list of flight info
+ * @argument {FlightInfo} - Flight Info
+ */
+
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
@@ -17,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
         }
     }),
 );
-const OrderInfo = props => {
+const FlightInfo = props => {
     const classes = useStyles();
     const info = props.info ? props.info : null
     return (
@@ -78,4 +85,4 @@ const OrderInfo = props => {
     )
 }
 
-export default OrderInfo;
+export default FlightInfo;
