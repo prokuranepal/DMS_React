@@ -5,10 +5,8 @@ env:
     - CC_TEST_REPORTER_ID=19bd0503e6a203cc0df5e353251ded94a58b6a57d389666378b939cae2daa4b0
 before_install:
   - sudo apt-get update
-  - sudo apt-get install python3 python3-pip -y
+  - sudo apt-get install python3 python3-pip python3-setuptools python3-wheel -y
   - sudo apt-get install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget
-  - python3 --version
-  - pip3 --version
   - sudo pip3 install sphinx-js
 matrix:
   include:
