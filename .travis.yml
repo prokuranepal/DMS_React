@@ -48,7 +48,7 @@ deploy:
     verbose: true
     github_token: $GITHUB_TOKEN
     edge: true
-    local_dir: docs/build/html
+    local_dir: docs/html
     keep_history: true
     on:
       branch: testing
