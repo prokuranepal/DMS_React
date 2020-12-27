@@ -35,7 +35,7 @@ matrix:
 
       script:
       - make -C docscripts/ html
-      #- npm test -- --coverage --passWithNoTests
+      - npm test -- --coverage --passWithNoTests
       - touch docs/html/.nojekyll
 #   - CI=false npm run build
 
