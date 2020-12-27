@@ -10,8 +10,7 @@ matrix:
       python: 
       - '3.7'
       - '3.8'
-      script:
-        - pip install sphinx-js
+  
     - language: node_js
       node_js:
       - "10.15.3"
@@ -24,6 +23,8 @@ matrix:
       - chmod +x ./cc-test-reporter
       - ./cc-test-reporter before-build
       - npm install -g jsdoc
+      - sudo pip install sphinx-js
+
 
       script:
       - make -C docscripts/ html
