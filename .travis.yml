@@ -14,7 +14,7 @@ before_install:
   - sudo apt-get update
   - sudo apt-get install python3 python3-pip python3-setuptools python3-wheel -y
   - sudo apt-get install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget
-  - sudo pip3 install sphinx-js
+  - pip3 install sphinx-js==3.2.1
 matrix:
   include:
   
@@ -36,7 +36,7 @@ matrix:
       script:
       - make -C docscripts/ html
       #- npm test -- --coverage --passWithNoTests
-  # - touch docs/build/html/.nojekyll
+      - touch docs/html/.nojekyll
 #   - CI=false npm run build
 
       after_script:
