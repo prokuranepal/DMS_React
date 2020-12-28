@@ -27,6 +27,17 @@ const useStyles = makeStyles((theme) => ({
     }
 
 }));
+
+/**
+* A List of checks to be done before a drone is ready to fly
+*
+* @param {Function} props.abort - onclick function to abort the checks.
+* @param {Function} props.select - function to select a drone
+* @param {List} props.drones - a list of drones
+* @returns {DroneList} - returns DroneListItem and buttons
+*/
+
+
 const DroneList = (props) => {
     const classes = useStyles();
     const [value, setValue] = React.useState(null);

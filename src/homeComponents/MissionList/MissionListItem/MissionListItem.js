@@ -31,6 +31,19 @@ const useStyles = makeStyles((theme) => ({
         paddingRight: '20px'
     }
 }));
+
+/**
+* A single drone in the drone list containing a label with a radio
+*
+* @param {AlphaNumeric} props.mission._id - a unique ID of a mission
+* @param {string} props.mission.name - name of the mission
+* @param {Integer} props.mission.wb - number of waypoints in the mission
+* @param {Integer} props.mission.estimated_time - estimated time of completion of mission in a given speed
+* @param {string} props.mission.distance - estimated time of completion of mission in a given speed
+* @returns {MissionListItem} - It returns a radio with a label
+*/
+
+
 const MissionListItem = (props) => {
     const classes = useStyles();
     // console.log(props)

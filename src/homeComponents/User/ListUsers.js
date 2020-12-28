@@ -5,7 +5,14 @@ import { useSelector, useDispatch } from 'react-redux'
 import * as actions from '../../store/actions/users'
 import { Redirect } from 'react-router';
 
-const ListUsers = props => {
+/**
+* A List of healthpost users
+*
+* @param - No parameters
+* @returns {ListUsers} - returns a material table of healthpost users
+*/
+
+const ListUsers = () => {
 
     const [state, setState] = React.useState({
         columns: [

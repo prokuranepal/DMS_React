@@ -34,8 +34,9 @@ const useStyles = makeStyles((theme) => ({
 
 /**
  * This shows the seditable profile page.
+ * @param - No Arguments
  * @returns {Profile} - Returns a list of input fields for user profile 
- * @argument {Profile} - No Arguments
+ 
  */
 
 const Profile = () => {

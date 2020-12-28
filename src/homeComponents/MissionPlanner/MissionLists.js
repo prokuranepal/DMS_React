@@ -8,6 +8,14 @@ const CreateData = (data) => {
     return {name:data.name, estimated_time: data.estimated_time, distance: data.distance, destination: data.destination.name, location: data.destination.location,
     waypoints: data.wb, origin: data.hospital.name }
 }
+
+/**
+* A List of missions
+*
+* @param - No parameters
+* @returns {MissionList} - returns a material table of missions
+*/
+
 const MissionList = () => {
 
     const [state, setState] = React.useState({

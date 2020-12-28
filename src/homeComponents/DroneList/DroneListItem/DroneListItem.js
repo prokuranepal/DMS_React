@@ -47,6 +47,16 @@ function getDroneText(id) {
             return "None"
     }
 }
+
+/**
+* A single drone in the drone list containing a label with a radio
+*
+* @param {AlphaNumeric} props.drone.droneId - a unique ID of a drone
+* @param {string} props.drone.name - name of a drone
+* @param {string} props.drone.type - type of drone such as quadcopter, vtol etc
+* @returns {DroneListItem} - It returns a checkbox with a label
+*/
+
 const DroneListItem = (props) => {
     const classes = useStyles();
     return (

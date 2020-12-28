@@ -1,5 +1,11 @@
 import Date from "../app/routes/Dms/Maintenance/Date";
 
+/**
+ * returns validity of input
+ * @param   {string} value  - the value of input
+ * @param   {Object} rules  - a object of rules
+ * @return  {Boolean} - validity of input
+ */
 export const checkValidity = (value, rules) => {
     // console.log("sasas");
     let isValid = true;
@@ -33,6 +39,12 @@ export const checkValidity = (value, rules) => {
     return isValid;
 }
 
+/**
+ * returns date in year-month-date format
+ * @param   {string} date  - date in string format
+ * @return  {string} - returns date in year-month-date format
+ */
+
 export const getDate = (date) => {
     console.log(date)
     const d = date?new Date(date): null
@@ -44,6 +56,11 @@ export const getDate = (date) => {
     return dd
 }
 
+/**
+ * returns time in hour-minute-second format
+ * @param   {string} date  - time in string format
+ * @return  {string} - returns time in hour-minute-second format
+ */
 export const getTime = (date) => {
     const d = date?new Date(date): null
     if(d === null)return null
@@ -53,6 +70,12 @@ export const getTime = (date) => {
     return time;
 }
 
+/**
+ * returns duration between two events
+ * @param   {string} startDate  - start date
+ * @param   {string} endDate  - end date
+ * @return  {Integer} - returns duration in minutes
+ */
 export const getDuration = (startDate, endDate) => {
     if(startDate === null || endDate === null)return null
     let duration = Date.parse(endDate) - Date.parse(startDate);
