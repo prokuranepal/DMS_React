@@ -1,0 +1,181 @@
+
+
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code Documentation &#8212; DMS 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributor Covenant Code of Conduct" href="code_of_conduct.html" />
+    <link rel="prev" title="Introduction to Drone Management System" href="introduction.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="code_of_conduct.html" title="Contributor Covenant Code of Conduct"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="introduction.html" title="Introduction to Drone Management System"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">DMS 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Code Documentation</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="code-documentation">
+<h1>Code Documentation<a class="headerlink" href="#code-documentation" title="Permalink to this headline">¶</a></h1>
+<dl class="js function">
+<dt id="MainApp">
+<code class="sig-name descname">MainApp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MainApp" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the main entry point after index.js
+The store and default route path are</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>App</strong> – - Directs to App component which based on authentication decides wheter to direct to login or authentication’;</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt id="ActivityBox">
+<code class="sig-name descname">ActivityBox</code><span class="sig-paren">(</span><em class="sig-param">props</em><span class="sig-paren">)</span><a class="headerlink" href="#ActivityBox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wraps provided components in a nice box</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>props</strong> (<em>props</em>) – visit, newVisit, lastWeekVisit, styleName</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ActivityBoxComponent</strong> – returns a well styled div component</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt id="CardBox">
+<code class="sig-name descname">CardBox</code><span class="sig-paren">(</span><em class="sig-param">props</em><span class="sig-paren">)</span><a class="headerlink" href="#CardBox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses the provided style, and data to present a nice card box</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>props</strong> (<em>props</em>) – heading, children, styleName, cardStyle, childrenStyle, headerOutside, headingStyle</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>CardBox</strong> – returns a well styled card</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt id="InfoCard">
+<code class="sig-name descname">InfoCard</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#InfoCard" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the main entry point after index.js
+The store and default route path are</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>App</strong> – - Directs to App component which based on authentication decides wheter to direct to login or authentication’;</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt id="CheckList">
+<code class="sig-name descname">CheckList</code><span class="sig-paren">(</span><em class="sig-param">props:</em><span class="sig-paren">)</span><a class="headerlink" href="#CheckList" title="Permalink to this definition">¶</a></dt>
+<dd><p>CheckList component to choose an item from multiple options. For instance to choose different drones in drone control</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>props:</strong> (<em>props</em>) – abort function to take action on menu abortions</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>CheckList</strong> – - A checklist component to choose items;</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="introduction.html"
+                        title="previous chapter">Introduction to Drone Management System</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="code_of_conduct.html"
+                        title="next chapter">Contributor Covenant Code of Conduct</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/code_documentation.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="code_of_conduct.html" title="Contributor Covenant Code of Conduct"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="introduction.html" title="Introduction to Drone Management System"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">DMS 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Code Documentation</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Prokura Innovations Pvt. Ltd..
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+    </div>
+  </body>
+</html>
