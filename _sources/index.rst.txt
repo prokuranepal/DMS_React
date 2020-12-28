@@ -7,14 +7,18 @@ Welcome to DMS's documentation!
 ===============================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Contents:
 
-.. js:autofunction:: MainApp
-.. js:autofunction:: ActivityBox
-.. js:autofunction:: CardBox
-.. js:autofunction:: InfoCard
-.. js:autofunction:: CheckList
+.. toctree::
+   :maxdepth: 2
+
+   introduction
+   code_documentation
+   code_of_conduct
+   contributing_guidelines
+   license
+
 
 
 
@@ -24,3 +28,4 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
