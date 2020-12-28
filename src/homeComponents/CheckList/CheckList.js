@@ -41,6 +41,13 @@ export const checks1 = [{
     value: false
 }];
 
+/**
+* A List of checks to be done before a drone is ready to fly
+*
+* @param {Function} props.abort - onclick function to abort the checks.
+* @returns {CheckList} - returns CheckListItem and buttons
+*/
+
 
 const CheckList = (props) => {
     const classes = useStyles();

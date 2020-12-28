@@ -5,7 +5,16 @@ import MaterialTable from 'material-table';
 import TableIcons from '../TableIcons/TableIcons';
 import { Redirect } from 'react-router';
 
-const OrderTable = () => {
+
+/**
+* A List of orders
+*
+* @param - No parameters
+* @returns {OrderList} - returns a material table of orders
+*/
+
+
+const OrderList = () => {
     const dispatch = useDispatch();
 
     const orderList= useSelector(({ imsOrder }) => imsOrder.orderList);
@@ -127,4 +136,4 @@ const OrderTable = () => {
     );
 };
 
-export default OrderTable;
+export default OrderList;

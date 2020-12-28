@@ -3,6 +3,13 @@ import { Marker as LeafletMarker } from 'leaflet';
 import { LeafletProvider, withLeaflet, MapLayer } from 'react-leaflet';
 import 'leaflet-rotatedmarker';
 
+/**
+* A marker that can be rotated
+*
+* @param {Object} props.position- position containing latitude and longitude
+* @returns {RotatedMarker} - returns a rotable marker
+*/
+
 class RotatedMarker extends MapLayer {
   static defaultProps = {
     rotationOrigin: 'center',

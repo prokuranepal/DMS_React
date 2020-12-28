@@ -14,6 +14,16 @@ import {Link} from 'react-router-dom';
 //   },
 // });
 
+/**
+* A single drone in the drone list containing a label with a radio
+*
+* @param {string} props.type.type - category of medicine
+* @param {string} props.type.name- name of category
+* @param {string} props.type.image - image of category 
+* @returns {ImsCard} - It returns a card with text and image
+*/
+
+
 const ImsCard = props => {
 // console.log(props.type)
   return (

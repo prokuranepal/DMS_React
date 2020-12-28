@@ -13,6 +13,14 @@ import * as actions from '../../../store/actions/users';
 import Users from "../../../app/routes/Users/Users";
 // import {photoList} from "../Wall/data";
 
+
+/**
+* A Detailed Profile of a user
+*
+* @param {Object} props.location.state- a state transferred from another componen through Redirect
+* @returns {Profile} - returns a user profile
+*/
+
 const Profile = (props) => {
     console.log(props.location)
     const dispatch = useDispatch();

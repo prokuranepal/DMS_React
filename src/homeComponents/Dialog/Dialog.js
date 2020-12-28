@@ -6,6 +6,16 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+/**
+* An alert dialog to take more user input to confirm an action
+* @param {Boolean} props.open - value to open the dialog box
+* @param {Function} props.handleClose - function to change the state of props.open to false
+* @param {Function} props.agree - function to confirm the action
+* @param {string} props.message - quesion to be asked to the user for confirmation
+* @returns {Dialog} - returns a dialog with agree and disagree buttons
+*/
+
+
 export default function AlertDialog(props) {
   return (
     <div>

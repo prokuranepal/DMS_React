@@ -27,7 +27,7 @@ const useStyles = makeStyles({
 /**
  * This shows the weather of different places.
  * @param  - No Parameters
- * @returns {Weather} - Returns a grid of cards of weather
+ * @returns {WeatherItems} - Returns a list of WeatherItems
  * 
  */
 

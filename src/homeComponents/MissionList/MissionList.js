@@ -30,6 +30,15 @@ const useStyles = makeStyles((theme) => ({
     }
 
 }));
+
+/**
+* A List of missions to be selected to upload to a drone
+*
+* @param {Function} props.abort - onclick function to abort the selection of mission.
+* @param {Function} props.select - function to select a mission
+* @returns {MissionList} - returns MissionListItem and buttons
+*/
+
 const MissionList = (props) => {
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -41,29 +50,31 @@ const MissionList = (props) => {
     };
     const missions = useSelector(({ mission }) => mission.missions);
     // console.log(missions);
+
+    //fetch mission list to be displayed in the dialog box to upload to drone
     useEffect(() => {
         dispatch(actions.fetchMissionList());
     }, [dispatch]);
     return (
         // <div className="module-list mail-list">
-       <div>
-           {missions !== null?
-        <FormControl component="fieldset">
-            <p className={classes.header}>Select Mission</p>
-        <CustomScrollbars className="module-list-scroll scrollbar"
-            style={{ height: 200 >= 800 ? 'calc(100vh - 600px)' : 'calc(100vh - 400px)', minWidth: '300px' }}>
-            <RadioGroup data-test="radioGroup" aria-label="gender" name="gender1" value={value} onChange={handleChange}>
-                {missions.map((mission, index) =>
-                    // <FormControlLabel control={}>
-                    <MissionListItem key={index} mission={mission} data-test="missionList" />
-                )}
-            </RadioGroup>
-        </CustomScrollbars>
-        <div className={classes.buttonLayout}>
+        <div>
+            {missions !== null ?
+                <FormControl component="fieldset">
+                    <p className={classes.header}>Select Mission</p>
+                    <CustomScrollbars className="module-list-scroll scrollbar"
+                        style={{ height: 200 >= 800 ? 'calc(100vh - 600px)' : 'calc(100vh - 400px)', minWidth: '300px' }}>
+                        <RadioGroup data-test="radioGroup" aria-label="gender" name="gender1" value={value} onChange={handleChange}>
+                            {missions.map((mission, index) =>
+                                // <FormControlLabel control={}>
+                                <MissionListItem key={index} mission={mission} data-test="missionList" />
+                            )}
+                        </RadioGroup>
+                    </CustomScrollbars>
+                    <div className={classes.buttonLayout}>
                         <Button variant="outlined" color='primary' onClick={props.abort} data-test="abortButton">Abort</Button>
                         <Button variant="outlined" color="primary" className={classes.button} onClick={() => props.select(value)} data-test="selectButton">Select</Button>
-                        </div>
-        </FormControl>:<Spinner/>}
+                    </div>
+                </FormControl> : <Spinner />}
         </div>
 
     )
