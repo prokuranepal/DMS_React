@@ -22,8 +22,9 @@ const useStyles = makeStyles((theme: Theme) =>
 
 /**
  * This shows waypoints of a particular flight in a map.
+ * @param {List} props.mission.waypoints- a list of waypoints of a given mission
  * @returns {FlightInfo} - Returns a map
- * @argument {FlightInfo} - Flight's Mission waypoints'
+ * 
  */
 
 const FlightMap = (props) => {

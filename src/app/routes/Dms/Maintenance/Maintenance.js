@@ -17,8 +17,9 @@ import * as actions from '../../../../store/actions/dms';
 
 /**
  * This shows a table of incidents and maintenance to be done, doing or done
+ * @param  - No Parameters
  * @returns {Maintenance} - Returns a material-table of maintenance
- * @argument {Maintenance} - No Arguments
+ * 
  */
 
 const Maintenance = () => {

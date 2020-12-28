@@ -24,6 +24,13 @@ const useStyles = makeStyles({
     }
 });
 
+/**
+ * This shows the weather of different places.
+ * @param  - No Parameters
+ * @returns {Weather} - Returns a grid of cards of weather
+ * 
+ */
+
 const Weather = () => {
     const dispatch = useDispatch();
     const classes = useStyles();

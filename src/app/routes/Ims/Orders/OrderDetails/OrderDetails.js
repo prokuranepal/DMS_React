@@ -24,6 +24,14 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: theme.spacing(7),
     }
 }));
+
+/**
+ * This shows a the order details and items of the order
+ * @param {Object} props.location.state- state transferred from Order from Redirect
+ * @returns {OrderDetails} - Returns OrderInfo, OrderItems and other order details
+ *
+ */
+
 const OrderDetails = props => {
     const classes = useStyles();
     const {orderDetails} = useSelector(({ imsOrder }) => imsOrder);

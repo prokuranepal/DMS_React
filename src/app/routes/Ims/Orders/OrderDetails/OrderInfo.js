@@ -17,6 +17,15 @@ const useStyles = makeStyles((theme: Theme) =>
         }
     }),
 );
+
+/**
+ * This shows the info of the order such as origin and destination
+ * @param  {string} props.origin.name- name of the hospital/healthpost from which the drone will fly
+ * @param  {string} props.origin.location- location of the hospital/healthpost from which the drone will fly
+ * @returns {OrderInfo} - Returns the details of the order origin
+ *
+ */
+
 const OrderInfo = props => {
     const classes = useStyles();
     const origin = props.origin?props.origin: {name: null, address: null}

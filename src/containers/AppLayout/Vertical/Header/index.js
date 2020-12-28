@@ -15,7 +15,14 @@ import { switchLanguage, toggleCollapsedNav } from "../../../../store/actions/Se
 import IntlMessages from "../../../../util/IntlMessages";
 import LanguageSwitcher from "../../../../components/LanguageSwitcher/index";
 
-const Index =(props)=> {
+/**
+ * This shows the header of the application
+ * @param - No Params
+ * @returns {Header} - Returns the header containing notification icon
+ * 
+ */
+
+const Header =()=> {
 
   const dispatch = useDispatch();
   const { drawerType, locale, navCollapsed } = useSelector(({settings}) => settings);
@@ -148,4 +155,4 @@ const Index =(props)=> {
   };
 
 
-export default withRouter(Index);
+export default withRouter(Header);

@@ -50,6 +50,18 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
     }
 }));
+
+/**
+ * This shows the mission details.
+ * @param {string} props.mission.name- mission name
+ * @param {Integer} props.mission.waypoints- number of waypoints in the mission
+ * @param {Integer} props.mission.distance- total distance to be travelled by the drone
+ * @param {Function} props.uploadMission- upload the displayed mission to the selected drone
+ * @returns {MissionInfo} - Returns mission details and upload button
+ 
+ */
+
+
 const MissionInfo = props => {
     const classes = useStyles();
     return (<div className={classes.data}>

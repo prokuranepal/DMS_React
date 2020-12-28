@@ -79,7 +79,29 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-// let socket = null;
+/**
+ * This shows the real time data of a particular drone.
+ * @param {Function} props.handleOpenMission- To open the mission dialog box
+ * @param {Function} props.handleOpenCheck- To open the checklist dialog box
+ * @param {Function} props.handleOpenDrone- To open the available drone list dialog box
+ * @param {Function} props.onDownloadMission- To download the mission from the drone
+ * @param {Boolean} props.checklistPass- value to denote if all the checks are passed
+ * @param {Function} props.showMissionDetail- To show the mission detail after it has been downloaded
+ * @param {Function} props.uploadMission- To upload the mission
+ * @param {Object} props.mission- mission details like number of waypoints, flight distance and mission name
+ * @param {Boolean} props.openMissionList- value to make the mission dialog box open
+ * @param {Boolean} props.openCheckList- value to make the checklist dialog box open
+ * @param {Boolean} props.openDroneList- value to make the active drone list dialog box open
+ * @param {Function} props.handleCloseMission- To close the mission list dialog box
+ * @param {Function} props.handleCloseCheck - To close the checklist dialog box
+ * @param {Function} props.handleCloseDrone - To close the drone list dialog box
+ * @param {Function} props.selectMission - set the selected mission
+ * @param {Function} props.selectDrone - set the selected drone
+ * @param {List} props.activeDrones - list of active drones
+ * @returns {DroneData} - Returns a list of drone info with several buttons
+ 
+ */
+
 const DroneData = props => {
     const classes = useStyles();
     const [statusColor, setStatusColor] = React.useState('bg-red');

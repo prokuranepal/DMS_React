@@ -16,8 +16,9 @@ import * as func from '../../../Functions/functions'
 /**
  * This shows the details of a particular flight like drone used, mission followed, duration, time of flight etc
  * along with the waypoints in a map.
+ * @param {Object} props.location.state- state transferred from Redirect from another component
  * @returns {FlightDetail} - Returns a map and the flight info.
- * @argument {FlightDetail} - Flight ID
+
  */
 
 

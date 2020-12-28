@@ -7,8 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 /**
  * This shows a table of constituent healthposts.
+ * @param - No Parameters
  * @returns {Healthposts} - Returns a material table of healthposts.
- * @argument {Healthposts} - No Arguments
+ * 
  */
 
 const Healthposts = (props) => {

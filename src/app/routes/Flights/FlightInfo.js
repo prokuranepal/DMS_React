@@ -6,8 +6,17 @@ import Grid from '@material-ui/core/Grid';
 
 /**
  * This shows the detail of a particular flight.
+ * @param {AlphaNumeric} props.info.droneId- unique ID of a drone
+ * @param {Integer} props.info.duration- flight duration
+ * @param {string} props.info.date- date of fight
+ * @param {AlphaNumeric} props.info.missionId- unique ID of a mission
+ * @param {string} props.info.startTime- start time of flight
+ * @param {string} props.info.endTime- end time of flight
+ * @param {AlphaNumeric} props.info.orderId- unique ID of an order
+ * @param {string} props.info.origin- place from where drone took the flight
+ * @param {string} props.info.destination- place to where the drone will deliver the payload
  * @returns {FlightInfo} - Returns a list of flight info
- * @argument {FlightInfo} - Flight Info
+ * 
  */
 
 const useStyles = makeStyles((theme: Theme) =>

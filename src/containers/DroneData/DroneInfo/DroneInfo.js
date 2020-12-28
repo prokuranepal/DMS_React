@@ -6,8 +6,16 @@ import { findByLabelText } from '@testing-library/react';
 
 /**
  * This shows a the data coming from the drone like latitude, longitude, altitude, GPS, etc.
- * @returns {Drones} - Returns a list of drone info
- * @argument {Drones} - No Arguments
+ * @param {Integer} props.data.volt- voltage of battery of the selected drone in volts
+ * @param {Double} props.data.altr- relative altitude of the selected drone in meter
+ * @param {Double} props.data.gs- ground speed of the selected drone in m/s
+ * @param {Double} props.data.lat- latitude of the selected drone
+ * @param {Double} props.data.lng- longitude of the selected drone
+ * @param {Integer} props.data.numSat- number of connected satellites of the selected drone
+ * @param {string} props.data.status- status of the selected drone
+ * @param {string} props.data.mode- flight mode of the selected drone
+ * @returns {DroneInfo} - Returns a list of drone info
+ 
  */
 
 

@@ -21,8 +21,9 @@ import * as actions from '../../../../store/actions/dms';
 
 /**
  * This shows a table of drones, both active and inactive
+ * @param - No Parameters
  * @returns {Drones} - Returns a list of Drones
- * @argument {Drones} - No Arguments
+ * 
  */
 
 const Drone = () => {

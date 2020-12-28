@@ -56,7 +56,14 @@ createStyles({
 })
 );
 
-const CustomizedTables = (props) => {
+/**
+ * This shows the info of the order such as origin and destination
+ * @param  {List} props.items- list of medicines
+ * @returns {OrderedItems} - Returns the customized table of the list of medicines ordered
+ *
+ */
+
+const OrderedItems = (props) => {
     const classes = useStyles();
     const rows = props.items.map(item => {
         return createData(item.medicine._id, item.medicine.name, item.medicine.dosage,item.medicine.type, item.medicine.quantity, item.medicine.exp_date)
@@ -100,4 +107,4 @@ const CustomizedTables = (props) => {
     );
 }
 
-export default CustomizedTables;
+export default OrderedItems;

@@ -16,9 +16,15 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 
+/**
+ * This shows weather icon according to the weather details.
+ * @argument {Integer} - icon Id
+ * @returns {WeatherIcon} - Returns a weather icon
+ * 
+ */
 
 const WeatherIcon = (props) => {
-  const classes = useStyles();
+  // const classes = useStyles();
   // let image = null;
   // switch (props.image) {
   //     case "10n":

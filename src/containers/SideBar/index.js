@@ -7,6 +7,13 @@ import {COLLAPSED_DRAWER, FIXED_DRAWER, HORIZONTAL_NAVIGATION} from '../../const
 import {toggleCollapsedNav, updateWindowWidth} from '../../store/actions/Setting';
 import SideBarContent from "./SideBarContent";
 
+
+/**
+ * This shows the sidebar.
+ * @param {Sidebar} - No params
+ * @returns {Sidebar} - Returns a list of navigation components
+ */
+
 const SideBar = () => {
   const dispatch = useDispatch();
   const {navCollapsed, drawerType, width, navigationStyle} = useSelector(({settings}) => settings);

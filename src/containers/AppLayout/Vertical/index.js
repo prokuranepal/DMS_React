@@ -14,6 +14,12 @@ import * as actions from '../../../store/actions/Common';
 import { useDispatch } from 'react-redux';
 import io from "socket.io-client";
 
+/**
+ * This shows the main page which consists of header, sidebar and main components accroding to routes.
+ * @param {Component} - Children from Routing
+ * @returns {Vertical} - Returns the sidebar, header and components according to routes
+ *
+ */
 const Vertical = (props) => {
 
   const { drawerType } = useSelector(({ settings }) => settings);
@@ -28,6 +34,8 @@ const Vertical = (props) => {
     document.body.classList.remove("ios-mobile-view-height");
   }
   const socket = useRef();
+
+  //display notifications as alert messages
   const printNotifications = (data) => {
     if (data.message !== undefined) {
       NotificationManager.info(data.message);
@@ -35,6 +43,7 @@ const Vertical = (props) => {
     // console.log("Notification ", data);
   }
 
+  //connect to a socket
   useEffect(() => {
     // console.log(userId);
     socket.current = io(url);
@@ -60,6 +69,7 @@ const Vertical = (props) => {
     };
   }, [userId]);
 
+  //get notifications
   useEffect(() => {
     dispatch(actions.getNotifications());
   }, [dispatch])
