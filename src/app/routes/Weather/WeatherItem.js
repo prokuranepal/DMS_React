@@ -4,6 +4,20 @@ import React from 'react'
 // import Button from '@material-ui/core/Button';
 // import { datePickerDefaultProps } from '@material-ui/pickers/constants/prop-types';
 
+/**
+ * This shows the weather detail of a particular place.
+ * @param {Double} props.temp- temperature in degree celsius
+ * @param {string} props.place- place
+ * @param {string} props.day- day
+ * @param {string} props.time- time
+ * @param {string} props.description- Description of the weather
+ * @param {Double} props.humidity- humidity in %
+ * @param {Double} props.wind- wind speed in mph
+ * @param {Icon} props.iconId- icon according to weather
+ * @returns {FlightInfo} - Returns a a card view of weather details
+ * 
+ */
+
 const WeatherDetail = (props) => {
 
   // const {city, list} = weatherData;

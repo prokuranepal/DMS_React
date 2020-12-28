@@ -12,8 +12,9 @@ import { Redirect } from "react-router";
 
 /**
  * This shows a list of flights
+ * @param  - No parameters
  * @returns {Flights} - Returns a material table of flights
- * @argument {Flights} - Flight Info
+ *
  */
 
 const Flights = () => {

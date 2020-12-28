@@ -3,6 +3,13 @@ import MaterialTable from 'material-table';
 import TableIcons from '../../homeComponents/TableIcons/TableIcons';
 import * as actions from '../../store/actions/imsMedicine';
 import {useDispatch} from 'react-redux';
+
+/**
+ * This shows the list of medicines with the available details..
+ * @param {Medicine} - No Parameters
+ * @returns {Medicine} - Returns a material table of medicines
+ * 
+ */
 const Medicine = (props) => {
     const [state, setState] = React.useState({
         columns: [

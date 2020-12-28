@@ -21,12 +21,19 @@ const useStyles = makeStyles({
     }
 });
 
+/**
+ * This shows a grid view of medicine types
+ * @param  - No parameters
+ * @returns {ImsCard} - Returns a list of ImsCard
+ *
+ */
+
 const Ims = () => {
 
    
     
     
-    const classes = useStyles();
+    // const classes = useStyles();
     // console.log(types);
     return (
         // <Grid container className={classes.root} spacing={2}>

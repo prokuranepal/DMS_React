@@ -3,7 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../../../store/actions/imsMedicine';
 import Medicine from '../../../../containers/Medicine/Medicine';
 
-const MedicineListContainer = props => {
+/**
+ * This shows a list of flights
+ * @param  - No parameters
+ * @returns {Medicine} - Returns the medicine component
+ *
+ */
+
+const MedicineListContainer = () => {
     const dispatch = useDispatch()
 
     const { medicineList } = useSelector(({ ims }) => ims);

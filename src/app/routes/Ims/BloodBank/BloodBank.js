@@ -5,7 +5,14 @@ import TableIcons from '../../../../homeComponents/TableIcons/TableIcons';
 import * as actions from '../../../../store/actions/dashboard';
 import { useDispatch, useSelector } from 'react-redux';
 
-const BloodBank = (props) => {
+/**
+ * This shows a list of bloodbanks
+ * @param  - No parameters
+ * @returns {BloodBank} - Returns a material table of bloodbanks
+ *
+ */
+
+const BloodBank = () => {
     const [state, setState] = React.useState({
         columns: [
             // { title: 'ID', field: 'healthpostId' },

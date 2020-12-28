@@ -15,14 +15,8 @@ const MissionPlanner = ({match}) => {
           <Redirect from={`${match.url}`} to={`${match.url}/missionlist`} />
         </Switch>
       {/* </div> */}
-
     </div>
   )
 }
 
-
-const mapStateToProps = state => ({
-  users: state.users
-})
-
-export default connect(mapStateToProps, { getUsers })(MissionPlanner);
+export default MissionPlanner;

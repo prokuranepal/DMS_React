@@ -14,6 +14,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import SignIn from './SignIn/SignIn';
 import SignUp from './SignUp/SignUp';
 
+/**
+ * This shows login page
+ * @param  - No Param
+ * @returns {Auth} - Returns an image and a component of signin or signup
+ 
+ */
+
 const Auth = (props) => {
 
     const useStyles = makeStyles((theme) => ({
@@ -34,6 +41,8 @@ const Auth = (props) => {
     const classes = useStyles();
     const token = useSelector(({ auth }) => auth.token);
     const [auth, setAuth] = useState(1);
+
+    //check if the token is null or undefined
     useEffect(() => {
         if (token !== null && token !== undefined && token !== "undefined") {
             props.history.push('/');

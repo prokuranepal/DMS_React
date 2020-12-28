@@ -17,8 +17,9 @@ function createData(flightId, origin, destination, missionId, purpose) {
 
 /**
  * This shows a detailed information of a specific drone
+ * @param {Object} props.location.state- data transferred from redirect
  * @returns {DroneDetail} - Returns some details of the drone and a material table of the flights it has performed.
- * @argument {DroneDetail} - Drone ID
+ 
  */
 
 const DroneDetail = (props) => {
