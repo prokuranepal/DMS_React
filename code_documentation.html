@@ -120,6 +120,132 @@ The store and default route path are</p>
 </dl>
 </dd></dl>
 
+<dl class="js function">
+<dt id="CheckListItem">
+<code class="sig-name descname">CheckListItem</code><span class="sig-paren">(</span><em class="sig-param">props</em><span class="sig-paren">)</span><a class="headerlink" href="#CheckListItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>A single item in a checklist containing a label with a checkbox</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>props.name</strong> (<em>string</em>) – name of the check parameter</p></li>
+<li><p><strong>props.onChange</strong> (<em>function</em>) – function to change the state of checkbox ticked or unticked</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>Checkbox</strong> – - It returns a checkbox with a label</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt id="DroneListItem">
+<code class="sig-name descname">DroneListItem</code><span class="sig-paren">(</span><em class="sig-param">props</em><span class="sig-paren">)</span><a class="headerlink" href="#DroneListItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>A single drone in the drone list containing a label with a radio</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>props.drone.droneId</strong> (<em>AlphaNumeric</em>) – a unique ID of a drone</p></li>
+<li><p><strong>props.drone.name</strong> (<em>string</em>) – name of a drone</p></li>
+<li><p><strong>props.drone.type</strong> (<em>string</em>) – type of drone such as quadcopter, vtol etc</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>DroneListItem</strong> – - It returns a checkbox with a label</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt id="DroneList">
+<code class="sig-name descname">DroneList</code><span class="sig-paren">(</span><em class="sig-param">props</em><span class="sig-paren">)</span><a class="headerlink" href="#DroneList" title="Permalink to this definition">¶</a></dt>
+<dd><p>A List of checks to be done before a drone is ready to fly</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>props.abort</strong> (<em>function</em>) – onclick function to abort the checks.</p></li>
+<li><p><strong>props.select</strong> (<em>function</em>) – function to select a drone</p></li>
+<li><p><strong>props.drones</strong> (<em>List</em>) – a list of drones</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>DroneList</strong> – - returns DroneListItem and buttons</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt id="ImsCard">
+<code class="sig-name descname">ImsCard</code><span class="sig-paren">(</span><em class="sig-param">props</em><span class="sig-paren">)</span><a class="headerlink" href="#ImsCard" title="Permalink to this definition">¶</a></dt>
+<dd><p>A single drone in the drone list containing a label with a radio</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>props.type.type</strong> (<em>string</em>) – category of medicine</p></li>
+<li><p><strong>props.type.name-</strong> (<em>string</em>) – name of category</p></li>
+<li><p><strong>props.type.image</strong> (<em>string</em>) – image of category</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ImsCard</strong> – - It returns a card with text and image</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt id="MedicineDetails">
+<code class="sig-name descname">MedicineDetails</code><span class="sig-paren">(</span><em class="sig-param">props</em><span class="sig-paren">)</span><a class="headerlink" href="#MedicineDetails" title="Permalink to this definition">¶</a></dt>
+<dd><p>Details of a medicine and can be edited</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>props.medicineName</strong> (<em>string</em>) – name of medicine</p></li>
+<li><p><strong>props.medicineType-</strong> (<em>string</em>) – type of medicine</p></li>
+<li><p><strong>props.medicineQuantity</strong> (<em>string</em>) – quantity of medicines</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>MedicineDetails</strong> – - It returns an image, text and button</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt id="MissionListItem">
+<code class="sig-name descname">MissionListItem</code><span class="sig-paren">(</span><em class="sig-param">props</em><span class="sig-paren">)</span><a class="headerlink" href="#MissionListItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>A single drone in the drone list containing a label with a radio</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>props.mission._id</strong> (<em>AlphaNumeric</em>) – a unique ID of a mission</p></li>
+<li><p><strong>props.mission.name</strong> (<em>string</em>) – name of the mission</p></li>
+<li><p><strong>props.mission.wb</strong> (<em>Integer</em>) – number of waypoints in the mission</p></li>
+<li><p><strong>props.mission.estimated_time</strong> (<em>Integer</em>) – estimated time of completion of mission in a given speed</p></li>
+<li><p><strong>props.mission.distance</strong> (<em>string</em>) – estimated time of completion of mission in a given speed</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>MissionListItem</strong> – - It returns a radio with a label</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt id="MissionList">
+<code class="sig-name descname">MissionList</code><span class="sig-paren">(</span><em class="sig-param">props</em><span class="sig-paren">)</span><a class="headerlink" href="#MissionList" title="Permalink to this definition">¶</a></dt>
+<dd><p>A List of missions to be selected to upload to a drone</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>props.abort</strong> (<em>function</em>) – onclick function to abort the selection of mission.</p></li>
+<li><p><strong>props.select</strong> (<em>function</em>) – function to select a mission</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>MissionList</strong> – - returns MissionListItem and buttons</p>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 
 
