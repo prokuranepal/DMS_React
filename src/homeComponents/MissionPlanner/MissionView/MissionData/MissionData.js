@@ -93,7 +93,12 @@ const BootstrapInput = withStyles((theme) => ({
         },
     },
 }))(InputBase);
-
+/**
+ * This shows a complete mission planner, Here we can make a mission with its, name, source and destination 
+ * along with different waypoints with their, latitude, longitude, altitude, radius etc.
+ * @returns {Drones} - Returns a map and some input fields
+ * @argument {Drones} - No Arguments
+ */
 const MissionData = props => {
     const classes = useStyles();
     // console.log(props.waypoint);

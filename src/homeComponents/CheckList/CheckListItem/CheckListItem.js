@@ -25,6 +25,13 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: '0px',
     }
 }));
+/**
+* A single item in a checklist containing a label with a checkbox
+*
+* @param {string} props.name - name of the check parameter
+* @param {Function} props.onChange - function to change the state of checkbox ticked or unticked
+* @returns {Checkbox} - It returns a checkbox with a label
+*/
 const CheckListItem = (props) => {
     const classes = useStyles();
     return (

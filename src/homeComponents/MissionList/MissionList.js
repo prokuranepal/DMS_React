@@ -31,6 +31,14 @@ const useStyles = makeStyles((theme) => ({
     }
 
 }));
+
+/**
+* A List of missions to be selected to upload to a drone
+*
+* @param {Function} props.abort - onclick function to abort the selection of mission.
+* @param {Function} props.select - function to select a mission
+* @returns {MissionList} - returns MissionListItem and buttons
+*/
 const MissionList = (props) => {
     const classes = useStyles();
     const dispatch = useDispatch();

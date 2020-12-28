@@ -57,6 +57,13 @@ export const missions = [
         destination: 'Biratnagar'
     }
 ]
+
+/**
+* A List of missions
+*
+* @param - No parameters
+* @returns {MissionList} - returns a material table of missions
+*/
 const MissionLists = props => {
     const classes = useStyles();
     return(

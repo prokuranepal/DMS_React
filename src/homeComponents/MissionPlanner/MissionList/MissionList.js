@@ -26,6 +26,16 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(2),
     },
 }));
+
+/**
+* A single drone in the drone list containing a label with a radio
+*
+* @param {AlphaNumeric} props.id - a unique ID of a mission
+* @param {string} props.source - take-off place of the drone
+* @param {Integer} props.destination - payload drop place of the drone
+* @returns {MissionList} - It returns mission information with a view button
+*/
+
 const MissionList = props => {
     const classes = useStyles();
     return (

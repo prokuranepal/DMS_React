@@ -13,6 +13,13 @@ const useStyles = makeStyles((theme) => ({
         margin: "auto"
     }
 }));
+
+/**
+* A List of healthpost users
+*
+* @param - No parameters
+* @returns {ListUsers} - returns a material table of healthpost users
+*/
 const ListUsers = props => {
     const classes = useStyles();
     return(
