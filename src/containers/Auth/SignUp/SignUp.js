@@ -53,12 +53,12 @@ const SignUp = (props) => {
         },
     }));
 
-    const [first_name, setFirstName] = useState('Sushil');
-    const [last_name, setLastName] = useState('Khadka');
-    const [phone_number, setPhone] = useState('9840016544');
+    const [firstName, setFirstName] = useState('Sushil');
+    const [lastName, setLastName] = useState('Khadka');
+    const [phoneNumber, setPhone] = useState('9840016544');
     const [email, setEmail] = useState('punksusil.khadka@gmail.com');
     const [password, setPassword] = useState('sushil');
-    const [health_facilities, setHealthFaclities] = useState('5fa2839a9827ab1a65bf2cd8');
+    const [healthFacilities, setHealthFaclities] = useState('5fa2839a9827ab1a65bf2cd8');
     const dispatch = useDispatch();
 
     const errorMessage = useSelector(({ auth }) => auth.signUpError);
@@ -70,7 +70,7 @@ const SignUp = (props) => {
 
     const signUp = () => {
 
-        dispatch(actions.signUp({ first_name, last_name, phone_number, email, password, health_facilities }));
+        dispatch(actions.signUp({ firstName, lastName, phoneNumber, email, password, healthFacilities }));
     }
     return (
         <CustomScrollbars className="module-list-scroll scrollbar">
@@ -96,7 +96,7 @@ const SignUp = (props) => {
                         name="firstName"
                         label={<IntlMessages id="signUp.firstName" />}
                         id="firstName"
-                        defaultValue={first_name}
+                        defaultValue={firstName}
                         onChange={(event) => setFirstName(event.target.value)}
                     />
                     <TextField
@@ -107,7 +107,7 @@ const SignUp = (props) => {
                         name="lastName"
                         label={<IntlMessages id="signUp.lastName" />}
                         id="lastName"
-                        defaultValue={last_name}
+                        defaultValue={lastName}
                         onChange={(event) => setLastName(event.target.value)}
                     />
                     <TextField
@@ -118,7 +118,7 @@ const SignUp = (props) => {
                         name="lastName"
                         label={<IntlMessages id="appModule.phone" />}
                         id="lastName"
-                        defaultValue={phone_number}
+                        defaultValue={phoneNumber}
                         onChange={(event) => setPhone(event.target.value)}
                     />
                     <TextField

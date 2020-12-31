@@ -28,6 +28,7 @@ const Profile = (props) => {
 
     useEffect(() => {
         if(props.location !== undefined) {
+          console.log(props.location.state.id)
         dispatch(actions.getUserProfile(props.location.state.id))
         }
     },[dispatch, props.location])

@@ -16,8 +16,13 @@ import DroneList from '../../../../homeComponents/DroneList/DroneList';
 /**
  * This shows a complete mission planner, Here we can make a mission with its, name, source and destination 
  * along with different waypoints with their, latitude, longitude, altitude, radius etc.
- * @returns {Drones} - Returns a map and some input fields
- * @argument {Drones} - No Arguments
+ * @param {Function} props.handleOpenDrone - function to load the list of drones in a dialog box
+ * @param {Function} props.onCreateMission - function to create a mission
+ * @param {Function} props.openMission - function to load the list of missions in a dialog box
+ * @param {Function} props.handleOpenDrone - function to load the list of drones in a dialog box
+ * 
+ * @returns {MissionData} - Returns a map and some input fields
+ * 
  */
 
 
