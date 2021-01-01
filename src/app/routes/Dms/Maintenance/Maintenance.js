@@ -43,7 +43,7 @@ const Maintenance = () => {
       },
       { title: 'Description', field: 'description' },
       {
-        title: 'Type', field: 'type',
+        title: 'Type', field: 'type', editable: 'never',
         lookup: {
           0: 'Quadcopter', 1: 'Hexacopter', 2: 'Octocopter'
           , 3: 'Fixed Wing', 4: 'Quadplane VTOL', 5: 'Tilt-Rotor VTOL'
