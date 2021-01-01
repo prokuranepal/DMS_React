@@ -1,9 +1,11 @@
-import React, { useEffect} from 'react';
+import React, { useEffect } from 'react';
 import MaterialTable from 'material-table';
 import TableIcons from '../../homeComponents/TableIcons/TableIcons';
 import { useSelector, useDispatch } from 'react-redux'
 import * as actions from '../../store/actions/users'
+import * as dashboardActions from '../../store/actions/dashboard'
 import { Redirect } from 'react-router';
+import Healthposts from '../../app/routes/Dms/Healthposts/Healthposts';
 
 /**
 * A List of healthpost users
@@ -14,13 +16,20 @@ import { Redirect } from 'react-router';
 
 const ListUsers = () => {
 
+    const healthposts = useSelector(({ dashboard }) => dashboard.healthposts);
+
     const [state, setState] = React.useState({
         columns: [
-            { title: 'First Name', field: 'firstname' },
-            { title: 'Last Name', field: 'lastname' },
-            { title: 'Health Post', field: 'healthPost' },
+            { title: 'First Name', field: 'firstName' },
+            { title: 'Last Name', field: 'lastName' },
+            {
+                title: 'Health Post', field: 'healthFacilities',
+                lookup: {
+                    'default': 'Default'
+                },
+            },
             { title: 'Address', field: 'address' },
-            { title: 'Phone Number', field: 'phonenumber' },
+            { title: 'Phone Number', field: 'phoneNumber' },
             { title: 'Email', field: 'email' },
             { title: 'Password', field: 'password' }
         ],
@@ -33,11 +42,39 @@ const ListUsers = () => {
 
     useEffect(() => {
         dispatch(actions.getUsers());
+        dispatch(dashboardActions.getHealthposts());
     }, [dispatch])
 
     useEffect(() => {
-        setState(prevState => { return { ...prevState, data: userData.healthpost } })
-    }, [userData])
+        if (userData !== undefined && userData.healthpost !== undefined) {
+            // setState(prevState => { return { ...prevState, data: userData.healthpost } })
+            // console.log(userData.healthpost)
+            const newData = userData.healthpost.map(user => {
+                return {
+                    ...user,
+                    healthFacilities: user.healthFacilities._id
+                }
+            })
+
+            // console.log(newData);
+            setState(prevState => { return { ...prevState, data: newData } })
+        }
+    }, [userData]);
+
+    useEffect(() => {
+        const newState = { ...state };
+        // console.log(healthposts);
+        let lookup = "{"
+        if (healthposts.length !== 0) {
+            healthposts.map((healthpost, i, array) => lookup = (array[i + 1] !== undefined) ? lookup + `"${healthpost._id}": "${healthpost.name}",` : lookup + `"${healthpost._id}": "${healthpost.name}"}`);
+            // console.log(lookup);
+            newState.columns[2].lookup = JSON.parse(lookup + '')
+            // console.log(newState);
+            setState(newState)
+        }
+
+    }, [healthposts, dispatch])
+
 
     const [selectedRow, setSelectedRow] = React.useState(null);
 
@@ -74,8 +111,8 @@ const ListUsers = () => {
                             new Promise((resolve) => {
                                 setTimeout(() => {
                                     resolve();
-                                    console.log(newData);
-                                    //   dispatch(actions.addMedicine(newData))
+                                    // console.log(newData);
+                                      dispatch(actions.addUser(newData))
                                     setState((prevState) => {
                                         const data = [...prevState.data];
                                         data.push(newData);
@@ -88,8 +125,8 @@ const ListUsers = () => {
                                 setTimeout(() => {
                                     resolve();
                                     if (oldData) {
-                                        console.log(newData);
-                                        // dispatch(actions.updateMedicine(newData, newData._id))
+                                        // console.log(newData);
+                                        dispatch(actions.updateUser(newData, newData._id))
                                         setState((prevState) => {
                                             const data = [...prevState.data];
                                             data[data.indexOf(oldData)] = newData;
@@ -105,7 +142,7 @@ const ListUsers = () => {
                                     setState((prevState) => {
                                         const data = [...prevState.data];
                                         data.splice(data.indexOf(oldData), 1);
-                                        // dispatch(actions.deleteMedicine(oldData._id))
+                                        dispatch(actions.deleteUser(oldData._id))
                                         return { ...prevState, data };
                                     });
                                 }, 600);

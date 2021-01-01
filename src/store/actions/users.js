@@ -7,7 +7,9 @@ import {
     ADD_USER,
     UPDATE_USER,
     GET_USER_PROFILE,
-    UPDATE_USER_PROFILE
+    UPDATE_USER_PROFILE,
+    GET_SELF_USER_DATA,
+    UPDATE_SELF_USER_DATA
 } from './actionTypes'
 import * as func from './function';
 //Get users 
@@ -15,7 +17,7 @@ import * as func from './function';
 export const getUsers = () =>  dispatch => {
    axios.get('/users',{headers: func.getToken()})
    .then(res => {
-       console.log(res.data);
+    //    console.log(res.data);
        dispatch({
            type: GET_USERS,
            users: res.data
@@ -108,5 +110,46 @@ export const updateUserProfileSuccess = (data) => {
     return {
         type: UPDATE_USER_PROFILE,
         userProfile: data
+    }
+}
+
+export const getSelfUserData = (selfUserId) => {
+    return dispatch => {
+        const url = `users/${selfUserId}`
+        axios.get(url,{headers: func.getToken()})
+        .then(response => {
+            // console.log(response.data);
+            dispatch(setSelfUserData(response.data))
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
+}
+
+const setSelfUserData = (data) => {
+    return {
+        type: GET_SELF_USER_DATA,
+        selfUserData: data
+    }
+}
+
+export const updateSelfUserData = (selfUserId,selfUserData) => {
+    return dispatch => {
+        const url = `users/${selfUserId}`
+        axios.put(url, selfUserData, {headers: func.getToken()})
+        .then(response => {
+            // console.log(response.data);
+            dispatch(updateSelfUserDataSuccess())
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
+}
+
+const updateSelfUserDataSuccess =() => {
+    return {
+        type: UPDATE_SELF_USER_DATA
     }
 }

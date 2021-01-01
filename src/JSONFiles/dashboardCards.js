@@ -9,7 +9,7 @@ export const data = [
         cardColor: 'secondary',
         icon: 'flight-takeoff',
         value: '0',
-        name: 'Flying drone',
+        name: 'Active drones',
         title: 'activeDrones'
     }, {
         cardColor: 'info',

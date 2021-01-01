@@ -61,15 +61,17 @@ const DroneDetail = (props) => {
 
     //set the state for drone details
     useEffect(() => {
-        console.log(droneDetail);
+        // console.log(droneDetail);
         const dDetail = droneDetail ? droneDetail.flights.map(m => {
-            // console.log(m)
+            if(m.mission !== null) {
             return createData(m._id,m.mission.hospital.name , m.mission.destination.name, m.mission?m.mission._id:null, 0)
+            }
         }) : []
+        
         setState((prevState) => {
-
             return { ...prevState, data: dDetail };
         });
+
         if (droneDetail !== null) {
             const cData = { "droneId": droneDetail.droneId, "flightTime": droneDetail.flightTime, "flights": droneDetail.numOfFlight, "crashes": 0 }
             setCardData(cData);

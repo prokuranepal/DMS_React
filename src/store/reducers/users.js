@@ -3,7 +3,8 @@ import {
     USER_ERROR,
     DELETE_USER,
     GET_USER_PROFILE,
-    UPDATE_USER_PROFILE
+    UPDATE_USER_PROFILE,
+    GET_SELF_USER_DATA
 } from '../actions/actionTypes'
 import { updateObject } from '../utility';
 const initialState = {
@@ -11,7 +12,8 @@ const initialState = {
     users: [],
     loading: true,
     userProfile: null,
-    error: {}
+    error: {},
+    selfUserData: null
 }
 
 const setUsers = (state, action) => {
@@ -33,11 +35,18 @@ const updateUserProfile = (state, action) => {
     })
 }
 
+const getSelfUserData = (state, action) => {
+    return updateObject(state,  {
+        selfUserData: action.selfUserData
+    })
+}
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_USERS: return setUsers(state, action);
         case GET_USER_PROFILE: return getUserProfile(state, action);
         case UPDATE_USER_PROFILE: return updateUserProfile(state, action);
+        case GET_SELF_USER_DATA: return getSelfUserData(state, action);
         default:
             return state;
     }
