@@ -17,6 +17,7 @@ const fetchDrones = (state, action) => {
 }
 
 const fetchMaintenance = (state, action) => {
+    // console.log(action.data)
     return updateObject(state, {
         maintenance: action.data
     })

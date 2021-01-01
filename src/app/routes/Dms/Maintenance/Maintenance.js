@@ -15,6 +15,7 @@ import Date from './Date';
 import IconWithTextCard from '../../../../components/statusCard/IconWithTextCard';
 import * as actions from '../../../../store/actions/dms';
 
+
 /**
  * This shows a table of incidents and maintenance to be done, doing or done
  * @param  - No Parameters
@@ -23,10 +24,23 @@ import * as actions from '../../../../store/actions/dms';
  */
 
 const Maintenance = () => {
+
+  const [cardData, setCardData] = React.useState({
+    "completed": 0,
+    "inProgress": 0,
+    "overdue": 0,
+    "open": 0
+  });
+
   const [state, setState] = React.useState({
     columns: [
       { title: 'Name', field: 'name' },
-      { title: 'Drone Id', field: 'droneId' },
+      {
+        title: 'Drone Id', field: 'droneId',
+        lookup: {
+          default: 'Default'
+        },
+      },
       { title: 'Description', field: 'description' },
       {
         title: 'Type', field: 'type',
@@ -36,8 +50,23 @@ const Maintenance = () => {
         },
       },
       {
-        title: 'Date Entered', field: 'date',
-        render: rowData => <Date date={rowData.date}/>,
+        title: 'Date Entered', field: 'createdDate',
+        render: rowData => <Date date={rowData.createdDate} />,
+        editComponent: props => (
+          <KeyboardDatePicker
+            margin="normal"
+            id="date"
+            value={props.value}
+            onChange={props.onChange}
+            KeyboardButtonProps={{
+              'aria-label': 'change date',
+            }}
+          />
+        )
+      },
+      {
+        title: 'Due Date', field: 'dueDate',
+        render: rowData => <Date date={rowData.dueDate} />,
         editComponent: props => (
           <KeyboardDatePicker
             margin="normal"
@@ -57,28 +86,50 @@ const Maintenance = () => {
       },
     ],
     data: [
-      { name: 'SOmething Happened 1', description:'', date: null, type: '1', droneId: 87, status: 0 },
-      { name: 'SOmething Happened 2', description:'', date: null, type: '2',droneId: 86, status: 1 },
-      { name: 'Something Happended 3', description:'', date: null, type: '4',droneId: 88, status: 2 },
-      { name: 'Something Happened 4', description:'', date: null,type: '4', droneId: 89, status: 0 },
-      { name: 'SOmething Happened 5', description:'', date: null, type: '5',droneId: 81, status: 3 },
+      { name: 'SOmething Happened 1', description: '', createdDate: null, dueDate: null, type: '1', droneId: 87, status: 0 },
+      { name: 'SOmething Happened 2', description: '', createdDate: null, dueDate: null, type: '2', droneId: 86, status: 1 },
+      { name: 'Something Happened 3', description: '', createdDate: null, dueDate: null, type: '4', droneId: 88, status: 2 },
+      { name: 'Something Happened 4', description: '', createdDate: null, dueDate: null, type: '4', droneId: 89, status: 0 },
+      { name: 'SOmething Happened 5', description: '', createdDate: null, dueDate: null, type: '5', droneId: 81, status: 3 },
     ],
   });
 
   const dispatch = useDispatch();
 
-  const { maintenance } = useSelector(({ dms }) => dms);
-  
+  const { maintenance, drones } = useSelector(({ dms }) => dms);
+
   useEffect(() => {
-    // dispatch(actions.getMaintenance())
+    dispatch(actions.getMaintenance());
+    dispatch(actions.fetchDrones());
   }, [dispatch]);
 
   useEffect(() => {
-    setState((prevState) => {
+    console.log(maintenance);
+    
+    if (maintenance !== undefined && maintenance.data !== undefined) {
+      const newData = maintenance.data.map(m => {
+        return {
+          ...m,
+          droneId: m.droneId._id,
+          type:m.droneId.type
+        }
+      })
 
-      return { ...prevState, data: maintenance };
-    });
+      // console.log(newData);
+      setCardData(maintenance.cards);
+      setState(prevState => { return { ...prevState, data: newData } })
+    }
   }, [maintenance]);
+
+  useEffect(() => {
+    const newState = { ...state };
+    let lookup = "{"
+    if (drones.length !== 0) {
+      drones.map((drone, i, array) => lookup = (array[i + 1] !== undefined) ? lookup + `"${drone._id}": "${drone.name}",` : lookup + `"${drone._id}": "${drone.name}"}`);
+      newState.columns[1].lookup = JSON.parse(lookup + '')
+      setState(newState)
+    }
+  }, [drones, dispatch])
 
   const [selectedRow, setSelectedRow] = React.useState(null);
 
@@ -94,29 +145,24 @@ const Maintenance = () => {
     },
   });
 
-  const cardData = {
-      "completed": 4,
-      "inProgress": 5,
-      "overdue": 6,
-      "open": 7
-  }
+  
 
   const card = cardData !== undefined && cardData !== null ? cards.data.map((data, index) => {
-        return (
-            <Grid item lg={3} md={3} xs={6} key={index}>
-                <IconWithTextCard data={data} value={cardData[data.title]} style={{marginBottom: 0}}/>
-            </Grid>
-        )
-    }) : null;
+    return (
+      <Grid item lg={3} md={3} xs={6} key={index}>
+        <IconWithTextCard data={data} value={cardData[data.title]} style={{ marginBottom: 0 }} />
+      </Grid>
+    )
+  }) : null;
 
 
   return (
     <div>
-         <div style={{paddingBottom: '30px'}}>
+      <div style={{ paddingBottom: '30px' }}>
         <Grid container spacing={5} justify="center">
-            {card}
+          {card}
         </Grid>
-        </div>
+      </div>
       <div className="animated slideInUpTiny animation-duration-3">
         {/* <div className="jr-card">
           <div className="jr-card-header">
@@ -147,7 +193,7 @@ const Maintenance = () => {
                 new Promise((resolve) => {
                   setTimeout(() => {
                     resolve();
-                    console.log(newData);
+                    // console.log(newData);
                     dispatch(actions.addMaintenance(newData))
                     setState((prevState) => {
                       const data = [...prevState.data];
@@ -161,7 +207,7 @@ const Maintenance = () => {
                   setTimeout(() => {
                     resolve();
                     if (oldData) {
-                      console.log(newData);
+                      // console.log(newData);
                       dispatch(actions.updateMaintenance(newData, newData._id))
                       setState((prevState) => {
                         const data = [...prevState.data];
@@ -171,22 +217,22 @@ const Maintenance = () => {
                     }
                   }, 600);
                 }),
-            //   onRowDelete: (oldData) =>
-            //     new Promise((resolve) => {
-            //       setTimeout(() => {
-            //         resolve();
-            //         setState((prevState) => {
-            //           const data = [...prevState.data];
-            //           data.splice(data.indexOf(oldData), 1);
-            //           return { ...prevState, data };
-            //         });
-            //       }, 600);
-            //     }),
+              //   onRowDelete: (oldData) =>
+              //     new Promise((resolve) => {
+              //       setTimeout(() => {
+              //         resolve();
+              //         setState((prevState) => {
+              //           const data = [...prevState.data];
+              //           data.splice(data.indexOf(oldData), 1);
+              //           return { ...prevState, data };
+              //         });
+              //       }, 600);
+              //     }),
             }}
           />
         </MuiPickersUtilsProvider>
       </div>
-      </div>
+    </div>
   );
 }
 
