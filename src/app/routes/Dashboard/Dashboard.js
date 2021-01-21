@@ -77,7 +77,7 @@ const Dashboard = (props) => {
                                                                 <h2 className="mb-1">{healthPost.name}</h2>
                                                                 <p>Number of Deliveries</p>
                                                             </div>
-                                                            {console.log("dashboard console", healthPost)}
+                                                            {console.log("dashboard console", healthPost,year)}
                                                             <ResponsiveContainer width="100%" height={90} 
                                                                     >
                                                                 <CustomLineChart

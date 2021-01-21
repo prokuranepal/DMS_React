@@ -34,14 +34,15 @@ describe('Dashboard />', () => {
   let wrapper;
 
   let store;
-
+  const date = new Date();
+  const year = date.getFullYear();
   beforeEach(() => {
  
     store = mockStore({dashboard:{
         cardData:['data1', 'data2', 'data3'], 
         loading:false, 
-        graphs:{healthPosts:[{data:{'2020':{"name":"healthPost1","date":"1990","location":"ktm"}}}, 
-        {data:{"2020":{"name":"healthPost2","date":"2020","location":"dharan" }}},{data:{"2020" :"healthPost3","date":"1994","location":"patan"}}],
+        graphs:{healthPosts:[{data:{[year]:{"name":"healthPost1","date":"1990","location":"ktm"}}}, 
+        {data:{[year]:{"name":"healthPost2","date":"2020","location":"dharan" }}},{data:{[year]:"healthPost3","date":"1994","location":"patan"}}],
         hospital:{'1990':"hospital1", '2000':"hospital2", '1994':"hospital3", '2020':"hospital3"}}
     }
     
