@@ -15,8 +15,7 @@ Welcome to DMS's documentation!
 
    introduction
    code_documentation
-   code_of_conduct
-   contributing_guidelines
+   privacy_policy
    license
 
 
