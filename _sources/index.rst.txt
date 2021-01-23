@@ -18,8 +18,7 @@ Welcome to DMS's documentation!
    privacy_policy
    license
 
-
-
+`Contributing Guidelines <https://prokuranepal.github.io/contributing_guidelines.html>`_
 
 Indices and tables
 ==================

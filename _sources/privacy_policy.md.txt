@@ -40,9 +40,11 @@ Hive is a worldwide service. By using our service, you authorize us to transfer 
 You have the choice to edit information in your profile at any time
 
 <br>
+
 ### How and when we share information
 Your data is exclusive to you and no other person/organisation has access to it. However, if need be we might share it with law enforcement agencies. We only share information if we believe that disclosure is reasonably necessary to comply with a law, regulation or legal request.
 
 <br>
+
 ### How long we keep your information
 We keep your information only so long as we need it to provide Hive to you and fulfill the purposes described in this policy. When we no longer need to use your information and there is no need for us to keep it to comply with our legal or regulatory obligations, we’ll either remove it from our systems or depersonalize it so that we can't identify you.
