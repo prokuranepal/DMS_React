@@ -1,0 +1,13 @@
+exclude_patterns:
+- "**/*.test.js"
+- "**/*.png"
+- "**/*.svg"
+- "**/*.jpg"
+- "**/*.css"
+- "**/*.scss"
+- "**/*.eot"
+- "**/*.json"
+- "docscripts/"
+- "docs/"
+- "coverage/"
+- "public/"
