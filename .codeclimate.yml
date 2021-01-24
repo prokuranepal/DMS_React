@@ -17,3 +17,8 @@ exclude_patterns:
 - "public/"
 - "src/components/"
 - "src/assets/"
+- "src/containers/themes/"
+- "src/@lodash/"
+- "src/lngProvider/"
+- "src/JSONFiles/"
+
