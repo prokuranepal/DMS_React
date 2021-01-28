@@ -33,11 +33,11 @@ const UserInfo = () => {
     <div className="user-profile d-flex flex-row align-items-center">
       <Avatar
         alt='...'
-        src={"https://via.placeholder.com/150x150"}
+        src={"https://via.placeholder.com/100x100"}
         className="user-avatar "
       />
       <div className="user-detail">
-          <h4 className="user-name d-flex" onClick={handleClick} ><span className='text-truncate'>Robert Johnson</span> 
+          <h4 className={{'fontcolor':'white'}} className="user-name d-flex" onClick={handleClick} ><span className='text-truncate'>Robert Johnson</span> 
           {/* <div className={{marginLeft: '50px'}}><ArrowDropDownCircleIcon /></div> */}
           <i className="zmdi zmdi-caret-down zmdi-hc-fw align-middle"/>
         </h4>

@@ -1,4 +1,4 @@
-import Date from "../app/routes/Dms/Maintenance/Date";
+// import Date from "../app/routes/Dms/Maintenance/Date";
 
 /**
  * returns validity of input
@@ -49,6 +49,7 @@ export const getDate = (date) => {
     console.log(date)
     const d = date?new Date(date): null
     if(d === null)return null
+    console.log(d)
     const dd = d.getFullYear() + "-"
         + ((d.getMonth()+1) < 10?('0'+(d.getMonth()+1)):d.getMonth()+1) + "-"
         +(d.getDate() < 10?'0'+d.getDate():d.getDate());

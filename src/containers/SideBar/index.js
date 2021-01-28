@@ -50,7 +50,7 @@ const SideBar = () => {
                   paper: 'side-nav',
                 }}
       >
-        <UserInfo/>
+        {/* <UserInfo/> */}
         <SideBarContent/>
       </Drawer>
     </div>

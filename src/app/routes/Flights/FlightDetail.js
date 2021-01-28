@@ -9,9 +9,9 @@ import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIcon from '@material-ui/icons/ArrowBackRounded';
 import { Link, Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import * as func from '../../../Functions/functions'
-
+import * as flightActions from '../../../store/actions/flights';
 
 /**
  * This shows the details of a particular flight like drone used, mission followed, duration, time of flight etc
@@ -78,6 +78,7 @@ const mapDetails = {
 
 const FlightDetail = (props) => {
     const classes = useStyles();
+    const dispatch = useDispatch();
     const { flightDetails } = useSelector(({ flights }) => flights);
     const [redirect, setRedirect] = React.useState(null);
     const [info, setInfo] = React.useState({
@@ -95,10 +96,13 @@ const FlightDetail = (props) => {
 
     //redirect to flight list page if the url of flight details is loaded without choosing the flight
     useEffect(() => {
+        console.log(props.location.state)
         if (props.location.state === undefined) {
-            setRedirect(<Redirect to='/app/flights/flights' />)
+            setRedirect(<Redirect to='/app/flights/flights'/>)
+        } else {
+            dispatch(flightActions.fetchFlightDetails(props.location.state.id))
         }
-    }, [])
+    }, [props.location])
 
     //load flight details to state and render it after it is fetched from the server
     useEffect(() => {

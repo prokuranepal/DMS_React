@@ -15,7 +15,7 @@ const NavSection = props => {
       {!!icon && (
         <i className={'zmdi zmdi-hc-fw  zmdi-' + icon}/>
       )}
-      <IntlMessages id={name}/>
+      {/* <IntlMessages id={name}/> */}
     </List>
   );
 

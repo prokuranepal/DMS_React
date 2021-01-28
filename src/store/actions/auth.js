@@ -163,7 +163,7 @@ export const signIn = (email, password) => {
                 dispatch(checkAuthTimeout(response.data.expiresIn, response.data.refreshToken));
             })
             .catch(err => {
-                console.log(err.response,err);
+                console.log(err.response,err.message);
                 // dispatch(authFail(err.response.data.err.message));
             });
     };
