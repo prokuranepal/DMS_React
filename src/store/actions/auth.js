@@ -2,6 +2,7 @@
 // import * as axios from '../../response/falseFetch';
 import axios from '../../axios-orders';
 import * as actionTypes from './actionTypes';
+import * as commonActions from './Common';
 
 const headers = {
     "Content-Type": "application/json"
@@ -92,6 +93,8 @@ const sendRefreshToken = (refreshToken) => {
                 // localStorage.setItem('refreshToken', response.data.refresh_token);
                 // dispatch(authSuccess(response.data.id_token, response.data.user_id));
                 dispatch(checkAuthTimeout(response.data.expiresIn, response.data.refreshToken));
+            }).catch(err => {
+                dispatch(commonActions.fetchError(err.message))
             });
     }
 }
@@ -116,6 +119,7 @@ export const signUp = (data) => {
             .catch(err => {
                 // console.log(err.response.data.err.message)
                 // dispatch(signUpFail(err.response.data.err.message));
+                dispatch(commonActions.fetchError(err.message))
             });
     }
 }
@@ -164,6 +168,7 @@ export const signIn = (email, password) => {
             })
             .catch(err => {
                 console.log(err.response,err.message);
+                dispatch(commonActions.fetchError(err.message))
                 // dispatch(authFail(err.response.data.err.message));
             });
     };

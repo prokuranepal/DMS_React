@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Header from "./Header/index";
 import SideBar from "../../SideBar/index";
+import Snackbar from '@material-ui/core/Snackbar';
 // import Footer from "components/Footer";
 // import Tour from "components/Tour/index";
 import { COLLAPSED_DRAWER, FIXED_DRAWER } from "../../../constants/ActionTypes";
@@ -13,6 +14,8 @@ import url from '../../../url';
 import * as actions from '../../../store/actions/Common';
 import { useDispatch } from 'react-redux';
 import io from "socket.io-client";
+import { Offline, Online, Detector } from "react-detect-offline";
+import MuiAlert from '@material-ui/lab/Alert';
 
 /**
  * This shows the main page which consists of header, sidebar and main components accroding to routes.
@@ -41,6 +44,10 @@ const Vertical = (props) => {
       NotificationManager.info(data.message);
     }
     // console.log("Notification ", data);
+  }
+
+  function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
   }
 
   //connect to a socket
@@ -87,6 +94,14 @@ const Vertical = (props) => {
         <main className="app-main-content-wrapper">
           <div className="app-main-content">
             {props.children}
+            <Detector
+              render={({ online }) => (
+                !online?<Snackbar open={!online}>
+                  <Alert  severity="error">
+                    {"You're offline right now. Check your connection."}
+                </Alert></Snackbar>:null
+              )}
+            />
           </div>
           {/* <Footer/> */}
         </main>

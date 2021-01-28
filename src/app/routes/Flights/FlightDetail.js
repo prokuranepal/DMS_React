@@ -82,15 +82,15 @@ const FlightDetail = (props) => {
     const { flightDetails } = useSelector(({ flights }) => flights);
     const [redirect, setRedirect] = React.useState(null);
     const [info, setInfo] = React.useState({
-        duration: '100 min',
-        date: '27 August, 2020',
-        startTime: '15:09:10',
-        endTime: '16:49:00',
-        origin: "Dharan",
-        destination: "Biratnagar",
-        missionId: '345',
-        droneId: 'JT601',
-        orderId: '123'
+        duration: '',
+        date: '',
+        startTime: '',
+        endTime: '',
+        origin: "",
+        destination: "",
+        missionId: '',
+        droneId: '',
+        orderId: ''
 
     })
 
