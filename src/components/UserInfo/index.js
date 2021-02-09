@@ -33,7 +33,7 @@ const UserInfo = () => {
     <div className="user-profile d-flex flex-row align-items-center">
       <Avatar
         alt='...'
-        src={"https://via.placeholder.com/100x100"}
+        src={"https://via.placeholder.com/50x50"}
         className="user-avatar "
       />
       <div className="user-detail">
