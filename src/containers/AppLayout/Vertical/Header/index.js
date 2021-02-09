@@ -14,6 +14,7 @@ import CardHeader from "../../../../components/dashboard/Common/CardHeader/index
 import { switchLanguage, toggleCollapsedNav } from "../../../../store/actions/Setting";
 import IntlMessages from "../../../../util/IntlMessages";
 import LanguageSwitcher from "../../../../components/LanguageSwitcher/index";
+import UserInfo from '../../../../components/UserInfo'
 
 /**
  * This shows the header of the application
@@ -120,6 +121,9 @@ const Header =()=> {
                   <AppNotification/>
                 </DropdownMenu>
               </Dropdown>
+            </li>
+            <li className="list-inline-item app-tour">
+              <UserInfo/>
             </li>
             {/* <li className="list-inline-item mail-tour">
               <Dropdown

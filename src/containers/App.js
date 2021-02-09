@@ -66,15 +66,17 @@ const App = (props) => {
         setRedirectTo('/signin');
       } else {
         const expiryDate = await localStorage.getItem('expirationDate');
+        // console.log(expiryDate)
         const expirationDate = new Date(expiryDate);
         if (expirationDate <= new Date() || !token) {
           dispatch(authActions.setInitURL('/signin'));
           setRedirectTo('/signin');
+          dispatch(authActions.logout());
           // return (<Redirect to={'/signin'} />)
         } else {
           const expiresIn = expirationDate.getTime() - new Date().getTime();
           const userId = await localStorage.getItem('userId');
-          // dispatch(authActions.authenticate(token, userId, expiresIn / 1000));
+          dispatch(authActions.authenticate(token, userId, expiresIn / 1000));
           dispatch(authActions.setInitURL('/app'));
           setRedirectTo('/app');
           // return (<Redirect to={'/app'} />);

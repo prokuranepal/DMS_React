@@ -9,6 +9,7 @@ import * as cards from '../../../../JSONFiles/droneDetail';
 import Grid from '@material-ui/core/Grid';
 import IconWithTextCard from '../../../../components/statusCard/IconWithTextCard';
 import { Redirect } from "react-router";
+import * as dmsActions from '../../../../store/actions/dms';
 
 function createData(flightId, origin, destination, missionId, purpose) {
 
@@ -44,19 +45,21 @@ const DroneDetail = (props) => {
 
     const [selectedRow, setSelectedRow] = React.useState(null);
     const [redirectTo, setRedirectTo] = React.useState(null);
-    const [redirect, setRedirect] = React.useState(null);
+    // const [redirect, setRedirect] = React.useState(null);
     const [cardData, setCardData] = React.useState({ "droneId": 0, "flightTime": 0, "flights": 0, "crashes": 0 })
     const droneDetail = useSelector(({ dms }) => dms.droneDetail)
     const dispatch = useDispatch();
 
     //if this url is loaded directly without first choosing the drone, it will redirect to the drone list page
     useEffect(() => {
-        // console.log(props.location);
+        console.log(props.location);
         if (props.location.state === undefined || props.location.state === null) {
-            // console.log("undefined");
-            setRedirect(<Redirect to='/app/dms/drone'/>)
+            console.log("undefined");
+            setRedirectTo(<Redirect to='/app/dms/drone'/>)
+        } else {
+            dispatch(dmsActions.fetchDroneDetail(props.location.state.droneId));
         }
-    }, []);
+    }, [props.location]);
 
 
     //set the state for drone details
@@ -64,24 +67,30 @@ const DroneDetail = (props) => {
         // console.log(droneDetail);
         const dDetail = droneDetail ? droneDetail.flights.map(m => {
             if(m.mission !== null) {
-            return createData(m._id,m.mission.hospital.name , m.mission.destination.name, m.mission?m.mission._id:null, 0)
+                // console.log(m.mission)
+                return createData(m._id,m.mission.hospital.name , m.mission.destination.name, m.mission?m.mission._id:null, 0)
             }
         }) : []
-        
+        // console.log(dDetail)
+        //remove undefined elements in the array
+        var filtered = dDetail.filter(function (el) {
+            return el !== undefined;
+          });
         setState((prevState) => {
-            return { ...prevState, data: dDetail };
+            return { ...prevState, data: filtered };
         });
 
         if (droneDetail !== null) {
             const cData = { "droneId": droneDetail.droneId, "flightTime": droneDetail.flightTime, "flights": droneDetail.numOfFlight, "crashes": 0 }
             setCardData(cData);
         }
+        // console.log(dDetail)
     }, [droneDetail]);
 
 
     //fetch flight details after choosing a specific flight from the flight list
     const openFlightDetail = (id) => {
-        dispatch(actions.fetchFlightDetails(id))
+        
         console.log(id);
         setRedirectTo(<Redirect to={{
             pathname: '/app/flights/flightdetail',

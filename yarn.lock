@@ -12280,6 +12280,11 @@ react-d3-speedometer@^0.8.0:
     memoize-one "^5.0.5"
     prop-types "^15.7.2"
 
+react-detect-offline@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/react-detect-offline/-/react-detect-offline-2.4.1.tgz#c6dfde64de1645742fc30b19e7ae09cd2cd357e3"
+  integrity sha512-Gg5pZrDvgSqVw8fOBo387zl2Q2+l0yYgELu9vowv6c/9AtjqWWGcnne4qbw6qDRP2vIiLcTNJh/LbTdBMq226Q==
+
 react-dev-utils@^10.2.1:
   version "10.2.1"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-10.2.1.tgz#f6de325ae25fa4d546d09df4bb1befdc6dd19c19"

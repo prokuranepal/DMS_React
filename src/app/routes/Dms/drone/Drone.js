@@ -8,8 +8,6 @@ import { createMuiTheme } from '@material-ui/core/styles'
 import { Redirect } from "react-router";
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
 } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import * as actions from '../../../../store/actions/dms';
@@ -112,7 +110,7 @@ const Drone = () => {
   const openDroneDetail = (id) => {
     console.log(id);
     setSelectedRow(id);
-    dispatch(actions.fetchDroneDetail(id));
+    
     setRedirectTo(<Redirect to={{
       pathname: "/app/dms/dronedetail",
       state: { droneId: id }
