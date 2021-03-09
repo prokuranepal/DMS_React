@@ -124,6 +124,9 @@ const DroneControl = ()  => {
                 setDroneFirstConnected(true);
                 setDroneConnected(true);
             })
+            socket.current.on('payloadDrop', () => {
+                NotificationManager.info("Payload Dropped");
+            })
             socket.current.on('disconnect', (reason) => {
                 // console.log(reason, "disconnected")
                 NotificationManager.info("Drone Disconnected");

@@ -58,3 +58,4 @@ class RotatedMarker extends MapLayer {
 }
 
 export default withLeaflet(RotatedMarker);
+

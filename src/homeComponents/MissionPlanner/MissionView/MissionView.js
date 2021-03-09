@@ -101,7 +101,7 @@ const MissionView = props => {
             setMissionDetail(openMissionDetail);
             setCreate(true);
             const c = openMissionDetail.waypoints[0]
-            setCenter({
+            setHome({
                 ...center,
                 lat: c.lat,
                 lng: c.lng
@@ -294,7 +294,7 @@ const MissionView = props => {
     }
 
     const setHomePosition = (position) => {
-        console.log(position);
+        console.log("MissionView", position);
         setHome({
             ...home, lat: position.lat, lng: position.lng
         });
