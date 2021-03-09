@@ -32,7 +32,7 @@ const FlightMap = (props) => {
     const [home, setHome] = React.useState({ lat: -35.362935421360326, lng: 149.16551953867867 });
 
     useEffect(() => {
-        if (props.mission.waypoints !== undefined && props.mission.waypoints !== null) {
+        if (props.mission !== null && props.mission.waypoints !== undefined && props.mission.waypoints !== null) {
             setHome(props.mission.waypoints[0])
         }
     }, [props.mission])
