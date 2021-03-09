@@ -100,6 +100,9 @@ const MissionView = props => {
             console.log("Mission from server", openMissionDetail);
             setMissionDetail(openMissionDetail);
             setCreate(true);
+            if(props.location.state !== undefined && props.location.state !== null && props.location.state.edit === true) {
+                setAction('edit');
+            }
             const c = openMissionDetail.waypoints[0]
             setHome({
                 ...center,
