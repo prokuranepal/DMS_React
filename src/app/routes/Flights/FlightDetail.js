@@ -102,12 +102,12 @@ const FlightDetail = (props) => {
         } else {
             dispatch(flightActions.fetchFlightDetails(props.location.state.id))
         }
-    }, [props.location])
+    }, [])
 
     //load flight details to state and render it after it is fetched from the server
     useEffect(() => {
         console.log(flightDetails);
-        if (flightDetails !== null) {
+        if (flightDetails !== null && flightDetails.mission !== null) {
             const newInfo = {
                 ...info,
                 duration: func.getDuration(flightDetails.startTime,flightDetails.endTime),

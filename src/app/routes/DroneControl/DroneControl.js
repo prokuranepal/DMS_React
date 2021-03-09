@@ -84,6 +84,7 @@ const DroneControl = ()  => {
 
     //for loading mission from drone
     const setMissionDetail = (mission) => {
+        console.log(mission)
         if (mission.waypoints !== undefined) {
             setMissionState({ ...missionState, ...mission }, () => console.log(missionState));
         }
@@ -124,12 +125,16 @@ const DroneControl = ()  => {
                 setDroneFirstConnected(true);
                 setDroneConnected(true);
             })
+            socket.current.on('payloadDrop', () => {
+                NotificationManager.info("Payload Dropped");
+            })
             socket.current.on('disconnect', (reason) => {
                 // console.log(reason, "disconnected")
                 NotificationManager.info("Drone Disconnected");
                 
                 // if (reason === 'io server disconnect' || reason === 'transport close disconnected') {
                 // the disconnection was initiated by the server, you need to reconnect manually
+                setDroneConnected(false);
                 socket.current.connect();
                 socket.current.emit("joinDMS", userId);
                 // }

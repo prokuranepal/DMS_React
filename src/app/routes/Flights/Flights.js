@@ -17,10 +17,14 @@ import { Redirect } from "react-router";
  *
  */
 
+const CreateData = (data) => {
+    return {id:data._id, droneId:data.drone, missionId: data.mission, origin: null, destination: null, purpose: 0 }
+}
+
 const Flights = () => {
     const [state, setState] = React.useState({
         columns: [
-            { title: 'Name', field: 'name' },
+            // { title: 'Name', field: 'name' },
             { title: 'Drone Id', field: 'droneId' },
             { title: 'Origin', field: 'origin' },
             //   { title: 'Location', field: 'originLocation' },
@@ -35,27 +39,27 @@ const Flights = () => {
             }
         ],
         data: [
-            { name: 'FLight 1', droneId: '1', origin: "Nepal", destination: '1', missionId: 87, purpose: 0 },
-            { name: 'FLight 2', droneId: '3', origin: "Nepal", destination: '2', missionId: 86, purpose: 1 },
-            { name: 'FLight 3', droneId: '4', origin: "Nepal", destination: '4', missionId: 88, purpose: 2 },
-            { name: 'FLight 4', droneId: '5', origin: "Nepal", destination: '4', missionId: 89, purpose: 0 },
-            { name: 'FLight 5', droneId: '6', origin: "Nepal", destination: '5', missionId: 81, purpose: 1 },
         ],
     });
 
     const dispatch = useDispatch();
-    //   const { flightList } = useSelector(({ flights }) => flights);
+
+      const { flightList } = useSelector(({ flights }) => flights);
     // console.log(drones);
-    //   useEffect(() => {
-    //     dispatch(actions.fetchFlights())
-    //   }, [dispatch]);
+      useEffect(() => {
+        dispatch(actions.fetchFlightList())
+      }, [dispatch]);
 
-    //   useEffect(() => {
-    //     setState((prevState) => {
+      useEffect(() => {
+        console.log(flightList);
+        const newFlightList = flightList.map(flight => {
+            return CreateData(flight)
+        })
+        setState((prevState) => {
 
-    //       return { ...prevState, data: flightList };
-    //     });
-    //   }, [flightList]);
+          return { ...prevState, data: newFlightList };
+        });
+      }, [flightList]);
 
     const [selectedRow, setSelectedRow] = React.useState(null);
     const [redirectTo, setRedirectTo] = React.useState(null);
@@ -117,7 +121,7 @@ const Flights = () => {
                     columns={state.columns}
                     data={state.data}
                     icons={TableIcons}
-                    onRowClick={((evt, selectedRow) => openFlightDetail(selectedRow))}
+                    onRowClick={((evt, selectedRow) => openFlightDetail(selectedRow.id))}
                     options={{
                         rowStyle: rowData => ({
                             backgroundColor: (selectedRow === rowData.tableData.id) ? '#EEE' : '#FFF',
