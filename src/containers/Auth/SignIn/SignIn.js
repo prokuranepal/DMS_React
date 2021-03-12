@@ -51,8 +51,10 @@ const SignIn = (props) => {
         },
     }));
 
-    const [email, setEmail] = useState('9840016544');
-    const [password, setPassword] = useState('sushil');
+    // const [email, setEmail] = useState('9840016544');
+    // const [password, setPassword] = useState('sushil');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const dispatch = useDispatch();
     
     const errorMessage = useSelector(({ auth }) => auth.error);
