@@ -121,6 +121,10 @@ const MissionView = props => {
         }
     }, [loading]);
 
+    useEffect(() => {
+        dispatch(actions.setMission(null))
+    },[])
+
     //close the modal after choosing the mission
     const handleCloseMission = () => {
         setAction('create');

@@ -1,7 +1,7 @@
-let url = 'http://587ff98c0127.ngrok.io';
-// let url='dms.prokurainnovations.com:3001'
+// let url = 'http://34f8251071b8.ngrok.io';
+let url='https://dms.prokurainnovations.com:3444'
 if (process.env.NODE_ENV === 'production') {
-    url='dms.prokurainnovations.com:3001'
+    url='https://dms.prokurainnovations.com:3444'
 }
 
 export default url;
