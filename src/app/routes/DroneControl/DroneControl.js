@@ -76,6 +76,8 @@ const DroneControl = ()  => {
     const missionDetail = useSelector(({ mission }) => mission.missionDetail);
     const checklistPass = useSelector(({droneControl}) => droneControl.checklistPass)
 
+    
+
     //for loading mission from server
     useEffect(() => {
         setMissionState(missionDetail);
