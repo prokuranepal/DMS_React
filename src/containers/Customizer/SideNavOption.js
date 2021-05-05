@@ -9,9 +9,23 @@ import {
   COLLAPSED_DRAWER,
   FIXED_DRAWER,
   MINI_DRAWER,
+  HORIZONTAL_NAVIGATION,
+  VERTICAL_NAVIGATION
 } from 'constants/ActionTypes'
 
+// import {
+//   ABOVE_THE_HEADER,
+//   BELOW_THE_HEADER,
+//   COLLAPSED_DRAWER,
+//   FIXED_DRAWER,
+//   HORIZONTAL_NAVIGATION,
+//   INSIDE_THE_HEADER,
+//   MINI_DRAWER,
+//   VERTICAL_NAVIGATION
+// } from "../../../constants/ActionTypes";
+
 import { setDrawerType} from '../../actions/index';
+// import { setDrawerType} from '../../store/actions/index';
 
 import {Button, ButtonGroup} from 'reactstrap';
 
@@ -22,7 +36,7 @@ const Customizer =()=> {
   const drawerType = useSelector(({settings}) => settings.drawerType);
 
  const setFixedDrawer = () => {
-   dispatch(setDrawerType(FIXED_DRAWER));
+   dispatch(setDrawerType(VERTICAL_NAVIGATION));
   };
 
   const setCollapsedDrawer = () => {
@@ -30,7 +44,7 @@ const Customizer =()=> {
   };
 
   const setMiniDrawer = () => {
-    dispatch(setDrawerType(MINI_DRAWER));
+    dispatch(setDrawerType(VERTICAL_NAVIGATION));
   };
 
 
@@ -39,13 +53,13 @@ const Customizer =()=> {
         
           <ButtonGroup>
             <Button color="default"
-                    className={`jr-btn  ${drawerType === FIXED_DRAWER && 'active' } `}
+                    className={`jr-btn  ${drawerType === VERTICAL_NAVIGATION && 'active' } `}
                     onClick={setFixedDrawer}>Fixed</Button>
             <Button color="default"
                     className={`jr-btn ${drawerType === COLLAPSED_DRAWER && 'active'} `}
                     onClick={setCollapsedDrawer}>Collapsed</Button>
             <Button color="default"
-                    className={`jr-btn ${drawerType === MINI_DRAWER && 'active' } `}
+                    className={`jr-btn ${drawerType === VERTICAL_NAVIGATION && 'active' } `}
                     onClick={setMiniDrawer}>Mini</Button>
           </ButtonGroup>
       
@@ -54,4 +68,5 @@ const Customizer =()=> {
 
 
 export default (Customizer);
+
 

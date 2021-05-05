@@ -145,9 +145,10 @@ export const signIn = (email, password) => {
             email: email,
             password: password
         };
-        // console.log(authData);
+        console.log("trying to signin",authData);
         // let url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyDL3N1A50XmBEQGRPrAN2zCudp9mpIe28I';
         // const url = './auth.js';
+
         const url = '/users/login';
         axios.post(url, authData, {
             headers: headers

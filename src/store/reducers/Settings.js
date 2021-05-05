@@ -101,4 +101,4 @@ import {
   };
   
   export default settings;
-  
+ 

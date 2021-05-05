@@ -101,7 +101,7 @@ const Dashboard = () => {
                             </div>
                         </Fragment>}
                 </div>
-            </div>}
+            </div>
 
         </div>
     )

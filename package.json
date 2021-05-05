@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "10.15.3"
+    "node": "10.19.0"
   },
   "dependencies": {
     "@amcharts/amcharts4": "^4.7.18",
