@@ -15,6 +15,14 @@ import { switchLanguage, toggleCollapsedNav } from "../../../../store/actions/Se
 import IntlMessages from "../../../../util/IntlMessages";
 import LanguageSwitcher from "../../../../components/LanguageSwitcher/index";
 import UserInfo from '../../../../components/UserInfo'
+import {makeStyles} from '@material-ui/core'
+
+const useStyles=makeStyles((theme)=>({
+  container:{
+    backgroundColor:'#5A6AB2',
+    paddingLeft:'4%'
+  }
+}))
 
 /**
  * This shows the header of the application
@@ -24,6 +32,7 @@ import UserInfo from '../../../../components/UserInfo'
  */
 
 const Header =()=> {
+  const classes=useStyles()
 
   const dispatch = useDispatch();
   const { drawerType, locale, navCollapsed } = useSelector(({settings}) => settings);
@@ -62,7 +71,7 @@ const Header =()=> {
     const drawerStyle = drawerType.includes(FIXED_DRAWER) ? "d-block d-xl-none" : drawerType.includes(COLLAPSED_DRAWER) ? "d-block" : "d-none";
 
     return (
-      <AppBar className="app-main-header">
+      <AppBar className={`app-main-header `} className={classes.container}  >
         <Toolbar className="app-toolbar" disableGutters={false}>
           
           <IconButton className={`jr-menu-icon mr-3 ${drawerStyle}`} aria-label="Menu"
@@ -71,7 +80,7 @@ const Header =()=> {
           </IconButton>
 
           <Link to='/app' className="app-logo mr-2 d-none d-sm-block" >
-            <img src={require("../../../../assets/images/logo.jpg")} alt="DMS" title="DMS"/>
+            <img src={require("../../../../assets/images/dashboard/hiveLogo_BG.png")} alt="DMS" title="DMS"/>
           </Link>
           {/* <div style={{minWidth: '100px', maxWidth: '80%'}}>
             <marquee>Drone MX710 is flying from Dharan to Biratnagar, Drone MX710 is flying from Dharan to Biratnagar</marquee>
