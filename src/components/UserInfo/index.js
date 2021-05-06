@@ -6,6 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import {logout} from '../../store/actions/auth';
 import IntlMessages from '../../util/IntlMessages';
 import { Redirect } from 'react-router';
+import people from '../../assets/images/dashboard/avatar13.jpg'
 // import ArrowDropDownCircleIcon from '@material-ui/icons/ArrowDropDownCircle';
 
 const UserInfo = () => {
@@ -33,7 +34,7 @@ const UserInfo = () => {
     <div className="user-profile d-flex flex-row align-items-center">
       <Avatar
         alt='...'
-        src={"https://via.placeholder.com/50x50"}
+        src={people}
         className="user-avatar "
       />
       <div className="user-detail">
