@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../../../store/actions/imsMedicine';
-import Medicine from '../../../../containers/Medicine/Medicine';
+import Medicine from '../../Medicine/Medicine';
 
 /**
  * This shows a list of flights

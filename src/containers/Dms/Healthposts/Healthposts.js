@@ -1,29 +1,27 @@
 import React, { useEffect } from "react";
 import MaterialTable from 'material-table';
-import TableIcons from '../../homeComponents/TableIcons/TableIcons';
-import * as actions from '../../store/actions/imsMedicine';
-import {useDispatch} from 'react-redux';
+import TableIcons from '../../../homeComponents/TableIcons/TableIcons';
+
+import * as actions from '../../../store/actions/dashboard';
+import { useDispatch, useSelector } from 'react-redux';
 
 /**
- * This shows the list of medicines with the available details..
- * @param {Medicine} - No Parameters
- * @returns {Medicine} - Returns a material table of medicines
+ * This shows a table of constituent healthposts.
+ * @param - No Parameters
+ * @returns {Healthposts} - Returns a material table of healthposts.
  * 
  */
-const Medicine = (props) => {
+
+const Healthposts = (props) => {
     const [state, setState] = React.useState({
         columns: [
-            { title: 'ID', field: 'medicineId' },
-            { title: 'Name', field: 'name', validate: rowData => rowData.name === '' ? 'Name cannot be empty' : '' },
-            { title: 'Description', field: 'description', validate: rowData => rowData.description === '' ? { isValid: false, helperText: 'Description cannot be empty' } : true, },
-            { title: 'Dosage', field: 'dosage' },
-            { title: 'Quantity', field: 'quantity' },
-            { title: 'Unit', field: 'unit' },
-            { title: 'Class', field: 'class' },
+            // { title: 'ID', field: 'healthpostId' },
+            { title: 'Name', field: 'name'},
+            { title: 'Location', field: 'location' },
             {
                 title: 'Type', field: 'type',
                 lookup: {
-                    'tablet': 'Tablet', 'liquid': 'Liquid'
+                    'healthpost': 'Health Post'
                 },
             },
         ],
@@ -33,16 +31,28 @@ const Medicine = (props) => {
     const [selectedRow, setSelectedRow] = React.useState(null);
     const dispatch = useDispatch();
 
+    const healthposts = useSelector(({ dashboard }) => dashboard.healthposts)
+
+    //fetch healthposts
     useEffect(() => {
-        setState(prevState => { return { ...prevState, data: props.list } })
-    }, [props.list])
+        dispatch(actions.getHealthposts())
+    }, [dispatch]);
+
+    //set the state for fetched health posts.
+    useEffect(() => {
+        // console.log("Health posts changed")
+        setState((prevState) => {
+            return { ...prevState,
+            data: healthposts}
+        })
+    }, [healthposts])
 
     return (
         <div>
             <div className="animated slideInUpTiny animation-duration-3">
 
                 <MaterialTable
-                    title="Medicines"
+                    title="Health Posts"
                     columns={state.columns}
                     data={state.data}
                     icons={TableIcons}
@@ -55,7 +65,7 @@ const Medicine = (props) => {
                         headerStyle: {
                             backgroundColor: '#01579b',
                             color: '#FFF'
-                          }
+                        }
                     }}
                     editable={{
                         onRowAdd: (newData) =>
@@ -63,7 +73,7 @@ const Medicine = (props) => {
                                 setTimeout(() => {
                                     resolve();
                                     console.log(newData);
-                                      dispatch(actions.addMedicine(newData))
+                                    dispatch(actions.addHealthPosts(newData))
                                     setState((prevState) => {
                                         const data = [...prevState.data];
                                         data.push(newData);
@@ -77,7 +87,7 @@ const Medicine = (props) => {
                                     resolve();
                                     if (oldData) {
                                         console.log(newData);
-                                        dispatch(actions.updateMedicine(newData, newData._id))
+                                        dispatch(actions.updateHealthPosts(newData, newData._id))
                                         setState((prevState) => {
                                             const data = [...prevState.data];
                                             data[data.indexOf(oldData)] = newData;
@@ -93,7 +103,7 @@ const Medicine = (props) => {
                                     setState((prevState) => {
                                         const data = [...prevState.data];
                                         data.splice(data.indexOf(oldData), 1);
-                                        dispatch(actions.deleteMedicine(oldData._id))
+                                        dispatch(actions.deleteHealthPosts(oldData._id))
                                         return { ...prevState, data };
                                     });
                                 }, 600);
@@ -105,4 +115,4 @@ const Medicine = (props) => {
     );
 }
 
-export default Medicine;
+export default Healthposts;

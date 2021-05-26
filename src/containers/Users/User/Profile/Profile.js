@@ -1,16 +1,16 @@
 import React,{useEffect} from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import About from "../../../components/profile/About/index";
-import Biography from "../../../components/profile/Biography/index";
-import Events from "../../../components/profile/Events/index";
-import Contact from "../../../components/profile/Contact/index";
-import Friends from "../../../components/profile/Friends/index";
+import About from "../../../../components/profile/About/index";
+import Biography from "../../../../components/profile/Biography/index";
+import Events from "../../../../components/profile/Events/index";
+import Contact from "../../../../components/profile/Contact/index";
+import Friends from "../../../../components/profile/Friends/index";
 // import Photos from "../../../components/profile/Photos/index";
-import ProfileHeader from "../../../components/profile/ProfileHeader/index";
-import Auxiliary from "../../../util/Auxiliary";
+import ProfileHeader from "../../../../components/profile/ProfileHeader/index";
+import Auxiliary from "../../../../util/Auxiliary";
 import {friendList} from './data'
-import * as actions from '../../../store/actions/users';
-import Users from "../../../app/routes/Users/Users";
+import * as actions from '../../../../store/actions/users';
+import Users from "../../../../app/routes/Users/Users";
 // import {photoList} from "../Wall/data";
 
 

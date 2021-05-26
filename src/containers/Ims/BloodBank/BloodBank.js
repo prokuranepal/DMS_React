@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import MaterialTable from 'material-table';
-import TableIcons from '../../../../homeComponents/TableIcons/TableIcons';
+import TableIcons from '../../../homeComponents/TableIcons/TableIcons';
 
-import * as actions from '../../../../store/actions/dashboard';
+import * as actions from '../../../store/actions/dashboard';
 import { useDispatch, useSelector } from 'react-redux';
 
 /**

@@ -4,9 +4,9 @@ import { getUsers } from '../../../store/actions/users';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import MedicineListContainer from './MedicineList/MedicineListContainer';
+import MedicineListContainer from '../../../containers/Ims/Medicine/MedicineList/MedicineListContainer';
 import OrderLists from '../../../homeComponents/OrderLists/OrderLists';
-import OrderDetails from './Orders/OrderDetails/OrderDetails';
+import OrderDetails from '../../../containers/Ims/Orders/OrderDetails/OrderDetails';
 // import OrderDetails from '../../../containers/OrderDetails/OrderDetails';
 // import OrderLists from '../../../containers/OrderList/Orders';
 const useStyles = makeStyles((theme) => ({

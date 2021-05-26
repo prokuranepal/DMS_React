@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Widget from "../../Widget/index";
-import {aboutList} from '../../../homeComponents/User/Profile/data'
+import {aboutList} from '../../../containers/Users/User/Profile/data'
 import AboutItem from "./AboutItem";
 
 

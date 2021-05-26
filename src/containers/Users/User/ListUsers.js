@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import MaterialTable from 'material-table';
-import TableIcons from '../../homeComponents/TableIcons/TableIcons';
+import TableIcons from '../../../homeComponents/TableIcons/TableIcons';
 import { useSelector, useDispatch } from 'react-redux'
-import * as actions from '../../store/actions/users'
-import * as dashboardActions from '../../store/actions/dashboard'
+import * as actions from '../../../store/actions/users'
+import * as dashboardActions from '../../../store/actions/dashboard'
 import { Redirect } from 'react-router';
-import Healthposts from '../../app/routes/Dms/Healthposts/Healthposts';
+import Healthposts from '../../Dms/Healthposts/Healthposts';
 
 /**
 * A List of healthpost users

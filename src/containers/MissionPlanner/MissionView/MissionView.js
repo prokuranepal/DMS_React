@@ -5,7 +5,7 @@ import Fade from '@material-ui/core/Fade';
 import { makeStyles } from '@material-ui/core/styles';
 import { Map, TileLayer, Marker, Popup, Polyline, ZoomControl } from 'react-leaflet';
 import MissionData from './MissionData/MissionData';
-import MissionList from '../../MissionList/MissionList';
+import MissionList from '../../../homeComponents/MissionList/MissionList';
 import { useDispatch, useSelector } from 'react-redux';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
