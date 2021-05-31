@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         // backgroundColor: '#E7E7E7',
         backgroundColor: '#495057',
-        height: '89vh'
+        height: 'calc(100vh-64px)'
     },
     data: {
         zIndex: 500,

@@ -20,7 +20,7 @@ import Green from '../../../assets/green.png';
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
-        height: '89vh',
+        height: 'calc(100vh - 64px)',
         backgroundColor: '#495057',
     },
     data: {
