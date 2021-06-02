@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { withRouter } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Header from "./Header/index";
-import SideBar from "../../SideBar/index";
+import SideBar from "../../../homeComponents/SideBar/index";
 import Snackbar from '@material-ui/core/Snackbar';
 // import Footer from "components/Footer";
 // import Tour from "components/Tour/index";

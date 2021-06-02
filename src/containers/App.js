@@ -8,7 +8,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { IntlProvider } from "react-intl";
 import "../assets/vendors/style";
-import indigoTheme from "./themes/indigoTheme";
+import {semiDarkTheme} from "./themes/themeColors";
 import AppLocale from "../lngProvider";
 // import SignIn from "./SignIn";
 // import SignUp from "./SignUp";
@@ -86,7 +86,7 @@ const App = (props) => {
     tryLogin();
   }, [token]);
 
-  let applyTheme = createMuiTheme(indigoTheme);
+  let applyTheme = createMuiTheme(semiDarkTheme);
 
   if (location.pathname === '/') {
     if (token === null || token === undefined || token === "undefined") {

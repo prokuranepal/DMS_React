@@ -10,8 +10,8 @@ const MissionPlanner = ({match}) => {
     <div>
       {/* <div className="app-wrapper"> */}
         <Switch>
-          <Route exact path={`${match.url}/missionview`} component={asyncComponent(() => import('../../../homeComponents/MissionPlanner/MissionView/MissionView'))} />
-          <Route exact path={`${match.url}/missionlist`} component={asyncComponent(() => import('../../../homeComponents/MissionPlanner/MissionLists'))} />
+          <Route exact path={`${match.url}/missionview`} component={asyncComponent(() => import('../../../containers/MissionPlanner/MissionView/MissionView'))} />
+          <Route exact path={`${match.url}/missionlist`} component={asyncComponent(() => import('../../../containers/MissionPlanner/MissionLists'))} />
           <Redirect from={`${match.url}`} to={`${match.url}/missionlist`} />
         </Switch>
       {/* </div> */}

@@ -217,7 +217,8 @@ div[tabindex="-1"] {
 
 .sub-heading {
   font-size: 13px;
-  color: $sub-heading-color;
+  // color: $sub-heading-color;
+  color: $white;
   margin-bottom: 0;
 
   &:not(:last-child) {

@@ -68,6 +68,7 @@ const Header =()=> {
           <IconButton className={`jr-menu-icon mr-3 ${drawerStyle}`} aria-label="Menu"
                       onClick={onToggleCollapsedNav}>
             <span className="menu-icon"/>
+            <p>hello</p>
           </IconButton>
 
           <Link to='/app' className="app-logo mr-2 d-none d-sm-block" >

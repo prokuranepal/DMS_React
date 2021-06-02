@@ -3,8 +3,8 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import ListUsers from '../../../homeComponents/User/ListUsers';
-import Profile from '../../../homeComponents/User/Profile/Profile';
+import ListUsers from '../../../containers/Users/User/ListUsers';
+import Profile from '../../../containers/Users/User/Profile/Profile';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
