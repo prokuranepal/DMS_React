@@ -17,8 +17,8 @@ const useStyles = makeStyles(theme => ({
     '&:not(:last-child)': {
       '.Cmt-miniLayout .Cmt-sidebar-content:not(:hover) &': {
         borderBottom: `solid 1px ${theme.palette.sidebar.borderColor}`,
-        // paddingTop: 10,
-        // paddingBottom: 10,
+        paddingTop: 10,
+        paddingBottom: 10,
       },
     },
   },

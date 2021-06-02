@@ -119,7 +119,7 @@ const SideBarContent = () => {
   ];
 
   return (
-    <CustomScrollbars className=" scrollbar">
+    <CustomScrollbars className="scrollbar">
       <Navigation menuItems={navigationMenus} />
     </CustomScrollbars>
   );

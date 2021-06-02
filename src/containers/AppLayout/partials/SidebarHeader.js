@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Box, MenuItem, MenuList, Paper, Popover, Typography } from '@material-ui/core';
 import CmtAvatar from '../../../@coremat/CmtAvatar';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { useDispatch } from 'react-redux';
 import ProfileImage from '../../../assets/pppp.jpg';
+import { Redirect } from 'react-router';
+import * as authActions from '../../../store/actions/auth';
 // import { AuhMethods } from '../../../../services/auth';
 // import { CurrentAuthMethod } from '../../@jumbo/constants/AppConstants';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -46,6 +48,7 @@ const SidebarHeader = () => {
   const dispatch = useDispatch();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [link, setLink] = useState(null);
 
   const handlePopoverOpen = event => {
     setAnchorEl(event.currentTarget);
@@ -59,8 +62,16 @@ const SidebarHeader = () => {
 
   const onLogoutClick = () => {
     handlePopoverClose();
-    // dispatch(AuhMethods[CurrentAuthMethod].onLogout());
+    dispatch(authActions.logout());
   };
+  
+  const linkProfile = () => {
+    handlePopoverClose();
+    const l = <Redirect to="/app/profile" />
+    setLink(l);
+  }
+
+  
 
   return (
     <Box className={classes.root}>
@@ -93,13 +104,10 @@ const SidebarHeader = () => {
           }}>
           <Paper elevation={8}>
             <MenuList>
-              <MenuItem onClick={handlePopoverClose}>
+              {link}
+              <MenuItem onClick={linkProfile}>
                 <PersonIcon />
                 <Box ml={2}>Profile</Box>
-              </MenuItem>
-              <MenuItem onClick={handlePopoverClose}>
-                <SettingsIcon />
-                <Box ml={2}>Settings</Box>
               </MenuItem>
               <MenuItem onClick={onLogoutClick}>
                 <ExitToAppIcon />
