@@ -1,7 +1,7 @@
 // let url = 'http://34f8251071b8.ngrok.io';
-let url='https://hive.prokurainnovations.com:3444'
+let url='https://dms.prokurainnovations.com/api'
 if (process.env.NODE_ENV === 'production') {
-    url='https://hive.prokurainnovations.com:3444'
+    url='https://dms.prokurainnovations.com/api'
 }
 
 export default url;
