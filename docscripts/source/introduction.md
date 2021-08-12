@@ -12,6 +12,6 @@ Major Features Can be outlined as:
 * Features of tracking inventory, weather, drone condition 
 
 ## Demo
-HIVE (https://hive.prokurainnovations.com/) 
-Login id: 9840016544
-Password: sushil
+<a href="https://hive.prokurainnovations.com/">HIVE</a> <br>
+Login id: 9840016544<br>
+Password: sushil<br>

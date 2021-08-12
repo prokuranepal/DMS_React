@@ -6,13 +6,6 @@ exclude_patterns:
 - "**/*.css"
 - "**/*.scss"
 - "**/*.eot"
-<<<<<<< HEAD
-- "**/*.json"
-- "docscripts/"
-- "docs/"
-- "coverage/"
-- "public/"
-=======
 - "**/*.ico"
 - "**/*.jpeg"
 - "**/*.JPG"
@@ -29,4 +22,3 @@ exclude_patterns:
 - "src/lngProvider/"
 - "src/JSONFiles/"
 
->>>>>>> b1aa7af3cf18b5248a8ee406178d4f3698ff082b
