@@ -6,8 +6,27 @@ exclude_patterns:
 - "**/*.css"
 - "**/*.scss"
 - "**/*.eot"
+<<<<<<< HEAD
 - "**/*.json"
 - "docscripts/"
 - "docs/"
 - "coverage/"
 - "public/"
+=======
+- "**/*.ico"
+- "**/*.jpeg"
+- "**/*.JPG"
+- "**/*.json"
+- "**/*.snap"
+- "docscripts/"
+- "docs/"
+- "coverage/"
+- "public/"
+- "src/components/"
+- "src/assets/"
+- "src/containers/themes/"
+- "src/@lodash/"
+- "src/lngProvider/"
+- "src/JSONFiles/"
+
+>>>>>>> b1aa7af3cf18b5248a8ee406178d4f3698ff082b
