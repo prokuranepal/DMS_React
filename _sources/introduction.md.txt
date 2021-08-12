@@ -11,7 +11,8 @@ Major Features Can be outlined as:
 * Emergency commands like Return to Launch(RTL) and Land
 * Features of tracking inventory, weather, drone condition 
 
+
 ## Demo
-<a href="https://hive.prokurainnovations.com/">HIVE</a> <br>
+<a> https://hive.prokurainnovations.com</a> <br>
 Login id: 9840016544<br>
 Password: sushil<br>
