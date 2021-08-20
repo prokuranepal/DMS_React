@@ -92,7 +92,7 @@ Password: sushil<br></p>
 </pre></div>
 </div>
 <p>Make sure the url is set as below in axios-orders.js file</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">url</span> <span class="o">=</span><span class="s2">&quot;http://dms.prokurainnovations.com:3001/&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>	<span class="n">const</span> <span class="n">url</span> <span class="o">=</span><span class="s2">&quot;https://dms.prokurainnovations.com/api/&quot;</span>
 </pre></div>
 </div>
 </section>
@@ -125,15 +125,15 @@ Password: sushil<br></p>
 </pre></div>
 </div>
 <p>Make sure the url is set as below in axios-orders.js file</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">url</span> <span class="o">=</span><span class="s2">&quot;http://dms.prokurainnovations.com:3001/&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>	<span class="n">const</span> <span class="n">url</span> <span class="o">=</span><span class="s2">&quot;https://dms.prokurainnovations.com/api/&quot;</span>
 </pre></div>
 </div>
 <p>Build docker images</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">build</span> <span class="o">-</span><span class="n">t</span> <span class="n">hive</span> <span class="o">.</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>	<span class="n">docker</span> <span class="n">build</span> <span class="o">-</span><span class="n">t</span> <span class="n">hive</span> <span class="o">.</span>
 </pre></div>
 </div>
 <p>Run the containers</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">p</span> <span class="mi">80</span><span class="p">:</span><span class="mi">80</span> <span class="n">hive</span> <span class="n">hive</span> <span class="n">start</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>	<span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">p</span> <span class="mi">80</span><span class="p">:</span><span class="mi">80</span> <span class="n">hive</span> <span class="n">hive</span> <span class="n">start</span>
 </pre></div>
 </div>
 <p>Hive will run at localhost:80</p>
