@@ -41,18 +41,19 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
 
-extensions = ['sphinx_js']
+extensions = ['sphinx_js','recommonmark']
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = 'bizstyle'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
-js_source_path=['../../src','../../src/homeComponents','../../src/components/ActivityBox','../../src/components/CardBox','../../src/components/CardMenu','../../src/components/CardLayout','../../src/components/InfoCard']
+# js_source_path=['../../src','../../src/components/ActivityBox','../../src/components/CardBox','../../src/components/CardMenu','../../src/components/CardLayout','../../src/components/InfoCard','../../src/homeComponents/CheckList/CheckListItem','../../src/homeComponents/CreateUser','../../src/homeComponents/DroneList','../../src/homeComponents/DroneList/DroneListItem','../../src/homeComponents/CheckList','../../src/homeComponents/imsCard','../../src/homeComponents/MedicineDetails','../../src/homeComponents/MissionList','../../src/homeComponents/MissionList/MissionListItem','../../src/homeComponents/MissionPlanner/MissionView','../../src/homeComponents/MissionPlanner/MissionView/MissionData','../../src/homeComponents/OrderLists','../../src/homeComponents/OrderLists/OrderList','../../src/homeComponents/RotatedMarker','../../src/homeComponents/User']
+js_source_path=['../../src','../../src/components/ActivityBox','../../src/components/CardBox','../../src/components/CardMenu','../../src/components/CardLayout','../../src/components/InfoCard','../../src/homeComponents/CheckList/CheckListItem','../../src/homeComponents/CheckList','../../src/homeComponents/DroneList','../../src/homeComponents/DroneList/DroneListItem','../../src/homeComponents/imsCard','../../src/homeComponents/MedicineDetails','../../src/homeComponents/MissionList/MissionListItem','../../src/homeComponents/MissionList','../../src/homeComponents/MissionPlanner/MissionView','../../src/homeComponents/MissionPlanner/MissionView/MissionData']
 root_for_relative_js_paths='../../src'
 primary_domain = 'js'

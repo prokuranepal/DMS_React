@@ -40,6 +40,11 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
   };
 
+/**
+ * This shows a table of drones, both active and inactive
+ * @returns {Drones} - Returns a list of Drones
+ * @argument {Drones} - No Arguments
+ */
 const Drone = () => {
   const [state, setState] = React.useState({
     columns: [

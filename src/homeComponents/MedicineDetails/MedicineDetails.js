@@ -21,6 +21,16 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+
+/**
+* Details of a medicine and can be edited
+*
+* @param {string} props.medicineName - name of medicine
+* @param {string} props.medicineType- type of medicine
+* @param {string} props.medicineQuantity - quantity of medicines
+* @returns {MedicineDetails} - It returns an image, text and button
+*/
+
 const MedicineDetails = (props) => {
   const classes = useStyles();
 

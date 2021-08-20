@@ -12,7 +12,11 @@ function hexToRgb(hex, alpha) {
     return 'rgb(' + r + ', ' + g + ', ' + b + ')';
   }
 }
-
+/**
+ * This is the main entry point after index.js
+ * The store and default route path are 
+ * @returns {App} - Directs to App component which based on authentication decides wheter to direct to login or authentication';
+ */
 const InfoCard = ({data}) => {
   return (
     <div className="jr-card net-chart">

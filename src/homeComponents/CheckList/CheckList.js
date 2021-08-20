@@ -29,6 +29,8 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
+
+
 export const checks1 = [{
     name: 'Permission',
     value: false
@@ -43,11 +45,15 @@ export const checks1 = [{
     name: 'Battery Level',
     value: false
 }];
+/**
+ * CheckList component to choose an item from multiple options. For instance to choose different drones in drone control
+ * @param {props}  props: abort function to take action on menu abortions
+ * @returns {CheckList} - A checklist component to choose items;
+ */
  const CheckList = (props) => {
     const classes = useStyles();
    
     const [checks, setChecks] = React.useState(checks1);
-
     const handleOnChange = (event, index) => {
         const cc = [];
         cc.push(...checks);

@@ -1,4 +1,3 @@
-
 # Contributor Covenant Code of Conduct
 
 ### Our Pledge
@@ -123,4 +122,3 @@ For answers to common questions about this code of conduct, see the FAQ at
 <https://www.contributor-covenant.org/translations>.
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md) 
-

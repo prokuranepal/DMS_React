@@ -13,6 +13,12 @@ import CustomLineChart from '../../../components/CustomLineChart/index'
 import ChartCard from '../../../components/ChartCard/ChartCard'
 import * as cards from '../../../JSONFiles/dashboardCards';
 
+/**
+ * This is the main landing page after signIn which shows data of number of drones, active drones, number of health posts and graphs of number of deliveries per certain interval of time of the Hospitals and each of its constituent Health posts
+ * The store and default route path are 
+ * @returns {Dashboard} - Returns the Dashboard component with cards and graphs
+ * @argument {Dashboard} - No Arguments
+ */
 const Dashboard = (props) => {
 
     const dispatch = useDispatch();
@@ -71,7 +77,7 @@ const Dashboard = (props) => {
                                                                 <h2 className="mb-1">{healthPost.name}</h2>
                                                                 <p>Number of Deliveries</p>
                                                             </div>
-                                                            {console.log("dashboard console", healthPost)}
+                                                            {console.log("dashboard console", healthPost,year)}
                                                             <ResponsiveContainer width="100%" height={90} 
                                                                     >
                                                                 <CustomLineChart

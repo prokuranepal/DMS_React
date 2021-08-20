@@ -7,13 +7,20 @@ Welcome to DMS's documentation!
 ===============================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Contents:
 
-.. js:autofunction:: MainApp
-.. js:autofunction:: ActivityBox
-.. js:autofunction:: CardBox
+.. toctree::
+   :maxdepth: 2
 
+   introduction
+   code_documentation
+   privacy_policy
+   license
+
+Please Refer:
+`Contributing Guidelines <https://prokuranepal.github.io/contributing_guidelines.html>`_
+`Code of Conduct <https://prokuranepal.github.io/code_of_conduct.html>`_
 
 
 Indices and tables
@@ -22,3 +29,4 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+

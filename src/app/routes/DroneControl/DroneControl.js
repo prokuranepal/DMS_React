@@ -32,6 +32,14 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+
+/**
+ * This shows a complete control system of flights of a drone. Here we can choose the drone we want 
+ * to observe, upload a mission to the drone, see its real time location with other flight details and finally
+ * fly, rtl and land the drone.
+ * @returns {DroneControl} - Returns a map, dialog box and some flight details.
+ * @argument {DroneControl} - No Arguments
+ */
 const DroneControl = props => {
 
     const classes = useStyles();
