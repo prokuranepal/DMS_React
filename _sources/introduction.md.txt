@@ -55,3 +55,36 @@ To generate a production biuild, run:
 ```
 	npm run build
 ```
+
+
+### Installation using Docker
+Clone the repository
+```
+	git clone https://github.com/prokuranepal/DMS_React.git
+```
+
+Enter the project directory:
+```
+	cd DMS_React
+```
+
+Switch to development branch
+''' 
+	git checkout development
+```
+
+Make sure the url is set as below in axios-orders.js file
+```
+const url ="http://dms.prokurainnovations.com:3001/"
+```
+
+Build docker images
+```
+docker build -t hive .
+```
+
+Run the containers
+```
+docker run -p 80:80 hive hive start
+```
+Hive will run at localhost:80

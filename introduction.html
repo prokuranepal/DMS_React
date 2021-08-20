@@ -110,6 +110,38 @@ Password: sushil<br></p>
 </pre></div>
 </div>
 </section>
+<section id="installation-using-docker">
+<h3>Installation using Docker<a class="headerlink" href="#installation-using-docker" title="Permalink to this headline">¶</a></h3>
+<p>Clone the repository</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>	<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">prokuranepal</span><span class="o">/</span><span class="n">DMS_React</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>Enter the project directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>	<span class="n">cd</span> <span class="n">DMS_React</span>
+</pre></div>
+</div>
+<p>Switch to development branch
+‘’’
+git checkout development</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<span class="n">Make</span> <span class="n">sure</span> <span class="n">the</span> <span class="n">url</span> <span class="ow">is</span> <span class="nb">set</span> <span class="k">as</span> <span class="n">below</span> <span class="ow">in</span> <span class="n">axios</span><span class="o">-</span><span class="n">orders</span><span class="o">.</span><span class="n">js</span> <span class="n">file</span>
+</pre></div>
+</div>
+<p>const url =”http://dms.prokurainnovations.com:3001/”</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<span class="n">Build</span> <span class="n">docker</span> <span class="n">images</span>
+</pre></div>
+</div>
+<p>docker build -t hive .</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<span class="n">Run</span> <span class="n">the</span> <span class="n">containers</span>
+</pre></div>
+</div>
+<p>docker run -p 80:80 hive hive start</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hive</span> <span class="n">will</span> <span class="n">run</span> <span class="n">at</span> <span class="n">localhost</span><span class="p">:</span><span class="mi">80</span>
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 
@@ -129,6 +161,7 @@ Password: sushil<br></p>
 <li><a class="reference internal" href="#installing">Installing</a></li>
 <li><a class="reference internal" href="#development">Development</a></li>
 <li><a class="reference internal" href="#production">Production</a></li>
+<li><a class="reference internal" href="#installation-using-docker">Installation using Docker</a></li>
 </ul>
 </li>
 </ul>
