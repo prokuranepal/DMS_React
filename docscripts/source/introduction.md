@@ -41,7 +41,7 @@ Install NPM dependencies:
 ```
 Make sure the url is set as below in axios-orders.js file
 ```
-const url ="http://dms.prokurainnovations.com:3001/"
+	const url ="https://dms.prokurainnovations.com/api/"
 ```
 
 ### Development
@@ -75,16 +75,16 @@ Switch to development branch
 
 Make sure the url is set as below in axios-orders.js file
 ```
-const url ="http://dms.prokurainnovations.com:3001/"
+	const url ="https://dms.prokurainnovations.com/api/"
 ```
 
 Build docker images
 ```
-docker build -t hive .
+	docker build -t hive .
 ```
 
 Run the containers
 ```
-docker run -p 80:80 hive hive start
+	docker run -p 80:80 hive hive start
 ```
 Hive will run at localhost:80
