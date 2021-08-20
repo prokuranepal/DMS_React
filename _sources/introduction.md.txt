@@ -69,7 +69,7 @@ Enter the project directory:
 ```
 
 Switch to development branch
-''' 
+```
 	git checkout development
 ```
 
