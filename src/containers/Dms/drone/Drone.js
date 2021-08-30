@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
+import GetAppIcon from '@material-ui/icons/GetApp';
 
 import IntlMessages from "../../../util/IntlMessages";
 import MaterialTable from 'material-table';
@@ -58,6 +59,7 @@ const Drone = () => {
         field: 'status',
         lookup: { 2: 'Under Maintenance', 1: 'Active', 0: 'Inactive' },
       },
+   
     ],
     data: [
       // { name: 'Mavic pro', numOfFlight: '125', type: 'Quad', droneId: 87, status: 0 },
@@ -144,8 +146,17 @@ const Drone = () => {
               headerStyle: {
                 backgroundColor: '#01579b',
                 color: '#FFF'
-              }
+              },
+              actionsColumnIndex: -1
             }}
+            actions={[
+              {
+                icon: GetAppIcon,
+                tooltip: 'Download log',
+                onClick: (event, rowData) =>{event.preventDefault(); 
+                  dispatch(actions.downloadLogs(rowData._id))
+              } }
+            ]}
             editable={{
               onRowAdd: (newData) =>
                 new Promise((resolve) => {

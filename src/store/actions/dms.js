@@ -1,4 +1,4 @@
-import { GET_DRONES, ADD_DRONE, UPDATE_DRONE, GET_MAINTENANCE, GET_DRONE_DETAIL } from './actionTypes';
+import { GET_DRONES, ADD_DRONE, UPDATE_DRONE, GET_MAINTENANCE, GET_DRONE_DETAIL, DOWNLOAD_LOGS } from './actionTypes';
 // import * as axios from '../../response/falseFetch';
 import axios from '../../axios-orders';
 
@@ -20,6 +20,7 @@ export const fetchDrones = () => dispatch => {
 const fetchDronesSuccess = (drones) => {
     return {
         type: GET_DRONES,
+
         drones: drones
     }
 }
@@ -58,7 +59,31 @@ export const addDrone = (drone) => dispatch => {
        
     }
 }
+export const downloadLogs = (droneId) =>{
+    try {
+ 
+        const url = `/drones/${droneId}/export/`;
+        axios.get(url,{headers:func.getToken(),responseType:'blob'})
+            .then(response => {
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'log.json'); //or any other extension
+                document.body.appendChild(link);
+                link.click();
+                console.log("logs should be downloaded",response);
+            }).catch(err => {
+                console.log("Something error");
+            });
+        // dispatch(sendResetPassword());
+    }
+    catch(error){
 
+    }
+    return {
+        type: DOWNLOAD_LOGS
+    }
+}
 const addDroneSuccess = (drones) => {
     return {
         type: ADD_DRONE

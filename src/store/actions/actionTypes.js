@@ -77,7 +77,8 @@ export const GET_ORDER_DETAILS = 'GET_ORDER_DETAILS';
 export const UPDATE_ORDER = 'UPDATE_ORDER';
 
 export const GET_DRONES = 'GET_DRONES'
-export const ADD_DRONE = 'ADD_DRONE'
+export const ADD_DRONE = 'ADD_DRONE';
+export const DOWNLOAD_LOGS = 'DOWNLOAD_LOGS';
 export const UPDATE_DRONE = 'UPDATE_DRONE';
 export const GET_DRONE_DETAIL = 'GET_DRONE_DETAIL';
 
