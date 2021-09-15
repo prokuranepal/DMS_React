@@ -7,7 +7,7 @@ import {
   Dashboard, FlightTakeoff, Flight, AirplanemodeActive, AddAlert, LocalHospital,
   ControlCamera,
   Navigation, SwapCalls, Assignment, ListAlt, AssignmentTurnedIn,
-  WbSunny, People, Event, Apps, Category
+  WbSunny, People, Event, Apps, Category, LooksOne, AllInclusive
 
 } from '@material-ui/icons';
 import CustomScrollbars from '../../../../util/CustomScrollbars';
@@ -98,9 +98,22 @@ const SideBar = () => {
         },
         {
           name: <IntlMessages id={'sidebar.dronecontrol'} />,
-          type: 'item',
+          type: 'collapse',
           icon: <ControlCamera />,
-          link: '/app/dronecontrol'
+          children:[
+            {
+              name: <IntlMessages id={'sidebar.individual'}/>,
+              type: 'item',
+              link: '/app/dronecontrol',
+              icon: <LooksOne />
+            },
+            {
+              name: <IntlMessages id={'sidebar.all'}/>,
+              type: 'item',
+              link: '/app/dronecontrolall',
+              icon: <AllInclusive />
+            }
+          ]
         },
         {
           name: <IntlMessages id={'sidebar.mission'} />,

@@ -6,7 +6,6 @@ export const fetchActiveDrones = () => {
     return dispatch => {
         axios.get('/drones?status=1',{headers: func.getToken()}).then(res => {
             dispatch(fetchActiveDronesSuccess());
-            // console.log(res.data)
             dispatch(fetchActiveDronesUpdate(res.data));
         }).catch(err => {
             dispatch(fetchActiveDronesFail());

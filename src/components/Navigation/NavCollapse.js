@@ -75,6 +75,7 @@ const NavCollapse = props => {
       {isExpandable && open && <IconExpandLess className='nav-arrow'/>}
     </ListItem>
   );
+  console.log("children",children)
 
   const MenuItemChildren = isExpandable ? (
     <Collapse className='nav-collapse-item' in={open} timeout="auto">

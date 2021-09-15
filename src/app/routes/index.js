@@ -13,6 +13,7 @@ const Routes = ({ match }) =>
     {/* <Route path={`${match.url}/dronecontrol`} component={DroneControl} /> */}
     <Route path={`${match.url}/users`} component={asyncComponent(() => import('./Users/Users'))} />
     <Route path={`${match.url}/dronecontrol`} component={asyncComponent(() => import('./DroneControl/DroneControl'))} />
+    <Route path={`${match.url}/dronecontrolall`} component={asyncComponent(() => import('./DroneControl/DroneControlAll'))} />
     <Route path={`${match.url}/dashboard`} component={asyncComponent(() => import('./Dashboard/Dashboard'))}  />
     <Route path={`${match.url}/profile`} component={asyncComponent(() => import('../../containers/Users/UserProfile/UserProfile'))}  />
     <Redirect from={`/app`} to={`${match.url}/dashboard`} />

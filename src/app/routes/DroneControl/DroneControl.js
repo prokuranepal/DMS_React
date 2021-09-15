@@ -96,11 +96,12 @@ const DroneControl = ()  => {
     const setData = (data) => {
         setPositionList(arr => [...arr, {lat: data.lat, lng: data.lng}])
         setDroneInfo(data);
+        // console.log('data from ', data)
     }
 
     //set home position. it is retrieved only once while initially connecting to the drone
     const setHomePosition = (position) => {
-        console.log(position);
+        // console.log(position);
         setHome({
             ...home, lat: position.lat, lng: position.lng
         });
@@ -116,7 +117,6 @@ const DroneControl = ()  => {
             const n = d.getMilliseconds();
             socket.current = io(`${url}/${drone}`);
             socket.current.emit("joinDMS", userId);
-            console.log("send socket connection", drone, url, userId);
             socket.current.emit("homePosition", { timestamp: n })
             socket.current.on("copter-data", setData);
             socket.current.on("homePosition", setHomePosition)

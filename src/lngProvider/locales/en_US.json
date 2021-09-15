@@ -4,6 +4,8 @@
   "sidebar.dronemanage": "Drone Management",
   "sidebar.dronecontrol": "Drone Control",
   "sidebar.mission": "Mission",
+  "sidebar.individual": "Individual",
+  "sidebar.all": "All",
   "sidebar.missionlist": "Mission List",
   "sidebar.missionplanner": "Mission Planner",
   "sidebar.inventory": "Inventory",
