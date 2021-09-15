@@ -107,6 +107,17 @@ const DroneControlAll = ()  => {
                     // console.log("data from drone", data, drone.name)
 
                 })
+                 socket.on('disconnect', (reason) => {
+                // console.log(reason, "disconnected")
+                NotificationManager.info("Drone Disconnected");
+                
+                // if (reason === 'io server disconnect' || reason === 'transport close disconnected') {
+                // the disconnection was initiated by the server, you need to reconnect manually
+                socket.connect();
+                socket.emit("joinDMS", userId);
+                // }
+                // else the socket will automatically try to reconnect
+            });
                 // socketArray.push(newSocket);
 
             })
@@ -148,7 +159,7 @@ const DroneControlAll = ()  => {
                 }
                    
                      
-    <RestrictedRegion lat={27.703509391032927} long={85.35697560756164}/> 
+         <RestrictedRegion lat={27.703509391032927} long={85.35697560756164}/> 
         <RestrictedRegion lat={28.250959093759214} long= {83.99745956671849}/>
         <RestrictedRegion lat={27.30890069282222} long={85.01653103210292}/>
         <RestrictedRegion lat={28.268220822619103} long={81.71108127899701}/>
