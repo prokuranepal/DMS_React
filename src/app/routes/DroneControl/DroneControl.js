@@ -94,9 +94,10 @@ const DroneControl = ()  => {
 
     //set the state for drone data along with its trajectory
     const setData = (data) => {
+        
         setPositionList(arr => [...arr, {lat: data.lat, lng: data.lng}])
         setDroneInfo(data);
-        // console.log('data from ', data)
+        console.log('data from ', data)
     }
 
     //set home position. it is retrieved only once while initially connecting to the drone
@@ -123,7 +124,7 @@ const DroneControl = ()  => {
             socket.current.on('getMission', setMissionDetail);
             socket.current.on('connect', () => {
                 NotificationManager.info("Drone Connected");
-                // console.log("Connected Again");
+                console.log("Connected Again");
                 setDroneFirstConnected(true);
                 setDroneConnected(true);
             })
