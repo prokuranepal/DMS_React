@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import MaterialTable from 'material-table';
 import TableIcons from '../../../homeComponents/TableIcons/TableIcons';
 
-import * as actions from '../../../store/actions/dashboard';
+import * as actions from '../../../store/actions/users';
 import { useDispatch, useSelector } from 'react-redux';
 
 /**
@@ -15,15 +15,14 @@ import { useDispatch, useSelector } from 'react-redux';
 const Healthposts = (props) => {
     const [state, setState] = React.useState({
         columns: [
-            // { title: 'ID', field: 'healthpostId' },
-            { title: 'Name', field: 'name'},
-            { title: 'Location', field: 'location' },
             {
-                title: 'Type', field: 'type',
-                lookup: {
-                    'healthpost': 'Health Post'
-                },
-            },
+                title: "Health Post Name",
+                field: "name",
+              },
+              { title: "Province", field: "province" },
+              { title: "District", field: "district" },
+              { title: "Municipality/VDC", field: "town" },
+              { title: "Landline Number", field: "landlineNumber" },
         ],
         data: [
         ],
@@ -31,7 +30,7 @@ const Healthposts = (props) => {
     const [selectedRow, setSelectedRow] = React.useState(null);
     const dispatch = useDispatch();
 
-    const healthposts = useSelector(({ dashboard }) => dashboard.healthposts)
+    const healthposts = useSelector(({ users }) => users.healthposts)
 
     //fetch healthposts
     useEffect(() => {

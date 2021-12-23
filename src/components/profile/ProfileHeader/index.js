@@ -1,7 +1,7 @@
 import React from "react";
 import Avatar from '@material-ui/core/Avatar';
 
-const ProfileHeader = () => {
+const ProfileHeader = (props) => {
   return (
     <div className="jr-profile-banner">
       <div className="jr-profile-container">
@@ -11,11 +11,11 @@ const ProfileHeader = () => {
               <Avatar className="size-90" alt="..." src="https://via.placeholder.com/124x106"/>
             </div>
             <div className="jr-profile-banner-avatar-info">
-              <h2 className="mb-2 jr-mb-sm-3 jr-fs-xxl jr-font-weight-light">Kiley Brown</h2>
-              <p className="mb-0 jr-fs-lg">Florida, USA</p>
+              <h2 className="mb-2 jr-mb-sm-3 jr-fs-xxl jr-font-weight-light">{props.name}</h2>
+              <p className="mb-0 jr-fs-lg">{props.userName}</p>
             </div>
           </div>
-          <div className="jr-profile-banner-top-right">
+          {/* <div className="jr-profile-banner-top-right">
             <ul className="jr-follower-list">
               <li>
                 <span className="jr-follower-title jr-fs-lg jr-font-weight-medium">2k+</span>
@@ -28,9 +28,9 @@ const ProfileHeader = () => {
                 <span className="jr-fs-sm">Friends</span>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
-        <div className="jr-profile-banner-bottom">
+        {/* <div className="jr-profile-banner-bottom">
           <div className="jr-tab-list">
             <ul className="jr-navbar-nav">
               <li>
@@ -54,7 +54,7 @@ const ProfileHeader = () => {
             <i className="zmdi zmdi-settings mr-2"/>
             <span className="d-inline-flex align-middle ml-1 jr-ml-sm-0">Setting</span>
           </span>
-        </div>
+        </div> */}
       </div>
     </div>
   )

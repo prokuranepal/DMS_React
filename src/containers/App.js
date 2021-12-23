@@ -50,7 +50,7 @@ const App = (props) => {
   const isDarkTheme = darkTheme;
   const { match, location } = props;
 
-  
+  // console.log("app", match.url)
 
   useEffect(() => {
     window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;

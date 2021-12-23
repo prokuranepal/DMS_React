@@ -57,7 +57,7 @@ const DroneList = (props) => {
                     <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}  data-test="radio-component">
                         {props.drones.map((drone, index) =>
                             // <FormControlLabel control={}>
-                            <DroneListItem key={index} drone={drone} data-test="dronelist-component"/>
+                            <DroneListItem key={index} drone={drone} data-test="dronelist-component" userType={props.userType}/>
                         )}
                     </RadioGroup>
                 </CustomScrollbars>

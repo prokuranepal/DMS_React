@@ -11,7 +11,8 @@ const initialState = {
     expiryDate: localStorage.getItem('expirationDate'),
     initURL: '',
     authRedirectPath: '/',
-    signUpSuccess: null
+    signUpSuccess: null,
+    userType: localStorage.getItem('userType')
 };
 
 const authStart = ( state, action ) => {
@@ -25,6 +26,7 @@ const authSuccess = (state, action) => {
         userId: action.userId,
         error: null,
         loading: false,
+        userType: action.userType
      } );
 };
 
@@ -36,7 +38,7 @@ const authFail = (state, action) => {
 };
 
 const authLogout = (state, action) => {
-    return updateObject(state, { token: null, userId: null });
+    return updateObject(state, { token: null, userId: null, userType: null });
 };
 
 const setAuthRedirectPath = (state, action) => {

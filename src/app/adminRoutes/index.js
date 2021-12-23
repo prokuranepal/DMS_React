@@ -1,7 +1,8 @@
 import React from 'react';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import asyncComponent from '../../util/asyncComponent';
-const Routes = ({ match }) =>
+const AdminRoutes = ({ match}) =>
+
 
   <Switch>
     <Route path={`${match.url}/weather`} component={asyncComponent(() => import('./Weather/Weather'))} />
@@ -17,8 +18,8 @@ const Routes = ({ match }) =>
     <Route path={`${match.url}/dashboard`} component={asyncComponent(() => import('./Dashboard/Dashboard'))}  />
     <Route path={`${match.url}/profile`} component={asyncComponent(() => import('../../containers/Users/UserProfile/UserProfile'))}  />
     <Redirect from={`/app`} to={`${match.url}/dashboard`} />
-  </Switch>;
+  </Switch>
 
 
-export default withRouter(Routes);
+export default withRouter(AdminRoutes);
 

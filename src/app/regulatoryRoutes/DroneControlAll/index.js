@@ -69,8 +69,6 @@ const DroneControlAll = ()  => {
 
     const activeDrones = useSelector(({ droneControl }) => droneControl.activeDrones);
     const userId = useSelector(({ auth }) => auth.userId);
-    const missionDetail = useSelector(({ mission }) => mission.missionDetail);
-    const checklistPass = useSelector(({droneControl}) => droneControl.checklistPass)
 
 
     useEffect(() => {
@@ -104,7 +102,7 @@ const DroneControlAll = ()  => {
                     // console.log("data from drone", data, drone.name)
 
                 })
-                 socket.on('disconnect', (reason) => {
+                 newSocket.on('disconnect', (reason) => {
                 // console.log(reason, "disconnected")
                 NotificationManager.info("Drone Disconnected");
                 

@@ -11,6 +11,8 @@ export const fetchDrones = () => dispatch => {
         axios.get(url,{headers: func.getToken()}).then(response => {
             // console.log(response);
             dispatch(fetchDronesSuccess(response.data))
+        }).catch(err => {
+            console.log(err)
         })
     } catch (error) {
        
@@ -32,6 +34,8 @@ export const fetchDroneDetail = (id) => dispatch => {
         axios.get(url,{headers: func.getToken()}).then(response => {
             // console.log(response);
             dispatch(fetchDroneDetailSuccess(response.data))
+        }).catch(err => {
+            console.log(err)
         })
     } catch (error) {
        
@@ -54,6 +58,8 @@ export const addDrone = (drone) => dispatch => {
         axios.post(url,drone,{headers: func.getToken()}).then(response => {
             // console.log(response);
             dispatch(addDroneSuccess(response.data))
+        }).catch(err => {
+            console.log(err)
         })
     } catch (error) {
        
@@ -98,6 +104,8 @@ export const updateDrone = (drone, droneId) => dispatch => {
         axios.put(url,drone,{headers: func.getToken()}).then(response => {
             console.log(response);
             dispatch(updateDroneSuccess(response.data))
+        }).catch(err => {
+            console.log(err)
         })
     } catch (error) {
        
