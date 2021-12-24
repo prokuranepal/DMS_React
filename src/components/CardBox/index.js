@@ -33,5 +33,5 @@ CardBox.defaultProps = {
   cardStyle: '',
   headingStyle: '',
   childrenStyle: '',
-  styleName: 'col-lg-6 col-sm-12'
+  // styleName: 'col-lg-6 col-sm-12'
 };

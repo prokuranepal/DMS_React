@@ -10,7 +10,7 @@ import ProfileHeader from "../../../../components/profile/ProfileHeader/index";
 import Auxiliary from "../../../../util/Auxiliary";
 import {friendList} from './data'
 import * as actions from '../../../../store/actions/users';
-import Users from "../../../../app/routes/Users/Users";
+// import Users from "../../../../app/routes/Users/Users";
 // import {photoList} from "../Wall/data";
 
 
@@ -50,14 +50,14 @@ const Profile = (props) => {
           </div>
           <div className="col-xl-4 col-lg-4 col-md-5 col-12">
             <Contact/>
-            <div className="row">
-              <div className="col-12">
+            {/* <div className="row"> */}
+              {/* <div className="col-12">
                 <Friends friendList={friendList}/>
-              </div>
+              </div> */}
               {/* <div className="col-12">
                 <Photos photoList={photoList}/>
               </div> */}
-            </div>
+            {/* </div> */}
           </div>
         </div>
       </div>

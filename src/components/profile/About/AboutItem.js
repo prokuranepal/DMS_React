@@ -12,7 +12,7 @@ const AboutItem = ({data}) => {
         </div>
         <div className="media-body">
           <h6 className="mb-1 text-grey">{title}</h6>
-          {userList === '' ? null : userList}
+          {/* {userList === '' ? null : userList} */}
           {desc === '' ? null : <p className="mb-0">{desc}</p>}
         </div>
       </div>

@@ -23,7 +23,6 @@ const Users = () => {
       <Grid container className={classes.root} >
         <Switch>
           <Route path="/app/users/list-users" render={() => <ListUsers/>}/>
-          <Route path="/app/users/profile" render={(props) => <Profile {...props}/>}/>
           <Redirect from="/app/users" to="/app/users/list-users" />
         </Switch>
       </Grid>

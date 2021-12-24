@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ResponsiveContainer } from 'recharts'
 import Spinner from '../../../homeComponents/UI/Spinner/Spinner'
 import * as actions from '../../../store/actions/dashboard'
+import * as userActions from '../../../store/actions/users';
 import IconWithTextCard from '../../../components/statusCard/IconWithTextCard'
 import Grid from '@material-ui/core/Grid';
 import LineChartMain from '../../../components/Chart/Charts/LineChartMain'
@@ -13,7 +14,7 @@ import CustomLineChart from '../../../components/CustomLineChart/index'
 import ChartCard from '../../../components/ChartCard/ChartCard'
 import * as cards from '../../../JSONFiles/dashboardCards';
 import DashbboardSkeleton from './DashboardSkeleton';
-
+import CustomScrollbars from '../../,,/../../util/CustomScrollbars';
 /**
  * This is the main landing page after signIn which shows data of number of drones, active drones, number of health posts and graphs of number of deliveries per certain interval of time of the Hospitals and each of its constituent Health posts
  * The store and default route path are 
@@ -30,12 +31,14 @@ const Dashboard = () => {
     useEffect(() => {
         dispatch(actions.getCurrentCards());
         dispatch(actions.getPlaces());
-        dispatch(actions.getHealthposts())
+        dispatch(userActions.getHealthposts());
+        
     }, [dispatch])
     const date = new Date();
     const year = date.getFullYear();
     // console.log(year);
     const { cardData, loading, graphs } = useSelector(({ dashboard }) => dashboard);
+    const users = useSelector(({ users }) => users.selfUserData);
 
     const card = cardData !== undefined && cardData !== null ? cards.data.map((data, index) => {
         return (
@@ -45,6 +48,7 @@ const Dashboard = () => {
         )
     }) : null;
     return (
+        <CustomScrollbars className="scrollbar" style={{height: 'calc(100% - 10px)', marginTop: '20px'}}>
         <div className={classes.Dashboard}>
             
             <div className={classes.Content}>
@@ -61,7 +65,7 @@ const Dashboard = () => {
                             <div>
                                 <Grid container>
                                     <Grid item md={8} xs={12}>
-                                        <CardBox heading="Sunsari District Hospital" styleName="col-12">
+                                        <CardBox heading={users && users.bodiesId?users.bodiesId.name:null} styleName="col-12">
                                             {(loading || graphs === null || graphs.hospital === undefined || graphs.healthPosts === undefined)
                                                 ? <Spinner /> : <LineChartMain data={graphs.hospital[year]} height={300} />}
                                         </CardBox>
@@ -101,9 +105,10 @@ const Dashboard = () => {
                             </div>
                         </Fragment>}
                 </div>
-            </div>}
+            </div>
 
         </div>
+        </CustomScrollbars>
     )
 }
 

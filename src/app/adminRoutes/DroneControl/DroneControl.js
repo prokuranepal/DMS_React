@@ -310,7 +310,7 @@ const DroneControl = ()  => {
                     <Grid item xs={3} container alignItems='flex-start' justify='flex-end' >
                         {droneInfo !== null ? <div><div><AttitudeIndicator size={130} roll={(droneInfo.roll * 180) / 3.14} pitch={(droneInfo.pitch * 180) / 3.14} showBox={false} /></div>
                             <div><HeadingIndicator size={130} heading={droneInfo.head} showBox={false} /></div>
-                            </div> : null} }
+                            </div> : null} 
                     </Grid>
                 </Grid>
                 <TileLayer
@@ -335,7 +335,7 @@ const DroneControl = ()  => {
                         {array[i - 1] ? <Polyline weight={1} positions={[
                             [array[i - 1].lat, array[i - 1].lng], [array[i].lat, array[i].lng],
                         ]} color={'red'} /> : null}
-                  }
+                  
                     </span>
                     )
                 }) : null}

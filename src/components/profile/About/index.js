@@ -21,17 +21,14 @@ const About =()=> {
         </div>
         <div className="jr-tabs-classic">
           <Tabs className="jr-tabs-up" value={value} onChange={handleChange}>
-            <Tab className="jr-tabs-label" label="Overview"/>
-            <Tab className="jr-tabs-label" label="Work"/>
-            <Tab className="jr-tabs-label" label="Education"/>
+            <Tab className="jr-tabs-label" label="Location"/>
+            <Tab className="jr-tabs-label" label="Contact Person"/>
           </Tabs>
           <div className="jr-tabs-content jr-task-list">
             <div className="row">
               {value === 0 && aboutList.map((about) => <div
                 className="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12"><AboutItem data={about}/></div>)}
               {value === 1 && aboutList.map((about) => <div
-                className="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12"><AboutItem data={about}/></div>)}
-              {value === 2 && aboutList.map((about) => <div
                 className="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12"><AboutItem data={about}/></div>)}
             </div>
           </div>

@@ -6,7 +6,6 @@ import {Route, Switch} from 'react-router-dom';
 import configureStore, {history} from './store';
 // import './firebase/firebase';
 import App from './containers/App';
-import DroneControlAll from './app/routes/DroneControl/DroneControlAll'
  export const store = configureStore();
 
 /**

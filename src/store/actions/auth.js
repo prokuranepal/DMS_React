@@ -13,12 +13,13 @@ export const authStart = () => {
     };
 };
 
-export const authSuccess = (token, userId) => {
+export const authSuccess = (token, userId, userType) => {
     // console.log(token, userId)
     return {
         type: actionTypes.AUTH_SUCCESS,
         token: token,
-        userId: userId
+        userId: userId,
+        userType: userType
     };
 };
 
@@ -52,6 +53,7 @@ export const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('expirationDate');
     localStorage.removeItem('userId');
+    localStorage.removeItem('userType');
     return {
         type: actionTypes.AUTH_LOGOUT
     };
@@ -89,6 +91,7 @@ const sendRefreshToken = (refreshToken) => {
                 
                 localStorage.setItem('userId', response.data.userId);// localStorage.setItem('token', response.data.id_token);
                 localStorage.setItem('expirationDate', expirationDate);
+                localStorage.setItem('userType', response.data.userType);
                 // localStorage.setItem('userId', response.data.user_id);
                 // localStorage.setItem('refreshToken', response.data.refresh_token);
                 // dispatch(authSuccess(response.data.id_token, response.data.user_id));
@@ -154,15 +157,17 @@ export const signIn = (email, password) => {
           })
             .then(response => {
                 // response = response.authResponse;
+                console.log(response.data);
                 const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
                 // console.log(new Date().getTime());
                 // console.log(response.data.expiresIn, response.data.refreshToken);
                 // console.log(response.data.idToken,response.data.expiresIn, expirationDate, expirationDate.getTime() - new Date().getTime());
                 localStorage.setItem('token', response.data.token);
-                localStorage.setItem('expirationDate', expirationDate);
+                localStorage.setItem('expirationDate', expirationDate); 
                 localStorage.setItem('userId', response.data.userId);
+                localStorage.setItem('userType', response.data.userType);
                 // localStorage.setItem('refreshToken', response.data.refreshToken);
-                dispatch(authSuccess(response.data.token, response.data.userId));
+                dispatch(authSuccess(response.data.token, response.data.userId, response.data.userType));
                 // dispatch(checkAuthTimeout(response.data.expiresIn));
                 dispatch(checkAuthTimeout(response.data.expiresIn, response.data.refreshToken));
             })

@@ -3,8 +3,8 @@ import { Box, MenuItem, MenuList, Paper, Popover, Typography } from '@material-u
 import CmtAvatar from '../../../@coremat/CmtAvatar';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import { useDispatch } from 'react-redux';
-import ProfileImage from '../../../assets/pppp.jpg';
+import { useDispatch, useSelector } from 'react-redux';
+import ProfileImage from '../../../assets/profile.png';
 import { Redirect } from 'react-router';
 import * as authActions from '../../../store/actions/auth';
 // import { AuhMethods } from '../../../../services/auth';
@@ -12,6 +12,7 @@ import * as authActions from '../../../store/actions/auth';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PersonIcon from '@material-ui/icons/Person';
 import SettingsIcon from '@material-ui/icons/Settings';
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -48,6 +49,7 @@ const SidebarHeader = () => {
   const dispatch = useDispatch();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const selfUserData = useSelector(({users}) => users.selfUserData)
   const [link, setLink] = useState(null);
 
   const handlePopoverOpen = event => {
@@ -80,9 +82,9 @@ const SidebarHeader = () => {
         <Box className="pointer" display="flex" justifyContent="space-between" alignItems="flex-end">
           <Box mr={2}>
             <Typography className={classes.userTitle} component="h3" variant="h6">
-              Swain Shrestha
+              {selfUserData?selfUserData.name:null}
             </Typography>
-            <Typography className={classes.userSubTitle}>swainstha@gmail.com</Typography>
+            <Typography className={classes.userSubTitle}>{selfUserData !== null && selfUserData.bodiesId !== undefined?selfUserData.bodiesId.name:'Super Admin'}</Typography>
           </Box>
           <ArrowDropDownIcon />
         </Box>
@@ -105,10 +107,10 @@ const SidebarHeader = () => {
           <Paper elevation={8}>
             <MenuList>
               {link}
-              <MenuItem onClick={linkProfile}>
+              {/* <MenuItem onClick={linkProfile}>
                 <PersonIcon />
                 <Box ml={2}>Profile</Box>
-              </MenuItem>
+              </MenuItem> */}
               <MenuItem onClick={onLogoutClick}>
                 <ExitToAppIcon />
                 <Box ml={2}>Logout</Box>

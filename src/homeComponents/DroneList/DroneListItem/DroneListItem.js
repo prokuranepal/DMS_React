@@ -66,6 +66,7 @@ const DroneListItem = (props) => {
             <div className={classes.body}>
                 <p className={classes.header} data-test="dronename-component">{props.drone.name}</p>
                 <div><span className={classes.info} data-test="dronecode-component">Code: {props.drone.droneId}</span><span className={classes.info} data-test="dronetype-component">Type: {getDroneText(props.drone.type)}</span></div>
+                {(props.userType === 0 || props.userType === 2)?<div><span className={classes.info}>Hospital: {props.drone.hospital}</span></div>:null}
             </div>
 
         </div>

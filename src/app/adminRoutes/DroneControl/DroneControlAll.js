@@ -10,13 +10,8 @@ import Green from '../../../assets/green.png';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import url from '../../../url';
 import io from 'socket.io-client';
-import RestrictedRegion from './RestrictedRegion';
+import RestrictedRegion from '../../../homeComponents/RestrictedRegion';
 import * as actions from '../../../store/actions/droneControl';
-import * as actionsDashboard from '../../../store/actions/dashboard'
-
-import * as missionActions from '../../../store/actions/mission';
-import {AttitudeIndicator, HeadingIndicator} from 'react-flight-indicators';
-import Dialog from '../../../homeComponents/Dialog/Dialog';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -86,7 +81,9 @@ const DroneControlAll = ()  => {
  
 
     useEffect(() => {
+        console.log(activeDrones);
         if(activeDrones){
+
             activeDrones.map((drone,ind)=>{
                 let newSocket = io(`${url}/${drone.name}`)
                 if(newSocket){

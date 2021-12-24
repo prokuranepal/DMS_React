@@ -16,23 +16,24 @@ import Healthposts from '../../Dms/Healthposts/Healthposts';
 
 const ListUsers = () => {
 
-    const healthposts = useSelector(({ dashboard }) => dashboard.healthposts);
+    const healthposts = useSelector(({ users }) => users.healthposts);
 
     const [state, setState] = React.useState({
         columns: [
-            { title: 'First Name', field: 'firstName' },
-            { title: 'Last Name', field: 'lastName' },
             {
-                title: 'Health Post', field: 'healthFacilities',
+                title: "Name",
+                field: "name",
+              },{ title: "Department", field: "department" },
+              { title: "Email", field: "email" },
+              { title: "Phone Number", field: "phoneNumber" },
+              { title: "Position", field: "position" },
+              { title: "Password", field: "password" },
+              {
+                title: 'Health Post',field: 'bodiesId',
                 lookup: {
                     'default': 'Default'
                 },
-            },
-            { title: 'Address', field: 'address' },
-            { title: 'Phone Number', field: 'phoneNumber' },
-            { title: 'Email', field: 'email' },
-            { title: 'Password', field: 'password' }
-        ],
+            }],
         data: [
         ],
     });
@@ -42,19 +43,21 @@ const ListUsers = () => {
 
     useEffect(() => {
         dispatch(actions.getUsers());
-        dispatch(dashboardActions.getHealthposts());
+        dispatch(actions.getHealthposts());
     }, [dispatch])
 
     useEffect(() => {
-        if (userData !== undefined && userData.healthpost !== undefined) {
+        if (userData !== undefined && userData !== null) {
             // setState(prevState => { return { ...prevState, data: userData.healthpost } })
             // console.log(userData.healthpost)
-            const newData = userData.healthpost.map(user => {
-                return {
-                    ...user,
-                    healthFacilities: user.healthFacilities._id
-                }
-            })
+            // const newData = userData.healthpost.map(user => {
+            //     return {
+            //         ...user,
+            //         healthFacilities: user.healthFacilities._id
+            //     }
+            // })
+            const newData = userData.map(user => {
+                return{...user, bodiesId: user.bodiesId._id}})
 
             // console.log(newData);
             setState(prevState => { return { ...prevState, data: newData } })
@@ -62,16 +65,30 @@ const ListUsers = () => {
     }, [userData]);
 
     useEffect(() => {
-        const newState = { ...state };
-        // console.log(healthposts);
-        let lookup = "{"
-        if (healthposts.length !== 0) {
-            healthposts.map((healthpost, i, array) => lookup = (array[i + 1] !== undefined) ? lookup + `"${healthpost._id}": "${healthpost.name}",` : lookup + `"${healthpost._id}": "${healthpost.name}"}`);
-            // console.log(lookup);
-            newState.columns[2].lookup = JSON.parse(lookup + '')
+        // const newState = { ...state };
+        // // console.log(healthposts);
+        // let lookup = "{"
+        // if (healthposts.length !== 0) {
+        //     healthposts.map((healthpost, i, array) => lookup = (array[i + 1] !== undefined) ? lookup + `"${healthpost._id}": "${healthpost.name}",` : lookup + `"${healthpost._id}": "${healthpost.name}"}`);
+        //     // console.log(lookup);
+        //     newState.columns[2].lookup = JSON.parse(lookup + '')
+        //     // console.log(newState);
+        //     setState(newState)
+        // }
+
+        if (healthposts !== undefined && healthposts !== null) {
+
+            let newLookUp = {};
+            healthposts.map(post => {
+              newLookUp = {...newLookUp,[post._id]: post.name}
+            })
+            // console.log(state)
+            const newState = {...state};
+            newState.columns[6] = {...newState.columns[6], 
+                                      lookup: newLookUp}
             // console.log(newState);
-            setState(newState)
-        }
+            setState(newState);
+          }
 
     }, [healthposts, dispatch])
 
@@ -112,7 +129,7 @@ const ListUsers = () => {
                                 setTimeout(() => {
                                     resolve();
                                     // console.log(newData);
-                                      dispatch(actions.addUser(newData))
+                                      dispatch(actions.addUser({...newData, bodiesType: 'Health Post'}))
                                     setState((prevState) => {
                                         const data = [...prevState.data];
                                         data.push(newData);

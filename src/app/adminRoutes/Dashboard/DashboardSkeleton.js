@@ -7,7 +7,7 @@ const DashboardSkeleton = () => {
     return (
         <Fragment>
             <div style={{ padding: '20px' }}>
-                <Grid container spacing={5} justify="center">
+                <Grid container spacing={5} justifyContent="center">
                     <Grid item lg={3} md={3} xs={6} >
                         <Skeleton height={90} width={`100%`} />
                     </Grid>

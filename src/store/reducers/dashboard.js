@@ -8,7 +8,8 @@ const initialState = {
     loading: true,
     error: {},
     places: [],
-    healthposts: []
+    // healthposts: [],
+    // hospitals:[]
 }
 
 const cardError = (state, action) => {
@@ -41,6 +42,12 @@ const setHealthposts = (state, action) => {
     })
 }
 
+const setHospitals = (state, action) => {
+    return updateObject(state, {
+        hospitals: action.hospitals
+    })
+}
+
 
 
 
@@ -50,6 +57,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.GET_CARDS_FAIL: return cardError(state, action);
         case actionTypes.GET_PLACES_SUCCESS: return setPlaces(state, action);
         case actionTypes.GET_HEALTHPOSTS_SUCCESS: return setHealthposts(state, action);
+        // case actionTypes.GET_HOSPITALS_SUCCESS: return setHospitals(state, action)
         default:
             return state;
     }

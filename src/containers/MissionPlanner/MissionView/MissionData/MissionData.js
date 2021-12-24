@@ -7,7 +7,7 @@ import Select from '@material-ui/core/Select';
 import InputBase from '@material-ui/core/InputBase';
 import CustomScrollbars from '../../../../util/CustomScrollbars';
 import { useDispatch, useSelector } from 'react-redux'
-import * as dashboardActions from '../../../../store/actions/dashboard';
+import * as userActions from '../../../../store/actions/users';
 import IconButton from "@material-ui/core/IconButton";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import CustomModal from '../../../../hoc/Modal/Modal';
@@ -130,12 +130,12 @@ const BootstrapInput = withStyles((theme) => ({
 const MissionData = props => {
     const dispatch = useDispatch();
     const classes = useStyles();
-    const healthposts = useSelector(({ dashboard }) => dashboard.healthposts);
+    const healthposts = useSelector(({ users }) => users.healthposts);
     // console.log("healthposts from dashboard", healthposts)
     // console.log(props.waypoint);
     useEffect(() => {
         if (healthposts.length === 0) {
-            dispatch(dashboardActions.getHealthposts())
+            dispatch(userActions.getHealthposts())
         }
     }, [dispatch])
 
