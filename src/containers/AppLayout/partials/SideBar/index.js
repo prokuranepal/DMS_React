@@ -70,7 +70,7 @@ const SideBar = () => {
 
   return (
     // <PerfectScrollbar className={classes.perfectScrollbarSidebar}>
-    <CustomScrollbars className="scrollbar" style={{height: 'calc(100% - 180px', marginTop: '20px'}}>
+    <CustomScrollbars className="scrollbar" style={{height: 'calc(100% - 10px', marginTop: '20px'}}>
       <CmtVertical menuItems={navigationMenus} />
    </CustomScrollbars>
     // </PerfectScrollbar>

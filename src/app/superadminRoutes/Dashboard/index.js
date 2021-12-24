@@ -14,7 +14,7 @@ import CustomLineChart from "../../../components/CustomLineChart/index";
 import ChartCard from "../../../components/ChartCard/ChartCard";
 import * as cards from "../../../JSONFiles/dashboardCards";
 import DashbboardSkeleton from "../../adminRoutes/Dashboard/DashboardSkeleton";
-
+import CustomScrollbars from '../../,,/../../util/CustomScrollbars';
 /**
  * This is the main landing page after signIn which shows data of number of drones, active drones, number of health posts and graphs of number of deliveries per certain interval of time of the Hospitals and each of its constituent Health posts
  * The store and default route path are
@@ -54,6 +54,8 @@ const Dashboard = () => {
         })
       : null;
   return (
+    <CustomScrollbars className="scrollbar" style={{height: 'calc(100% - 10px)', marginTop: '20px'}}>
+
     <div className={classes.Dashboard}>
       <div className={classes.Content}>
         <div className={classes.View}>
@@ -66,37 +68,38 @@ const Dashboard = () => {
                   {card}
                 </Grid>
               </div>
-
-                <Grid container>
-                  {loading || graphs === null || graphs.healthPosts === null ? (
+              <div style={{ marginLeft: "20px", marginRight: "20px" }}>
+                <Grid container spacing={5}>
+                  {loading || graphs === null || graphs.hospital === null ? (
                     <Spinner />
                   ) : (
-                    graphs.healthPosts.map((healthPost, index) => {
+                    graphs.hospital.map((hos, index) => {
                       return (
-                        <Grid item xs={12}>
-                            <CardBox heading={healthPost.name} key={index}>
-                              {loading ||
-                              graphs === null ||
-                              graphs.hospital === undefined ||
-                              graphs.healthPosts === undefined ? (
-                                <Spinner />
-                              ) : (
-                                <LineChartMain
-                                  data={healthPost.data[year]}
-                                  height={300}
-                                />
-                              )}
-                            </CardBox>
+                        <Grid item xs={6}>
+                          <CardBox heading={hos.name} key={index}>
+                            {loading ||
+                            graphs === null ||
+                            graphs.hospital === undefined? (
+                              <Spinner />
+                            ) : (
+                              <LineChartMain
+                                data={hos.data[year]}
+                                height={300}
+                              />
+                            )}
+                          </CardBox>
                         </Grid>
                       );
                     })
                   )}
                 </Grid>
+              </div>
             </Fragment>
           )}
         </div>
       </div>
     </div>
+    </CustomScrollbars>
   );
 };
 

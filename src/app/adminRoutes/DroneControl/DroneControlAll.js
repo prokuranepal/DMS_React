@@ -86,6 +86,7 @@ const DroneControlAll = ()  => {
 
             activeDrones.map((drone,ind)=>{
                 let newSocket = io(`${url}/${drone.name}`)
+                if(newSocket){
                 newSocket.emit("joinDMS", userId)
                 newSocket.on('copter-data',data=>{
                         // let droneInformation=droneInfoArray.filter(uav=>uav.name===drone.name)
@@ -110,12 +111,13 @@ const DroneControlAll = ()  => {
                 
                 // if (reason === 'io server disconnect' || reason === 'transport close disconnected') {
                 // the disconnection was initiated by the server, you need to reconnect manually
-                socket.connect();
-                socket.emit("joinDMS", userId);
+                newSocket.connect();
+                newSocket.emit("joinDMS", userId);
                 // }
                 // else the socket will automatically try to reconnect
             });
                 // socketArray.push(newSocket);
+        }
 
             })
         }

@@ -94,9 +94,10 @@ const DroneControl = ()  => {
 
     //set the state for drone data along with its trajectory
     const setData = (data) => {
+        
         setPositionList(arr => [...arr, {lat: data.lat, lng: data.lng}])
         setDroneInfo(data);
-        // console.log('data from ', data)
+        console.log('data from ', data)
     }
 
     //set home position. it is retrieved only once while initially connecting to the drone
@@ -123,7 +124,7 @@ const DroneControl = ()  => {
             socket.current.on('getMission', setMissionDetail);
             socket.current.on('connect', () => {
                 NotificationManager.info("Drone Connected");
-                // console.log("Connected Again");
+                console.log("Connected Again");
                 setDroneFirstConnected(true);
                 setDroneConnected(true);
             })
@@ -309,7 +310,7 @@ const DroneControl = ()  => {
                     <Grid item xs={3} container alignItems='flex-start' justify='flex-end' >
                         {droneInfo !== null ? <div><div><AttitudeIndicator size={130} roll={(droneInfo.roll * 180) / 3.14} pitch={(droneInfo.pitch * 180) / 3.14} showBox={false} /></div>
                             <div><HeadingIndicator size={130} heading={droneInfo.head} showBox={false} /></div>
-                            </div> : null} }
+                            </div> : null} 
                     </Grid>
                 </Grid>
                 <TileLayer
@@ -334,7 +335,7 @@ const DroneControl = ()  => {
                         {array[i - 1] ? <Polyline weight={1} positions={[
                             [array[i - 1].lat, array[i - 1].lng], [array[i].lat, array[i].lng],
                         ]} color={'red'} /> : null}
-                  }
+                  
                     </span>
                     )
                 }) : null}
