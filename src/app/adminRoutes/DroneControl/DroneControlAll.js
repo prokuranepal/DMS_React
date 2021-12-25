@@ -169,7 +169,7 @@ const DroneControlAll = ()  => {
                 {positionList.length !== 0 ? positionList.map((position,i, array) => {
                       return (
                         <span key={i}>
-                            {array[i - 1] ? <Polyline weight={2} positions={[
+                            {array[i - 1] ? <Polyline weight={1} positions={[
                             [array[i - 1].lat, array[i - 1].lng], [array[i].lat, array[i].lng],
                         ]} color={'green'} /> : null}
                         </span>

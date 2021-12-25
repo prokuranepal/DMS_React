@@ -51,8 +51,8 @@ const SignIn = (props) => {
         },
     }));
 
-    const [email, setEmail] = useState('9840016544');
-    const [password, setPassword] = useState('sushil');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     // const [email, setEmail] = useState('');
     // const [password, setPassword] = useState('');
     const dispatch = useDispatch();
@@ -84,7 +84,7 @@ const SignIn = (props) => {
                     required
                     fullWidth
                     id="email"
-                    label={<IntlMessages id="appModule.email" />}
+                    label={'Phone Number'}
                     name="email"
                     defaultValue={email}
                     onChange={(event) => setEmail(event.target.value)}
@@ -120,7 +120,7 @@ const SignIn = (props) => {
                 >
                     Sign In
                             </Button>
-                <Button
+                {/* <Button
                     onClick={(event) => {
                         event.preventDefault();
                         props.select(0);
@@ -133,7 +133,7 @@ const SignIn = (props) => {
                     className={classes.submit}
                 >
                     Switch to Sign Up
-                            </Button>
+                            </Button> */}
                 <Grid container>
                     <Grid item xs>
                         <Link href="#" variant="body2">

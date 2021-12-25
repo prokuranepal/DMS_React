@@ -1,4 +1,4 @@
-let url = 'http://4116-49-244-59-88.ngrok.io';
+let url = 'http://192.168.0.2:3001';
 // let url='https://dms.prokurainnovations.com:3444'
 // let url='http://239e-27-34-75-187.ngrok.io';
 // let url='http://b683-27-34-73-188.ngrok.io';

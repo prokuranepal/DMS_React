@@ -68,21 +68,20 @@ const Dashboard = () => {
               </div>
               <div style={{ marginLeft: "20px", marginRight: "20px" }}>
                 <Grid container spacing={5}>
-                  {loading || graphs === null || graphs.healthPosts === null ? (
+                  {loading || graphs === null || graphs.hospital === undefined || graphs.hospital === null || graphs.hospital === {} ? (
                     <Spinner />
                   ) : (
-                    graphs.healthPosts.map((healthPost, index) => {
+                    graphs.hospital.map((hos, index) => {
                       return (
                         <Grid item xs={6}>
-                          <CardBox heading={healthPost.name} key={index}>
+                          <CardBox heading={hos.name} key={index}>
                             {loading ||
                             graphs === null ||
-                            graphs.hospital === undefined ||
-                            graphs.healthPosts === undefined ? (
+                            graphs.hospital === undefined ? (
                               <Spinner />
                             ) : (
                               <LineChartMain
-                                data={healthPost.data[year]}
+                                data={hos.data[year]}
                                 height={300}
                               />
                             )}

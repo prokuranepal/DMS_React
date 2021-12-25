@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         // backgroundColor: '#E7E7E7',
         backgroundColor: '#495057',
-        height: 'calc(100vh-64px)'
+        height: '100vh'
     },
     data: {
         zIndex: 500,
@@ -240,7 +240,7 @@ const DroneControl = ()  => {
         setCommand(null);
     }
 
-    return <Grid container className={classes.root} >
+    return <Grid container className={classes.root}>
         <Grid item xs={3}>
             <DroneData
                 onDownloadMission={onDownloadMission}

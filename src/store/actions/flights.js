@@ -27,7 +27,7 @@ export const fetchFlightDetails = (id) => {
     return dispatch => {
         axios.get(url,{headers: func.getToken()}).then(res => {
             
-            // console.log(res.data)
+            console.log("Flights", res.data)
             dispatch(flightDetailsUpdate(res.data));
         }).catch(err => {
             // dispatch(fetchActiveDronesFail());
@@ -39,5 +39,26 @@ export const flightDetailsUpdate = (data) => {
     return {
         type: actionTypes.GET_FLIGHT_DETAILS,
         flightDetails: data
+    }
+}
+
+
+// export const getFlightCards = () => {
+//     const url = `/flights`
+//     return dispatch => {
+//         axios.get(url,{headers: func.getToken()}).then(res => {
+            
+//             console.log("Flights", res.data)
+//             dispatch(flightDetailsUpdate(res.data));
+//         }).catch(err => {
+//             // dispatch(fetchActiveDronesFail());
+//         });
+//     }
+// }
+
+const getFlightCardsSuccess = (data) => {
+    return {
+        type: actionTypes.GET_FLIGHT_CARDS_SUCCESS,
+        flightCards: data
     }
 }
