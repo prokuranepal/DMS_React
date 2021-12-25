@@ -89,7 +89,7 @@ const MissionList = () => {
                                     setState((prevState) => {
                                         const data = [...prevState.data];
                                         data.splice(data.indexOf(oldData), 1);
-                                        dispatch(actions.deleteMission())
+                                        dispatch(actions.deleteMission(oldData._id))
                                         return { ...prevState, data };
                                     });
                                 }, 600);

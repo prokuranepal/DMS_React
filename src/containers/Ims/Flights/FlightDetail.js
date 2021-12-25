@@ -12,7 +12,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import * as func from '../../../Functions/functions'
 import * as flightActions from '../../../store/actions/flights';
-
+import CustomScrollbars from '../../,,/../../util/CustomScrollbars';
 /**
  * This shows the details of a particular flight like drone used, mission followed, duration, time of flight etc
  * along with the waypoints in a map.
@@ -127,6 +127,7 @@ const FlightDetail = (props) => {
     }, [flightDetails])
 
     return (
+        <CustomScrollbars className="scrollbar" style={{height: 500, marginTop: '20px'}}>
         <div className={classes.root}>
             <Grid container>
                 {redirect}
@@ -149,6 +150,7 @@ const FlightDetail = (props) => {
                 <FlightMap mission={flightDetails ? flightDetails.mission : mapDetails} />
             </Grid>
         </div>
+        </CustomScrollbars>
     )
 }
 

@@ -72,7 +72,7 @@ const Dashboard = () => {
                                     </Grid>
                                     <Hidden only="sm">
                                        
-                                        {(loading || graphs === null || graphs.healthPosts === null)
+                                        {(loading || graphs === null || graphs.healthPosts === undefined || graphs.healthPosts === null || graphs.healthPosts === {})
                                             ? <Spinner /> : <Grid item md={4}>
                     
                                                 {graphs.healthPosts.map((healthPost, index) => {

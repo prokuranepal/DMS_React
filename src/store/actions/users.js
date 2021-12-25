@@ -26,6 +26,8 @@ import {
   // UPDATE_REGULATORY_BODY
 } from "./actionTypes";
 
+import { NotificationContainer, NotificationManager } from 'react-notifications';
+
 import * as func from "./function";
 
 
@@ -56,6 +58,7 @@ export const addUser = (data) => (dispatch) => {
     .post("/users/signup", data, { headers: func.getToken() })
     .then((res) => {
       console.log(res.data);
+      NotificationManager.info("New Health Post User added");
       dispatch({
         type: ADD_USER,
         users: res.data,

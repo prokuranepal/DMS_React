@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import IconWithTextCard from '../../../components/statusCard/IconWithTextCard';
 import { Redirect } from "react-router";
 import * as dmsActions from '../../../store/actions/dms';
-
+import CustomScrollbars from '../../,,/../../util/CustomScrollbars';
 function createData(flightId, origin, destination, missionId, purpose) {
 
     return { flightId, origin, destination, missionId, purpose };
@@ -81,7 +81,7 @@ const DroneDetail = (props) => {
         });
 
         if (droneDetail !== null) {
-            const cData = { "droneId": droneDetail.droneId, "flightTime": droneDetail.flightTime, "flights": droneDetail.numOfFlight, "crashes": 0 }
+            const cData = { "droneId": droneDetail.droneId, "flightTime": droneDetail.flightTime, "flights": droneDetail.numOfFlights, "crashes": droneDetail.crashes }
             setCardData(cData);
         }
         // console.log(dDetail)
@@ -120,6 +120,7 @@ const DroneDetail = (props) => {
 
 
     return (
+        <CustomScrollbars className="scrollbar" style={{height: 500, marginTop: '20px'}}>
         <div className="app-wrapper">
             {redirectTo}
             <div style={{ paddingBottom: '30px' }}>
@@ -191,6 +192,7 @@ const DroneDetail = (props) => {
                 />
             </div>
         </div>
+        </CustomScrollbars>
     );
 }
 

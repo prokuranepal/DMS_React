@@ -70,7 +70,7 @@ const Dashboard = () => {
               </div>
               <div style={{ marginLeft: "20px", marginRight: "20px" }}>
                 <Grid container spacing={5}>
-                  {loading || graphs === null || graphs.hospital === null ? (
+                  {loading || graphs === null || graphs.hospital === undefined || graphs.hospital === null || graphs.hospital === {} ? (
                     <Spinner />
                   ) : (
                     graphs.hospital.map((hos, index) => {

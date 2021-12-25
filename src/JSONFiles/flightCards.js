@@ -10,7 +10,7 @@ export const data = [
         icon: 'flight-takeoff',
         value: '0',
         name: 'Flights',
-        title: 'flights'
+        title: 'numOfFlights'
     }, {
         cardColor: 'warning',
         icon: 'assignment-check',
